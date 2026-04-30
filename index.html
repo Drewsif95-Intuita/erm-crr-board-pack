@@ -108,14 +108,22 @@
     position: relative;
     overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-    padding: 16px 16px 10px;
+    padding: clamp(8px, 1.6vh, 16px) 16px clamp(8px, 1.2vh, 10px);
     min-height: 0;
   }
   .slide-frame-wrap {
     position: relative;
-    width: 1280px; max-width: 100%;
-    aspect-ratio: 1280 / 720;
-    max-height: 100%;
+    width: 1280px;
+    height: 720px;
+    max-width: 100%;
+    flex: 0 0 auto;
+  }
+  .slide-frame-scale {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1280px;
+    height: 720px;
+    transform-origin: top left;
     box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.2);
     border-radius: 4px;
     overflow: hidden;
@@ -123,7 +131,7 @@
   }
   .slide-frame-wrap iframe {
     position: absolute; inset: 0;
-    width: 100%; height: 100%;
+    width: 1280px; height: 720px;
     border: 0;
     display: block;
   }
@@ -5873,6 +5881,35 @@ const infoClose = document.getElementById('info-close');
 const infoTitle = document.getElementById('info-title');
 const infoPurpose = document.getElementById('info-purpose');
 const infoMeta = document.getElementById('info-meta');
+const stage = document.querySelector('.stage');
+const slideFrameWrap = document.querySelector('.slide-frame-wrap');
+
+let slideFrameScale = slideFrameWrap.querySelector('.slide-frame-scale');
+if (!slideFrameScale) {
+  slideFrameScale = document.createElement('div');
+  slideFrameScale.className = 'slide-frame-scale';
+  frames.forEach(frame => slideFrameScale.appendChild(frame));
+  slideFrameWrap.appendChild(slideFrameScale);
+}
+
+function fitSlideFrame() {
+  const style = window.getComputedStyle(stage);
+  const horizontalPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+  const verticalPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+  const availableWidth = Math.max(320, stage.clientWidth - horizontalPadding);
+  const availableHeight = Math.max(180, stage.clientHeight - verticalPadding);
+  const scale = Math.min(availableWidth / 1280, availableHeight / 720, 1);
+
+  slideFrameWrap.style.width = `${Math.floor(1280 * scale)}px`;
+  slideFrameWrap.style.height = `${Math.floor(720 * scale)}px`;
+  slideFrameScale.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener('resize', fitSlideFrame);
+window.addEventListener('orientationchange', fitSlideFrame);
+if ('ResizeObserver' in window) {
+  new ResizeObserver(fitSlideFrame).observe(stage);
+}
 
 function showSlide(idx) {
   if (idx < 0 || idx >= SLIDES.length) return;
@@ -5956,6 +5993,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+fitSlideFrame();
 showSlide(0);
 </script>
 

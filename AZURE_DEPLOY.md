@@ -18,10 +18,10 @@ This app is a frontend-only Vite static site and should be hosted as an Azure St
 The workflow currently expects this repository secret:
 
 ```text
-AZURE_STATIC_WEB_APPS_API_TOKEN
+AZURE_STATIC_WEB_APPS_API_TOKEN_VICTORIOUS_FLOWER_00B1E901E
 ```
 
-Azure may generate a resource-specific name such as `AZURE_STATIC_WEB_APPS_API_TOKEN_<RESOURCE_NAME>`. If you use that generated name, either create a matching GitHub secret with the generic name above or update `.github/workflows/azure-static-web-apps.yml` to reference the generated secret exactly.
+Azure generated this resource-specific secret name for the Static Web App. Ensure the GitHub repository contains a secret with this exact name and the Azure deployment token as its value.
 
 ## Build And Deploy Flow
 

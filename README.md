@@ -51,7 +51,7 @@ This repo is configured for Azure Static Web Apps through GitHub Actions.
 - Build command: `npm run build`
 - Build output: `dist`
 - Workflow: `.github/workflows/azure-static-web-apps.yml`
-- Required GitHub secret: `AZURE_STATIC_WEB_APPS_API_TOKEN`
+- Required GitHub secret: `AZURE_STATIC_WEB_APPS_API_TOKEN_VICTORIOUS_FLOWER_00B1E901E`
 
 See `AZURE_DEPLOY.md` for the full setup checklist.
 

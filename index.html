@@ -4,9 +4,6 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>CRR Exec Pack v3 — Interactive Review</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --sl-heritage-blue: #0A2F73;
@@ -35,7 +32,7 @@
   html, body {
     margin: 0; padding: 0; height: 100%;
     background: var(--bg);
-    font-family: 'Ubuntu', Arial, system-ui, sans-serif;
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
     color: var(--ink);
     overflow: hidden;
   }
@@ -87,7 +84,7 @@
   .tb-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.24); color: #fff; }
   .tb-btn.active { background: var(--sl-heritage-yellow); color: var(--sl-heritage-blue); border-color: var(--sl-heritage-yellow); }
   .tb-btn .kbd {
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
     font-size: 9.5px;
     background: rgba(0,0,0,0.22);
     padding: 1px 5px; border-radius: 2px;
@@ -96,7 +93,7 @@
   .tb-btn.active .kbd { background: rgba(10,31,79,0.2); }
 
   .progress-chip {
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
     font-size: 11px; font-weight: 600;
     color: #fff;
     background: rgba(255,255,255,0.10);
@@ -232,7 +229,7 @@
     font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.88);
     white-space: nowrap;
   }
-  .thumb.active .t-name { color: #fff; }
+  .thumb.active .t-name { color: #fff; font-weight: 700; }
 
   .tray .spacer { flex: 1; }
   .tray .hint {
@@ -241,7 +238,7 @@
     white-space: nowrap;
   }
   .tray .hint .kbd {
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
     font-size: 9.5px;
     background: rgba(255,255,255,0.08);
     color: rgba(255,255,255,0.75);
@@ -287,7 +284,7 @@
   .intro-card ul li + li { margin-top: 3px; }
   .intro-card b { color: var(--ink); }
   .intro-card .kbd {
-    font-family: 'Ubuntu Mono', monospace; font-size: 10.5px;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10.5px;
     background: var(--panel-soft); padding: 1px 6px; border-radius: 2px;
     border: 1px solid var(--hairline);
     color: var(--ink); font-weight: 600;
@@ -309,7 +306,7 @@
   <div class="brand-block">
     <div class="wordmark">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80">
-        <text x="0" y="58" font-family="Ubuntu, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1.5" fill="#0A2F73">Standard Life</text>
+        <text x="0" y="58" font-family="Aptos, 'Segoe UI', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1.5" fill="#0A2F73">Standard Life</text>
         <polygon points="318,8 348,2 332,46" fill="#FFBB00"/>
       </svg>
     </div>
@@ -338,9 +335,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Executive Summary</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -407,7 +401,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -419,7 +413,7 @@
     font-size: 12px;
     letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   /* ---------- SLIDE CANVAS ---------- */
   .slide {
@@ -518,8 +512,8 @@
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .kpi-value  { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 4px; line-height: 1.3; }
   .kpi-delta.up   { color: #15803d; }
   .kpi-delta.down { color: #b91c1c; }
@@ -550,7 +544,7 @@
   .cro-role { font-size: 11px; color: var(--muted); }
   .cro-text { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
-  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; white-space: nowrap; margin-top: 4px; }
+  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; white-space: nowrap; margin-top: 4px; }
 
   /* ===== LEFT: BOARD ATTENTION ITEMS ===== */
   .attention-panel {
@@ -567,7 +561,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
   }
-  .panel-title { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .panel-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .panel-sub { font-size: 10px; color: var(--muted); font-weight: 500; }
 
   .attention-list { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
@@ -613,7 +607,7 @@
   .att-why b { color: var(--ink); }
   .att-meta {
     display: flex; gap: 10px; font-size: 10px; color: var(--muted);
-    font-family: 'Ubuntu Mono', monospace; letter-spacing: 0.01em;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; letter-spacing: 0.01em;
     margin-top: 2px;
   }
   .att-meta .sep { color: var(--muted-2); }
@@ -631,7 +625,7 @@
   .ask-pill.note      { background: var(--green-bg); color: var(--green); }
   .ask-pill.followup  { background: #f3e8ff; color: #6b21a8; }
   .ask-refs {
-    font-size: 9.5px; color: var(--muted); font-family: 'Ubuntu Mono', monospace;
+    font-size: 9.5px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
 
   /* ===== RIGHT COLUMN ===== */
@@ -678,7 +672,7 @@
   .posture-cell.p-red   { background: #fdf4f4; border-color: #f1cdcd; }
 
   .posture-label {
-    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--muted);
   }
   .posture-status {
@@ -720,9 +714,9 @@
     background: #fff;
     border: 1px solid var(--hairline-soft);
   }
-  .dec-count-num { font-size: 14px; font-weight: 700; color: var(--ink-2); line-height: 1.1; }
+  .dec-count-num { font-size: 14px; font-weight: 600; color: var(--ink-2); line-height: 1.1; }
   .dec-count-label {
-    font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--muted-2);
   }
 
@@ -738,7 +732,7 @@
   }
   .dec-item:last-child { border-bottom: 0; }
   .dec-num {
-    font-family: 'Ubuntu Mono', monospace; color: var(--muted-2); font-weight: 700;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; color: var(--muted-2); font-weight: 700;
     font-size: 9.5px; margin-top: 1px;
   }
   .dec-text {
@@ -768,9 +762,7 @@
   .slide-footer .toc {
     display: flex; align-items: center; gap: 10px;
   }
-  .slide-footer .toc-item {
-    font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
-  }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
 
@@ -807,7 +799,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -1090,7 +1082,7 @@
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
   <div>No filters visible · Curated commentary only · All numbers reconcile to analytical CRR via shared semantic model</div>
-  <div>Typography: Inter / JetBrains Mono (mockup) · Segoe UI (Power BI build)</div>
+  <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
 </body>
@@ -1102,9 +1094,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Risk Appetite</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -1177,7 +1166,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -1189,7 +1178,7 @@
     font-size: 12px;
     letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   /* ---------- SLIDE CANVAS ---------- */
   .slide {
@@ -1285,8 +1274,8 @@
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { grid-column: 1 / -1; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 34px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+  .kpi-label { grid-column: 1 / -1; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .kpi-value  { font-size: 34px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
   .kpi-delta  { font-size: 11px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 4px; justify-self: end; }
   .kpi-delta.up   { color: #15803d; }
   .kpi-delta.down { color: #CA3F4C; }
@@ -1306,13 +1295,13 @@
     padding: 8px 0;
   }
   .changed-label .eyebrow {
-    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
   }
   .changed-label .big {
-    font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-top: 2px;
+    font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.2; margin-top: 2px;
   }
   .changed-label .q-range {
-    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Ubuntu Mono', monospace; letter-spacing: 0.02em;
+    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; letter-spacing: 0.02em;
   }
 
   .change-card {
@@ -1357,7 +1346,7 @@
     min-height: 0;
   }
   .hero-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
-  .hero-title { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .hero-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub   { font-size: 10.5px; color: var(--muted); font-weight: 500; }
 
   .hero-legend { display: flex; gap: 14px; align-items: center; margin: 4px 0 2px; }
@@ -1382,7 +1371,7 @@
     display: contents;
   }
   .bullet-header > div {
-    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
     color: var(--muted-2); padding: 3px 0 6px; border-bottom: 1px solid var(--hairline-soft);
   }
   .bullet-header .col-chart { text-align: left; padding-left: 2px; }
@@ -1445,15 +1434,15 @@
 
   .row-delta {
     justify-content: flex-end;
-    font-family: 'Ubuntu Mono', monospace; font-size: 10.5px; color: var(--ink-2); letter-spacing: -0.01em;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10.5px; color: var(--ink-2); letter-spacing: -0.01em;
     white-space: nowrap;
   }
   .row-delta .arr { color: var(--muted-2); margin: 0 4px; }
-  .row-delta .cur { font-weight: 700; color: var(--ink); }
+  .row-delta .cur { font-weight: 600; color: var(--ink); }
 
   .row-head {
     justify-content: flex-end;
-    font-family: 'Ubuntu Mono', monospace; font-size: 10.5px; font-weight: 600;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10.5px; font-weight: 600;
   }
   .row-head.pos { color: var(--green); }
   .row-head.neg { color: var(--red); }
@@ -1472,7 +1461,7 @@
   }
   .summary-row .summary-bg { opacity: 0.5; }
   .summary-row .summary-meta {
-    font-style: italic; font-family: 'Inter', sans-serif; font-size: 9.5px;
+    font-style: italic; font-family: Aptos, 'Segoe UI', Arial, sans-serif; font-size: 9.5px;
     color: var(--muted); justify-content: flex-end; text-align: right;
   }
   .status-pill {
@@ -1511,7 +1500,7 @@
     background: #fff4cc; color: #8f6200; padding: 1px 5px; border-radius: 3px;
     margin-right: 6px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -1528,7 +1517,7 @@
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
   }
   .commentary-head .title {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
   }
   .commentary-head .curated {
     font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
@@ -1568,9 +1557,7 @@
   .slide-footer .toc {
     display: flex; align-items: center; gap: 10px;
   }
-  .slide-footer .toc-item {
-    font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
-  }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -1620,7 +1607,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -1981,7 +1968,7 @@
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
   <div>No filters visible · Curated commentary only · All numbers reconcile to analytical CRR via shared semantic model</div>
-  <div>Typography: Inter / JetBrains Mono (mockup) · Segoe UI (Power BI build)</div>
+  <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
 </body>
@@ -1993,9 +1980,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — RCSA</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -2041,7 +2025,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -2049,7 +2033,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     color: var(--muted); font-size: 12px; letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   .slide {
     width: 1280px; height: 720px;
@@ -2123,8 +2107,8 @@
   .kpi.kpi-green  { border-top-color: var(--sl-core-teal); }
   .kpi.kpi-amber  { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red    { border-top-color: var(--sl-core-coral); }
-  .kpi-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 26px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
+  .kpi-value { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta { font-size: 9.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
   .kpi-delta.up { color: var(--sl-core-teal); }
   .kpi-delta.down { color: var(--sl-core-coral); }
@@ -2146,7 +2130,7 @@
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 4px;
   }
-  .hero-title { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .hero-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10px; color: var(--muted); }
 
   /* Ranked register */
@@ -2172,7 +2156,7 @@
   .reg-name { font-size: 11px; font-weight: 700; color: var(--ink); line-height: 1.15; }
   .reg-meta { font-size: 9px; color: var(--muted); margin-top: 1px; line-height: 1.2; }
   .reg-score {
-    font-family: 'Ubuntu Mono', monospace; font-size: 10px; font-weight: 700;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10px; font-weight: 700;
     text-align: center; padding: 2px 4px; border-radius: 3px;
   }
   .reg-score.s-red   { background: var(--red-bg); color: var(--sl-core-coral); }
@@ -2221,7 +2205,7 @@
     background: var(--sl-light-yellow); color: var(--sl-heritage-blue);
     padding: 1px 5px; border-radius: 3px; margin-right: 5px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -2236,7 +2220,7 @@
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
   }
   .commentary-head .title {
-    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
   }
   .commentary-head .curated {
     font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
@@ -2269,7 +2253,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -2309,7 +2293,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -2385,7 +2369,7 @@
           <div class=&quot;hero-title&quot;>Risk Position — Likelihood &amp;times; Impact, prior &amp;rarr; current</div>
           <div class=&quot;hero-sub&quot;>Top 8 L2 risks ranked by residual score · arrows show QoQ movement on the matrix</div>
         </div>
-        <div class=&quot;hero-sub&quot; style=&quot;font-family: 'Ubuntu Mono', monospace;&quot;>Q4 2025 → Q1 2026</div>
+        <div class=&quot;hero-sub&quot; style=&quot;font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;&quot;>Q4 2025 → Q1 2026</div>
       </div>
 
       <!-- LEFT: Ranked register -->
@@ -2513,14 +2497,14 @@
             </g>
 
             <!-- Axis labels -->
-            <g font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
+            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
               <text x=&quot;98&quot;  y=&quot;265&quot;>L1</text>
               <text x=&quot;174&quot; y=&quot;265&quot;>L2</text>
               <text x=&quot;250&quot; y=&quot;265&quot;>L3</text>
               <text x=&quot;326&quot; y=&quot;265&quot;>L4</text>
               <text x=&quot;402&quot; y=&quot;265&quot;>L5</text>
             </g>
-            <g font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
+            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
               <text x=&quot;55&quot; y=&quot;36&quot;>I5</text>
               <text x=&quot;55&quot; y=&quot;84&quot;>I4</text>
               <text x=&quot;55&quot; y=&quot;132&quot;>I3</text>
@@ -2529,7 +2513,7 @@
             </g>
 
             <!-- Axis titles -->
-            <g font-family=&quot;Ubuntu, sans-serif&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#5b6b83&quot;>
+            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#5b6b83&quot;>
               <text x=&quot;250&quot; y=&quot;278&quot; text-anchor=&quot;middle&quot;>Likelihood →</text>
               <text x=&quot;22&quot; y=&quot;130&quot; text-anchor=&quot;middle&quot; transform=&quot;rotate(-90 22 130)&quot;>Impact →</text>
             </g>
@@ -2552,7 +2536,7 @@
             <circle cx=&quot;250&quot; cy=&quot;84&quot; r=&quot;6&quot; fill=&quot;#fff&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;326&quot; cy=&quot;34&quot; r=&quot;11&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;326&quot; y=&quot;38&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
+              <text x=&quot;326&quot; y=&quot;38&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
             </g>
 
             <!-- 2. Compliance Risk: prior (L3,I4) → current (L4,I4) - amber worsened -->
@@ -2560,7 +2544,7 @@
             <circle cx=&quot;252&quot; cy=&quot;86&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;326&quot; cy=&quot;84&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;326&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
+              <text x=&quot;326&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
             </g>
 
             <!-- 3. Operational Risk: prior (L2,I3) → current (L3,I4) - amber worsened -->
@@ -2568,14 +2552,14 @@
             <circle cx=&quot;180&quot; cy=&quot;134&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;252&quot; cy=&quot;84&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;252&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
+              <text x=&quot;252&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
             </g>
 
             <!-- 4. Business Model Risk: prior (L2,I4) → current (L3,I4) - amber worsened (slightly different position from #3) -->
             <line x1=&quot;180&quot; y1=&quot;84&quot; x2=&quot;247&quot; y2=&quot;84&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.6&quot; marker-end=&quot;url(#arrow-amber)&quot; stroke-dasharray=&quot;3 2&quot;/>
             <g>
               <circle cx=&quot;252&quot; cy=&quot;84&quot; r=&quot;9&quot; fill=&quot;none&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;2.5&quot;/>
-              <text x=&quot;252&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot;>4</text>
+              <text x=&quot;252&quot; y=&quot;88&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot;>4</text>
             </g>
 
             <!-- 5. Financial Crime: prior (L2,I3) → current (L3,I3) - amber worsened -->
@@ -2583,7 +2567,7 @@
             <circle cx=&quot;180&quot; cy=&quot;132&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;254&quot; cy=&quot;132&quot; r=&quot;9&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;254&quot; y=&quot;136&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
+              <text x=&quot;254&quot; y=&quot;136&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
             </g>
 
             <!-- 6. Liquidity: prior (L3,I3) → current (L2,I2) - improved green -->
@@ -2591,7 +2575,7 @@
             <circle cx=&quot;240&quot; cy=&quot;138&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;174&quot; cy=&quot;180&quot; r=&quot;9&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;174&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
+              <text x=&quot;174&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
             </g>
 
             <!-- 7. Conduct: prior (L3,I3) → current (L2,I3) - improved green -->
@@ -2599,7 +2583,7 @@
             <circle cx=&quot;244&quot; cy=&quot;130&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;178&quot; cy=&quot;130&quot; r=&quot;9&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;178&quot; y=&quot;134&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
+              <text x=&quot;178&quot; y=&quot;134&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
             </g>
 
             <!-- 8. Third Party: prior (L1,I3) → current (L1,I2) - improved green -->
@@ -2607,7 +2591,7 @@
             <circle cx=&quot;98&quot; cy=&quot;130&quot; r=&quot;5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.5&quot;/>
             <g>
               <circle cx=&quot;98&quot; cy=&quot;180&quot; r=&quot;9&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;98&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Ubuntu&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
+              <text x=&quot;98&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
             </g>
 
           </svg>
@@ -2706,9 +2690,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Control Environment</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -2760,7 +2741,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -2772,7 +2753,7 @@
     font-size: 12px;
     letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   /* ---------- SLIDE CANVAS ---------- */
   .slide {
@@ -2850,8 +2831,8 @@
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 32px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .kpi-value  { font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
   .kpi-delta.up   { color: #15803d; }
   .kpi-delta.down { color: #CA3F4C; }
@@ -2866,13 +2847,13 @@
     display: flex; flex-direction: column; justify-content: center; padding: 8px 0;
   }
   .changed-label .eyebrow {
-    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
   }
   .changed-label .big {
-    font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-top: 2px;
+    font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.2; margin-top: 2px;
   }
   .changed-label .q-range {
-    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Ubuntu Mono', monospace; letter-spacing: 0.02em;
+    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; letter-spacing: 0.02em;
   }
   .change-card {
     background: #fff; border: 1px solid var(--hairline); border-left: 3px solid var(--amber);
@@ -2907,7 +2888,7 @@
     margin-bottom: 6px;
     padding-bottom: 8px; border-bottom: 1px solid var(--hairline-soft);
   }
-  .hero-title { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .hero-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10.5px; color: var(--muted); }
   .hero-method {
     font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
@@ -2935,7 +2916,7 @@
   .layer-name { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
   .layer-desc { font-size: 10px; color: var(--muted); line-height: 1.3; }
   .layer-tracked {
-    font-size: 9.5px; color: var(--muted-2); font-family: 'Ubuntu Mono', monospace;
+    font-size: 9.5px; color: var(--muted-2); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
     margin-top: 2px; letter-spacing: 0.02em;
   }
 
@@ -2958,7 +2939,7 @@
   .layer-scale {
     display: flex; justify-content: space-between;
     font-size: 9px; color: var(--muted-2);
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
 
   .layer-result {
@@ -2971,7 +2952,7 @@
   .result-pct .unit { font-size: 11px; color: var(--muted); font-weight: 500; }
   .result-delta {
     font-size: 10px; font-weight: 600;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
   .result-delta.down { color: var(--red); }
   .result-delta.up   { color: var(--green); }
@@ -3007,7 +2988,7 @@
     background: #fff4cc; color: #8f6200; padding: 1px 5px; border-radius: 3px;
     margin-right: 6px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -3022,7 +3003,7 @@
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
   }
   .commentary-head .title {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
   }
   .commentary-head .curated {
     font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
@@ -3057,7 +3038,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -3097,7 +3078,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -3335,7 +3316,7 @@
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
   <div>No filters visible · Method D throughout · All numbers reconcile to analytical CRR via shared semantic model</div>
-  <div>Typography: Inter / JetBrains Mono (mockup) · Segoe UI (Power BI build)</div>
+  <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
 </body>
@@ -3347,9 +3328,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Losses &amp;amp; Near Misses</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     --sl-heritage-blue: #0A2F73;
@@ -3380,7 +3358,7 @@
     --navy-deep: #07235a;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -3388,7 +3366,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     color: var(--muted); font-size: 12px; letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   .slide {
     width: 1280px; height: 720px;
@@ -3457,8 +3435,8 @@
   }
   .kpi.kpi-amber  { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red    { border-top-color: var(--sl-core-coral); }
-  .kpi-label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
+  .kpi-value { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta { font-size: 10px; font-weight: 600; line-height: 1.3; }
   .kpi-delta.up { color: var(--sl-core-teal); }
   .kpi-delta.down { color: var(--sl-core-coral); }
@@ -3476,7 +3454,7 @@
     padding-bottom: 5px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 6px;
   }
-  .hero-title { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .hero-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10px; color: var(--muted); }
   .hero-legend { display: flex; gap: 14px; font-size: 9.5px; color: var(--muted); }
   .leg-item { display: flex; align-items: center; gap: 4px; }
@@ -3507,7 +3485,7 @@
     background: var(--sl-light-yellow); color: var(--sl-heritage-blue);
     padding: 1px 5px; border-radius: 3px; margin-right: 5px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -3526,7 +3504,7 @@
   .split-row .bar-track { height: 10px; background: var(--hairline-soft); border-radius: 2px; overflow: hidden; }
   .split-row .bar-fill { height: 100%; background: var(--sl-heritage-blue); border-radius: 2px; }
   .split-row .bar-fill.alt { background: var(--sl-vibrant-coral); }
-  .split-row .val { font-family: 'Ubuntu Mono', monospace; font-size: 9.5px; font-weight: 700; color: var(--ink); text-align: right; }
+  .split-row .val { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9.5px; font-weight: 600; color: var(--ink); text-align: right; }
 
   /* Material Loss Event Register */
   .events-block {
@@ -3541,7 +3519,7 @@
     padding-bottom: 5px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 4px;
   }
-  .events-title { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .events-title { font-size: 12px; font-weight: 600; color: var(--ink); }
   .events-sub { font-size: 9.5px; color: var(--muted); }
   .events-table {
     display: grid;
@@ -3555,14 +3533,14 @@
     display: flex; align-items: center;
   }
   .events-table .head {
-    font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 8.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted); border-bottom: 1px solid var(--hairline);
     padding: 4px 6px;
   }
-  .events-table .id-cell { font-family: 'Ubuntu Mono', monospace; font-size: 9px; color: var(--muted); }
+  .events-table .id-cell { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9px; color: var(--muted); }
   .events-table .org-cell { font-weight: 600; color: var(--ink); }
   .events-table .risk-cell { color: var(--ink-2); }
-  .events-table .loss-cell { font-family: 'Ubuntu Mono', monospace; font-weight: 700; color: var(--sl-core-coral); justify-content: flex-end; }
+  .events-table .loss-cell { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-weight: 600; color: var(--sl-core-coral); justify-content: flex-end; }
   .events-table .status-cell {
     font-size: 8.5px; font-weight: 700; text-transform: uppercase;
   }
@@ -3579,7 +3557,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -3618,7 +3596,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -3699,7 +3677,7 @@
             <line x1=&quot;60&quot; y1=&quot;20&quot;  x2=&quot;60&quot;  y2=&quot;170&quot;/>
           </g>
 
-          <g font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;8&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
+          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
             <text x=&quot;55&quot; y=&quot;174&quot;>£0m</text>
             <text x=&quot;55&quot; y=&quot;136&quot;>£20m</text>
             <text x=&quot;55&quot; y=&quot;99&quot;>£40m</text>
@@ -3708,10 +3686,10 @@
           </g>
 
           <line x1=&quot;60&quot; y1=&quot;95&quot; x2=&quot;700&quot; y2=&quot;95&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.5&quot; stroke-dasharray=&quot;5 3&quot;/>
-          <text x=&quot;694&quot; y=&quot;91&quot; font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#CA3F4C&quot; text-anchor=&quot;end&quot;>£40m breach</text>
+          <text x=&quot;694&quot; y=&quot;91&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#CA3F4C&quot; text-anchor=&quot;end&quot;>£40m breach</text>
 
           <line x1=&quot;60&quot; y1=&quot;123&quot; x2=&quot;700&quot; y2=&quot;123&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.5&quot; stroke-dasharray=&quot;5 3&quot;/>
-          <text x=&quot;694&quot; y=&quot;119&quot; font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot; text-anchor=&quot;end&quot;>£25m trigger</text>
+          <text x=&quot;694&quot; y=&quot;119&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot; text-anchor=&quot;end&quot;>£25m trigger</text>
 
           <polyline points=&quot;110,161 160,149 210,139&quot; stroke=&quot;#0A2F73&quot; stroke-width=&quot;2.4&quot; fill=&quot;none&quot; stroke-linejoin=&quot;round&quot;/>
           <circle cx=&quot;110&quot; cy=&quot;161&quot; r=&quot;3.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
@@ -3721,17 +3699,17 @@
           <line x1=&quot;210&quot; y1=&quot;139&quot; x2=&quot;660&quot; y2=&quot;44&quot; stroke=&quot;#2140CE&quot; stroke-width=&quot;2&quot; stroke-dasharray=&quot;5 4&quot; fill=&quot;none&quot;/>
           <circle cx=&quot;660&quot; cy=&quot;44&quot; r=&quot;3.5&quot; fill=&quot;#2140CE&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
 
-          <text x=&quot;220&quot; y=&quot;135&quot; font-family=&quot;Ubuntu, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>£16.8m Q1</text>
-          <text x=&quot;640&quot; y=&quot;38&quot; font-family=&quot;Ubuntu, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#2140CE&quot; font-weight=&quot;700&quot; text-anchor=&quot;end&quot;>£67.2m forecast</text>
+          <text x=&quot;220&quot; y=&quot;135&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>£16.8m Q1</text>
+          <text x=&quot;640&quot; y=&quot;38&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#2140CE&quot; font-weight=&quot;700&quot; text-anchor=&quot;end&quot;>£67.2m forecast</text>
 
           <line x1=&quot;286&quot; y1=&quot;123&quot; x2=&quot;286&quot; y2=&quot;139&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;2 2&quot;/>
           <circle cx=&quot;286&quot; cy=&quot;123&quot; r=&quot;3&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.2&quot;/>
 
           <line x1=&quot;418&quot; y1=&quot;95&quot; x2=&quot;418&quot; y2=&quot;139&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;2 2&quot;/>
           <circle cx=&quot;418&quot; cy=&quot;95&quot; r=&quot;3&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.2&quot;/>
-          <text x=&quot;424&quot; y=&quot;86&quot; font-family=&quot;Ubuntu, sans-serif&quot; font-size=&quot;8.5&quot; fill=&quot;#CA3F4C&quot; font-weight=&quot;700&quot;>forecast breach Q3</text>
+          <text x=&quot;424&quot; y=&quot;86&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.5&quot; fill=&quot;#CA3F4C&quot; font-weight=&quot;700&quot;>forecast breach Q3</text>
 
-          <g font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;8&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
+          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
             <text x=&quot;110&quot; y=&quot;184&quot;>Jan</text>
             <text x=&quot;160&quot; y=&quot;184&quot;>Feb</text>
             <text x=&quot;210&quot; y=&quot;184&quot;>Mar</text>
@@ -3747,7 +3725,7 @@
           </g>
 
           <line x1=&quot;225&quot; y1=&quot;20&quot; x2=&quot;225&quot; y2=&quot;170&quot; stroke=&quot;rgba(10, 47, 115, 0.20)&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;2 3&quot;/>
-          <text x=&quot;225&quot; y=&quot;13&quot; font-family=&quot;Ubuntu Mono, monospace&quot; font-size=&quot;8&quot; fill=&quot;#5b6b83&quot; text-anchor=&quot;middle&quot;>Q1 end</text>
+          <text x=&quot;225&quot; y=&quot;13&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8&quot; fill=&quot;#5b6b83&quot; text-anchor=&quot;middle&quot;>Q1 end</text>
         </svg>
       </div>
     </section>
@@ -3876,9 +3854,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Incidents &amp;amp; Breaches</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     --sl-heritage-blue: #0A2F73;
@@ -3912,7 +3887,7 @@
     --red-bg: #fde2e4;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -3920,7 +3895,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     color: var(--muted); font-size: 12px; letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   .slide {
     width: 1280px; height: 720px;
@@ -3984,8 +3959,8 @@
   .kpi.kpi-amber { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red { border-top-color: var(--sl-core-coral); }
   .kpi.kpi-green { border-top-color: var(--sl-core-teal); }
-  .kpi-label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
+  .kpi-value { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta { font-size: 10px; font-weight: 600; line-height: 1.3; }
   .kpi-delta.up { color: var(--sl-core-teal); }
   .kpi-delta.down { color: var(--sl-core-coral); }
@@ -4003,7 +3978,7 @@
     padding-bottom: 5px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 5px;
   }
-  .hero-title { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .hero-title { font-size: 12.5px; font-weight: 600; color: var(--ink); }
   .hero-sub { font-size: 9.5px; color: var(--muted); }
 
   .reg-table {
@@ -4018,13 +3993,13 @@
     display: flex; align-items: center;
   }
   .reg-table .head {
-    font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 8.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted); border-bottom: 1px solid var(--hairline);
     padding: 4px 6px;
   }
-  .reg-table .id-cell { font-family: 'Ubuntu Mono', monospace; font-size: 9px; color: var(--muted); }
+  .reg-table .id-cell { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9px; color: var(--muted); }
   .reg-table .desc-cell { color: var(--ink-2); }
-  .reg-table .sev-cell { font-family: 'Ubuntu Mono', monospace; font-size: 9.5px; font-weight: 700; }
+  .reg-table .sev-cell { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9.5px; font-weight: 600; }
   .reg-table .sev-cell.sev1 { color: var(--sl-core-coral); }
   .reg-table .sev-cell.sev2 { color: var(--sl-dark-yellow); }
   .reg-table .sev-cell.sev3 { color: var(--muted); }
@@ -4058,7 +4033,7 @@
     background: var(--sl-light-yellow); color: var(--sl-heritage-blue);
     padding: 1px 5px; border-radius: 3px; margin-right: 5px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 9.5px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -4069,7 +4044,7 @@
     display: flex; flex-direction: column; gap: 4px;
   }
   .remediation-title {
-    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
     padding-bottom: 4px; border-bottom: 1px solid var(--hairline-soft); margin-bottom: 1px;
   }
   .rem-row {
@@ -4081,7 +4056,7 @@
     font-size: 9.5px;
   }
   .rem-row:last-child { border-bottom: 0; }
-  .rem-id { font-family: 'Ubuntu Mono', monospace; font-size: 9px; color: var(--muted); }
+  .rem-id { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9px; color: var(--muted); }
   .rem-desc { color: var(--ink-2); line-height: 1.3; }
   .rem-desc .risk-tag { color: var(--muted); font-size: 8.5px; display: block; margin-top: 1px; }
   .rem-status {
@@ -4094,7 +4069,7 @@
   .rem-status .pill.open { background: var(--green-bg); color: var(--sl-core-teal); }
   .rem-status .pill.progress { background: var(--amber-bg); color: var(--sl-dark-yellow); }
   .rem-status .pill.overdue { background: var(--red-bg); color: var(--sl-core-coral); }
-  .rem-status .days { display: block; font-size: 8.5px; color: var(--muted); margin-top: 1px; font-family: 'Ubuntu Mono', monospace; }
+  .rem-status .days { display: block; font-size: 8.5px; color: var(--muted); margin-top: 1px; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
 
   /* Bottom: Mgmt Org × Severity heatmap */
   .heatmap-block {
@@ -4109,7 +4084,7 @@
     padding-bottom: 5px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 6px;
   }
-  .heatmap-title { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .heatmap-title { font-size: 12px; font-weight: 600; color: var(--ink); }
   .heatmap-sub { font-size: 9.5px; color: var(--muted); }
 
   .heatmap-table {
@@ -4125,7 +4100,7 @@
     align-items: center;
   }
   .hm-row.head {
-    font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 8.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted);
     padding-bottom: 4px; border-bottom: 1px solid var(--hairline);
   }
@@ -4135,7 +4110,7 @@
   .hm-row .hm-cell {
     text-align: center; padding: 5px;
     border-radius: 3px;
-    font-family: 'Ubuntu Mono', monospace; font-size: 11px; font-weight: 700;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 11px; font-weight: 600;
   }
   .hm-row .hm-cell.zero { color: var(--muted-2); background: transparent; }
   .hm-row .hm-cell.s1 { background: var(--sl-core-coral); color: var(--sl-white); }
@@ -4143,12 +4118,12 @@
   .hm-row .hm-cell.s3 { background: var(--sl-heritage-yellow); color: var(--sl-heritage-blue); }
   .hm-row .hm-cell.s4 { background: var(--sl-light-teal); color: var(--sl-core-teal); }
   .hm-row .hm-total {
-    text-align: right; font-family: 'Ubuntu Mono', monospace; font-size: 11px; font-weight: 700;
+    text-align: right; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 11px; font-weight: 600;
     color: var(--ink); padding-right: 8px;
   }
   .hm-row.head .hm-cell, .hm-row.head .hm-total {
     background: transparent; padding: 4px 5px; color: var(--muted);
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
   }
 
   /* Footer */
@@ -4160,7 +4135,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -4199,7 +4174,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -4472,9 +4447,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Emerging Risks</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -4528,7 +4500,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -4536,7 +4508,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     color: var(--muted); font-size: 12px; letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   .slide {
     width: 1280px; height: 720px;
@@ -4608,8 +4580,8 @@
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
-  .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 32px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .kpi-value  { font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
   .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
   .kpi-delta.up   { color: #15803d; }
   .kpi-delta.down { color: #CA3F4C; }
@@ -4623,13 +4595,13 @@
     display: flex; flex-direction: column; justify-content: center; padding: 8px 0;
   }
   .changed-label .eyebrow {
-    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-2);
   }
   .changed-label .big {
-    font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-top: 2px;
+    font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.2; margin-top: 2px;
   }
   .changed-label .q-range {
-    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Ubuntu Mono', monospace;
+    font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
   .change-card {
     background: #fff; border: 1px solid var(--hairline); border-left: 3px solid var(--amber);
@@ -4666,7 +4638,7 @@
     margin-bottom: 4px; padding-bottom: 6px;
     border-bottom: 1px solid var(--hairline-soft);
   }
-  .hero-title { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .hero-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10.5px; color: var(--muted); }
 
   .map-legend {
@@ -4698,7 +4670,7 @@
     overflow: hidden;
   }
   .map-legend-title {
-    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted-2); padding-bottom: 4px;
     border-bottom: 1px solid var(--hairline-soft);
   }
@@ -4735,7 +4707,7 @@
     background: #fff4cc; color: #8f6200; padding: 1px 5px; border-radius: 3px;
     margin-right: 6px; letter-spacing: 0.04em;
   }
-  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; }
+  .cro-date { font-size: 10px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
   .cro-text { font-size: 11.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
   .cro-text b { color: var(--ink); font-weight: 700; }
 
@@ -4798,7 +4770,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -4839,7 +4811,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -4972,14 +4944,14 @@
             </g>
 
             <!-- Axis labels -->
-            <g font-family=&quot;JetBrains Mono, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
+            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
               <text x=&quot;119&quot; y=&quot;256&quot;>L1</text>
               <text x=&quot;217&quot; y=&quot;256&quot;>L2</text>
               <text x=&quot;315&quot; y=&quot;256&quot;>L3</text>
               <text x=&quot;413&quot; y=&quot;256&quot;>L4</text>
               <text x=&quot;511&quot; y=&quot;256&quot;>L5</text>
             </g>
-            <g font-family=&quot;JetBrains Mono, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
+            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
               <text x=&quot;62&quot; y=&quot;36&quot;>I5</text>
               <text x=&quot;62&quot; y=&quot;82&quot;>I4</text>
               <text x=&quot;62&quot; y=&quot;128&quot;>I3</text>
@@ -4987,7 +4959,7 @@
               <text x=&quot;62&quot; y=&quot;220&quot;>I1</text>
             </g>
             <!-- Axis titles -->
-            <g font-family=&quot;Inter, sans-serif&quot; font-size=&quot;9.5&quot; font-weight=&quot;700&quot; fill=&quot;#5b6b83&quot;>
+            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9.5&quot; font-weight=&quot;700&quot; fill=&quot;#5b6b83&quot;>
               <text x=&quot;315&quot; y=&quot;275&quot; text-anchor=&quot;middle&quot;>Likelihood →</text>
               <text x=&quot;20&quot; y=&quot;128&quot; text-anchor=&quot;middle&quot; transform=&quot;rotate(-90 20 128)&quot;>Impact →</text>
             </g>
@@ -4996,46 +4968,46 @@
             <!-- 1. AI/GenAI (L4, I5, fast velocity=large, red) -->
             <g>
               <circle cx=&quot;408&quot; cy=&quot;33&quot; r=&quot;14&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;408&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
+              <text x=&quot;408&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
             </g>
             <!-- 2. Systemic Cyber (L4, I5 - slight offset from 1, large, red) -->
             <g>
               <circle cx=&quot;442&quot; cy=&quot;33&quot; r=&quot;14&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;442&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
+              <text x=&quot;442&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
             </g>
             <!-- 3. Geopolitical (L4, I4, medium, amber) -->
             <g>
               <circle cx=&quot;420&quot; cy=&quot;82&quot; r=&quot;12&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;420&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
+              <text x=&quot;420&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
             </g>
             <!-- 4. RegTech (L3, I4, medium, amber) -->
             <g>
               <circle cx=&quot;305&quot; cy=&quot;82&quot; r=&quot;11&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;305&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>4</text>
+              <text x=&quot;305&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>4</text>
             </g>
             <!-- 5. Climate Transition (L3, I4, medium, amber, slight offset) -->
             <g>
               <circle cx=&quot;335&quot; cy=&quot;82&quot; r=&quot;11&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;335&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
+              <text x=&quot;335&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
             </g>
             <!-- 6. Critical Third Party (L3, I3, medium-stable, amber) -->
             <g>
               <circle cx=&quot;315&quot; cy=&quot;128&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;315&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
+              <text x=&quot;315&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
             </g>
             <!-- 7. Quantum Cryptography (L2, I5, slow, green) -->
             <g>
               <circle cx=&quot;217&quot; cy=&quot;33&quot; r=&quot;9&quot; fill=&quot;#15803d&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;217&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
+              <text x=&quot;217&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
             </g>
             <!-- 8. Consumer Harm Embedded Finance (L3, I3, medium, amber) -->
             <g>
               <circle cx=&quot;290&quot; cy=&quot;128&quot; r=&quot;9&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;290&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Inter&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
+              <text x=&quot;290&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
             </g>
 
             <!-- Zone labels -->
-            <g font-family=&quot;Inter, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#991b1b&quot; font-weight=&quot;600&quot; opacity=&quot;0.5&quot;>
+            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#991b1b&quot; font-weight=&quot;600&quot; opacity=&quot;0.5&quot;>
               <text x=&quot;462&quot; y=&quot;140&quot; text-anchor=&quot;middle&quot;>Board watch zone</text>
             </g>
           </svg>
@@ -5150,7 +5122,7 @@
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
   <div>No filters visible · Curated commentary only · All numbers reconcile to analytical CRR via shared semantic model</div>
-  <div>Typography: Inter / JetBrains Mono (mockup) · Segoe UI (Power BI build)</div>
+  <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
 </body>
@@ -5162,9 +5134,6 @@
 <meta charset=&quot;utf-8&quot;/>
 <meta name=&quot;viewport&quot; content=&quot;width=1280&quot;/>
 <title>CRR Exec Pack — Decisions &amp;amp; Actions Required</title>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
-<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
-<link href=&quot;https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
   :root {
     /* --- Standard Life brand tokens --- */
@@ -5208,7 +5177,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: 'Ubuntu', Arial, system-ui, sans-serif; color: var(--ink); }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: Aptos, 'Segoe UI', Arial, sans-serif; color: var(--ink); }
   body { padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
   .caption-bar {
@@ -5216,7 +5185,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
     color: var(--muted); font-size: 12px; letter-spacing: 0.02em;
   }
-  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; font-size: 10.5px; color: var(--muted-2); }
+  .caption-bar .label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; font-size: 10.5px; color: var(--muted-2); }
 
   .slide {
     width: 1280px; height: 720px;
@@ -5293,7 +5262,7 @@
     letter-spacing: -0.01em;
   }
   .counts-label .q {
-    font-size: 10px; color: var(--muted); margin-top: 3px; font-family: 'Ubuntu Mono', monospace; letter-spacing: 0.02em;
+    font-size: 10px; color: var(--muted); margin-top: 3px; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; letter-spacing: 0.02em;
   }
 
   .count-card {
@@ -5308,7 +5277,7 @@
   .count-card.note      { border-top-color: #15803d; }
   .count-card.followup  { border-top-color: #6b21a8; }
 
-  .count-num { font-size: 36px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+  .count-num { font-size: 36px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
   .count-type {
     font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted);
   }
@@ -5323,7 +5292,7 @@
     padding: 10px 12px;
     display: flex; flex-direction: column; gap: 2px; align-items: center; justify-content: center;
   }
-  .counts-total .num { font-size: 36px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+  .counts-total .num { font-size: 36px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
   .counts-total .lbl { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.72); }
 
   /* CRO sequencing note */
@@ -5342,7 +5311,7 @@
   .cro-note .name { font-size: 11.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
   .cro-note .text { font-size: 11.5px; line-height: 1.5; color: var(--ink-2); flex: 1; }
   .cro-note .text b { color: var(--ink); font-weight: 700; }
-  .cro-note .date { font-size: 10px; color: var(--muted); font-family: 'Ubuntu Mono', monospace; white-space: nowrap; }
+  .cro-note .date { font-size: 10px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; white-space: nowrap; }
 
   /* Decisions table */
   .decisions-table-panel {
@@ -5357,7 +5326,7 @@
     padding-bottom: 6px; margin-bottom: 4px;
     border-bottom: 1px solid var(--hairline-soft);
   }
-  .panel-title { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .panel-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .panel-sub { font-size: 10.5px; color: var(--muted); }
 
   .dec-table {
@@ -5370,7 +5339,7 @@
   }
   .dec-thead { display: contents; }
   .dec-thead > div {
-    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted-2); padding: 4px 2px 7px;
     border-bottom: 1px solid var(--hairline-soft);
   }
@@ -5408,11 +5377,11 @@
   .dec-group.secondary .group-label { color: var(--muted); }
   .dec-group .group-count {
     font-size: 9.5px; color: var(--muted-2); font-weight: 600;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
 
   .dec-id {
-    font-family: 'Ubuntu Mono', monospace; font-weight: 700;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-weight: 700;
     color: var(--muted-2); font-size: 10px;
   }
   .dec-theme {
@@ -5439,7 +5408,7 @@
   .dec-owner .role { color: var(--muted); font-size: 9.5px; font-weight: 400; line-height: 1.2; }
 
   .dec-due {
-    font-family: 'Ubuntu Mono', monospace; font-size: 10px; font-weight: 600;
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10px; font-weight: 600;
     color: var(--ink-2);
   }
   .dec-due.due-soon { color: var(--red); font-weight: 700; }
@@ -5478,7 +5447,7 @@
   }
   .slide-footer .left { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .slide-footer .toc { display: flex; align-items: center; gap: 9px; }
-  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .slide-footer .toc-item { font-size: 9.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; font-weight: 600; }
   .slide-footer .toc-item.current { color: var(--sl-white); font-weight: 700; }
   .slide-footer .toc-sep { color: rgba(255,255,255,0.25); font-size: 8px; }
   .slide-footer .appendix-ref {
@@ -5519,7 +5488,7 @@
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
       <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 360 80&quot; aria-label=&quot;Standard Life&quot;>
-        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Ubuntu, Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
+        <text x=&quot;0&quot; y=&quot;58&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;44&quot; font-weight=&quot;700&quot; letter-spacing=&quot;-1.5&quot; fill=&quot;#0A2F73&quot;>Standard Life</text>
         <polygon points=&quot;318,8 348,2 332,46&quot; fill=&quot;#FFBB00&quot;/>
       </svg>
     </div>
@@ -5769,7 +5738,7 @@
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
   <div>Decisions entity · Curated only · All numbers reconcile to analytical CRR · Lifted into committee minutes</div>
-  <div>Typography: Inter / JetBrains Mono (mockup) · Segoe UI (Power BI build)</div>
+  <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
 </body>
@@ -5804,7 +5773,7 @@
         <li>Pack mirrors the new 6-tab source CRR &mdash; <b>RCSA</b> and <b>Incidents &amp; Breaches</b> are now their own pages</li>
         <li><b>Losses reframed</b>: cumulative YTD curve vs &pound;25m trigger and &pound;40m breach is the hero</li>
         <li><b>Cyber &amp; IT now Red breach on appetite</b> (was Warning in v2) &mdash; D1 on the decisions page</li>
-        <li>Standard Life brand applied throughout: Heritage Blue, Heritage Yellow, Core Teal, Core Coral; Ubuntu typography; brand strip with wordmark on every page</li>
+        <li>Standard Life brand applied throughout: Heritage Blue, Heritage Yellow, Core Teal, Core Coral; Aptos typography; brand strip with wordmark on every page</li>
       </ul>
 
       <button class="intro-start" id="intro-start">Start reviewing &rarr;</button>

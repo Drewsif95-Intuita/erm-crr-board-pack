@@ -3963,7 +3963,7 @@
     padding: 12px 32px 10px;
     display: grid;
     grid-template-columns: 1fr 360px;
-    grid-template-rows: auto 260px 1fr;
+    grid-template-rows: auto 270px 1fr;
     gap: 10px 16px;
     min-height: 0;
   }
@@ -4009,7 +4009,7 @@
   }
   .hero-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10px; color: var(--muted); }
-  .hero-legend { display: flex; gap: 14px; font-size: 9.5px; color: var(--muted); }
+  .hero-legend { display: flex; gap: 12px; font-size: 9.3px; color: var(--muted); }
   .leg-item { display: flex; align-items: center; gap: 4px; }
   .leg-line { width: 14px; height: 2px; }
   .leg-line.actual { background: var(--sl-heritage-blue); }
@@ -4210,7 +4210,7 @@
       <div class=&quot;hero-head&quot;>
         <div>
           <div class=&quot;hero-title&quot;>Cumulative YTD Operational Loss vs Appetite</div>
-          <div class=&quot;hero-sub&quot;>Actual cumulative · simple year-end forecast · &amp;pound;25m trigger and &amp;pound;40m breach lines</div>
+          <div class=&quot;hero-sub&quot;>Actual cumulative · forecast year-end · &amp;pound;25m trigger and &amp;pound;40m breach reference lines</div>
         </div>
         <div class=&quot;hero-legend&quot;>
           <div class=&quot;leg-item&quot;><div class=&quot;leg-line actual&quot;></div>Actual</div>
@@ -4239,52 +4239,34 @@
             <text x=&quot;62&quot; y=&quot;21&quot;>£80m</text>
           </g>
 
-          <line x1=&quot;70&quot; y1=&quot;95&quot; x2=&quot;718&quot; y2=&quot;95&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.9&quot;/>
+          <line x1=&quot;70&quot; y1=&quot;95&quot; x2=&quot;718&quot; y2=&quot;95&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
           <rect x=&quot;624&quot; y=&quot;82&quot; width=&quot;91&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
           <text x=&quot;711&quot; y=&quot;92&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#CA3F4C&quot; text-anchor=&quot;end&quot;>£40m breach</text>
 
-          <line x1=&quot;70&quot; y1=&quot;124&quot; x2=&quot;718&quot; y2=&quot;124&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.9&quot;/>
+          <line x1=&quot;70&quot; y1=&quot;124&quot; x2=&quot;718&quot; y2=&quot;124&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
           <rect x=&quot;620&quot; y=&quot;111&quot; width=&quot;95&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
           <text x=&quot;711&quot; y=&quot;121&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot; text-anchor=&quot;end&quot;>£25m trigger</text>
 
-          <polyline points=&quot;112,161 166,150 220,140&quot; stroke=&quot;#0A2F73&quot; stroke-width=&quot;2.4&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>
-          <circle cx=&quot;112&quot; cy=&quot;161&quot; r=&quot;3.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
-          <circle cx=&quot;166&quot; cy=&quot;150&quot; r=&quot;3.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
-          <circle cx=&quot;220&quot; cy=&quot;140&quot; r=&quot;4.6&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+          <polyline points=&quot;112,161 166,150 220,140&quot; stroke=&quot;#0A2F73&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>
+          <circle cx=&quot;112&quot; cy=&quot;161&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
+          <circle cx=&quot;166&quot; cy=&quot;150&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
+          <circle cx=&quot;220&quot; cy=&quot;140&quot; r=&quot;4.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.7&quot;/>
 
-          <line x1=&quot;220&quot; y1=&quot;140&quot; x2=&quot;706&quot; y2=&quot;43&quot; stroke=&quot;#2140CE&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-dasharray=&quot;6 5&quot; fill=&quot;none&quot;/>
+          <polyline points=&quot;220,140 706,43&quot; stroke=&quot;#2140CE&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;6 5&quot; fill=&quot;none&quot;/>
           <circle cx=&quot;706&quot; cy=&quot;43&quot; r=&quot;3.6&quot; fill=&quot;#2140CE&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
 
-          <rect x=&quot;238&quot; y=&quot;128&quot; width=&quot;69&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
-          <text x=&quot;244&quot; y=&quot;139&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>£16.8m Q1</text>
-          <rect x=&quot;610&quot; y=&quot;31&quot; width=&quot;99&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
+          <rect x=&quot;236&quot; y=&quot;128&quot; width=&quot;72&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
+          <text x=&quot;242&quot; y=&quot;139&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>£16.8m Q1</text>
+          <rect x=&quot;608&quot; y=&quot;31&quot; width=&quot;101&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
           <text x=&quot;704&quot; y=&quot;42&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#2140CE&quot; font-weight=&quot;700&quot; text-anchor=&quot;end&quot;>£67.2m forecast</text>
-
-          <line x1=&quot;300&quot; y1=&quot;124&quot; x2=&quot;300&quot; y2=&quot;141&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;0.9&quot; stroke-dasharray=&quot;2 3&quot; opacity=&quot;0.8&quot;/>
-          <circle cx=&quot;300&quot; cy=&quot;124&quot; r=&quot;2.8&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.1&quot;/>
-
-          <line x1=&quot;445&quot; y1=&quot;95&quot; x2=&quot;445&quot; y2=&quot;140&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;0.9&quot; stroke-dasharray=&quot;2 3&quot; opacity=&quot;0.8&quot;/>
-          <circle cx=&quot;445&quot; cy=&quot;95&quot; r=&quot;2.8&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.1&quot;/>
-          <rect x=&quot;455&quot; y=&quot;80&quot; width=&quot;102&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
-          <text x=&quot;461&quot; y=&quot;91&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.4&quot; fill=&quot;#CA3F4C&quot; font-weight=&quot;700&quot;>forecast breach Q3</text>
 
           <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.2&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
             <text x=&quot;112&quot; y=&quot;194&quot;>Jan</text>
-            <text x=&quot;166&quot; y=&quot;194&quot;>Feb</text>
             <text x=&quot;220&quot; y=&quot;194&quot;>Mar</text>
-            <text x=&quot;274&quot; y=&quot;194&quot;>Apr</text>
-            <text x=&quot;328&quot; y=&quot;194&quot;>May</text>
             <text x=&quot;382&quot; y=&quot;194&quot;>Jun</text>
-            <text x=&quot;436&quot; y=&quot;194&quot;>Jul</text>
-            <text x=&quot;490&quot; y=&quot;194&quot;>Aug</text>
             <text x=&quot;544&quot; y=&quot;194&quot;>Sep</text>
-            <text x=&quot;598&quot; y=&quot;194&quot;>Oct</text>
-            <text x=&quot;652&quot; y=&quot;194&quot;>Nov</text>
             <text x=&quot;706&quot; y=&quot;194&quot;>Dec</text>
           </g>
-
-          <line x1=&quot;238&quot; y1=&quot;18&quot; x2=&quot;238&quot; y2=&quot;172&quot; stroke=&quot;rgba(10, 47, 115, 0.20)&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;2 3&quot;/>
-          <text x=&quot;238&quot; y=&quot;12&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8&quot; fill=&quot;#5b6b83&quot; text-anchor=&quot;middle&quot;>Q1 end</text>
         </svg>
       </div>
     </section>

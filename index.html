@@ -906,6 +906,7 @@
         </div>
 
       </div>
+
     </section>
 
     <!-- ===== RIGHT COLUMN ===== -->
@@ -1207,9 +1208,9 @@
   .slide-body {
     padding: 20px 40px 16px;
     display: grid;
-    grid-template-columns: 1fr 372px;
+    grid-template-columns: 1fr 350px;
     grid-template-rows: auto 1fr;
-    gap: 16px 20px;
+    gap: 16px 16px;
     min-height: 0;
   }
 
@@ -1348,8 +1349,8 @@
     margin-top: 6px;
     flex: 1; min-height: 0;
     display: grid;
-    grid-template-columns: 174px 1fr 64px 48px 92px;
-    column-gap: 7px;
+    grid-template-columns: 174px minmax(245px, 1fr) 38px 46px 48px 106px;
+    column-gap: 6px;
     font-size: 11px;
     align-content: start;
   }
@@ -1361,7 +1362,8 @@
     color: var(--muted-2); padding: 3px 0 6px; border-bottom: 1px solid var(--hairline-soft);
   }
   .bullet-header .col-chart { text-align: left; padding-left: 2px; }
-  .bullet-header .col-delta { text-align: right; }
+  .bullet-header .col-prior,
+  .bullet-header .col-current { text-align: right; }
   .bullet-header .col-head  { text-align: right; }
   .bullet-header .col-status{ text-align: right; }
 
@@ -1431,13 +1433,13 @@
     background: var(--marker-prior);
   }
 
-  .row-delta {
+  .row-prior,
+  .row-current {
     justify-content: flex-end;
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10.5px; color: var(--ink-2); letter-spacing: -0.01em;
     white-space: nowrap;
   }
-  .row-delta .arr { color: var(--muted-2); margin: 0 4px; }
-  .row-delta .cur { font-weight: 600; color: var(--ink); }
+  .row-current { font-weight: 600; color: var(--ink); }
 
   .row-head {
     justify-content: flex-end;
@@ -1465,7 +1467,8 @@
   }
   .status-pill {
     font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 3px 7px; border-radius: 3px; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 7px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    width: 96px; box-sizing: border-box; white-space: nowrap; line-height: 1;
   }
   .status-pill.stable,
   .status-pill.nochange { background: #eef2f7; color: var(--ink-2); }
@@ -1474,10 +1477,10 @@
   .status-pill.new-red,
   .status-pill.breached{ background: var(--sl-core-coral); color: var(--sl-white); }
   .status-pill.new-amber,
-  .status-pill.triggered{ background: var(--sl-dark-yellow); color: var(--sl-white); }
+  .status-pill.triggered{ background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(255,187,0,0.75); }
   .status-pill.gone,
   .status-pill.improved{ background: var(--green-bg); color: var(--green); }
-  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: 0 0 auto; }
 
   /* Right column: CRO + commentary ---------------------------------------- */
   .right-col {
@@ -1746,7 +1749,8 @@
         <div class=&quot;bullet-header&quot;>
           <div>L2 Risk</div>
           <div class=&quot;col-chart&quot;>Threshold position</div>
-          <div class=&quot;col-delta&quot;>Prior → Current</div>
+          <div class=&quot;col-prior&quot;>Prior</div>
+          <div class=&quot;col-current&quot;>Current</div>
           <div class=&quot;col-head&quot;>Headroom</div>
           <div class=&quot;col-status&quot;>QoQ movement</div>
         </div>
@@ -1763,7 +1767,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:25%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2</span></div>
+          <div class=&quot;row-prior&quot;>1</div>
+          <div class=&quot;row-current&quot;>2</div>
           <div class=&quot;row-head zero&quot;>0</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill new-amber&quot;><span class=&quot;dot&quot;></span>New amber</span></div>
         </div>
@@ -1780,7 +1785,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:23%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>6</span></div>
+          <div class=&quot;row-prior&quot;>1</div>
+          <div class=&quot;row-current&quot;>6</div>
           <div class=&quot;row-head neg&quot;>−4</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill new-red&quot;><span class=&quot;dot&quot;></span>New red</span></div>
         </div>
@@ -1797,7 +1803,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:28%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>8%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>12%</span></div>
+          <div class=&quot;row-prior&quot;>8%</div>
+          <div class=&quot;row-current&quot;>12%</div>
           <div class=&quot;row-head pos&quot;>+3pp</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
@@ -1814,7 +1821,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:48%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>2%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2.1%</span></div>
+          <div class=&quot;row-prior&quot;>2%</div>
+          <div class=&quot;row-current&quot;>2.1%</div>
           <div class=&quot;row-head pos&quot;>+0.4pp</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
@@ -1831,7 +1839,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:58%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>68%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>72%</span></div>
+          <div class=&quot;row-prior&quot;>68%</div>
+          <div class=&quot;row-current&quot;>72%</div>
           <div class=&quot;row-head pos&quot;>+8pp</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
@@ -1848,7 +1857,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:65%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>128%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>122%</span></div>
+          <div class=&quot;row-prior&quot;>128%</div>
+          <div class=&quot;row-current&quot;>122%</div>
           <div class=&quot;row-head pos&quot;>+7pp</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
@@ -1865,7 +1875,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:62%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>54%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>52%</span></div>
+          <div class=&quot;row-prior&quot;>54%</div>
+          <div class=&quot;row-current&quot;>52%</div>
           <div class=&quot;row-head pos&quot;>+3pp</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
@@ -1882,7 +1893,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:42%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>42</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>38</span></div>
+          <div class=&quot;row-prior&quot;>42</div>
+          <div class=&quot;row-current&quot;>38</div>
           <div class=&quot;row-head pos&quot;>+12</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
@@ -1899,7 +1911,8 @@
               <div class=&quot;bullet-prior&quot;   style=&quot;left:18%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2</span></div>
+          <div class=&quot;row-prior&quot;>1</div>
+          <div class=&quot;row-current&quot;>2</div>
           <div class=&quot;row-head pos&quot;>+1</div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
@@ -1914,7 +1927,7 @@
               <div class=&quot;bullet-zone breach&quot; style=&quot;left:80%; width:20%;&quot;></div>
             </div>
           </div>
-          <div class=&quot;row-delta summary-meta&quot;>see Appx A</div>
+          <div class=&quot;row-prior summary-meta&quot; style=&quot;grid-column: 3 / 5;&quot;>see Appx A</div>
           <div class=&quot;row-head&quot;></div>
           <div class=&quot;row-status&quot;><span class=&quot;status-pill nochange&quot;><span class=&quot;dot&quot;></span>No change</span></div>
         </div>
@@ -2119,9 +2132,9 @@
   .slide-body {
     padding: 14px 32px 12px;
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 292px;
     grid-template-rows: auto 1fr;
-    gap: 12px 18px;
+    gap: 12px 12px;
     min-height: 0;
   }
 
@@ -2157,10 +2170,11 @@
   .hero {
     grid-column: 1; grid-row: 2;
     background: var(--sl-white); border: 1px solid var(--hairline); border-radius: 8px;
-    padding: 12px 14px 10px;
+    padding: 10px 12px 8px;
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 14px;
+    grid-template-columns: minmax(430px, 0.92fr) minmax(350px, 1.08fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 9px 12px;
     min-height: 0;
   }
   .hero-head {
@@ -2187,35 +2201,58 @@
 
   /* Ranked register */
   .ranked-register { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+  .reg-head,
   .reg-row {
     display: grid;
-    grid-template-columns: 24px 1fr 70px 18px;
-    gap: 6px;
+    grid-template-columns: 18px minmax(108px, 1fr) 40px 40px 48px 40px 50px 36px;
+    gap: 3px;
     align-items: center;
-    padding: 7px 0;
+  }
+  .reg-head {
+    padding: 0 0 5px;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted-2);
+  }
+  .reg-row {
+    padding: 5px 0;
     border-bottom: 1px solid var(--hairline-soft);
-    font-size: 11px;
+    font-size: 10.2px;
   }
   .reg-row:last-child { border-bottom: 0; }
   .reg-rank {
-    width: 19px; height: 19px; border-radius: 50%;
+    width: 18px; height: 18px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: var(--sl-white); font-size: 10px; font-weight: 700;
+    color: var(--sl-white); font-size: 9.5px; font-weight: 700;
     box-shadow: 0 0 0 2px var(--sl-white);
   }
   .reg-rank.red { background: var(--sl-core-coral); }
   .reg-rank.amber { background: #DE4721; }
-  .reg-name { font-size: 11px; font-weight: 700; color: var(--ink); line-height: 1.15; }
-  .reg-meta { font-size: 9px; color: var(--muted); margin-top: 1px; line-height: 1.2; }
+  .reg-risk { min-width: 0; }
+  .reg-name { font-size: 10px; font-weight: 700; color: var(--ink); line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .reg-meta { font-size: 7.7px; color: var(--muted); margin-top: 1px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .reg-pos {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.4px; font-weight: 600; color: var(--muted);
+    text-align: center; white-space: nowrap;
+    padding: 2px 3px; border-radius: 3px;
+    background: #f6f8fb; border: 1px solid var(--hairline-soft);
+  }
+  .reg-pos.current {
+    color: var(--ink);
+    background: var(--sl-white);
+    border-color: rgba(10,47,115,0.16);
+  }
   .reg-rag {
     justify-self: start;
-    min-width: 58px;
+    width: 52px;
     text-align: center;
-    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-    padding: 3px 6px; border-radius: 4px;
+    font-size: 8.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 4px; border-radius: 4px;
   }
   .reg-rag.red { background: var(--red-bg); color: var(--sl-core-coral); }
   .reg-rag.amber { background: var(--amber-bg); color: var(--sl-dark-yellow); }
+  .reg-assess { min-width: 0; }
   .reg-hidden-note {
     margin-top: 8px;
     font-size: 9.5px; color: var(--muted);
@@ -2232,13 +2269,14 @@
     display: flex; flex-direction: column; min-height: 0;
   }
   .matrix-svg {
-    flex: 1; min-height: 0;
-    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto; min-height: 0;
+    display: flex; align-items: flex-start; justify-content: center;
   }
-  .matrix-svg svg { max-width: 100%; max-height: 100%; }
+  .matrix-svg svg { width: 100%; height: auto; max-width: 100%; max-height: 100%; }
   .matrix-legend {
-    display: flex; gap: 14px; align-items: center; justify-content: center;
-    font-size: 9px; color: var(--muted); padding-top: 4px;
+    display: flex; gap: 9px; align-items: center; justify-content: center;
+    font-size: 8.2px; color: var(--muted); padding-top: 2px;
+    flex-wrap: wrap;
   }
   .leg-item { display: flex; align-items: center; gap: 4px; }
   .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -2262,6 +2300,79 @@
       repeating-linear-gradient(-45deg, rgba(202,63,76,0.16) 0 1px, transparent 1px 5px),
       #fde2e4;
   }
+
+  /* Inline expert overlay cells */
+  .rag-mini {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 36px; border-radius: 3px; padding: 2px 4px;
+    font-size: 7.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .rag-mini.red { color: var(--sl-core-coral); background: var(--red-bg); }
+  .rag-mini.amber { color: var(--sl-dark-yellow); background: var(--amber-bg); }
+  .rag-mini.green { color: var(--sl-core-teal); background: var(--green-bg); }
+  .overlay-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 3px; padding: 2px 5px;
+    width: 100%;
+    font-size: 7.2px; font-weight: 700; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .overlay-chip.accepted { color: var(--ink-2); background: #eef2f7; border: 1px solid #d7dee8; }
+  .overlay-chip.up { color: var(--sl-core-coral); background: var(--red-bg); border: 1px solid rgba(202,63,76,0.28); }
+  .overlay-chip.warn { color: var(--sl-dark-yellow); background: var(--amber-bg); border: 1px solid rgba(222,71,33,0.22); }
+  .assess-date {
+    display: block; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 7px; color: var(--ink);
+  }
+  .assess-status {
+    display: inline-flex; margin-top: 1px; border-radius: 3px; padding: 1px 4px;
+    font-size: 7.2px; font-weight: 700; text-transform: uppercase;
+  }
+  .assess-status.complete { color: var(--sl-core-teal); background: var(--green-bg); }
+  .assess-status.overdue { color: var(--sl-core-coral); background: var(--red-bg); }
+  .overlay-count {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.4px; font-weight: 700; color: var(--ink); text-align: center;
+  }
+  .l3-driver-panel {
+    grid-column: 1 / -1;
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    background: #fbfcfe;
+    padding: 7px 9px 6px;
+    min-width: 0;
+  }
+  .l3-driver-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 4px; margin-bottom: 3px;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .l3-driver-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
+  .l3-driver-sub { font-size: 8.4px; color: var(--muted); }
+  .l3-driver-table {
+    display: grid;
+    grid-template-columns: 18px minmax(120px, 1.1fr) minmax(96px, 0.8fr) 42px minmax(180px, 1.35fr);
+    align-items: center;
+    font-size: 8.5px;
+  }
+  .l3-driver-table > div {
+    min-width: 0;
+    padding: 3px 4px;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .l3-driver-table > div:nth-last-child(-n+5) { border-bottom: 0; }
+  .l3-th {
+    font-size: 7.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--muted-2);
+  }
+  .l3-rank {
+    width: 15px; height: 15px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--ink); color: #fff; font-size: 8px; font-weight: 700;
+  }
+  .l3-name { font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .l3-parent { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .l3-driver { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* ---------- RIGHT COL ---------- */
   .right-col {
@@ -2291,8 +2402,8 @@
 
   .commentary-block {
     background: var(--panel-soft); border: 1px solid var(--hairline); border-radius: 6px;
-    padding: 10px 12px 10px;
-    display: flex; flex-direction: column; gap: 7px;
+    padding: 8px 9px 8px;
+    display: flex; flex-direction: column; gap: 6px;
     min-height: 0;
   }
   .commentary-block.top3-commentary {
@@ -2319,7 +2430,7 @@
     border: 1px solid var(--hairline);
     border-left: 3px solid var(--sl-core-coral);
     border-radius: 6px;
-    padding: 7px 9px;
+    padding: 7px 8px;
     display: flex; flex-direction: column; gap: 3px;
   }
   .comm-card:has(.comm-badge.stable) { border-left-color: var(--sl-core-teal); }
@@ -2327,7 +2438,7 @@
   .comm-card.item-2 { border-left-color: var(--sl-core-coral); }
   .comm-card.item-3 { border-left-color: var(--sl-vibrant-blue); }
   .comm-topline { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-  .comm-risk { font-size: 11px; font-weight: 700; color: var(--ink); }
+  .comm-risk { font-size: 10.4px; font-weight: 700; color: var(--ink); }
   .comm-badge {
     font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
     padding: 2px 5px; border-radius: 3px;
@@ -2335,8 +2446,8 @@
   .comm-badge.worsened { background: var(--red-bg); color: var(--sl-core-coral); }
   .comm-badge.stable   { background: #eef2f7; color: var(--ink-2); }
   .comm-badge.assigned { background: var(--sl-light-yellow); color: #8f6200; }
-  .comm-owner { font-size: 9.5px; color: var(--muted); }
-  .comm-body { font-size: 10.5px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+  .comm-owner { font-size: 8.4px; color: var(--muted); }
+  .comm-body { font-size: 9.4px; line-height: 1.36; color: var(--ink-2); margin: 0; }
   .comm-body b { color: var(--ink); font-weight: 700; }
 
   /* ---------- FOOTER ---------- */
@@ -2433,13 +2544,13 @@
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Red</div>
-        <div class=&quot;kpi-value&quot;>1</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Amber</div>
-        <div class=&quot;kpi-value&quot;>4</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 3 vs Q4</div>
+        <div class=&quot;kpi-value&quot;>3</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-green&quot;>
         <div class=&quot;kpi-label&quot;>Green</div>
@@ -2458,7 +2569,7 @@
       <div class=&quot;hero-head&quot;>
         <div>
           <div class=&quot;hero-title&quot;>Risk Position — Likelihood &amp;times; Impact, prior &amp;rarr; current</div>
-          <div class=&quot;hero-sub&quot;>Default view shows Red and Amber L2 risks only · Green risks hidden by default</div>
+          <div class=&quot;hero-sub&quot;>Default view shows Red and Amber L2 risks only · includes expert overlay, final RAG and top L3 drivers</div>
         </div>
         <div class=&quot;hero-tools&quot;>
           <div class=&quot;hero-date&quot;>Q4 2025 → Q1 2026</div>
@@ -2467,61 +2578,92 @@
             <span class=&quot;filter-pill red&quot;>Red</span>
             <span class=&quot;filter-pill amber&quot;>Amber</span>
             <span class=&quot;filter-pill off&quot;>Green hidden</span>
+            <span class=&quot;filter-pill&quot;>Expert +/-1 only</span>
           </div>
         </div>
       </div>
 
       <!-- LEFT: Ranked register -->
       <div class=&quot;ranked-register&quot;>
-
-        <div class=&quot;reg-row&quot;>
-          <div class=&quot;reg-rank red&quot;>1</div>
-          <div>
-            <div class=&quot;reg-name&quot;>Cyber &amp;amp; IT Risk</div>
-            <div class=&quot;reg-meta&quot;>Wealth Mgmt · CISO</div>
-          </div>
-          <div class=&quot;reg-rag red&quot;>Red</div>
-          <div class=&quot;reg-arrow up&quot;>▲</div>
+        <div class=&quot;reg-head&quot;>
+          <div></div>
+          <div>L2 Risk</div>
+          <div>Prev</div>
+          <div>Q1</div>
+          <div>Overlay</div>
+          <div>Final</div>
+          <div>Assess</div>
+          <div>I / A</div>
         </div>
 
         <div class=&quot;reg-row&quot;>
-          <div class=&quot;reg-rank amber&quot;>2</div>
-          <div>
+          <div class=&quot;reg-rank red&quot;>1</div>
+          <div class=&quot;reg-risk&quot;>
+            <div class=&quot;reg-name&quot;>Cyber &amp;amp; IT Risk</div>
+            <div class=&quot;reg-meta&quot;>Wealth Mgmt · CISO</div>
+          </div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;overlay-chip up&quot;>-&gt; Red</span></div>
+          <div><span class=&quot;rag-mini red&quot;>Red</span></div>
+          <div class=&quot;reg-assess&quot;><span class=&quot;assess-date&quot;>31 Mar</span><span class=&quot;assess-status complete&quot;>Done</span></div>
+          <div class=&quot;overlay-count&quot;>9 / 11</div>
+        </div>
+
+        <div class=&quot;reg-row&quot;>
+          <div class=&quot;reg-rank red&quot;>2</div>
+          <div class=&quot;reg-risk&quot;>
             <div class=&quot;reg-name&quot;>Compliance Risk</div>
             <div class=&quot;reg-meta&quot;>Commercial Banking · Compliance</div>
           </div>
-          <div class=&quot;reg-rag amber&quot;>Amber</div>
-          <div class=&quot;reg-arrow up&quot;>▲</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;rag-mini red&quot;>Red</span></div>
+          <div><span class=&quot;overlay-chip accepted&quot;>-</span></div>
+          <div><span class=&quot;rag-mini red&quot;>Red</span></div>
+          <div class=&quot;reg-assess&quot;><span class=&quot;assess-date&quot;>28 Mar</span><span class=&quot;assess-status overdue&quot;>Late</span></div>
+          <div class=&quot;overlay-count&quot;>5 / 6</div>
         </div>
 
         <div class=&quot;reg-row&quot;>
           <div class=&quot;reg-rank amber&quot;>3</div>
-          <div>
+          <div class=&quot;reg-risk&quot;>
             <div class=&quot;reg-name&quot;>Operational Risk</div>
             <div class=&quot;reg-meta&quot;>Group Operations · Head of Op Risk</div>
           </div>
-          <div class=&quot;reg-rag amber&quot;>Amber</div>
-          <div class=&quot;reg-arrow up&quot;>▲</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;overlay-chip accepted&quot;>-</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;reg-assess&quot;><span class=&quot;assess-date&quot;>31 Mar</span><span class=&quot;assess-status complete&quot;>Done</span></div>
+          <div class=&quot;overlay-count&quot;>6 / 9</div>
         </div>
 
         <div class=&quot;reg-row&quot;>
           <div class=&quot;reg-rank amber&quot;>4</div>
-          <div>
+          <div class=&quot;reg-risk&quot;>
             <div class=&quot;reg-name&quot;>Business Model Risk</div>
             <div class=&quot;reg-meta&quot;>Group Operations · CFO</div>
           </div>
-          <div class=&quot;reg-rag amber&quot;>Amber</div>
-          <div class=&quot;reg-arrow up&quot;>▲</div>
+          <div><span class=&quot;rag-mini green&quot;>Green</span></div>
+          <div><span class=&quot;rag-mini green&quot;>Green</span></div>
+          <div><span class=&quot;overlay-chip warn&quot;>-&gt; Amber</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;reg-assess&quot;><span class=&quot;assess-date&quot;>26 Mar</span><span class=&quot;assess-status complete&quot;>Done</span></div>
+          <div class=&quot;overlay-count&quot;>2 / 3</div>
         </div>
 
         <div class=&quot;reg-row&quot;>
           <div class=&quot;reg-rank amber&quot;>5</div>
-          <div>
+          <div class=&quot;reg-risk&quot;>
             <div class=&quot;reg-name&quot;>Financial Crime Risk</div>
             <div class=&quot;reg-meta&quot;>Tech &amp;amp; Change · Head of FC</div>
           </div>
-          <div class=&quot;reg-rag amber&quot;>Amber</div>
-          <div class=&quot;reg-arrow up&quot;>▲</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div><span class=&quot;overlay-chip accepted&quot;>-</span></div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;reg-assess&quot;><span class=&quot;assess-date&quot;>29 Mar</span><span class=&quot;assess-status complete&quot;>Done</span></div>
+          <div class=&quot;overlay-count&quot;>3 / 5</div>
         </div>
 
         <div class=&quot;reg-hidden-note&quot;>Items 6-8 are Green L2 risks hidden by default: Liquidity, Conduct and Third Party.</div>
@@ -2583,19 +2725,19 @@
             </g>
 
             <!-- Axis labels -->
-            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
-              <text x=&quot;98&quot;  y=&quot;265&quot;>L1</text>
-              <text x=&quot;174&quot; y=&quot;265&quot;>L2</text>
-              <text x=&quot;250&quot; y=&quot;265&quot;>L3</text>
-              <text x=&quot;326&quot; y=&quot;265&quot;>L4</text>
-              <text x=&quot;402&quot; y=&quot;265&quot;>L5</text>
+            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;7.4&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
+              <text x=&quot;98&quot; y=&quot;263&quot;><tspan x=&quot;98&quot; y=&quot;263&quot;>Very</tspan><tspan x=&quot;98&quot; y=&quot;271&quot;>Low</tspan></text>
+              <text x=&quot;174&quot; y=&quot;267&quot;>Low</text>
+              <text x=&quot;250&quot; y=&quot;267&quot;>Medium</text>
+              <text x=&quot;326&quot; y=&quot;267&quot;>High</text>
+              <text x=&quot;402&quot; y=&quot;267&quot;>Extreme</text>
             </g>
-            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.5&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
-              <text x=&quot;55&quot; y=&quot;36&quot;>I5</text>
-              <text x=&quot;55&quot; y=&quot;84&quot;>I4</text>
-              <text x=&quot;55&quot; y=&quot;132&quot;>I3</text>
-              <text x=&quot;55&quot; y=&quot;180&quot;>I2</text>
-              <text x=&quot;55&quot; y=&quot;228&quot;>I1</text>
+            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;7.4&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
+              <text x=&quot;55&quot; y=&quot;36&quot;>Extreme</text>
+              <text x=&quot;55&quot; y=&quot;84&quot;>High</text>
+              <text x=&quot;55&quot; y=&quot;132&quot;>Medium</text>
+              <text x=&quot;55&quot; y=&quot;180&quot;>Low</text>
+              <text x=&quot;55&quot; y=&quot;224&quot;><tspan x=&quot;55&quot; y=&quot;224&quot;>Very</tspan><tspan x=&quot;55&quot; y=&quot;232&quot;>Low</tspan></text>
             </g>
 
             <!-- Axis titles -->
@@ -2607,64 +2749,109 @@
             <!-- Movement arrows (prior → current). Arrow markers defined first -->
             <defs>
               <marker id=&quot;arrow-red&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;4.4&quot; markerHeight=&quot;4.4&quot; orient=&quot;auto-start-reverse&quot;>
-                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#CA3F4C&quot;/>
+                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#294CFF&quot;/>
               </marker>
               <marker id=&quot;arrow-amber&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;4.4&quot; markerHeight=&quot;4.4&quot; orient=&quot;auto-start-reverse&quot;>
-                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#DE4721&quot;/>
+                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#294CFF&quot;/>
               </marker>
               <marker id=&quot;arrow-green&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;4.4&quot; markerHeight=&quot;4.4&quot; orient=&quot;auto-start-reverse&quot;>
-                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#006B5C&quot;/>
+                <path d=&quot;M0,0 L10,5 L0,10 z&quot; fill=&quot;#294CFF&quot;/>
               </marker>
             </defs>
 
             <!-- Cyber & IT Risk: prior (L3,I4) → current (L4,I5) - red worsened -->
-            <line x1=&quot;246&quot; y1=&quot;82&quot; x2=&quot;316&quot; y2=&quot;42&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-red)&quot;/>
-            <circle cx=&quot;246&quot; cy=&quot;82&quot; r=&quot;4.8&quot; fill=&quot;#fff&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.4&quot;/>
+            <line x1=&quot;246&quot; y1=&quot;82&quot; x2=&quot;316&quot; y2=&quot;42&quot; stroke=&quot;#294CFF&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-red)&quot;/>
+            <circle cx=&quot;246&quot; cy=&quot;82&quot; r=&quot;4.8&quot; fill=&quot;#fff&quot; stroke=&quot;#5B6B83&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;324&quot; cy=&quot;38&quot; r=&quot;10.5&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <circle cx=&quot;324&quot; cy=&quot;38&quot; r=&quot;10.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;324&quot; y=&quot;42&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
             </g>
 
-            <!-- Compliance Risk: prior (L3,I4) → current (L4,I4) - amber worsened -->
-            <line x1=&quot;258&quot; y1=&quot;92&quot; x2=&quot;320&quot; y2=&quot;90&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
-            <circle cx=&quot;258&quot; cy=&quot;92&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
+            <!-- Compliance Risk: prior (L3,I4) → current (L4,I4) - red from Q1 data -->
+            <line x1=&quot;258&quot; y1=&quot;92&quot; x2=&quot;320&quot; y2=&quot;90&quot; stroke=&quot;#294CFF&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-red)&quot;/>
+            <circle cx=&quot;258&quot; cy=&quot;92&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#5B6B83&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;330&quot; cy=&quot;90&quot; r=&quot;10.5&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <circle cx=&quot;330&quot; cy=&quot;90&quot; r=&quot;10.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;330&quot; y=&quot;94&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
             </g>
 
             <!-- Operational Risk: prior (L2,I3) → current (L3,I4) - amber worsened -->
-            <line x1=&quot;178&quot; y1=&quot;134&quot; x2=&quot;236&quot; y2=&quot;82&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
-            <circle cx=&quot;178&quot; cy=&quot;134&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
+            <line x1=&quot;178&quot; y1=&quot;134&quot; x2=&quot;236&quot; y2=&quot;82&quot; stroke=&quot;#294CFF&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
+            <circle cx=&quot;178&quot; cy=&quot;134&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#5B6B83&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;244&quot; cy=&quot;78&quot; r=&quot;10.5&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <circle cx=&quot;244&quot; cy=&quot;78&quot; r=&quot;10.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;244&quot; y=&quot;82&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
             </g>
 
             <!-- Business Model Risk: prior (L2,I4) → current (L3,I4) - amber worsened -->
-            <line x1=&quot;180&quot; y1=&quot;86&quot; x2=&quot;256&quot; y2=&quot;94&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.35&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.82&quot; marker-end=&quot;url(#arrow-amber)&quot; stroke-dasharray=&quot;3 2&quot;/>
+            <line x1=&quot;180&quot; y1=&quot;86&quot; x2=&quot;256&quot; y2=&quot;94&quot; stroke=&quot;#294CFF&quot; stroke-width=&quot;1.35&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.82&quot; marker-end=&quot;url(#arrow-amber)&quot; stroke-dasharray=&quot;3 2&quot;/>
             <g>
-              <circle cx=&quot;266&quot; cy=&quot;96&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <circle cx=&quot;266&quot; cy=&quot;96&quot; r=&quot;10&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;266&quot; y=&quot;100&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.2&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>4</text>
             </g>
 
             <!-- Financial Crime: prior (L2,I3) → current (L3,I3) - amber worsened -->
-            <line x1=&quot;180&quot; y1=&quot;144&quot; x2=&quot;250&quot; y2=&quot;136&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
-            <circle cx=&quot;180&quot; cy=&quot;144&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
+            <line x1=&quot;180&quot; y1=&quot;144&quot; x2=&quot;250&quot; y2=&quot;136&quot; stroke=&quot;#294CFF&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
+            <circle cx=&quot;180&quot; cy=&quot;144&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#5B6B83&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;260&quot; cy=&quot;136&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <circle cx=&quot;260&quot; cy=&quot;136&quot; r=&quot;10&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;260&quot; y=&quot;140&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.2&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
             </g>
 
           </svg>
         </div>
         <div class=&quot;matrix-legend&quot;>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch red&quot;></div>Red / crosshatch</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch amber&quot;></div>Amber / diagonal</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch green&quot;></div>Green / dotted</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch red&quot;></div>Red</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch amber&quot;></div>Amber</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch green&quot;></div>Green</div>
           <div class=&quot;leg-item&quot;>○ prior &amp;nbsp; ● current &amp;nbsp; → movement</div>
         </div>
       </div>
+
+      <div class=&quot;l3-driver-panel&quot;>
+        <div class=&quot;l3-driver-head&quot;>
+          <div class=&quot;l3-driver-title&quot;>Top 5 L3 Drivers</div>
+          <div class=&quot;l3-driver-sub&quot;>Worst L3 drives data roll-up; expert overlay applies only at L2</div>
+        </div>
+        <div class=&quot;l3-driver-table&quot;>
+          <div class=&quot;l3-th&quot;></div>
+          <div class=&quot;l3-th&quot;>L3 Risk</div>
+          <div class=&quot;l3-th&quot;>Parent L2</div>
+          <div class=&quot;l3-th&quot;>RAG</div>
+          <div class=&quot;l3-th&quot;>Roll-up context</div>
+
+          <div><span class=&quot;l3-rank&quot;>1</span></div>
+          <div class=&quot;l3-name&quot;>Regulatory change management</div>
+          <div class=&quot;l3-parent&quot;>Compliance Risk</div>
+          <div><span class=&quot;rag-mini red&quot;>Red</span></div>
+          <div class=&quot;l3-driver&quot;>Q1 data red; drives Compliance L2 Red without overlay</div>
+
+          <div><span class=&quot;l3-rank&quot;>2</span></div>
+          <div class=&quot;l3-name&quot;>Data breach / exfiltration</div>
+          <div class=&quot;l3-parent&quot;>Cyber &amp;amp; IT Risk</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;l3-driver&quot;>Worst Cyber L3 keeps data roll-up Amber; L2 overlay moves final to Red</div>
+
+          <div><span class=&quot;l3-rank&quot;>3</span></div>
+          <div class=&quot;l3-name&quot;>Operational resilience testing</div>
+          <div class=&quot;l3-parent&quot;>Operational Risk</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;l3-driver&quot;>Near-miss and control-test trend keeps L2 at Amber</div>
+
+          <div><span class=&quot;l3-rank&quot;>4</span></div>
+          <div class=&quot;l3-name&quot;>Expense strain model risk</div>
+          <div class=&quot;l3-parent&quot;>Business Model Risk</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;l3-driver&quot;>Judgement overlay lifts L2 from Green to Amber</div>
+
+          <div><span class=&quot;l3-rank&quot;>5</span></div>
+          <div class=&quot;l3-name&quot;>SAR escalation controls</div>
+          <div class=&quot;l3-parent&quot;>Financial Crime Risk</div>
+          <div><span class=&quot;rag-mini amber&quot;>Amber</span></div>
+          <div class=&quot;l3-driver&quot;>Headroom narrowed; controls remain within Amber tolerance</div>
+        </div>
+      </div>
+
     </section>
 
     <!-- RIGHT COL -->
@@ -2694,7 +2881,7 @@
           </div>
           <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk · 29 Mar 2026 · Wealth Management</div>
           <p class=&quot;comm-body&quot;>
-            Worst L3: <b>Data breach / exfiltration (RED)</b>. Two material controls ineffective; data breach L3 red for 2 quarters. £2.4m SOC uplift business case to ExCo; IAM remediation Q2; SOC 24×7 by end Q2. Expected return to green Q4 2026.
+            Worst L3: <b>Data breach / exfiltration (AMBER)</b>. The L3 data roll-up remains amber, while the <b>L2 expert overlay</b> moves Cyber &amp;amp; IT to red. Two material controls ineffective; £2.4m SOC uplift business case to ExCo; IAM remediation Q2.
           </p>
         </div>
 
@@ -2882,7 +3069,7 @@
   /* KPI strip */
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: #fff; border: 1px solid var(--hairline);
@@ -3008,6 +3195,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
+  .control-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 176px;
+    gap: 10px;
+    min-height: 0;
+  }
   .control-card {
     border: 1px solid var(--hairline);
     border-top: 3px solid var(--sl-dark-coral);
@@ -3095,7 +3288,7 @@
   .manorg-sub { font-size: 8.5px; color: var(--muted); }
   .manorg-table {
     display: grid;
-    grid-template-columns: 132px minmax(0, 1fr) 24px 70px 70px;
+    grid-template-columns: minmax(116px, 1.2fr) repeat(6, minmax(44px, 0.55fr));
     align-items: center;
     font-size: 8.7px;
     min-height: 0;
@@ -3105,7 +3298,12 @@
     padding: 3px 4px;
     border-bottom: 1px solid var(--hairline-soft);
   }
-  .manorg-table > div:nth-last-child(-n+5) { border-bottom: 0; }
+  .manorg-table > div:nth-last-child(-n+7) { border-bottom: 0; }
+  .manorg-table > div:nth-child(7n+4),
+  .manorg-table > div:nth-child(7n+6) {
+    border-left: 1px solid var(--hairline);
+    padding-left: 7px;
+  }
   .manorg-th {
     color: var(--sl-vibrant-blue);
     font-size: 7.8px;
@@ -3114,6 +3312,7 @@
     letter-spacing: 0.1em;
   }
   .manorg-org { font-weight: 700; color: var(--ink); }
+  .manorg-org .count { color: var(--muted); font-weight: 600; white-space: nowrap; }
   .manorg-risk { color: var(--sl-black); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .rag-dot {
     width: 7px; height: 7px; border-radius: 50%; display: inline-block;
@@ -3123,13 +3322,24 @@
   .rag-dot.amber { background: var(--sl-heritage-yellow); border-radius: 1px; transform: rotate(45deg); }
   .rag-dot.green { background: var(--green); }
   .ctrl-pill {
-    min-width: 52px;
+    min-width: 62px;
+    width: 100%;
     display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
     border-radius: 4px; padding: 2px 4px 1px;
     font-size: 8.2px;
     font-weight: 700; line-height: 1.05; text-transform: uppercase;
   }
   .ctrl-pill .count { font-size: 7.3px; font-weight: 600; margin-top: 1px; color: var(--ink-2); text-transform: none; }
+  .manorg-table .ctrl-pill {
+    min-width: 0;
+    height: 17px;
+    padding: 0 4px;
+    font-size: 7.4px;
+    flex-direction: row;
+    box-sizing: border-box;
+  }
+  .manorg-table .ctrl-pill .count { display: none; }
+  .ctrl-pill.prev { opacity: 0.78; }
   .ctrl-pill.red {
     color: var(--red);
     background:
@@ -3149,6 +3359,69 @@
       radial-gradient(circle at 2px 2px, rgba(0,107,92,0.20) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
       var(--green-bg);
   }
+  .coverage-panel {
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    background: #fff;
+    padding: 7px 9px 6px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .coverage-head {
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .coverage-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
+  .coverage-sub { font-size: 8.5px; color: var(--muted); }
+  .coverage-donut-wrap {
+    display: flex; justify-content: center; align-items: center;
+    padding: 5px 0 2px;
+  }
+  .coverage-donut {
+    --done: 67%;
+    position: relative;
+    width: 108px; height: 108px;
+    border-radius: 50%;
+    background: conic-gradient(var(--bar-green) 0 var(--done), #e3e9f2 var(--done) 100%);
+    box-shadow: inset 0 0 0 1px rgba(10,47,115,0.08);
+  }
+  .coverage-donut::before {
+    content: &quot;&quot;;
+    position: absolute; inset: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--hairline-soft);
+  }
+  .coverage-donut-label {
+    position: absolute; inset: 0;
+    z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--ink);
+  }
+  .coverage-donut-label strong { font-size: 25px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; }
+  .coverage-donut-label span { margin-top: 2px; font-size: 8px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .coverage-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+    font-size: 8.2px; color: var(--ink-2);
+  }
+  .coverage-split div {
+    border: 1px solid var(--hairline-soft);
+    background: #f6f8fb;
+    border-radius: 4px;
+    padding: 4px 5px;
+  }
+  .coverage-split b { display: block; font-size: 13px; line-height: 1; color: var(--ink); font-weight: 700; }
+  .coverage-note {
+    margin-top: auto;
+    border-top: 1px solid var(--hairline-soft);
+    padding-top: 6px;
+    font-size: 8.5px;
+    line-height: 1.3;
+    color: var(--muted);
+  }
+  .coverage-note b { color: var(--ink); font-weight: 700; }
 
   /* Right column */
   .right-col {
@@ -3313,13 +3586,8 @@
 
     <div class=&quot;kpi-strip&quot;>
       <div class=&quot;kpi kpi-navy&quot;>
-        <div class=&quot;kpi-label&quot;>Level 2 Risks</div>
+        <div class=&quot;kpi-label&quot;>Linked Risks</div>
         <div class=&quot;kpi-value&quot;>8</div>
-      </div>
-      <div class=&quot;kpi kpi-burgundy&quot;>
-        <div class=&quot;kpi-label&quot;>Amber / Red L2</div>
-        <div class=&quot;kpi-value&quot;>7</div>
-        <div class=&quot;kpi-delta warn&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Material Ineffective</div>
@@ -3329,11 +3597,6 @@
       <div class=&quot;kpi kpi-navy&quot;>
         <div class=&quot;kpi-label&quot;>Material / Key Test Cover</div>
         <div class=&quot;kpi-value&quot;>38%</div>
-      </div>
-      <div class=&quot;kpi kpi-burgundy&quot;>
-        <div class=&quot;kpi-label&quot;>RCSA Overdue</div>
-        <div class=&quot;kpi-value&quot;>1</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Open Issues</div>
@@ -3376,7 +3639,7 @@
       <div class=&quot;hero-head&quot;>
         <div>
           <div class=&quot;hero-title&quot;>Control Environment Summary</div>
-          <div class=&quot;hero-sub&quot;>Material and key controls compare Control Assessment with actual Control Test results. Supporting controls remain an appendix read-across view.</div>
+          <div class=&quot;hero-sub&quot;>Material and key controls compare Control Assessment with actual Control Test results. Supporting control RAG is shown as high-level read-across.</div>
         </div>
         <div class=&quot;control-legend&quot;>
           <span class=&quot;control-legend-item&quot;><span class=&quot;control-swatch green&quot;></span>Effective</span>
@@ -3451,53 +3714,69 @@
           </div>
         </div>
 
-        <div class=&quot;manorg-panel&quot;>
-          <div class=&quot;manorg-head&quot;>
-            <div class=&quot;manorg-title&quot;>Control RAG by Management Org</div>
-            <div class=&quot;manorg-sub&quot;>Material and key controls only · supporting controls in appendix</div>
+        <div class=&quot;control-detail-grid&quot;>
+          <div class=&quot;manorg-panel&quot;>
+            <div class=&quot;manorg-head&quot;>
+              <div class=&quot;manorg-title&quot;>Control RAG by Business Function</div>
+              <div class=&quot;manorg-sub&quot;>Q4 &amp;rarr; Q1 status by control type</div>
+            </div>
+            <div class=&quot;manorg-table&quot;>
+              <div class=&quot;manorg-th&quot;>Business Function</div>
+              <div class=&quot;manorg-th&quot;>Mat Q4</div>
+              <div class=&quot;manorg-th&quot;>Mat Q1</div>
+              <div class=&quot;manorg-th&quot;>Key Q4</div>
+              <div class=&quot;manorg-th&quot;>Key Q1</div>
+              <div class=&quot;manorg-th&quot;>Supp Q4</div>
+              <div class=&quot;manorg-th&quot;>Supp Q1</div>
+
+              <div class=&quot;manorg-org&quot;>Pensions &amp;amp; Savings <span class=&quot;count&quot;>(P&amp;amp;S)</span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>6 / 9</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>22 / 26</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>35 / 39</span></span></div>
+
+              <div class=&quot;manorg-org&quot;>Retirement Solutions &amp;amp; Asset Management <span class=&quot;count&quot;>(RS &amp;amp; AM)</span></div>
+              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+              <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>4 / 7</span></span></div>
+              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>14 / 18</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>28 / 31</span></span></div>
+
+              <div class=&quot;manorg-org&quot;>Europe</div>
+              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>5 / 8</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>16 / 19</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>21 / 27</span></span></div>
+
+              <div class=&quot;manorg-org&quot;>SunLife</div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>3 / 3</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 9</span></span></div>
+              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>18 / 19</span></span></div>
+            </div>
           </div>
-          <div class=&quot;manorg-table&quot;>
-            <div class=&quot;manorg-th&quot;>Management Org</div>
-            <div class=&quot;manorg-th&quot;>L2 Risk</div>
-            <div class=&quot;manorg-th&quot;>RAG</div>
-            <div class=&quot;manorg-th&quot;>Material</div>
-            <div class=&quot;manorg-th&quot;>Key</div>
 
-            <div class=&quot;manorg-org&quot;>Group Operations</div>
-            <div class=&quot;manorg-risk&quot;>Operational Resilience</div>
-            <div><span class=&quot;rag-dot red&quot;></span></div>
-            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>5 / 8</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>11 / 14</span></span></div>
-
-            <div class=&quot;manorg-org&quot;>Retail Banking</div>
-            <div class=&quot;manorg-risk&quot;>Sales &amp;amp; Distribution</div>
-            <div><span class=&quot;rag-dot amber&quot;></span></div>
-            <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>5 / 6</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>9 / 10</span></span></div>
-
-            <div class=&quot;manorg-org&quot;>Commercial Banking</div>
-            <div class=&quot;manorg-risk&quot;>Regulatory Compliance</div>
-            <div><span class=&quot;rag-dot red&quot;></span></div>
-            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>3 / 5</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>6 / 9</span></span></div>
-
-            <div class=&quot;manorg-org&quot;>Wealth Management</div>
-            <div class=&quot;manorg-risk&quot;>Information Security &amp;amp; Cyber</div>
-            <div><span class=&quot;rag-dot amber&quot;></span></div>
-            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>3 / 7</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 12</span></span></div>
-
-            <div class=&quot;manorg-org&quot;>Insurance</div>
-            <div class=&quot;manorg-risk&quot;>Third Party</div>
-            <div><span class=&quot;rag-dot amber&quot;></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>4 / 4</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>7 / 8</span></span></div>
-
-            <div class=&quot;manorg-org&quot;>Technology &amp;amp; Change</div>
-            <div class=&quot;manorg-risk&quot;>Financial Crime</div>
-            <div><span class=&quot;rag-dot amber&quot;></span></div>
-            <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>4 / 6</span></span></div>
-            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 11</span></span></div>
+          <div class=&quot;coverage-panel&quot;>
+            <div class=&quot;coverage-head&quot;>
+              <div class=&quot;coverage-title&quot;>Q1 Test Coverage</div>
+              <div class=&quot;coverage-sub&quot;>Material + key controls</div>
+            </div>
+            <div class=&quot;coverage-donut-wrap&quot;>
+              <div class=&quot;coverage-donut&quot; style=&quot;--done:67%;&quot;>
+                <div class=&quot;coverage-donut-label&quot;><strong>67%</strong><span>done</span></div>
+              </div>
+            </div>
+            <div class=&quot;coverage-split&quot;>
+              <div><b>43</b>Done</div>
+              <div><b>21</b>Open</div>
+            </div>
           </div>
         </div>
 
@@ -3531,7 +3810,7 @@
           </div>
           <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk · 29 Mar 2026</div>
           <p class=&quot;comm-body&quot;>
-            Most significant deterioration. <b>Two material controls rated ineffective</b> (up from 1). 5 open issues — highest concentration. Data breach L3 at red for <b>second quarter</b>. Avg open issue age: 68 days — execution velocity needs improvement.
+            Most significant deterioration. <b>Two material controls rated ineffective</b> (up from 1). 5 open issues — highest concentration. Data breach L3 remains <b>amber</b>, while the Cyber L2 final RAG is red due to expert overlay. Avg open issue age: 68 days.
           </p>
         </div>
 
@@ -4295,6 +4574,7 @@
     display: inline-flex; align-items: center;
     padding: 2px 7px; border-radius: 3px;
     font-size: 9px; font-weight: 700;
+    width: auto;
   }
   .reg-table .status-pill.notified { background: var(--green-bg); color: var(--sl-core-teal); }
   .reg-table .status-pill.pending { background: var(--amber-bg); color: var(--sl-dark-yellow); }
@@ -6365,7 +6645,7 @@
 const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary", purpose: "Cross-theme synthesis. Overall posture, top 3 board attention items, decisions preview." },
   { key: "p2", num: 2, title: "Risk Appetite", purpose: "Where we stand against appetite. Cyber & IT now in Red breach, Compliance newly triggered." },
-  { key: "p3", num: 3, title: "RCSA", purpose: "Filtered Red and Amber L2 risk view by likelihood × impact, with Green risks hidden by default." },
+  { key: "p3", num: 3, title: "RCSA", purpose: "Filtered Red and Amber L2 risk view by likelihood x impact, with expert overlay, assessment status, issues and actions." },
   { key: "p4", num: 4, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
   { key: "p5", num: 5, title: "Losses & Near Misses", purpose: "Cumulative YTD operational loss vs £25m trigger and £40m breach. Forecast year-end £67.2m breaches appetite." },
   { key: "p6", num: 6, title: "Incidents & Breaches", purpose: "Severity, regulatory exposure, remediation status. 6 reg notifiable events; 2 pending; 2 overdue remediation." },

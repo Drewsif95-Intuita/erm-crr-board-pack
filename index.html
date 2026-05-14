@@ -262,7 +262,7 @@
     <div class="doc-name">
       <span>CRR Exec Pack</span>
       <span class="v">v3 &middot; full pack</span>
-      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 8 pages</span>
+      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 9 pages</span>
     </div>
   </div>
   <div class="topbar-controls">
@@ -270,7 +270,7 @@
       <span>Page info</span>
       <span class="kbd">I</span>
     </button>
-    <div class="progress-chip" id="progress">P1 / 8</div>
+    <div class="progress-chip" id="progress">P1 / 9</div>
   </div>
 </div>
 
@@ -434,7 +434,7 @@
     padding: 18px 40px 16px;
     display: grid;
     grid-template-columns: 1fr 372px;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     gap: 14px 20px;
     min-height: 0;
   }
@@ -451,22 +451,29 @@
     background: #fff;
     border: 1px solid var(--hairline);
     border-top: 3px solid var(--navy);
-    border-radius: 8px;
-    padding: 10px 14px 11px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     gap: 4px;
+    min-height: 82px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 4px; line-height: 1.3; }
-  .kpi-delta.up   { color: #15803d; }
-  .kpi-delta.down { color: #b91c1c; }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value  { font-size: 27px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
+  .kpi-delta  {
+    width: 100%; min-height: 18px;
+    font-size: 9.2px; font-weight: 600; color: var(--muted);
+    display: flex; align-items: center; gap: 4px; line-height: 1.15;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up   { color: var(--green); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--red); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* ===== CRO SUMMARY spans full width ===== */
   .cro-hero {
@@ -774,9 +781,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P1 / 8</div>
+      <div class=&quot;page-marker&quot;>P1 / 9</div>
     </div>
   </header>
 
@@ -788,22 +796,22 @@
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Overall Risk Posture</div>
         <div class=&quot;kpi-value&quot;>Amber</div>
-        <div class=&quot;kpi-delta down&quot;>▼ was Green · 3 of 6 themes amber/red</div>
+        <div class=&quot;kpi-delta down&quot;>▼ was Green</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Appetite — Within Tolerance</div>
-        <div class=&quot;kpi-value&quot;>8 / 11</div>
-        <div class=&quot;kpi-delta down&quot;>▼ −1 vs Q4 · 1 newly triggered red</div>
+        <div class=&quot;kpi-value&quot;>9 / 11</div>
+        <div class=&quot;kpi-delta down&quot;>▼ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Loss YTD vs £25m Trigger</div>
         <div class=&quot;kpi-value&quot;>67%</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +25pp vs Q4 · £8.2m headroom</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 25pp vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Material Controls Ineffective</div>
         <div class=&quot;kpi-value&quot;>4 / 45</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +2 vs Q4 · 3 of 6 ManOrgs worsened</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
       </div>
     </div>
 
@@ -811,7 +819,7 @@
     <div class=&quot;cro-hero&quot;>
       <div class=&quot;cro-hero-main&quot;>
         <div class=&quot;cro-topline&quot;>
-          <span class=&quot;cro-tag&quot;>T1 · CRO Summary</span>
+          <span class=&quot;cro-tag&quot;>Top item 1</span>
           <span class=&quot;cro-name&quot;>Sarah Chen</span>
           <span class=&quot;cro-role&quot;>Chief Risk Officer</span>
         </div>
@@ -838,10 +846,10 @@
             <div class=&quot;att-top&quot;>
               <span class=&quot;att-theme t-appetite&quot;>Appetite</span>
               <span class=&quot;att-theme t-controls&quot;>Controls</span>
-              <span class=&quot;att-title&quot;>Cyber &amp;amp; IT — Red appetite breach, RCSA worst residual</span>
+              <span class=&quot;att-title&quot;>Cyber &amp;amp; IT — Red appetite breach, RCSA Red position</span>
             </div>
             <p class=&quot;att-why&quot;>
-              <b>Newly triggered Red</b> on appetite (6 P1 incidents vs 5 trigger). Worst residual on RCSA (20). 2 material controls ineffective. <b>£2.4m SOC business case awaiting decision</b>.
+              <b>Newly triggered Red</b> on appetite (6 P1 incidents vs 5 trigger). Worst RCSA position is Red. 2 material controls ineffective. <b>£2.4m SOC business case awaiting decision</b>.
             </p>
             <div class=&quot;att-meta&quot;>
               <span>CISO / Head of IT Risk</span>
@@ -1185,6 +1193,12 @@
   .header-left { display: flex; align-items: baseline; gap: 18px; }
   .header-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
   .header-sub { font-size: 12px; color: rgba(255,255,255,0.72); letter-spacing: 0.02em; }
+  .warning-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #8f6200; background: var(--sl-light-yellow);
+    border: 1px solid rgba(255,187,0,0.65);
+    border-radius: 3px; padding: 3px 7px; white-space: nowrap;
+  }
   .header-right { display: flex; align-items: center; gap: 18px; font-size: 11px; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.14em; }
   .header-right .page-marker { color: #fff; font-weight: 700; font-size: 11px; }
   .header-right .divider { width: 1px; height: 14px; background: rgba(255,255,255,0.25); }
@@ -1194,7 +1208,7 @@
     padding: 20px 40px 16px;
     display: grid;
     grid-template-columns: 1fr 372px;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     gap: 16px 20px;
     min-height: 0;
   }
@@ -1204,37 +1218,47 @@
     grid-column: 1 / -1;
     grid-row: 1;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
   }
   .kpi {
     background: #fff;
     border: 1px solid var(--hairline);
     border-top: 3px solid var(--navy);
-    border-radius: 8px;
-    padding: 12px 14px;
+    border-radius: 6px;
+    padding: 8px 10px;
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    align-items: baseline;
-    column-gap: 12px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    gap: 4px;
+    min-height: 78px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { grid-column: 1 / -1; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 34px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
-  .kpi-delta  { font-size: 11px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 4px; justify-self: end; }
-  .kpi-delta.up   { color: #15803d; }
-  .kpi-delta.down { color: #CA3F4C; }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi.kpi-burgundy { border-top-color: var(--sl-dark-coral); }
+  .kpi.kpi-yellow { border-top-color: var(--sl-heritage-yellow); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value  { font-size: 25px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+  .kpi-delta  {
+    width: 100%;
+    min-height: 18px;
+    font-size: 9.2px; font-weight: 600; color: var(--muted);
+    display: flex; align-items: center; gap: 4px; justify-content: flex-start;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.warn { color: var(--amber); background: var(--amber-bg); border-color: var(--sl-heritage-yellow); }
+  .kpi-delta.down { color: #CA3F4C; background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* &quot;What changed&quot; row spans full width */
   .changed-row {
     grid-column: 1 / -1;
     grid-row: 2;
-    display: grid;
+    display: none;
     grid-template-columns: 118px 1fr 1fr;
     gap: 12px;
     align-items: stretch;
@@ -1285,7 +1309,7 @@
   /* Hero: bullet chart ----------------------------------------------------- */
   .hero {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
     background: #fff;
     border: 1px solid var(--hairline);
     border-radius: 8px;
@@ -1303,16 +1327,29 @@
   .legend-swatch { width: 14px; height: 8px; border-radius: 2px; }
   .legend-swatch.bar  { background: var(--bullet-bar); border-radius: 1px; height: 6px; }
   .legend-swatch.prior{ background: var(--marker-prior); width: 2px; height: 10px; border-radius: 0; }
-  .legend-swatch.safe { background: var(--safe-fill); }
-  .legend-swatch.warn { background: var(--warn-fill); }
-  .legend-swatch.breach { background: var(--breach-fill); }
+  .legend-swatch.safe {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(0,107,92,0.28) 0 1px, transparent 1.2px) 0 0 / 6px 6px,
+      var(--safe-fill);
+  }
+  .legend-swatch.warn {
+    background:
+      repeating-linear-gradient(90deg, rgba(143,98,0,0.28) 0 1px, transparent 1px 5px),
+      var(--warn-fill);
+  }
+  .legend-swatch.breach {
+    background:
+      repeating-linear-gradient(45deg, rgba(202,63,76,0.22) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(202,63,76,0.18) 0 1px, transparent 1px 5px),
+      var(--breach-fill);
+  }
 
   .bullet-table {
     margin-top: 6px;
     flex: 1; min-height: 0;
     display: grid;
-    grid-template-columns: 190px 1fr 68px 48px 82px;
-    column-gap: 8px;
+    grid-template-columns: 174px 1fr 64px 48px 92px;
+    column-gap: 7px;
     font-size: 11px;
     align-content: start;
   }
@@ -1365,9 +1402,22 @@
     overflow: hidden;
   }
   .bullet-zone { position: absolute; top: 0; bottom: 0; }
-  .bullet-zone.safe   { background: var(--safe-fill); }
-  .bullet-zone.warn   { background: var(--warn-fill); }
-  .bullet-zone.breach { background: var(--breach-fill); }
+  .bullet-zone.safe {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(0,107,92,0.22) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--safe-fill);
+  }
+  .bullet-zone.warn {
+    background:
+      repeating-linear-gradient(90deg, rgba(143,98,0,0.22) 0 1px, transparent 1px 6px),
+      var(--warn-fill);
+  }
+  .bullet-zone.breach {
+    background:
+      repeating-linear-gradient(45deg, rgba(202,63,76,0.18) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(202,63,76,0.14) 0 1px, transparent 1px 6px),
+      var(--breach-fill);
+  }
   .bullet-current {
     position: absolute; top: 3px; height: 6px;
     background: var(--bullet-bar);
@@ -1417,17 +1467,22 @@
     font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
     padding: 3px 7px; border-radius: 3px; display: inline-flex; align-items: center; gap: 4px;
   }
-  .status-pill.stable  { background: #eef2f7; color: var(--ink-2); }
-  .status-pill.worsened{ background: var(--red-bg); color: var(--red); }
-  .status-pill.improved{ background: var(--green-bg); color: var(--green); }
+  .status-pill.stable,
+  .status-pill.nochange { background: #eef2f7; color: var(--ink-2); }
+  .status-pill.up { background: var(--amber-bg); color: var(--amber); }
+  .status-pill.down { background: var(--green-bg); color: var(--green); }
+  .status-pill.new-red,
   .status-pill.breached{ background: var(--sl-core-coral); color: var(--sl-white); }
+  .status-pill.new-amber,
   .status-pill.triggered{ background: var(--sl-dark-yellow); color: var(--sl-white); }
+  .status-pill.gone,
+  .status-pill.improved{ background: var(--green-bg); color: var(--green); }
   .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
   /* Right column: CRO + commentary ---------------------------------------- */
   .right-col {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 2;
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 12px;
@@ -1461,6 +1516,10 @@
     display: flex; flex-direction: column; gap: 8px;
     min-height: 0;
   }
+  .commentary-block.top3-commentary {
+    background: transparent; border: 0; border-radius: 0;
+    padding: 0; gap: 8px;
+  }
   .commentary-head {
     display: flex; align-items: center; justify-content: space-between;
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
@@ -1477,8 +1536,20 @@
     content: &quot;&quot;; width: 6px; height: 6px; border-radius: 50%; background: currentColor;
   }
 
-  .comm-card { display: flex; flex-direction: column; gap: 4px; }
-  .comm-card + .comm-card { padding-top: 8px; border-top: 1px dashed var(--hairline); }
+  .comm-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--sl-core-coral);
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .comm-card:has(.comm-badge.triggered),
+  .comm-card:has(.comm-badge.warning) { border-left-color: var(--sl-dark-yellow); }
+  .comm-card:has(.comm-badge.stable) { border-left-color: var(--sl-core-teal); }
+  .comm-card.item-1 { border-left-color: var(--sl-heritage-yellow); }
+  .comm-card.item-2 { border-left-color: var(--sl-core-coral); }
+  .comm-card.item-3 { border-left-color: var(--sl-vibrant-blue); }
   .comm-topline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .comm-risk { font-size: 12px; font-weight: 700; color: var(--ink); }
   .comm-badge {
@@ -1489,6 +1560,7 @@
   .comm-badge.warning  { background: var(--amber-bg); color: var(--amber); }
   .comm-badge.breached { background: var(--sl-core-coral); color: var(--sl-white); }
   .comm-badge.triggered{ background: var(--sl-dark-yellow); color: var(--sl-white); }
+  .comm-badge.assigned { background: var(--sl-light-yellow); color: #8f6200; }
   .comm-owner { font-size: 10px; color: var(--muted); }
   .comm-body { font-size: 11px; line-height: 1.45; color: var(--ink-2); margin: 0; }
   .comm-body b { color: var(--ink); font-weight: 700; }
@@ -1571,6 +1643,7 @@
     <div class=&quot;header-left&quot;>
       <div class=&quot;header-title&quot;>Risk Appetite</div>
       <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Where we stand against appetite</div>
+      <div class=&quot;warning-label&quot;>Warning &amp;middot; data pending &amp;middot; view indicative until source shape confirmed</div>
     </div>
     <div class=&quot;header-right&quot;>
       <div class=&quot;breadcrumb&quot; aria-label=&quot;page marker&quot;>
@@ -1582,9 +1655,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P2 / 8</div>
+      <div class=&quot;page-marker&quot;>P2 / 9</div>
     </div>
   </header>
 
@@ -1596,22 +1670,32 @@
       <div class=&quot;kpi kpi-navy&quot;>
         <div class=&quot;kpi-label&quot;>L2 Appetite Metrics</div>
         <div class=&quot;kpi-value&quot;>11</div>
-        <div class=&quot;kpi-delta flat&quot;>→ no change</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Within Appetite</div>
-        <div class=&quot;kpi-value&quot;>8</div>
-        <div class=&quot;kpi-delta down&quot;>▼ −1 vs Q4</div>
+        <div class=&quot;kpi-value&quot;>9</div>
+        <div class=&quot;kpi-delta down&quot;>▼ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Warning (Amber)</div>
-        <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 vs Q4 · Compliance newly triggered</div>
+        <div class=&quot;kpi-value&quot;>1</div>
+        <div class=&quot;kpi-delta warn&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Breach (Red)</div>
         <div class=&quot;kpi-value&quot;>1</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 vs Q4 · Cyber &amp;amp; IT, headroom −4</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
+      </div>
+      <div class=&quot;kpi kpi-burgundy&quot;>
+        <div class=&quot;kpi-label&quot;>Worsened QoQ</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
+      </div>
+      <div class=&quot;kpi kpi-yellow&quot;>
+        <div class=&quot;kpi-label&quot;>Nearing Trigger</div>
+        <div class=&quot;kpi-value&quot;>5</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
       </div>
     </div>
 
@@ -1652,9 +1736,9 @@
       <div class=&quot;hero-legend&quot;>
         <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch bar&quot;></div>Current value</div>
         <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch prior&quot;></div>Prior quarter</div>
-        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch safe&quot;></div>Safe zone</div>
-        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch warn&quot;></div>Warning zone</div>
-        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch breach&quot;></div>Breach zone</div>
+        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch safe&quot;></div>Safe / dotted</div>
+        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch warn&quot;></div>Warning / striped</div>
+        <div class=&quot;legend-item&quot;><div class=&quot;legend-swatch breach&quot;></div>Breach / crosshatch</div>
       </div>
 
       <div class=&quot;bullet-table&quot;>
@@ -1664,7 +1748,7 @@
           <div class=&quot;col-chart&quot;>Threshold position</div>
           <div class=&quot;col-delta&quot;>Prior → Current</div>
           <div class=&quot;col-head&quot;>Headroom</div>
-          <div class=&quot;col-status&quot;>Status</div>
+          <div class=&quot;col-status&quot;>QoQ movement</div>
         </div>
 
         <!-- 1. Compliance Risk - worsened, in warning -->
@@ -1681,7 +1765,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2</span></div>
           <div class=&quot;row-head zero&quot;>0</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill worsened&quot;><span class=&quot;dot&quot;></span>Worsened</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill new-amber&quot;><span class=&quot;dot&quot;></span>New amber</span></div>
         </div>
 
         <!-- 2. Cyber &amp; IT Risk - newly triggered breach red -->
@@ -1698,7 +1782,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>6</span></div>
           <div class=&quot;row-head neg&quot;>−4</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill breached&quot;><span class=&quot;dot&quot;></span>Breach</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill new-red&quot;><span class=&quot;dot&quot;></span>New red</span></div>
         </div>
 
         <!-- 3. Financial Crime - nearing trigger -->
@@ -1715,7 +1799,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>8%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>12%</span></div>
           <div class=&quot;row-head pos&quot;>+3pp</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
 
         <!-- 4. Credit Risk - nearing trigger -->
@@ -1732,7 +1816,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>2%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2.1%</span></div>
           <div class=&quot;row-head pos&quot;>+0.4pp</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
 
         <!-- 5. Market Risk - nearing trigger -->
@@ -1749,7 +1833,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>68%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>72%</span></div>
           <div class=&quot;row-head pos&quot;>+8pp</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
 
         <!-- 6. Liquidity Risk - nearing trigger -->
@@ -1766,7 +1850,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>128%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>122%</span></div>
           <div class=&quot;row-head pos&quot;>+7pp</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
 
         <!-- 7. Business Model Risk - nearing trigger -->
@@ -1783,7 +1867,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>54%</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>52%</span></div>
           <div class=&quot;row-head pos&quot;>+3pp</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
 
         <!-- 8. Conduct Risk - improved -->
@@ -1800,7 +1884,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>42</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>38</span></div>
           <div class=&quot;row-head pos&quot;>+12</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill improved&quot;><span class=&quot;dot&quot;></span>Improved</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill down&quot;><span class=&quot;dot&quot;></span>Down</span></div>
         </div>
 
         <!-- 9. Operational Risk - stable -->
@@ -1817,7 +1901,7 @@
           </div>
           <div class=&quot;row-delta&quot;><span>1</span><span class=&quot;arr&quot;>→</span><span class=&quot;cur&quot;>2</span></div>
           <div class=&quot;row-head pos&quot;>+1</div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill up&quot;><span class=&quot;dot&quot;></span>Up</span></div>
         </div>
 
         <!-- 10. Summary row for safe-zone risks moved to appendix -->
@@ -1832,7 +1916,7 @@
           </div>
           <div class=&quot;row-delta summary-meta&quot;>see Appx A</div>
           <div class=&quot;row-head&quot;></div>
-          <div class=&quot;row-status&quot;><span class=&quot;status-pill stable&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;row-status&quot;><span class=&quot;status-pill nochange&quot;><span class=&quot;dot&quot;></span>No change</span></div>
         </div>
       </div>
     </section>
@@ -1840,27 +1924,26 @@
     <!-- ===== RIGHT COLUMN ===== -->
     <aside class=&quot;right-col&quot;>
 
-      <!-- CRO T1 -->
-      <div class=&quot;cro-block&quot;>
-        <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
-          <div class=&quot;cro-date&quot;>31 Mar 2026</div>
-        </div>
-        <p class=&quot;cro-text&quot;>
-          Appetite position <b>deteriorated</b> — Cyber &amp;amp; IT <b>newly triggered Red breach</b> (6 P1 incidents vs 5 trigger), Compliance newly triggered Warning. Eight of eleven metrics remain within tolerance. Financial Crime headroom continues to narrow.
-        </p>
-      </div>
-
-      <!-- Commentary: top 2 -->
-      <div class=&quot;commentary-block&quot;>
+      <div class=&quot;commentary-block top3-commentary&quot;>
         <div class=&quot;commentary-head&quot;>
-          <div class=&quot;title&quot;>Owner commentary · Top 2</div>
-          <div class=&quot;curated&quot;>Curated</div>
+          <div class=&quot;title&quot;>Top 3 assigned commentary</div>
+          <div class=&quot;curated&quot;>Assigned</div>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-1&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Cyber &amp;amp; IT Risk</div>
+            <div class=&quot;comm-risk&quot;>Top item 1 · Financial Crime Risk</div>
+            <span class=&quot;comm-badge assigned&quot;>Assigned</span>
+          </div>
+          <div class=&quot;comm-owner&quot;>MLRO / Head of FC Risk · 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            Financial Crime headroom continues to narrow, with SAR escalations now at <b>12%</b> against a 15% amber threshold. Gatekeeper has assigned commentary to explain the trend, Q2 control response, and when the trigger watch can be stood down.
+          </p>
+        </div>
+
+        <div class=&quot;comm-card item-2&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 2 · Cyber &amp;amp; IT Risk</div>
             <span class=&quot;comm-badge breached&quot;>Breach</span>
           </div>
           <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk · 29 Mar 2026</div>
@@ -1869,9 +1952,9 @@
           </p>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-3&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Compliance Risk</div>
+            <div class=&quot;comm-risk&quot;>Item 3 · Compliance Risk</div>
             <span class=&quot;comm-badge triggered&quot;>Triggered</span>
           </div>
           <div class=&quot;comm-owner&quot;>Head of Compliance · 28 Mar 2026</div>
@@ -2042,26 +2125,33 @@
     min-height: 0;
   }
 
-  /* KPI strip - 6 cards */
+  /* KPI strip */
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: var(--sl-white); border: 1px solid var(--hairline);
-    border-top: 3px solid var(--sl-heritage-blue); border-radius: 8px;
-    padding: 8px 12px 9px;
-    display: flex; flex-direction: column; gap: 3px;
+    border-top: 3px solid var(--sl-heritage-blue); border-radius: 6px;
+    padding: 8px 10px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
+    min-height: 76px;
   }
   .kpi.kpi-green  { border-top-color: var(--sl-core-teal); }
   .kpi.kpi-amber  { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red    { border-top-color: var(--sl-core-coral); }
-  .kpi-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta { font-size: 9.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
-  .kpi-delta.up { color: var(--sl-core-teal); }
-  .kpi-delta.down { color: var(--sl-core-coral); }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value { font-size: 25px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 1px 0; }
+  .kpi-delta {
+    width: 100%; min-height: 18px;
+    font-size: 9px; font-weight: 600; color: var(--muted); line-height: 1.15;
+    display: flex; align-items: center; gap: 4px;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up { color: var(--sl-core-teal); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--sl-core-coral); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* ---------- HERO: L×I matrix + ranked register ---------- */
   .hero {
@@ -2075,42 +2165,63 @@
   }
   .hero-head {
     grid-column: 1 / -1;
-    display: flex; justify-content: space-between; align-items: baseline;
+    display: flex; justify-content: space-between; align-items: flex-start;
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 4px;
+    gap: 14px;
   }
   .hero-title { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10px; color: var(--muted); }
+  .hero-tools { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .hero-date { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 9px; color: var(--muted); }
+  .rag-filter { display: flex; align-items: center; gap: 4px; }
+  .filter-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-2); margin-right: 2px; }
+  .filter-pill {
+    font-size: 8.3px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    border-radius: 3px; padding: 2px 6px; border: 1px solid var(--hairline);
+    background: #f6f8fb; color: var(--muted);
+  }
+  .filter-pill.red { background: var(--red-bg); color: var(--sl-core-coral); border-color: rgba(202,63,76,0.25); }
+  .filter-pill.amber { background: var(--amber-bg); color: var(--sl-dark-yellow); border-color: rgba(222,71,33,0.22); }
+  .filter-pill.off { opacity: 0.55; }
 
   /* Ranked register */
   .ranked-register { display: flex; flex-direction: column; gap: 0; min-width: 0; }
   .reg-row {
     display: grid;
-    grid-template-columns: 22px 1fr 28px 18px;
+    grid-template-columns: 24px 1fr 70px 18px;
     gap: 6px;
     align-items: center;
-    padding: 5px 0;
+    padding: 7px 0;
     border-bottom: 1px solid var(--hairline-soft);
     font-size: 11px;
   }
   .reg-row:last-child { border-bottom: 0; }
   .reg-rank {
-    width: 20px; height: 20px; border-radius: 50%;
-    color: var(--sl-white); font-size: 10px; font-weight: 700;
+    width: 19px; height: 19px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
+    color: var(--sl-white); font-size: 10px; font-weight: 700;
+    box-shadow: 0 0 0 2px var(--sl-white);
   }
-  .reg-rank.red    { background: var(--sl-core-coral); }
-  .reg-rank.amber  { background: var(--sl-dark-yellow); }
-  .reg-rank.green  { background: var(--sl-core-teal); }
+  .reg-rank.red { background: var(--sl-core-coral); }
+  .reg-rank.amber { background: #DE4721; }
   .reg-name { font-size: 11px; font-weight: 700; color: var(--ink); line-height: 1.15; }
   .reg-meta { font-size: 9px; color: var(--muted); margin-top: 1px; line-height: 1.2; }
-  .reg-score {
-    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 10px; font-weight: 700;
-    text-align: center; padding: 2px 4px; border-radius: 3px;
+  .reg-rag {
+    justify-self: start;
+    min-width: 58px;
+    text-align: center;
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 6px; border-radius: 4px;
   }
-  .reg-score.s-red   { background: var(--red-bg); color: var(--sl-core-coral); }
-  .reg-score.s-amber { background: var(--amber-bg); color: var(--sl-dark-yellow); }
-  .reg-score.s-green { background: var(--green-bg); color: var(--sl-core-teal); }
+  .reg-rag.red { background: var(--red-bg); color: var(--sl-core-coral); }
+  .reg-rag.amber { background: var(--amber-bg); color: var(--sl-dark-yellow); }
+  .reg-hidden-note {
+    margin-top: 8px;
+    font-size: 9.5px; color: var(--muted);
+    background: #f6f8fb; border: 1px dashed var(--hairline);
+    border-radius: 5px; padding: 7px 8px; line-height: 1.35;
+  }
   .reg-arrow { font-size: 11px; text-align: center; }
   .reg-arrow.up { color: var(--sl-core-coral); }
   .reg-arrow.down { color: var(--sl-core-teal); }
@@ -2131,6 +2242,26 @@
   }
   .leg-item { display: flex; align-items: center; gap: 4px; }
   .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .leg-swatch {
+    width: 16px; height: 9px; border-radius: 2px;
+    border: 1px solid rgba(10,47,115,0.12);
+  }
+  .leg-swatch.green {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(0,107,92,0.30) 0 1px, transparent 1.2px) 0 0 / 6px 6px,
+      #e6f5f1;
+  }
+  .leg-swatch.amber {
+    background:
+      repeating-linear-gradient(135deg, rgba(143,98,0,0.24) 0 1px, transparent 1px 5px),
+      #fff4d1;
+  }
+  .leg-swatch.red {
+    background:
+      repeating-linear-gradient(45deg, rgba(202,63,76,0.18) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(202,63,76,0.16) 0 1px, transparent 1px 5px),
+      #fde2e4;
+  }
 
   /* ---------- RIGHT COL ---------- */
   .right-col {
@@ -2164,6 +2295,10 @@
     display: flex; flex-direction: column; gap: 7px;
     min-height: 0;
   }
+  .commentary-block.top3-commentary {
+    background: transparent; border: 0; border-radius: 0;
+    padding: 0; gap: 8px;
+  }
   .commentary-head {
     display: flex; align-items: center; justify-content: space-between;
     padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
@@ -2179,8 +2314,18 @@
   .commentary-head .curated::before {
     content: &quot;&quot;; width: 6px; height: 6px; border-radius: 50%; background: currentColor;
   }
-  .comm-card { display: flex; flex-direction: column; gap: 4px; }
-  .comm-card + .comm-card { padding-top: 7px; border-top: 1px dashed var(--hairline); }
+  .comm-card {
+    background: var(--sl-white);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--sl-core-coral);
+    border-radius: 6px;
+    padding: 7px 9px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .comm-card:has(.comm-badge.stable) { border-left-color: var(--sl-core-teal); }
+  .comm-card.item-1 { border-left-color: var(--sl-heritage-yellow); }
+  .comm-card.item-2 { border-left-color: var(--sl-core-coral); }
+  .comm-card.item-3 { border-left-color: var(--sl-vibrant-blue); }
   .comm-topline { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
   .comm-risk { font-size: 11px; font-weight: 700; color: var(--ink); }
   .comm-badge {
@@ -2189,6 +2334,7 @@
   }
   .comm-badge.worsened { background: var(--red-bg); color: var(--sl-core-coral); }
   .comm-badge.stable   { background: #eef2f7; color: var(--ink-2); }
+  .comm-badge.assigned { background: var(--sl-light-yellow); color: #8f6200; }
   .comm-owner { font-size: 9.5px; color: var(--muted); }
   .comm-body { font-size: 10.5px; line-height: 1.45; color: var(--ink-2); margin: 0; }
   .comm-body b { color: var(--ink); font-weight: 700; }
@@ -2268,9 +2414,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P3 / 8</div>
+      <div class=&quot;page-marker&quot;>P3 / 9</div>
     </div>
   </header>
 
@@ -2282,32 +2429,27 @@
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>L2 Risks Tracked</div>
         <div class=&quot;kpi-value&quot;>8</div>
-        <div class=&quot;kpi-delta flat&quot;>→ +2 vs Q4 (scope)</div>
+        <div class=&quot;kpi-delta flat&quot;>→ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Red</div>
         <div class=&quot;kpi-value&quot;>1</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 vs Q4 · Cyber &amp;amp; IT</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Amber</div>
         <div class=&quot;kpi-value&quot;>4</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +3 vs Q4</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 3 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-green&quot;>
         <div class=&quot;kpi-label&quot;>Green</div>
         <div class=&quot;kpi-value&quot;>3</div>
-        <div class=&quot;kpi-delta down&quot;>▼ −1 vs Q4</div>
+        <div class=&quot;kpi-delta down&quot;>▼ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Worsened QoQ</div>
         <div class=&quot;kpi-value&quot;>4</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +4 vs Q4</div>
-      </div>
-      <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Worst Residual</div>
-        <div class=&quot;kpi-value&quot;>20</div>
-        <div class=&quot;kpi-delta down&quot;>Cyber &amp;amp; IT (L4 × I5)</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 4 vs Q4</div>
       </div>
     </div>
 
@@ -2316,9 +2458,17 @@
       <div class=&quot;hero-head&quot;>
         <div>
           <div class=&quot;hero-title&quot;>Risk Position — Likelihood &amp;times; Impact, prior &amp;rarr; current</div>
-          <div class=&quot;hero-sub&quot;>Top 8 L2 risks ranked by residual score · arrows show QoQ movement on the matrix</div>
+          <div class=&quot;hero-sub&quot;>Default view shows Red and Amber L2 risks only · Green risks hidden by default</div>
         </div>
-        <div class=&quot;hero-sub&quot; style=&quot;font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;&quot;>Q4 2025 → Q1 2026</div>
+        <div class=&quot;hero-tools&quot;>
+          <div class=&quot;hero-date&quot;>Q4 2025 → Q1 2026</div>
+          <div class=&quot;rag-filter&quot; aria-label=&quot;RAG status filter&quot;>
+            <span class=&quot;filter-label&quot;>Filter</span>
+            <span class=&quot;filter-pill red&quot;>Red</span>
+            <span class=&quot;filter-pill amber&quot;>Amber</span>
+            <span class=&quot;filter-pill off&quot;>Green hidden</span>
+          </div>
+        </div>
       </div>
 
       <!-- LEFT: Ranked register -->
@@ -2330,7 +2480,7 @@
             <div class=&quot;reg-name&quot;>Cyber &amp;amp; IT Risk</div>
             <div class=&quot;reg-meta&quot;>Wealth Mgmt · CISO</div>
           </div>
-          <div class=&quot;reg-score s-red&quot;>20</div>
+          <div class=&quot;reg-rag red&quot;>Red</div>
           <div class=&quot;reg-arrow up&quot;>▲</div>
         </div>
 
@@ -2340,7 +2490,7 @@
             <div class=&quot;reg-name&quot;>Compliance Risk</div>
             <div class=&quot;reg-meta&quot;>Commercial Banking · Compliance</div>
           </div>
-          <div class=&quot;reg-score s-amber&quot;>16</div>
+          <div class=&quot;reg-rag amber&quot;>Amber</div>
           <div class=&quot;reg-arrow up&quot;>▲</div>
         </div>
 
@@ -2350,7 +2500,7 @@
             <div class=&quot;reg-name&quot;>Operational Risk</div>
             <div class=&quot;reg-meta&quot;>Group Operations · Head of Op Risk</div>
           </div>
-          <div class=&quot;reg-score s-amber&quot;>12</div>
+          <div class=&quot;reg-rag amber&quot;>Amber</div>
           <div class=&quot;reg-arrow up&quot;>▲</div>
         </div>
 
@@ -2360,7 +2510,7 @@
             <div class=&quot;reg-name&quot;>Business Model Risk</div>
             <div class=&quot;reg-meta&quot;>Group Operations · CFO</div>
           </div>
-          <div class=&quot;reg-score s-amber&quot;>12</div>
+          <div class=&quot;reg-rag amber&quot;>Amber</div>
           <div class=&quot;reg-arrow up&quot;>▲</div>
         </div>
 
@@ -2370,39 +2520,11 @@
             <div class=&quot;reg-name&quot;>Financial Crime Risk</div>
             <div class=&quot;reg-meta&quot;>Tech &amp;amp; Change · Head of FC</div>
           </div>
-          <div class=&quot;reg-score s-amber&quot;>9</div>
+          <div class=&quot;reg-rag amber&quot;>Amber</div>
           <div class=&quot;reg-arrow up&quot;>▲</div>
         </div>
 
-        <div class=&quot;reg-row&quot;>
-          <div class=&quot;reg-rank green&quot;>6</div>
-          <div>
-            <div class=&quot;reg-name&quot;>Liquidity Risk</div>
-            <div class=&quot;reg-meta&quot;>Group Operations · Treasury</div>
-          </div>
-          <div class=&quot;reg-score s-green&quot;>8</div>
-          <div class=&quot;reg-arrow down&quot;>▼</div>
-        </div>
-
-        <div class=&quot;reg-row&quot;>
-          <div class=&quot;reg-rank green&quot;>7</div>
-          <div>
-            <div class=&quot;reg-name&quot;>Conduct Risk</div>
-            <div class=&quot;reg-meta&quot;>Retail Banking · Head of Conduct</div>
-          </div>
-          <div class=&quot;reg-score s-green&quot;>6</div>
-          <div class=&quot;reg-arrow down&quot;>▼</div>
-        </div>
-
-        <div class=&quot;reg-row&quot;>
-          <div class=&quot;reg-rank green&quot;>8</div>
-          <div>
-            <div class=&quot;reg-name&quot;>Third Party Risk</div>
-            <div class=&quot;reg-meta&quot;>Insurance · Procurement</div>
-          </div>
-          <div class=&quot;reg-score s-green&quot;>4</div>
-          <div class=&quot;reg-arrow down&quot;>▼</div>
-        </div>
+        <div class=&quot;reg-hidden-note&quot;>Items 6-8 are Green L2 risks hidden by default: Liquidity, Conduct and Third Party.</div>
 
       </div>
 
@@ -2413,21 +2535,36 @@
             <!-- Background risk zones (heritage palette tints) -->
             <!-- 5x5 grid: cell w = (440-60)/5 = 76, h = 240/5 = 48 -->
             <!-- x: 60..440  y: 10..250 -->
+            <defs>
+              <pattern id=&quot;rcsa-green-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#e6f5f1&quot;/>
+                <circle cx=&quot;2&quot; cy=&quot;2&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.32&quot;/>
+                <circle cx=&quot;6&quot; cy=&quot;6&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.26&quot;/>
+              </pattern>
+              <pattern id=&quot;rcsa-amber-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fff4d1&quot;/>
+                <path d=&quot;M-2,8 L8,-2 M2,10 L10,2&quot; stroke=&quot;#8f6200&quot; stroke-width=&quot;0.7&quot; opacity=&quot;0.28&quot;/>
+              </pattern>
+              <pattern id=&quot;rcsa-red-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fde2e4&quot;/>
+                <path d=&quot;M0,0 L8,8 M8,0 L0,8&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.28&quot;/>
+              </pattern>
+            </defs>
 
             <!-- Green zone (low likelihood × low impact) -->
-            <rect x=&quot;60&quot;  y=&quot;202&quot; width=&quot;152&quot; height=&quot;48&quot;  fill=&quot;#e6f5f1&quot;/>
-            <rect x=&quot;60&quot;  y=&quot;154&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#e6f5f1&quot;/>
+            <rect x=&quot;60&quot;  y=&quot;202&quot; width=&quot;152&quot; height=&quot;48&quot;  fill=&quot;url(#rcsa-green-zone)&quot;/>
+            <rect x=&quot;60&quot;  y=&quot;154&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-green-zone)&quot;/>
             <!-- Amber zone (middle) -->
-            <rect x=&quot;212&quot; y=&quot;202&quot; width=&quot;152&quot; height=&quot;48&quot;  fill=&quot;#fff4d1&quot;/>
-            <rect x=&quot;60&quot;  y=&quot;106&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#fff4d1&quot;/>
-            <rect x=&quot;136&quot; y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;96&quot;  fill=&quot;#fff4d1&quot;/>
-            <rect x=&quot;136&quot; y=&quot;154&quot; width=&quot;228&quot; height=&quot;48&quot;  fill=&quot;#fff4d1&quot;/>
-            <rect x=&quot;212&quot; y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#fff4d1&quot;/>
-            <rect x=&quot;60&quot;  y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#fff4d1&quot;/>
+            <rect x=&quot;212&quot; y=&quot;202&quot; width=&quot;152&quot; height=&quot;48&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
+            <rect x=&quot;60&quot;  y=&quot;106&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
+            <rect x=&quot;136&quot; y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;96&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
+            <rect x=&quot;136&quot; y=&quot;154&quot; width=&quot;228&quot; height=&quot;48&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
+            <rect x=&quot;212&quot; y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
+            <rect x=&quot;60&quot;  y=&quot;58&quot;  width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-amber-zone)&quot;/>
             <!-- Red zone (high × high) -->
-            <rect x=&quot;288&quot; y=&quot;58&quot;  width=&quot;152&quot; height=&quot;96&quot;  fill=&quot;#fde2e4&quot;/>
-            <rect x=&quot;364&quot; y=&quot;154&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#fde2e4&quot;/>
-            <rect x=&quot;364&quot; y=&quot;202&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;#fde2e4&quot;/>
+            <rect x=&quot;288&quot; y=&quot;58&quot;  width=&quot;152&quot; height=&quot;96&quot;  fill=&quot;url(#rcsa-red-zone)&quot;/>
+            <rect x=&quot;364&quot; y=&quot;154&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-red-zone)&quot;/>
+            <rect x=&quot;364&quot; y=&quot;202&quot; width=&quot;76&quot;  height=&quot;48&quot;  fill=&quot;url(#rcsa-red-zone)&quot;/>
 
             <!-- Grid lines -->
             <g stroke=&quot;rgba(10, 47, 115, 0.08)&quot; stroke-width=&quot;1&quot;>
@@ -2480,75 +2617,51 @@
               </marker>
             </defs>
 
-            <!-- 1. Cyber &amp; IT Risk: prior (L3,I4) → current (L4,I5) - red worsened -->
+            <!-- Cyber & IT Risk: prior (L3,I4) → current (L4,I5) - red worsened -->
             <line x1=&quot;246&quot; y1=&quot;82&quot; x2=&quot;316&quot; y2=&quot;42&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-red)&quot;/>
             <circle cx=&quot;246&quot; cy=&quot;82&quot; r=&quot;4.8&quot; fill=&quot;#fff&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;324&quot; cy=&quot;38&quot; r=&quot;10&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
+              <circle cx=&quot;324&quot; cy=&quot;38&quot; r=&quot;10.5&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;324&quot; y=&quot;42&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
             </g>
 
-            <!-- 2. Compliance Risk: prior (L3,I4) → current (L4,I4) - amber worsened -->
+            <!-- Compliance Risk: prior (L3,I4) → current (L4,I4) - amber worsened -->
             <line x1=&quot;258&quot; y1=&quot;92&quot; x2=&quot;320&quot; y2=&quot;90&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
             <circle cx=&quot;258&quot; cy=&quot;92&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;330&quot; cy=&quot;90&quot; r=&quot;9.5&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
+              <circle cx=&quot;330&quot; cy=&quot;90&quot; r=&quot;10.5&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
               <text x=&quot;330&quot; y=&quot;94&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
             </g>
 
-            <!-- 3. Operational Risk: prior (L2,I3) → current (L3,I4) - amber worsened -->
+            <!-- Operational Risk: prior (L2,I3) → current (L3,I4) - amber worsened -->
             <line x1=&quot;178&quot; y1=&quot;134&quot; x2=&quot;236&quot; y2=&quot;82&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
             <circle cx=&quot;178&quot; cy=&quot;134&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;244&quot; cy=&quot;78&quot; r=&quot;9.3&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;244&quot; y=&quot;82&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.2&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
+              <circle cx=&quot;244&quot; cy=&quot;78&quot; r=&quot;10.5&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <text x=&quot;244&quot; y=&quot;82&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
             </g>
 
-            <!-- 4. Business Model Risk: prior (L2,I4) → current (L3,I4) - amber worsened (slightly different position from #3) -->
+            <!-- Business Model Risk: prior (L2,I4) → current (L3,I4) - amber worsened -->
             <line x1=&quot;180&quot; y1=&quot;86&quot; x2=&quot;256&quot; y2=&quot;94&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.35&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.82&quot; marker-end=&quot;url(#arrow-amber)&quot; stroke-dasharray=&quot;3 2&quot;/>
             <g>
-              <circle cx=&quot;266&quot; cy=&quot;96&quot; r=&quot;9&quot; fill=&quot;#fff7ec&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;2.1&quot;/>
-              <text x=&quot;266&quot; y=&quot;100&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot;>4</text>
+              <circle cx=&quot;266&quot; cy=&quot;96&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <text x=&quot;266&quot; y=&quot;100&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.2&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>4</text>
             </g>
 
-            <!-- 5. Financial Crime: prior (L2,I3) → current (L3,I3) - amber worsened -->
+            <!-- Financial Crime: prior (L2,I3) → current (L3,I3) - amber worsened -->
             <line x1=&quot;180&quot; y1=&quot;144&quot; x2=&quot;250&quot; y2=&quot;136&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-amber)&quot;/>
             <circle cx=&quot;180&quot; cy=&quot;144&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.4&quot;/>
             <g>
-              <circle cx=&quot;260&quot; cy=&quot;136&quot; r=&quot;8.8&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;260&quot; y=&quot;140&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
-            </g>
-
-            <!-- 6. Liquidity: prior (L3,I3) → current (L2,I2) - improved green -->
-            <line x1=&quot;238&quot; y1=&quot;146&quot; x2=&quot;184&quot; y2=&quot;178&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-green)&quot;/>
-            <circle cx=&quot;238&quot; cy=&quot;146&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.4&quot;/>
-            <g>
-              <circle cx=&quot;176&quot; cy=&quot;180&quot; r=&quot;8.8&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;176&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
-            </g>
-
-            <!-- 7. Conduct: prior (L3,I3) → current (L2,I3) - improved green -->
-            <line x1=&quot;240&quot; y1=&quot;124&quot; x2=&quot;182&quot; y2=&quot;128&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-green)&quot;/>
-            <circle cx=&quot;240&quot; cy=&quot;124&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.4&quot;/>
-            <g>
-              <circle cx=&quot;172&quot; cy=&quot;128&quot; r=&quot;8.8&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;172&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
-            </g>
-
-            <!-- 8. Third Party: prior (L1,I3) → current (L1,I2) - improved green -->
-            <line x1=&quot;98&quot; y1=&quot;130&quot; x2=&quot;98&quot; y2=&quot;170&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.45&quot; stroke-linecap=&quot;round&quot; opacity=&quot;0.9&quot; marker-end=&quot;url(#arrow-green)&quot;/>
-            <circle cx=&quot;98&quot; cy=&quot;130&quot; r=&quot;4.5&quot; fill=&quot;#fff&quot; stroke=&quot;#006B5C&quot; stroke-width=&quot;1.4&quot;/>
-            <g>
-              <circle cx=&quot;98&quot; cy=&quot;180&quot; r=&quot;9&quot; fill=&quot;#006B5C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;98&quot; y=&quot;184&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
+              <circle cx=&quot;260&quot; cy=&quot;136&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.8&quot;/>
+              <text x=&quot;260&quot; y=&quot;140&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10.2&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
             </g>
 
           </svg>
         </div>
         <div class=&quot;matrix-legend&quot;>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot&quot; style=&quot;background:#CA3F4C&quot;></div>Red</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot&quot; style=&quot;background:#DE4721&quot;></div>Amber</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot&quot; style=&quot;background:#006B5C&quot;></div>Green</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch red&quot;></div>Red / crosshatch</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch amber&quot;></div>Amber / diagonal</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-swatch green&quot;></div>Green / dotted</div>
           <div class=&quot;leg-item&quot;>○ prior &amp;nbsp; ● current &amp;nbsp; → movement</div>
         </div>
       </div>
@@ -2557,25 +2670,26 @@
     <!-- RIGHT COL -->
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;cro-block&quot;>
-        <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
-          <div class=&quot;cro-date&quot;>31 Mar 2026</div>
-        </div>
-        <p class=&quot;cro-text&quot;>
-          Risk position <b>deteriorated marginally</b> — two L2 risks moved green to amber, one stayed red. <b>Cyber &amp;amp; IT remains most material residual risk</b> driven by data-breach-vector ineffective controls. Compliance is overdue refresh in Commercial Banking — three months stale assurance — and is the focus of CRO escalation.
-        </p>
-      </div>
-
-      <div class=&quot;commentary-block&quot;>
+      <div class=&quot;commentary-block top3-commentary&quot;>
         <div class=&quot;commentary-head&quot;>
-          <div class=&quot;title&quot;>Owner commentary · Top 2</div>
-          <div class=&quot;curated&quot;>Curated</div>
+          <div class=&quot;title&quot;>Top 3 assigned commentary</div>
+          <div class=&quot;curated&quot;>Assigned</div>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-1&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Cyber &amp;amp; IT Risk</div>
+            <div class=&quot;comm-risk&quot;>Top item 1 · Operational Risk</div>
+            <span class=&quot;comm-badge assigned&quot;>Assigned</span>
+          </div>
+          <div class=&quot;comm-owner&quot;>Head of Operational Risk · 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            Operational Risk remains a top assigned commentary item after moving into <b>Amber</b>. Commentary should explain the Q1 movement, the link to losses and near misses, and whether the current mitigation plan is enough for Q2.
+          </p>
+        </div>
+
+        <div class=&quot;comm-card item-2&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 2 · Cyber &amp;amp; IT Risk</div>
             <span class=&quot;comm-badge worsened&quot;>Worsened</span>
           </div>
           <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk · 29 Mar 2026 · Wealth Management</div>
@@ -2584,9 +2698,9 @@
           </p>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-3&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Compliance Risk</div>
+            <div class=&quot;comm-risk&quot;>Item 3 · Compliance Risk</div>
             <span class=&quot;comm-badge worsened&quot;>Worsened</span>
           </div>
           <div class=&quot;comm-owner&quot;>Head of Compliance · 28 Mar 2026 · Commercial Banking</div>
@@ -2760,7 +2874,7 @@
     padding: 18px 40px 16px;
     display: grid;
     grid-template-columns: 1fr 372px;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     gap: 14px 20px;
     min-height: 0;
   }
@@ -2768,29 +2882,39 @@
   /* KPI strip */
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: #fff; border: 1px solid var(--hairline);
-    border-top: 3px solid var(--navy); border-radius: 8px;
-    padding: 10px 14px 11px;
-    display: flex; flex-direction: column; gap: 4px;
+    border-top: 3px solid var(--navy); border-radius: 6px;
+    padding: 8px 10px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
+    min-height: 78px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
   .kpi.kpi-navy   { border-top-color: var(--navy); }
-  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
-  .kpi-delta.up   { color: #15803d; }
-  .kpi-delta.down { color: #CA3F4C; }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi.kpi-burgundy { border-top-color: var(--sl-dark-coral); }
+  .kpi.kpi-teal   { border-top-color: var(--sl-vibrant-teal); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value  { font-size: 25px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 1px 0; }
+  .kpi-delta  {
+    width: 100%; min-height: 18px;
+    font-size: 9.2px; font-weight: 600; color: var(--muted); line-height: 1.15;
+    display: flex; align-items: center; gap: 4px;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up   { color: var(--green); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--red); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.warn { color: var(--amber); background: var(--amber-bg); border-color: var(--sl-heritage-yellow); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* What changed row */
   .changed-row {
     grid-column: 1 / -1; grid-row: 2;
-    display: grid; grid-template-columns: 118px 1fr 1fr; gap: 12px; align-items: stretch;
+    display: none; grid-template-columns: 118px 1fr 1fr; gap: 12px; align-items: stretch;
   }
   .changed-label {
     display: flex; flex-direction: column; justify-content: center; padding: 8px 0;
@@ -2827,7 +2951,7 @@
 
   /* Hero: Control Environment */
   .hero {
-    grid-column: 1; grid-row: 3;
+    grid-column: 1; grid-row: 2;
     background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
     padding: 12px 16px 12px;
     display: flex; flex-direction: column; min-height: 0;
@@ -2839,95 +2963,206 @@
   }
   .hero-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10.5px; color: var(--muted); }
+  .control-legend {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+    font-size: 8.5px; color: var(--muted); white-space: nowrap;
+  }
+  .control-legend-item { display: inline-flex; align-items: center; gap: 4px; }
+  .control-swatch {
+    width: 14px; height: 8px; border-radius: 2px;
+    border: 1px solid rgba(10,47,115,0.14);
+  }
+  .control-swatch.green {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.36) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--bar-green);
+  }
+  .control-swatch.amber {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
+      var(--bar-amber);
+  }
+  .control-swatch.red {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 6px),
+      var(--bar-red);
+  }
+  .control-swatch.untested { background: #dfe5ee; }
   .hero-method {
     font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
     padding: 2px 7px; border-radius: 3px; background: #e0f2f0; color: #0f766e;
     white-space: nowrap; flex-shrink: 0;
   }
 
-  /* Three layer bars: Material / Key / Supporting */
-  .layer-grid {
+  /* Material / Key control cards */
+  .control-grid {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     gap: 10px;
     flex: 1; min-height: 0;
   }
-  .layer-row {
+  .summary-strip-grid {
     display: grid;
-    grid-template-columns: 165px 1fr 128px;
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .control-card {
+    border: 1px solid var(--hairline);
+    border-top: 3px solid var(--sl-dark-coral);
+    border-radius: 6px;
+    background: var(--panel-soft);
+    padding: 10px 12px;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 7px;
+    align-content: start;
+    min-width: 0;
+  }
+  .control-card.key { border-top-color: var(--sl-dark-yellow); }
+  .control-card-head { display: flex; flex-direction: column; gap: 2px; }
+  .control-card-title { font-size: 11px; font-weight: 700; color: var(--ink); }
+  .control-card-sub { font-size: 9px; color: var(--muted); line-height: 1.25; }
+  .bar-stack { display: grid; gap: 6px; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 94px 1fr;
     align-items: center;
-    padding: 10px 0;
+    gap: 8px;
   }
-  .layer-row + .layer-row { border-top: 1px solid var(--hairline-soft); }
-
-  .layer-info { display: flex; flex-direction: column; gap: 3px; }
-  .layer-name { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
-  .layer-desc { font-size: 10px; color: var(--muted); line-height: 1.3; }
-  .layer-tracked {
-    font-size: 9.5px; color: var(--muted-2); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
-    margin-top: 2px; letter-spacing: 0.02em;
-  }
-
-  .layer-chart { display: flex; flex-direction: column; gap: 5px; }
+  .bar-label { font-size: 9px; font-weight: 700; color: var(--sl-black); }
   .stacked-bar {
-    position: relative; height: 22px; width: 100%;
-    background: var(--bar-track);
-    border-radius: 3px; overflow: hidden;
+    position: relative; height: 18px; width: 100%;
+    background: #dfe5ee;
+    border: 1px solid #d1dae6;
+    border-radius: 4px; overflow: hidden;
     display: flex;
   }
   .stacked-segment {
     height: 100%;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.01em;
+    color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.01em;
+    min-width: 14px;
   }
-  .seg-green  { background: var(--bar-green); }
-  .seg-amber  { background: var(--bar-amber); }
-  .seg-red    { background: var(--bar-red); }
+  .seg-green {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.36) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--bar-green);
+  }
+  .seg-amber {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
+      var(--bar-amber);
+  }
+  .seg-red {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.28) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.20) 0 1px, transparent 1px 6px),
+      var(--bar-red);
+  }
+  .seg-untested { background: #dfe5ee; color: var(--ink); }
 
-  .layer-scale {
-    display: flex; justify-content: space-between;
-    font-size: 9px; color: var(--muted-2);
-    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+  .control-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 1px;
   }
-
-  .layer-result {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
-  }
-  .result-pct {
+  .control-stat {
+    font-size: 9.2px; color: var(--ink-2);
     display: flex; align-items: baseline; gap: 4px;
-    font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1; letter-spacing: -0.02em;
+    white-space: nowrap;
   }
-  .result-pct .unit { font-size: 11px; color: var(--muted); font-weight: 500; }
-  .result-delta {
-    font-size: 10px; font-weight: 600;
-    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+  .control-stat strong {
+    font-size: 18px; line-height: 1; color: var(--ink); font-weight: 700; letter-spacing: -0.02em;
   }
-  .result-delta.down { color: var(--red); }
-  .result-delta.up   { color: var(--green); }
-  .result-delta.flat { color: var(--muted); }
-
-  .layer-rag-pill {
-    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 2px 7px; border-radius: 3px;
+  .manorg-panel {
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    background: #fff;
+    padding: 7px 9px 6px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
   }
-  .layer-rag-pill.red   { background: var(--red-bg); color: var(--red); }
-  .layer-rag-pill.amber { background: var(--amber-bg); color: var(--amber); }
-  .layer-rag-pill.green { background: var(--green-bg); color: var(--green); }
+  .manorg-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 4px; border-bottom: 1px solid var(--hairline-soft);
+  }
+  .manorg-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
+  .manorg-sub { font-size: 8.5px; color: var(--muted); }
+  .manorg-table {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr) 24px 70px 70px;
+    align-items: center;
+    font-size: 8.7px;
+    min-height: 0;
+  }
+  .manorg-table > div {
+    min-width: 0;
+    padding: 3px 4px;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .manorg-table > div:nth-last-child(-n+5) { border-bottom: 0; }
+  .manorg-th {
+    color: var(--sl-vibrant-blue);
+    font-size: 7.8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .manorg-org { font-weight: 700; color: var(--ink); }
+  .manorg-risk { color: var(--sl-black); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rag-dot {
+    width: 7px; height: 7px; border-radius: 50%; display: inline-block;
+    border: 1px solid rgba(10,47,115,0.18);
+  }
+  .rag-dot.red { background: var(--red); border-radius: 2px; }
+  .rag-dot.amber { background: var(--sl-heritage-yellow); border-radius: 1px; transform: rotate(45deg); }
+  .rag-dot.green { background: var(--green); }
+  .ctrl-pill {
+    min-width: 52px;
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 4px; padding: 2px 4px 1px;
+    font-size: 8.2px;
+    font-weight: 700; line-height: 1.05; text-transform: uppercase;
+  }
+  .ctrl-pill .count { font-size: 7.3px; font-weight: 600; margin-top: 1px; color: var(--ink-2); text-transform: none; }
+  .ctrl-pill.red {
+    color: var(--red);
+    background:
+      repeating-linear-gradient(45deg, rgba(202,63,76,0.14) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(202,63,76,0.12) 0 1px, transparent 1px 6px),
+      var(--red-bg);
+  }
+  .ctrl-pill.amber {
+    color: var(--amber);
+    background:
+      repeating-linear-gradient(135deg, rgba(143,98,0,0.16) 0 1px, transparent 1px 6px),
+      var(--amber-bg);
+  }
+  .ctrl-pill.green {
+    color: var(--green);
+    background:
+      radial-gradient(circle at 2px 2px, rgba(0,107,92,0.20) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--green-bg);
+  }
 
   /* Right column */
   .right-col {
-    grid-column: 2; grid-row: 3;
+    grid-column: 2; grid-row: 2;
     display: grid;
     grid-template-rows: auto 1fr;
-    gap: 12px;
+    gap: 10px;
     min-height: 0;
   }
 
   .cro-block {
     background: #fff; border: 1px solid var(--hairline);
     border-left: 3px solid #ffbb00; border-radius: 6px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     display: flex; flex-direction: column; gap: 6px;
   }
   .cro-header { display: flex; align-items: baseline; justify-content: space-between; }
@@ -2943,13 +3178,17 @@
 
   .commentary-block {
     background: var(--panel-soft); border: 1px solid var(--hairline); border-radius: 6px;
-    padding: 10px 12px 12px;
-    display: flex; flex-direction: column; gap: 8px;
+    padding: 8px 10px 9px;
+    display: flex; flex-direction: column; gap: 7px;
     min-height: 0;
+  }
+  .commentary-block.top3-commentary {
+    background: transparent; border: 0; border-radius: 0;
+    padding: 0; gap: 8px;
   }
   .commentary-head {
     display: flex; align-items: center; justify-content: space-between;
-    padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
+    padding-bottom: 5px; border-bottom: 1px solid var(--hairline-soft);
   }
   .commentary-head .title {
     font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
@@ -2962,18 +3201,29 @@
   .commentary-head .curated::before {
     content: &quot;&quot;; width: 6px; height: 6px; border-radius: 50%; background: currentColor;
   }
-  .comm-card { display: flex; flex-direction: column; gap: 4px; }
-  .comm-card + .comm-card { padding-top: 8px; border-top: 1px dashed var(--hairline); }
-  .comm-topline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .comm-risk { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .comm-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--sl-core-coral);
+    border-radius: 6px;
+    padding: 6px 8px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .comm-card:has(.comm-badge.stable) { border-left-color: var(--sl-core-teal); }
+  .comm-card.item-1 { border-left-color: var(--sl-heritage-yellow); }
+  .comm-card.item-2 { border-left-color: var(--sl-core-coral); }
+  .comm-card.item-3 { border-left-color: var(--sl-vibrant-blue); }
+  .comm-topline { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .comm-risk { font-size: 11.3px; font-weight: 700; color: var(--ink); }
   .comm-badge {
     font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
     padding: 2px 5px; border-radius: 3px;
   }
   .comm-badge.worsened { background: var(--red-bg); color: var(--red); }
   .comm-badge.stable { background: #eef2f7; color: var(--ink-2); }
-  .comm-owner { font-size: 10px; color: var(--muted); }
-  .comm-body { font-size: 11px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+  .comm-badge.assigned { background: var(--sl-light-yellow); color: #8f6200; }
+  .comm-owner { font-size: 9.4px; color: var(--muted); }
+  .comm-body { font-size: 10.2px; line-height: 1.36; color: var(--ink-2); margin: 0; }
   .comm-body b { color: var(--ink); font-weight: 700; }
 
   /* Footer */
@@ -3017,7 +3267,7 @@
 <body>
 
 <div class=&quot;caption-bar&quot;>
-  <div><span class=&quot;label&quot;>Exec Pack Mockup</span> &amp;nbsp;·&amp;nbsp; Page 4 of 8 &amp;nbsp;·&amp;nbsp; 1280 × 720 (16:9) &amp;nbsp;·&amp;nbsp; Fixed canvas, no scroll</div>
+  <div><span class=&quot;label&quot;>Exec Pack Mockup</span> &amp;nbsp;·&amp;nbsp; Page 4 of 9 &amp;nbsp;·&amp;nbsp; 1280 × 720 (16:9) &amp;nbsp;·&amp;nbsp; Fixed canvas, no scroll</div>
   <div>Derived from CRR · Curated commentary only · Q1 2026</div>
 </div>
 
@@ -3040,7 +3290,7 @@
   <header class=&quot;slide-header&quot;>
     <div class=&quot;header-left&quot;>
       <div class=&quot;header-title&quot;>Control Environment</div>
-      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Material / Key / Supporting effectiveness by layer</div>
+      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Material and key control focus</div>
     </div>
     <div class=&quot;header-right&quot;>
       <div class=&quot;breadcrumb&quot;>
@@ -3052,34 +3302,48 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P4 / 8</div>
+      <div class=&quot;page-marker&quot;>P4 / 9</div>
     </div>
   </header>
 
   <div class=&quot;slide-body&quot;>
 
     <div class=&quot;kpi-strip&quot;>
-      <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Material Controls Ineffective</div>
-        <div class=&quot;kpi-value&quot;>4 / 45</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +2 vs Q4 · 50% increase</div>
+      <div class=&quot;kpi kpi-navy&quot;>
+        <div class=&quot;kpi-label&quot;>Level 2 Risks</div>
+        <div class=&quot;kpi-value&quot;>8</div>
       </div>
-      <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>L2 Risks Amber / Red</div>
-        <div class=&quot;kpi-value&quot;>5</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +3 vs Q4 · ManOrg view</div>
+      <div class=&quot;kpi kpi-burgundy&quot;>
+        <div class=&quot;kpi-label&quot;>Amber / Red L2</div>
+        <div class=&quot;kpi-value&quot;>7</div>
+        <div class=&quot;kpi-delta warn&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>Material Ineffective</div>
+        <div class=&quot;kpi-value&quot;>4</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
+      </div>
+      <div class=&quot;kpi kpi-navy&quot;>
+        <div class=&quot;kpi-label&quot;>Material / Key Test Cover</div>
+        <div class=&quot;kpi-value&quot;>38%</div>
+      </div>
+      <div class=&quot;kpi kpi-burgundy&quot;>
         <div class=&quot;kpi-label&quot;>RCSA Overdue</div>
         <div class=&quot;kpi-value&quot;>1</div>
-        <div class=&quot;kpi-delta down&quot;>Commercial Banking · 3m late</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
-      <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Open Issues / Actions</div>
-        <div class=&quot;kpi-value&quot;>26 / 37</div>
-        <div class=&quot;kpi-delta up&quot;>▼ −4 vs Q4 issues</div>
+      <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>Open Issues</div>
+        <div class=&quot;kpi-value&quot;>26</div>
+        <div class=&quot;kpi-delta up&quot;>▼ 4 vs Q4</div>
+      </div>
+      <div class=&quot;kpi kpi-teal&quot;>
+        <div class=&quot;kpi-label&quot;>Open Actions</div>
+        <div class=&quot;kpi-value&quot;>37</div>
+        <div class=&quot;kpi-delta up&quot;>▼ 2 vs Q4</div>
       </div>
     </div>
 
@@ -3111,77 +3375,129 @@
     <section class=&quot;hero&quot;>
       <div class=&quot;hero-head&quot;>
         <div>
-          <div class=&quot;hero-title&quot;>Control Environment Summary — Effective Share by Layer</div>
-          <div class=&quot;hero-sub&quot;>Effective share by control layer · Method D derives RAG from weighted blend with material override</div>
+          <div class=&quot;hero-title&quot;>Control Environment Summary</div>
+          <div class=&quot;hero-sub&quot;>Material and key controls compare Control Assessment with actual Control Test results. Supporting controls remain an appendix read-across view.</div>
         </div>
-        <div class=&quot;hero-method&quot;>Method D</div>
+        <div class=&quot;control-legend&quot;>
+          <span class=&quot;control-legend-item&quot;><span class=&quot;control-swatch green&quot;></span>Effective</span>
+          <span class=&quot;control-legend-item&quot;><span class=&quot;control-swatch amber&quot;></span>Partial</span>
+          <span class=&quot;control-legend-item&quot;><span class=&quot;control-swatch red&quot;></span>Ineffective</span>
+          <span class=&quot;control-legend-item&quot;><span class=&quot;control-swatch untested&quot;></span>Not tested</span>
+        </div>
       </div>
 
-      <div class=&quot;layer-grid&quot;>
+      <div class=&quot;control-grid&quot;>
 
-        <!-- MATERIAL LAYER -->
-        <div class=&quot;layer-row&quot;>
-          <div class=&quot;layer-info&quot;>
-            <div class=&quot;layer-name&quot;>Material</div>
-            <div class=&quot;layer-desc&quot;>Directly evidence risk appetite</div>
-            <div class=&quot;layer-tracked&quot;>45 tracked · 4 ineffective</div>
-          </div>
-          <div class=&quot;layer-chart&quot;>
-            <div class=&quot;stacked-bar&quot;>
-              <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 71.1%;&quot;>32 effective</div>
-              <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 20.0%;&quot;>9 partial</div>
-              <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 8.9%;&quot;>4</div>
+        <div class=&quot;summary-strip-grid&quot;>
+          <div class=&quot;control-card material&quot;>
+            <div class=&quot;control-card-head&quot;>
+              <div class=&quot;control-card-title&quot;>Material Controls</div>
+              <div class=&quot;control-card-sub&quot;>Directly evidence risk appetite</div>
             </div>
-            <div class=&quot;layer-scale&quot;><span>0%</span><span>50%</span><span>100%</span></div>
+            <div class=&quot;bar-stack&quot;>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Assessment</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 71.1%;&quot;>32</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 20.0%;&quot;>9</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 8.9%;&quot;>4</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Test</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 28.9%;&quot;>13</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 11.1%;&quot;>5</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 6.7%;&quot;>3</div>
+                  <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 53.3%;&quot;>24</div>
+                </div>
+              </div>
+            </div>
+            <div class=&quot;control-stats&quot;>
+              <div class=&quot;control-stat&quot;><strong>71%</strong> Assessment effective</div>
+              <div class=&quot;control-stat&quot;><strong>62%</strong> Test effective</div>
+              <div class=&quot;control-stat&quot;><strong>47%</strong> Controls tested</div>
+            </div>
           </div>
-          <div class=&quot;layer-result&quot;>
-            <div class=&quot;result-pct&quot;>71<span class=&quot;unit&quot;>% effective</span></div>
-            <div class=&quot;result-delta down&quot;>▼ −4pp QoQ</div>
-            <div class=&quot;layer-rag-pill red&quot;>Red · RED-RED</div>
+
+          <div class=&quot;control-card key&quot;>
+            <div class=&quot;control-card-head&quot;>
+              <div class=&quot;control-card-title&quot;>Key Controls</div>
+              <div class=&quot;control-card-sub&quot;>Primary prevention and detection</div>
+            </div>
+            <div class=&quot;bar-stack&quot;>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Assessment</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 80.0%;&quot;>64</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 18.75%;&quot;>15</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 1.25%;&quot;>&amp;nbsp;</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Test</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 22.5%;&quot;>18</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 8.75%;&quot;>7</div>
+                  <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 67.5%;&quot;>54</div>
+                </div>
+              </div>
+            </div>
+            <div class=&quot;control-stats&quot;>
+              <div class=&quot;control-stat&quot;><strong>80%</strong> Assessment effective</div>
+              <div class=&quot;control-stat&quot;><strong>69%</strong> Test effective</div>
+              <div class=&quot;control-stat&quot;><strong>33%</strong> Controls tested</div>
+            </div>
           </div>
         </div>
 
-        <!-- KEY LAYER -->
-        <div class=&quot;layer-row&quot;>
-          <div class=&quot;layer-info&quot;>
-            <div class=&quot;layer-name&quot;>Key</div>
-            <div class=&quot;layer-desc&quot;>Primary prevention &amp;amp; detection</div>
-            <div class=&quot;layer-tracked&quot;>80 tracked · 1 ineffective</div>
+        <div class=&quot;manorg-panel&quot;>
+          <div class=&quot;manorg-head&quot;>
+            <div class=&quot;manorg-title&quot;>Control RAG by Management Org</div>
+            <div class=&quot;manorg-sub&quot;>Material and key controls only · supporting controls in appendix</div>
           </div>
-          <div class=&quot;layer-chart&quot;>
-            <div class=&quot;stacked-bar&quot;>
-              <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 80.0%;&quot;>64 effective</div>
-              <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 18.75%;&quot;>15 partial</div>
-              <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 1.25%;&quot;>&amp;nbsp;</div>
-            </div>
-            <div class=&quot;layer-scale&quot;><span>0%</span><span>50%</span><span>100%</span></div>
-          </div>
-          <div class=&quot;layer-result&quot;>
-            <div class=&quot;result-pct&quot;>80<span class=&quot;unit&quot;>% effective</span></div>
-            <div class=&quot;result-delta down&quot;>▼ −3pp QoQ</div>
-            <div class=&quot;layer-rag-pill green&quot;>Green · GRN-GRN</div>
-          </div>
-        </div>
+          <div class=&quot;manorg-table&quot;>
+            <div class=&quot;manorg-th&quot;>Management Org</div>
+            <div class=&quot;manorg-th&quot;>L2 Risk</div>
+            <div class=&quot;manorg-th&quot;>RAG</div>
+            <div class=&quot;manorg-th&quot;>Material</div>
+            <div class=&quot;manorg-th&quot;>Key</div>
 
-        <!-- SUPPORTING LAYER -->
-        <div class=&quot;layer-row&quot;>
-          <div class=&quot;layer-info&quot;>
-            <div class=&quot;layer-name&quot;>Supporting</div>
-            <div class=&quot;layer-desc&quot;>Monitoring &amp;amp; oversight</div>
-            <div class=&quot;layer-tracked&quot;>132 tracked · 4 ineffective</div>
-          </div>
-          <div class=&quot;layer-chart&quot;>
-            <div class=&quot;stacked-bar&quot;>
-              <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 84.8%;&quot;>112 effective</div>
-              <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 12.1%;&quot;>16 partial</div>
-              <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 3.1%;&quot;>4</div>
-            </div>
-            <div class=&quot;layer-scale&quot;><span>0%</span><span>50%</span><span>100%</span></div>
-          </div>
-          <div class=&quot;layer-result&quot;>
-            <div class=&quot;result-pct&quot;>85<span class=&quot;unit&quot;>% effective</span></div>
-            <div class=&quot;result-delta down&quot;>▼ −3pp QoQ</div>
-            <div class=&quot;layer-rag-pill green&quot;>Green · GRN-GRN</div>
+            <div class=&quot;manorg-org&quot;>Group Operations</div>
+            <div class=&quot;manorg-risk&quot;>Operational Resilience</div>
+            <div><span class=&quot;rag-dot red&quot;></span></div>
+            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>5 / 8</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>11 / 14</span></span></div>
+
+            <div class=&quot;manorg-org&quot;>Retail Banking</div>
+            <div class=&quot;manorg-risk&quot;>Sales &amp;amp; Distribution</div>
+            <div><span class=&quot;rag-dot amber&quot;></span></div>
+            <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>5 / 6</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>9 / 10</span></span></div>
+
+            <div class=&quot;manorg-org&quot;>Commercial Banking</div>
+            <div class=&quot;manorg-risk&quot;>Regulatory Compliance</div>
+            <div><span class=&quot;rag-dot red&quot;></span></div>
+            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>3 / 5</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>6 / 9</span></span></div>
+
+            <div class=&quot;manorg-org&quot;>Wealth Management</div>
+            <div class=&quot;manorg-risk&quot;>Information Security &amp;amp; Cyber</div>
+            <div><span class=&quot;rag-dot amber&quot;></span></div>
+            <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>3 / 7</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 12</span></span></div>
+
+            <div class=&quot;manorg-org&quot;>Insurance</div>
+            <div class=&quot;manorg-risk&quot;>Third Party</div>
+            <div><span class=&quot;rag-dot amber&quot;></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>4 / 4</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>7 / 8</span></span></div>
+
+            <div class=&quot;manorg-org&quot;>Technology &amp;amp; Change</div>
+            <div class=&quot;manorg-risk&quot;>Financial Crime</div>
+            <div><span class=&quot;rag-dot amber&quot;></span></div>
+            <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>4 / 6</span></span></div>
+            <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 11</span></span></div>
           </div>
         </div>
 
@@ -3191,25 +3507,26 @@
     <!-- Right column -->
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;cro-block&quot;>
-        <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
-          <div class=&quot;cro-date&quot;>31 Mar 2026</div>
-        </div>
-        <p class=&quot;cro-text&quot;>
-          Control environment <b>weakened</b> — Material layer effectiveness dropped 4pp to 71%. 4 of 45 material controls now ineffective, concentrated in <b>Wealth Mgmt cyber</b> (2) and <b>Commercial Banking compliance</b> (1). RCSA overdue 3 months means <b>stale assurance on 45 material controls</b>.
-        </p>
-      </div>
-
-      <div class=&quot;commentary-block&quot;>
+      <div class=&quot;commentary-block top3-commentary&quot;>
         <div class=&quot;commentary-head&quot;>
-          <div class=&quot;title&quot;>Owner commentary · Top 2</div>
-          <div class=&quot;curated&quot;>Curated</div>
+          <div class=&quot;title&quot;>Top 3 assigned commentary</div>
+          <div class=&quot;curated&quot;>Assigned</div>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-1&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Wealth Mgmt — Cyber &amp;amp; IT Risk</div>
+            <div class=&quot;comm-risk&quot;>Top item 1 · Group Operations</div>
+            <span class=&quot;comm-badge assigned&quot;>Assigned</span>
+          </div>
+          <div class=&quot;comm-owner&quot;>Head of Ops Risk · 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            Group Operations is assigned for commentary because Operational Resilience shows a <b>Red</b> material-control position while key controls remain green. The response should explain the material/key divergence and the Q2 remediation path.
+          </p>
+        </div>
+
+        <div class=&quot;comm-card item-2&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 2 · Wealth Mgmt — Cyber &amp;amp; IT Risk</div>
             <span class=&quot;comm-badge worsened&quot;>Worsened</span>
           </div>
           <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk · 29 Mar 2026</div>
@@ -3218,9 +3535,9 @@
           </p>
         </div>
 
-        <div class=&quot;comm-card&quot;>
+        <div class=&quot;comm-card item-3&quot;>
           <div class=&quot;comm-topline&quot;>
-            <div class=&quot;comm-risk&quot;>Commercial Banking — Compliance</div>
+            <div class=&quot;comm-risk&quot;>Item 3 · Commercial Banking — Compliance</div>
             <span class=&quot;comm-badge stable&quot;>Stable RAG</span>
           </div>
           <div class=&quot;comm-owner&quot;>Head of Compliance · 28 Mar 2026</div>
@@ -3252,7 +3569,7 @@
       <span class=&quot;toc-item&quot;>P7 Emerging</span>
       <span class=&quot;toc-sep&quot;>›</span>
       <span class=&quot;toc-item&quot;>P8 Decisions</span>
-      <span class=&quot;appendix-ref&quot;>Detail → Appendix C</span>
+      <span class=&quot;appendix-ref&quot;>Supporting controls → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
       <div>Source: Decision Focus + PowerApp</div>
@@ -3378,17 +3695,25 @@
   }
   .kpi {
     background: var(--sl-white); border: 1px solid var(--hairline);
-    border-top: 3px solid var(--sl-heritage-blue); border-radius: 8px;
-    padding: 8px 12px 9px;
-    display: flex; flex-direction: column; gap: 3px;
+    border-top: 3px solid var(--sl-heritage-blue); border-radius: 6px;
+    padding: 8px 10px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
+    min-height: 78px;
   }
   .kpi.kpi-amber  { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red    { border-top-color: var(--sl-core-coral); }
-  .kpi-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta { font-size: 10px; font-weight: 600; line-height: 1.3; }
-  .kpi-delta.up { color: var(--sl-core-teal); }
-  .kpi-delta.down { color: var(--sl-core-coral); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value { font-size: 27px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 1px 0; }
+  .kpi-delta {
+    width: 100%; min-height: 18px;
+    font-size: 9.2px; font-weight: 600; line-height: 1.15;
+    display: flex; align-items: center; gap: 4px;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up { color: var(--sl-core-teal); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--sl-core-coral); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* Hero - cumulative loss curve */
   .hero {
@@ -3570,9 +3895,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P5 / 8</div>
+      <div class=&quot;page-marker&quot;>P5 / 9</div>
     </div>
   </header>
 
@@ -3582,22 +3908,22 @@
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>YTD Gross Op Loss</div>
         <div class=&quot;kpi-value&quot;>£16.8m</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +£6.2m vs Q4 run-rate</div>
+        <div class=&quot;kpi-delta down&quot;>▲ £6.2m vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>% of £25m Trigger Used</div>
         <div class=&quot;kpi-value&quot;>67%</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +25pp vs Q4 · &amp;pound;8.2m headroom</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 25pp vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Largest Single Loss</div>
         <div class=&quot;kpi-value&quot;>£3.2m</div>
-        <div class=&quot;kpi-delta down&quot;>Op Resilience · 22 Feb</div>
+        <div class=&quot;kpi-delta flat&quot;>→ Q1 only</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Forecast Year-End Loss</div>
         <div class=&quot;kpi-value&quot;>£67.2m</div>
-        <div class=&quot;kpi-delta down&quot;>▲ Breaches £40m hard appetite</div>
+        <div class=&quot;kpi-delta down&quot;>▲ vs Q4 forecast</div>
       </div>
     </div>
 
@@ -3686,9 +4012,9 @@
 
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;cro-block&quot;>
+      <div class=&quot;cro-block item-1&quot;>
         <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
+          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>Top item 1</span>COO / Head of Ops Risk</div>
           <div class=&quot;cro-date&quot;>31 Mar 2026</div>
         </div>
         <p class=&quot;cro-text&quot;>
@@ -3906,19 +4232,26 @@
   }
   .kpi {
     background: var(--sl-white); border: 1px solid var(--hairline);
-    border-top: 3px solid var(--sl-heritage-blue); border-radius: 8px;
-    padding: 8px 12px 9px;
-    display: flex; flex-direction: column; gap: 3px;
+    border-top: 3px solid var(--sl-heritage-blue); border-radius: 6px;
+    padding: 8px 10px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
+    min-height: 78px;
   }
   .kpi.kpi-amber { border-top-color: var(--sl-dark-yellow); }
   .kpi.kpi-red { border-top-color: var(--sl-core-coral); }
   .kpi.kpi-green { border-top-color: var(--sl-core-teal); }
-  .kpi-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); line-height: 1.2; }
-  .kpi-value { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta { font-size: 10px; font-weight: 600; line-height: 1.3; }
-  .kpi-delta.up { color: var(--sl-core-teal); }
-  .kpi-delta.down { color: var(--sl-core-coral); }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value { font-size: 27px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 1px 0; }
+  .kpi-delta {
+    width: 100%; min-height: 18px;
+    font-size: 9.2px; font-weight: 600; line-height: 1.15;
+    display: flex; align-items: center; gap: 4px;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up { color: var(--sl-core-teal); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--sl-core-coral); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   /* Reg Notifications Hero */
   .hero {
@@ -4067,10 +4400,31 @@
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 11px; font-weight: 600;
   }
   .hm-row .hm-cell.zero { color: var(--muted-2); background: transparent; }
-  .hm-row .hm-cell.s1 { background: var(--sl-core-coral); color: var(--sl-white); }
-  .hm-row .hm-cell.s2 { background: var(--sl-vibrant-coral); color: var(--sl-white); }
-  .hm-row .hm-cell.s3 { background: var(--sl-heritage-yellow); color: var(--sl-heritage-blue); }
-  .hm-row .hm-cell.s4 { background: var(--sl-light-teal); color: var(--sl-core-teal); }
+  .hm-row .hm-cell.s1 {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 6px),
+      var(--sl-core-coral);
+    color: var(--sl-white);
+  }
+  .hm-row .hm-cell.s2 {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
+      var(--sl-vibrant-coral);
+    color: var(--sl-white);
+  }
+  .hm-row .hm-cell.s3 {
+    background:
+      repeating-linear-gradient(90deg, rgba(10,47,115,0.16) 0 1px, transparent 1px 6px),
+      var(--sl-heritage-yellow);
+    color: var(--sl-heritage-blue);
+  }
+  .hm-row .hm-cell.s4 {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(0,107,92,0.24) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--sl-light-teal);
+    color: var(--sl-core-teal);
+  }
   .hm-row .hm-total {
     text-align: right; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 11px; font-weight: 600;
     color: var(--ink); padding-right: 8px;
@@ -4153,9 +4507,10 @@
         <div class=&quot;crumb active&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P6 / 8</div>
+      <div class=&quot;page-marker&quot;>P6 / 9</div>
     </div>
   </header>
 
@@ -4165,22 +4520,22 @@
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>Total Incidents Q1</div>
         <div class=&quot;kpi-value&quot;>155</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +23 vs Q4</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 23 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>New Sev 1 / Sev 2</div>
         <div class=&quot;kpi-value&quot;>5</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 vs Q4 · 4 still open</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Reg. Notifiable Events</div>
         <div class=&quot;kpi-value&quot;>6</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 vs Q4 · 2 pending</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Open Breaches / Overdue Rem.</div>
         <div class=&quot;kpi-value&quot;>3 / 2</div>
-        <div class=&quot;kpi-delta down&quot;>▲ +1 breaches · 2 overdue</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
     </div>
 
@@ -4247,9 +4602,9 @@
 
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;cro-block&quot;>
+      <div class=&quot;cro-block item-1&quot;>
         <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
+          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>Top item 1</span>Head of Operational Resilience</div>
           <div class=&quot;cro-date&quot;>31 Mar 2026</div>
         </div>
         <p class=&quot;cro-text&quot;>
@@ -4516,34 +4871,41 @@
     padding: 18px 40px 16px;
     display: grid;
     grid-template-columns: 1fr 372px;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     gap: 14px 20px;
     min-height: 0;
   }
 
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: #fff; border: 1px solid var(--hairline);
-    border-top: 3px solid var(--navy); border-radius: 8px;
-    padding: 10px 14px 11px;
-    display: flex; flex-direction: column; gap: 4px;
+    border-top: 3px solid var(--navy); border-radius: 6px;
+    padding: 8px 10px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
+    min-height: 78px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
   .kpi.kpi-red    { border-top-color: #CA3F4C; }
-  .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .kpi-value  { font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 1px; }
-  .kpi-delta  { font-size: 10.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
-  .kpi-delta.up   { color: #15803d; }
-  .kpi-delta.down { color: #CA3F4C; }
-  .kpi-delta.flat { color: var(--muted); }
+  .kpi-label { font-size: 9.2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sl-black); line-height: 1.15; }
+  .kpi-value  { font-size: 25px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin: 1px 0; }
+  .kpi-delta  {
+    width: 100%; min-height: 18px;
+    font-size: 9.2px; font-weight: 600; color: var(--muted); line-height: 1.15;
+    display: flex; align-items: center; gap: 4px;
+    border: 1px solid #d7dee8; background: #eef2f7; border-radius: 3px;
+    padding: 2px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-delta.up   { color: var(--green); background: var(--green-bg); border-color: rgba(0,107,92,0.25); }
+  .kpi-delta.down { color: var(--red); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
+  .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
 
   .changed-row {
     grid-column: 1 / -1; grid-row: 2;
-    display: grid; grid-template-columns: 118px 1fr 1fr; gap: 12px;
+    display: none; grid-template-columns: 118px 1fr 1fr; gap: 12px;
   }
   .changed-label {
     display: flex; flex-direction: column; justify-content: center; padding: 8px 0;
@@ -4582,7 +4944,7 @@
 
   /* HERO: portfolio map */
   .hero {
-    grid-column: 1; grid-row: 3;
+    grid-column: 1; grid-row: 2;
     background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
     padding: 12px 16px 10px;
     display: flex; flex-direction: column; min-height: 0;
@@ -4601,9 +4963,22 @@
   }
   .leg-item { display: flex; align-items: center; gap: 5px; font-weight: 500; }
   .leg-dot { width: 11px; height: 11px; border-radius: 50%; }
-  .leg-dot.high  { background: var(--bubble-red); }
-  .leg-dot.watch { background: var(--bubble-amber); }
-  .leg-dot.monitor { background: var(--bubble-green); }
+  .leg-dot.high {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.32) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 5px),
+      var(--bubble-red);
+  }
+  .leg-dot.watch {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.30) 0 2px, transparent 2px 6px),
+      var(--bubble-amber);
+  }
+  .leg-dot.monitor {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.34) 0 1px, transparent 1.2px) 0 0 / 6px 6px,
+      var(--bubble-green);
+  }
   .leg-size { display: flex; align-items: center; gap: 4px; font-weight: 500; }
   .leg-size .s { width: 7px; height: 7px; border-radius: 50%; background: var(--muted-2); }
   .leg-size .m { width: 10px; height: 10px; border-radius: 50%; background: var(--muted-2); }
@@ -4634,14 +5009,27 @@
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-size: 10px; font-weight: 700;
   }
-  .map-num.high   { background: var(--bubble-red); }
-  .map-num.watch  { background: var(--bubble-amber); }
-  .map-num.monitor{ background: var(--bubble-green); }
+  .map-num.high {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.20) 0 1px, transparent 1px 6px),
+      var(--bubble-red);
+  }
+  .map-num.watch {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
+      var(--bubble-amber);
+  }
+  .map-num.monitor {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.34) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--bubble-green);
+  }
   .map-name { font-size: 10.5px; color: var(--ink); line-height: 1.3; }
 
   /* Right column */
   .right-col {
-    grid-column: 2; grid-row: 3;
+    grid-column: 2; grid-row: 2;
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 12px;
@@ -4790,9 +5178,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb active&quot;></div>
         <div class=&quot;crumb&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P7 / 8</div>
+      <div class=&quot;page-marker&quot;>P7 / 9</div>
     </div>
   </header>
 
@@ -4802,22 +5191,32 @@
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>Emerging Risks Tracked</div>
         <div class=&quot;kpi-value&quot;>8</div>
-        <div class=&quot;kpi-delta flat&quot;>→ stable portfolio</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>On Board Watch</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>→ no change · AI &amp;amp; Systemic Cyber</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Rising Signals</div>
         <div class=&quot;kpi-value&quot;>5</div>
-        <div class=&quot;kpi-delta up&quot;>▼ −1 vs Q4 · momentum easing</div>
+        <div class=&quot;kpi-delta up&quot;>▼ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Avg Readiness</div>
         <div class=&quot;kpi-value&quot;>55%</div>
-        <div class=&quot;kpi-delta up&quot;>▲ +3pp vs Q4 · 32 open actions</div>
+        <div class=&quot;kpi-delta up&quot;>▲ 3pp vs Q4</div>
+      </div>
+      <div class=&quot;kpi kpi-amber&quot;>
+        <div class=&quot;kpi-label&quot;>Open Actions</div>
+        <div class=&quot;kpi-value&quot;>32</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 4 vs Q4</div>
+      </div>
+      <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>High Velocity</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
       </div>
     </div>
 
@@ -4853,9 +5252,9 @@
           <div class=&quot;hero-sub&quot;>Bubble size = velocity · colour = current watch status · axes are ordinal L1–L5 / I1–I5</div>
         </div>
         <div class=&quot;map-legend&quot;>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot high&quot;></div>High</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot watch&quot;></div>Watch</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot monitor&quot;></div>Monitor</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot high&quot;></div>High / crosshatch</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot watch&quot;></div>Watch / diagonal</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot monitor&quot;></div>Monitor / dotted</div>
           <div class=&quot;leg-item leg-size&quot;><span class=&quot;s&quot;></span><span class=&quot;m&quot;></span><span class=&quot;l&quot;></span>velocity</div>
         </div>
       </div>
@@ -4868,16 +5267,31 @@
             <!-- Grid zones: lower-left = green / middle = amber / upper-right = red -->
             <!-- 5x5 grid, cell w = (560-70)/5 = 98, h = (260-30)/5 = 46 -->
             <!-- x origin: 70, y origin: 10 (top), 240 (bottom) -->
+            <defs>
+              <pattern id=&quot;emerge-monitor-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#f7faf7&quot;/>
+                <circle cx=&quot;2&quot; cy=&quot;2&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.22&quot;/>
+                <circle cx=&quot;6&quot; cy=&quot;6&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.18&quot;/>
+              </pattern>
+              <pattern id=&quot;emerge-watch-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fffdf3&quot;/>
+                <path d=&quot;M-2,8 L8,-2 M2,10 L10,2&quot; stroke=&quot;#8f6200&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.22&quot;/>
+              </pattern>
+              <pattern id=&quot;emerge-high-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fdf4f4&quot;/>
+                <path d=&quot;M0,0 L8,8 M8,0 L0,8&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.22&quot;/>
+              </pattern>
+            </defs>
 
             <!-- Red zone (top-right) -->
-            <rect x=&quot;364&quot; y=&quot;10&quot;  width=&quot;196&quot; height=&quot;138&quot; fill=&quot;#fdf4f4&quot;/>
+            <rect x=&quot;364&quot; y=&quot;10&quot;  width=&quot;196&quot; height=&quot;138&quot; fill=&quot;url(#emerge-high-zone)&quot;/>
             <!-- Amber zone (band) -->
-            <rect x=&quot;70&quot;  y=&quot;148&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;#fffdf3&quot;/>
-            <rect x=&quot;168&quot; y=&quot;56&quot;  width=&quot;196&quot; height=&quot;92&quot;  fill=&quot;#fffdf3&quot;/>
-            <rect x=&quot;364&quot; y=&quot;148&quot; width=&quot;196&quot; height=&quot;46&quot;  fill=&quot;#fffdf3&quot;/>
+            <rect x=&quot;70&quot;  y=&quot;148&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
+            <rect x=&quot;168&quot; y=&quot;56&quot;  width=&quot;196&quot; height=&quot;92&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
+            <rect x=&quot;364&quot; y=&quot;148&quot; width=&quot;196&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
             <!-- Green zone (bottom-left) -->
-            <rect x=&quot;70&quot;  y=&quot;194&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;#f7faf7&quot;/>
-            <rect x=&quot;70&quot;  y=&quot;56&quot;  width=&quot;98&quot;  height=&quot;138&quot; fill=&quot;#f7faf7&quot;/>
+            <rect x=&quot;70&quot;  y=&quot;194&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-monitor-zone)&quot;/>
+            <rect x=&quot;70&quot;  y=&quot;56&quot;  width=&quot;98&quot;  height=&quot;138&quot; fill=&quot;url(#emerge-monitor-zone)&quot;/>
 
             <!-- Grid lines -->
             <g stroke=&quot;#e3e9f1&quot; stroke-width=&quot;1&quot;>
@@ -4985,9 +5399,9 @@
     <!-- Right column -->
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;cro-block&quot;>
+      <div class=&quot;cro-block item-1&quot;>
         <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>T1 · CRO</span>Sarah Chen</div>
+          <div class=&quot;cro-author&quot;><span class=&quot;t1-tag&quot;>Top item 1</span>CTO / CISO</div>
           <div class=&quot;cro-date&quot;>31 Mar 2026</div>
         </div>
         <p class=&quot;cro-text&quot;>
@@ -5467,9 +5881,10 @@
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb active&quot;></div>
+        <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P8 / 8</div>
+      <div class=&quot;page-marker&quot;>P8 / 9</div>
     </div>
   </header>
 
@@ -5506,7 +5921,7 @@
 
     <!-- CRO SEQUENCING NOTE -->
     <div class=&quot;cro-note&quot;>
-      <span class=&quot;cro-tag-inline&quot;>T1 · CRO</span>
+      <span class=&quot;cro-tag-inline&quot;>Assigned note</span>
       <span class=&quot;name&quot;>Sarah Chen</span>
       <p class=&quot;text&quot;>
         Four decisions require Board action today. Recommend taking the <b>Cyber Red appetite breach</b> first — it links directly to the SOC business case approval, escalation to ERMC, and sets tone on remediation pace. The <b>AI governance approval</b> is time-sensitive (use cases already live). Noted &amp;amp; tabled items batched below.
@@ -5698,6 +6113,195 @@
 </body>
 </html>
 "></iframe>
+    <iframe id="frame-p9" class="inactive slide-frame" data-key="p9" srcdoc="<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'/>
+<meta name='viewport' content='width=1280'/>
+<title>CRR Exec Pack - Appendix - Commentary Model</title>
+<style>
+  :root {
+    --sl-heritage-blue:#0A2F73; --sl-vibrant-blue:#2140CE; --sl-heritage-yellow:#FFBB00;
+    --sl-light-yellow:#FFFFB9; --sl-core-teal:#006B5C; --sl-core-coral:#CA3F4C;
+    --navy-deep:#07235a; --ink:#0A2F73; --ink-2:#1f3458; --muted:#5b6b83;
+    --muted-2:#8294ae; --hairline:rgba(10,47,115,0.14); --hairline-soft:rgba(10,47,115,0.07);
+    --panel-soft:#f7f9fc; --amber-bg:#fff4d1; --red-bg:#fde2e4; --green-bg:#e6f5f1;
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; padding:0; width:1280px; height:720px; overflow:hidden; background:#fff; color:var(--ink); font-family:Aptos,'Segoe UI',Arial,sans-serif; }
+  .slide { width:1280px; height:720px; display:grid; grid-template-rows:36px 56px 1fr 32px; background:#fff; }
+  .brand-strip { display:flex; align-items:center; justify-content:space-between; padding:0 32px; border-bottom:1px solid var(--hairline); }
+  .brand-strip svg { height:22px; width:auto; display:block; }
+  .report-id { text-align:right; line-height:1.1; }
+  .eyebrow { font-size:8.5px; font-weight:700; letter-spacing:0.14em; color:var(--muted); text-transform:uppercase; }
+  .report-name { font-size:12px; font-weight:700; color:var(--ink); margin-top:1px; }
+  .slide-header { background:var(--sl-heritage-blue); color:#fff; padding:0 32px; display:flex; align-items:center; justify-content:space-between; position:relative; }
+  .slide-header:after { content:''; position:absolute; left:0; right:0; bottom:0; height:3px; background:linear-gradient(90deg,var(--sl-heritage-yellow) 0%,var(--sl-heritage-yellow) 12%,var(--sl-vibrant-blue) 12%,var(--sl-vibrant-blue) 100%); }
+  .header-left { display:flex; align-items:baseline; gap:16px; min-width:0; }
+  .header-title { font-size:20px; font-weight:700; letter-spacing:-0.01em; white-space:nowrap; }
+  .header-sub { font-size:12px; color:rgba(255,255,255,0.72); letter-spacing:0.02em; }
+  .draft-pill { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#8f6200; background:var(--sl-light-yellow); border:1px solid rgba(255,187,0,0.65); border-radius:3px; padding:3px 7px; white-space:nowrap; }
+  .header-right { display:flex; align-items:center; gap:18px; font-size:11px; color:rgba(255,255,255,0.72); text-transform:uppercase; letter-spacing:0.14em; }
+  .page-marker { color:#fff; font-weight:700; font-size:11px; }
+  .divider { width:1px; height:14px; background:rgba(255,255,255,0.25); }
+  .breadcrumb { display:flex; gap:5px; align-items:center; }
+  .crumb { width:16px; height:3px; background:rgba(255,255,255,0.25); border-radius:1px; }
+  .crumb.active { background:var(--sl-heritage-yellow); }
+  .slide-body { padding:20px 40px 16px; display:grid; grid-template-columns:1.06fr 0.94fr; grid-template-rows:auto 1fr; gap:16px 18px; min-height:0; }
+  .intro { grid-column:1 / -1; border:1px solid var(--hairline); border-left:4px solid var(--sl-heritage-yellow); border-radius:8px; background:#fffdf2; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .intro-main { min-width:0; }
+  .intro-title { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+  .intro-text { font-size:12px; color:var(--ink-2); line-height:1.45; margin:0; }
+  .intro-chip { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--sl-core-teal); background:var(--green-bg); padding:4px 8px; border-radius:4px; white-space:nowrap; }
+  .panel { border:1px solid var(--hairline); border-radius:8px; background:#fff; padding:14px 16px; min-height:0; }
+  .panel.soft { background:var(--panel-soft); }
+  .panel-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+  .model-grid { display:grid; grid-template-columns:1fr; gap:10px; }
+  .model-card { border:1px solid var(--hairline-soft); border-left:3px solid var(--sl-core-teal); border-radius:6px; background:#fff; padding:10px 12px; }
+  .model-card.required { border-left-color:var(--sl-core-coral); background:#fff9fa; }
+  .model-card.owner { border-left-color:var(--sl-heritage-yellow); background:#fffdf2; }
+  .model-head { display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+  .num { width:20px; height:20px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:0 0 auto; }
+  .model-name { font-size:12px; font-weight:700; color:var(--ink); }
+  .model-body { margin:0; font-size:11.3px; line-height:1.42; color:var(--ink-2); }
+  .rule-table { display:grid; grid-template-columns:86px 1fr; gap:0; border:1px solid var(--hairline-soft); border-radius:6px; overflow:hidden; margin-top:8px; }
+  .rule-table div { padding:8px 10px; border-bottom:1px solid var(--hairline-soft); font-size:11.2px; line-height:1.35; }
+  .rule-table div:nth-last-child(-n+2) { border-bottom:0; }
+  .rag { font-weight:700; text-transform:uppercase; letter-spacing:0.06em; font-size:9.5px; display:flex; align-items:center; gap:5px; }
+  .rag:before { content:''; width:7px; height:7px; border-radius:50%; background:currentColor; }
+  .rag.red { color:var(--sl-core-coral); background:var(--red-bg); }
+  .rag.amber { color:#DE4721; background:var(--amber-bg); }
+  .rag.green { color:var(--sl-core-teal); background:var(--green-bg); }
+  .rag.exception { color:var(--ink); background:#eef2f7; }
+  .data-list { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:10px; }
+  .data-item { background:#fff; border:1px solid var(--hairline-soft); border-radius:5px; padding:8px 9px; }
+  .data-label { font-size:9px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px; }
+  .data-text { font-size:11px; color:var(--ink-2); line-height:1.35; }
+  .supporting-detail { margin-top:10px; border:1px solid var(--hairline); border-top:3px solid var(--sl-core-teal); border-radius:6px; background:#fff; padding:10px 12px; }
+  .supporting-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:7px; }
+  .supporting-title { font-size:12px; font-weight:700; color:var(--ink); }
+  .supporting-note { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--sl-core-teal); background:var(--green-bg); border-radius:3px; padding:2px 6px; white-space:nowrap; }
+  .supporting-sub { font-size:10px; color:var(--muted); margin-bottom:8px; }
+  .supporting-bar { height:18px; display:flex; border-radius:4px; overflow:hidden; background:#dfe5ee; border:1px solid #d1dae6; }
+  .supporting-seg { display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:#fff; min-width:14px; }
+  .supporting-seg.green {
+    background:
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.36) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+      var(--sl-core-teal);
+  }
+  .supporting-seg.amber {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
+      #DE4721;
+  }
+  .supporting-seg.red {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 6px),
+      var(--sl-core-coral);
+  }
+  .example { margin-top:10px; border-top:1px dashed var(--hairline); padding-top:10px; }
+  .example-title { font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px; }
+  .example-line { font-size:11.2px; color:var(--ink-2); line-height:1.42; margin:0; }
+  .slide-footer { background:var(--navy-deep); color:rgba(255,255,255,0.78); font-size:10px; padding:0 32px; display:flex; justify-content:space-between; align-items:center; letter-spacing:0.02em; }
+  .footer-left,.footer-right { display:flex; align-items:center; gap:14px; white-space:nowrap; }
+  .current { color:#fff; font-weight:700; }
+</style>
+</head>
+<body>
+<div class='slide'>
+  <div class='brand-strip'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 80' aria-label='Standard Life'>
+      <text x='0' y='58' font-family='Aptos, Segoe UI, Arial, sans-serif' font-size='44' font-weight='700' letter-spacing='-1.5' fill='#0A2F73'>Standard Life</text>
+      <polygon points='318,8 348,2 332,46' fill='#FFBB00'/>
+    </svg>
+    <div class='report-id'>
+      <div class='eyebrow'>Board Risk Reporting</div>
+      <div class='report-name'>Consolidated Risk Report &middot; Q1 2026</div>
+    </div>
+  </div>
+  <header class='slide-header'>
+    <div class='header-left'>
+      <div class='header-title'>Appendix</div>
+      <div class='header-sub'>Commentary model and supporting control read-across</div>
+      <div class='draft-pill'>Draft operating model</div>
+    </div>
+    <div class='header-right'>
+      <div class='breadcrumb'>
+        <div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb active'></div>
+      </div>
+      <div class='divider'></div>
+      <div class='page-marker'>P9 / 9</div>
+    </div>
+  </header>
+  <main class='slide-body'>
+    <section class='intro'>
+      <div class='intro-main'>
+        <div class='intro-title'>Working assumption: gatekeeper assigns top 3 commentary items</div>
+        <p class='intro-text'>Each quarter, the gatekeeper selects the top three commentary items on a page and assigns them to relevant owners. Supporting controls sit here as read-across detail so the Control Environment page can stay focused on material and key controls.</p>
+      </div>
+      <div class='intro-chip'>Review note</div>
+    </section>
+
+    <section class='panel'>
+      <div class='panel-title'>Top 3 commentary assignment model</div>
+      <div class='model-grid'>
+        <div class='model-card owner'>
+          <div class='model-head'><span class='num'>1</span><span class='model-name'>Top assigned item 1</span></div>
+          <p class='model-body'>A specific risk, movement, metric, exception or decision point selected by the gatekeeper and assigned to the most relevant owner.</p>
+        </div>
+        <div class='model-card required'>
+          <div class='model-head'><span class='num'>2</span><span class='model-name'>Top assigned item 2</span></div>
+          <p class='model-body'>A second priority item assigned to another relevant user where the Board needs cause, impact, action, owner and expected movement.</p>
+        </div>
+        <div class='model-card'>
+          <div class='model-head'><span class='num'>3</span><span class='model-name'>Top assigned item 3</span></div>
+          <p class='model-body'>A third priority item assigned where narrative is needed. The gatekeeper tracks completion and checks consistency before the pack is finalised.</p>
+        </div>
+      </div>
+
+      <div class='example'>
+        <div class='example-title'>RCSA example</div>
+        <p class='example-line'><b>Green risks:</b> no commentary by default. <b>Red risks:</b> likely candidates for the top 3, assigned to the relevant owner for cause, impact, action and expected movement/date.</p>
+      </div>
+    </section>
+
+    <section class='panel soft'>
+      <div class='panel-title'>Trigger rules and data implications</div>
+      <div class='rule-table'>
+        <div class='rag red'>Red</div><div>Commentary required. Assigned to relevant owner for cause, impact, remediation and expected trajectory.</div>
+        <div class='rag amber'>Amber</div><div>Commentary conditional. Usually required if newly triggered, worsening, stale, high velocity or board-facing.</div>
+        <div class='rag green'>Green</div><div>No commentary by default, unless the gatekeeper flags an exception or committee request.</div>
+        <div class='rag exception'>Exception</div><div>Can be assigned for material movement, overdue action, data quality concern or explicit challenge request.</div>
+      </div>
+      <div class='data-list'>
+        <div class='data-item'><div class='data-label'>Assignment fields</div><div class='data-text'>Quarter, page, risk/item id, assignee, due date, status and reviewer.</div></div>
+        <div class='data-item'><div class='data-label'>Comment fields</div><div class='data-text'>Prompt, owner response, evidence link, reviewer edit and final narrative.</div></div>
+        <div class='data-item'><div class='data-label'>Status flow</div><div class='data-text'>Not required, assigned, drafted, reviewed, approved, overdue.</div></div>
+        <div class='data-item'><div class='data-label'>Open question</div><div class='data-text'>Final implementation depends on the source data shape and workflow ownership.</div></div>
+      </div>
+      <div class='supporting-detail'>
+        <div class='supporting-head'>
+          <div class='supporting-title'>Supporting Controls</div>
+          <div class='supporting-note'>132 tracked · 85% effective · 4 ineffective</div>
+        </div>
+        <div class='supporting-sub'>Monitoring and oversight controls retained for reference, not primary Board focus. Pattern cue: dotted = effective, diagonal = partial, crosshatch = ineffective.</div>
+        <div class='supporting-bar'>
+          <div class='supporting-seg green' style='width:84.8%;'>112</div>
+          <div class='supporting-seg amber' style='width:12.1%;'>16</div>
+          <div class='supporting-seg red' style='width:3.1%;'>4</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class='slide-footer'>
+    <div class='footer-left'><span>P1 Summary</span><span>P2 Appetite</span><span>P3 RCSA</span><span>P8 Decisions</span><span class='current'>P9 Appendix</span></div>
+    <div class='footer-right'><span>Review aid</span><span>Draft commentary model</span><span>Supporting controls appendix</span><span>Design v1.3.2 &middot; Exec v0.3</span></div>
+  </footer>
+</div>
+</body>
+</html>
+"></iframe>
   </div>
 
   <button class="nav-arrow next" id="nav-next" title="Next (→)">&rsaquo;</button>
@@ -5745,10 +6349,14 @@
     <div class="t-num">P8</div>
     <div class="t-name">Decisions & Actions</div>
   </div>
+  <div class="thumb" data-key="p9" data-index="9">
+    <div class="t-num">P9</div>
+    <div class="t-name">Appendix</div>
+  </div>
   <div class="spacer"></div>
   <div class="hint">
     <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> navigate
-    <span class="kbd">1</span>&ndash;<span class="kbd">8</span> jump
+    <span class="kbd">1</span>&ndash;<span class="kbd">9</span> jump
     <span class="kbd">I</span> info
   </div>
 </div>
@@ -5757,12 +6365,13 @@
 const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary", purpose: "Cross-theme synthesis. Overall posture, top 3 board attention items, decisions preview." },
   { key: "p2", num: 2, title: "Risk Appetite", purpose: "Where we stand against appetite. Cyber & IT now in Red breach, Compliance newly triggered." },
-  { key: "p3", num: 3, title: "RCSA", purpose: "L2 risk position by likelihood × impact. Ranked register + L×I matrix with prior→current movement." },
-  { key: "p4", num: 4, title: "Control Environment", purpose: "Material / Key / Supporting layer effectiveness. 71% / 80% / 85% by layer; RCSA overdue." },
+  { key: "p3", num: 3, title: "RCSA", purpose: "Filtered Red and Amber L2 risk view by likelihood × impact, with Green risks hidden by default." },
+  { key: "p4", num: 4, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
   { key: "p5", num: 5, title: "Losses & Near Misses", purpose: "Cumulative YTD operational loss vs £25m trigger and £40m breach. Forecast year-end £67.2m breaches appetite." },
   { key: "p6", num: 6, title: "Incidents & Breaches", purpose: "Severity, regulatory exposure, remediation status. 6 reg notifiable events; 2 pending; 2 overdue remediation." },
   { key: "p7", num: 7, title: "Emerging Risks", purpose: "Horizon scanning, board watch portfolio. AI/GenAI clearest emerging risk; Operational Resilience theme pressure." },
   { key: "p8", num: 8, title: "Decisions & Actions", purpose: "What the Board is being asked to do today. 4 today's asks, 6 noted & tabled." },
+  { key: "p9", num: 9, title: "Appendix: Commentary + Controls", purpose: "Review aid for the draft assigned-commentary model plus supporting controls read-across moved out of the main Control Environment page." },
 ];
 
 let currentIdx = 0;
@@ -5830,7 +6439,7 @@ function showSlide(idx) {
     else t.classList.remove('active');
   });
 
-  progress.textContent = `P${slide.num} / 8`;
+  progress.textContent = `P${slide.num} / ${SLIDES.length}`;
   prevBtn.disabled = (idx === 0);
   nextBtn.disabled = (idx === SLIDES.length - 1);
 
@@ -5875,7 +6484,7 @@ document.addEventListener('keydown', (e) => {
     if (infoOpen) toggleInfo();
     e.preventDefault();
   }
-  else if (/^[1-8]$/.test(e.key)) {
+  else if (/^[1-9]$/.test(e.key)) {
     const n = parseInt(e.key, 10) - 1;
     if (n < SLIDES.length) showSlide(n);
     e.preventDefault();

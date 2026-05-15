@@ -263,7 +263,7 @@
     <div class="doc-name">
       <span>CRR Exec Pack</span>
       <span class="v">v3 &middot; full pack</span>
-      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 12 pages</span>
+      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 13 pages</span>
     </div>
   </div>
   <div class="topbar-controls">
@@ -271,7 +271,7 @@
       <span>Page info</span>
       <span class="kbd">I</span>
     </button>
-    <div class="progress-chip" id="progress">P1 / 12</div>
+    <div class="progress-chip" id="progress">P1 / 13</div>
   </div>
 </div>
 
@@ -434,7 +434,7 @@
   .slide-body {
     padding: 18px 40px 16px;
     display: grid;
-    grid-template-columns: 1fr 372px;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr;
     gap: 14px 20px;
     min-height: 0;
@@ -445,7 +445,7 @@
     grid-column: 1 / -1;
     grid-row: 1;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 12px;
   }
   .kpi {
@@ -506,7 +506,7 @@
   /* ===== LEFT: BOARD ATTENTION ITEMS ===== */
   .attention-panel {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
     background: #fff;
     border: 1px solid var(--hairline);
     border-radius: 8px;
@@ -585,12 +585,71 @@
     font-size: 9.5px; color: var(--muted); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
 
+  /* Assigned commentary cards */
+  .attention-panel.top3-commentary {
+    padding: 10px 12px 12px;
+    gap: 8px;
+  }
+  .commentary-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 6px; border-bottom: 1px solid var(--hairline-soft);
+  }
+  .commentary-head .title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  }
+  .commentary-head .curated {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 6px; border-radius: 3px; background: #eaf7ef; color: var(--green);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .commentary-head .curated::before {
+    content: &quot;&quot;; width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+  }
+  .exec-commentary-list {
+    display: flex; flex-direction: column; gap: 7px;
+    min-height: 0; flex: 1;
+  }
+  .attention-panel.top3-commentary .exec-commentary-list {
+    flex: 0 0 auto;
+  }
+  .attention-panel.top3-commentary .comm-card {
+    padding: 7px 10px;
+    gap: 3px;
+  }
+  .attention-panel.top3-commentary .comm-body {
+    line-height: 1.35;
+  }
+  .comm-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--sl-core-coral);
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .comm-card.item-1 { border-left-color: var(--sl-heritage-yellow); }
+  .comm-card.item-2 { border-left-color: var(--sl-core-coral); }
+  .comm-card.item-3 { border-left-color: var(--sl-vibrant-blue); }
+  .comm-topline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .comm-risk { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .comm-badge {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 2px 5px; border-radius: 3px;
+  }
+  .comm-badge.assigned { background: var(--sl-light-yellow); color: #8f6200; }
+  .comm-badge.breached { background: var(--sl-core-coral); color: var(--sl-white); }
+  .comm-badge.warning { background: var(--amber-bg); color: var(--amber); }
+  .comm-badge.worsened { background: var(--red-bg); color: var(--red); }
+  .comm-owner { font-size: 10px; color: var(--muted); }
+  .comm-body { font-size: 11px; line-height: 1.42; color: var(--ink-2); margin: 0; }
+  .comm-body b { color: var(--ink); font-weight: 700; }
+
   /* ===== RIGHT COLUMN ===== */
   .right-col {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 2;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
     gap: 12px;
     min-height: 0;
   }
@@ -644,6 +703,272 @@
   }
   .posture-detail {
     font-size: 10.5px; color: var(--ink-2); margin-top: 2px; line-height: 1.35;
+  }
+
+  /* Executive controls + top risks */
+  .control-snapshot,
+  .top-risk-panel {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 10px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+  .control-snapshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .control-summary-card {
+    border: 1px solid var(--hairline-soft);
+    border-top: 3px solid var(--navy);
+    border-radius: 6px;
+    background: var(--panel-soft);
+    padding: 7px 8px 8px;
+    min-width: 0;
+  }
+  .control-summary-card.material { border-top-color: #7A003C; }
+  .control-summary-card.key { border-top-color: #DE4721; }
+  .control-card-top {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+    margin-bottom: 6px;
+  }
+  .control-card-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink);
+  }
+  .control-card-score {
+    font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1;
+  }
+  .control-metrics { display: flex; flex-direction: column; gap: 5px; }
+  .control-metric {
+    display: grid; grid-template-columns: 44px 1fr 28px; gap: 5px; align-items: center;
+    font-size: 8.6px; color: var(--muted); font-weight: 600;
+  }
+  .control-track {
+    height: 7px; border-radius: 999px; overflow: hidden; background: #e4ebf4;
+    border: 1px solid #d6dfeb;
+  }
+  .control-fill { height: 100%; border-radius: inherit; background: var(--green); }
+  .control-fill.test { background: var(--sl-vibrant-blue); }
+  .control-fill.cover { background: #ffbb00; }
+  .control-flag {
+    margin-top: 6px;
+    border: 1px solid rgba(202,63,76,0.38);
+    background: var(--red-bg);
+    color: var(--red);
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 8.8px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .top-risk-panel { overflow: hidden; }
+  .attention-panel .top-risk-panel {
+    margin-top: 4px;
+    padding: 8px 12px 8px;
+    gap: 6px;
+  }
+  .attention-panel .exec-risk-layout {
+    grid-template-columns: 170px 1fr;
+    gap: 8px;
+  }
+  .attention-panel .exec-risk-map {
+    width: 170px;
+    height: 96px;
+  }
+  .attention-panel .risk-mini-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 10px;
+    align-content: start;
+  }
+  .attention-panel .risk-mini-row {
+    padding: 2px 0;
+  }
+  .attention-panel .risk-mini-type {
+    display: none;
+  }
+  .attention-panel .top-risk-panel > .risk-type-legend {
+    display: none;
+  }
+  .exec-risk-layout {
+    display: grid;
+    grid-template-columns: 156px 1fr;
+    gap: 10px;
+    min-height: 0;
+    align-items: start;
+  }
+  .exec-risk-map {
+    width: 156px;
+    height: 136px;
+    border: 1px solid var(--hairline-soft);
+    border-radius: 5px;
+    background: #fff;
+  }
+  .risk-type-legend {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    font-size: 9px; color: var(--muted); font-weight: 600;
+  }
+  .risk-type-legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .type-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .type-dot.fin { background: #5B4BB2; }
+  .type-dot.nonfin { background: #0076A8; }
+  .risk-mini-list { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .risk-mini-row {
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    gap: 6px;
+    align-items: center;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--hairline-soft);
+    min-width: 0;
+  }
+  .risk-mini-row:last-child { border-bottom: 0; }
+  .risk-rank {
+    width: 16px; height: 16px; border-radius: 50%;
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 8.5px; font-weight: 700;
+  }
+  .risk-rank.fin { background: #5B4BB2; }
+  .risk-rank.nonfin { background: #0076A8; }
+  .risk-mini-name {
+    font-size: 9.2px; font-weight: 700; color: var(--ink); line-height: 1.15;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .risk-mini-type {
+    display: block;
+    font-size: 8.2px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .risk-mini-rag {
+    border-radius: 3px;
+    padding: 2px 5px;
+    background: var(--red-bg);
+    color: var(--red);
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .right-col .top-risk-panel {
+    padding: 12px 14px;
+  }
+  .right-col .top-risk-panel > .risk-type-legend {
+    display: none;
+  }
+  .right-col .exec-risk-layout {
+    grid-template-columns: 270px 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .right-col .exec-risk-map {
+    width: 270px;
+    height: 236px;
+  }
+  .right-col .risk-mini-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .right-col .risk-mini-row {
+    grid-template-columns: 20px 1fr auto;
+    padding: 5px 0;
+  }
+  .right-col .risk-rank {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+  .right-col .risk-mini-name {
+    font-size: 10.5px;
+  }
+  .right-col .risk-mini-type {
+    font-size: 8.8px;
+  }
+  .control-snapshot {
+    padding: 12px 14px;
+  }
+  .control-summary-card {
+    padding: 9px 10px 10px;
+  }
+  .control-card-score {
+    font-size: 12px;
+    color: var(--red);
+  }
+  .control-mix {
+    height: 15px;
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #d6dfeb;
+    border-radius: 4px;
+    background: #e4ebf4;
+    margin: 7px 0 6px;
+  }
+  .mix-seg { height: 100%; }
+  .mix-seg.effective { background: var(--green); }
+  .mix-seg.partial { background: #DE4721; }
+  .mix-seg.ineffective { background: #7A003C; }
+  .control-legend-mini {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
+    font-size: 8.5px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .control-legend-mini span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+  }
+  .leg-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+  .leg-dot.effective { background: var(--green); }
+  .leg-dot.partial { background: #DE4721; }
+  .leg-dot.ineffective { background: #7A003C; }
+  .tested-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 9px;
+    font-size: 9px;
+    color: var(--ink-2);
+    font-weight: 600;
+  }
+  .tested-row b {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .tested-note {
+    color: var(--muted);
+    font-size: 8.5px;
+    white-space: nowrap;
+  }
+  .tested-track {
+    height: 7px;
+    margin-top: 4px;
+    background: #e4ebf4;
+    border: 1px solid #d6dfeb;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .tested-fill {
+    height: 100%;
+    background: var(--sl-vibrant-blue);
+    border-radius: inherit;
   }
 
   /* Decisions preview - intentionally muted so P6 feels necessary */
@@ -745,7 +1070,7 @@
 <body>
 
 <div class=&quot;caption-bar&quot;>
-  <div><span class=&quot;label&quot;>Exec Pack Mockup</span> &amp;nbsp;·&amp;nbsp; Page 1 of 8 &amp;nbsp;·&amp;nbsp; 1280 × 720 (16:9) &amp;nbsp;·&amp;nbsp; Fixed canvas, no scroll</div>
+  <div><span class=&quot;label&quot;>Exec Pack Mockup</span> &amp;nbsp;·&amp;nbsp; Page 1 of 13 &amp;nbsp;·&amp;nbsp; 1280 × 720 (16:9) &amp;nbsp;·&amp;nbsp; Fixed canvas, no scroll</div>
   <div>Cross-theme synthesis · Curated commentary only · Q1 2026</div>
 </div>
 
@@ -785,7 +1110,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P1 / 12</div>
+      <div class=&quot;page-marker&quot;>P1 / 13</div>
     </div>
   </header>
 
@@ -795,216 +1120,191 @@
     <!-- ===== KPI STRIP ===== -->
     <div class=&quot;kpi-strip&quot;>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Overall Risk Posture</div>
-        <div class=&quot;kpi-value&quot;>Amber</div>
-        <div class=&quot;kpi-delta down&quot;>▼ was Green</div>
+        <div class=&quot;kpi-label&quot;>Red / Amber Appetite</div>
+        <div class=&quot;kpi-value&quot;>18%</div>
+        <div class=&quot;kpi-delta down&quot;>2 / 11 metrics</div>
+      </div>
+      <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>RCSA Red L2 Risks</div>
+        <div class=&quot;kpi-value&quot;>13</div>
+        <div class=&quot;kpi-delta down&quot;>5 financial &middot; 8 non-fin</div>
+      </div>
+      <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>Overdue Assessments</div>
+        <div class=&quot;kpi-value&quot;>4</div>
+        <div class=&quot;kpi-delta down&quot;>2 financial &middot; 2 non-fin</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Appetite — Within Tolerance</div>
-        <div class=&quot;kpi-value&quot;>9 / 11</div>
-        <div class=&quot;kpi-delta down&quot;>▼ 2 vs Q4</div>
-      </div>
-      <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Loss YTD vs £25m Trigger</div>
+        <div class=&quot;kpi-label&quot;>Loss YTD vs &pound;25m Trigger</div>
         <div class=&quot;kpi-value&quot;>67%</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 25pp vs Q4</div>
+        <div class=&quot;kpi-delta down&quot;>&pound;16.8m YTD</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Material Controls Ineffective</div>
-        <div class=&quot;kpi-value&quot;>4 / 45</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
+        <div class=&quot;kpi-value&quot;>9%</div>
+        <div class=&quot;kpi-delta down&quot;>4 / 45 controls</div>
       </div>
     </div>
 
-    <!-- ===== CRO SUMMARY ===== -->
-    <div class=&quot;cro-hero&quot;>
-      <div class=&quot;cro-hero-main&quot;>
-        <div class=&quot;cro-topline&quot;>
-          <span class=&quot;cro-tag&quot;>Top item 1</span>
-          <span class=&quot;cro-name&quot;>Sarah Chen</span>
-          <span class=&quot;cro-role&quot;>Chief Risk Officer</span>
-        </div>
-        <p class=&quot;cro-text&quot;>
-          Overall posture moved from green to amber. Driven by <b>Cyber &amp;amp; IT breaching Red appetite</b>, control environment deterioration in Wealth Mgmt cyber and Commercial Banking compliance, and <b>operational losses now at 67% of the £25m trigger</b>. Three items warrant explicit Board challenge today.
-        </p>
-      </div>
-      <div class=&quot;cro-date&quot;>31 Mar 2026</div>
-    </div>
-
-    <!-- ===== LEFT: TOP 3 BOARD ATTENTION ITEMS ===== -->
-    <section class=&quot;attention-panel&quot;>
-      <div class=&quot;panel-head&quot;>
-        <div class=&quot;panel-title&quot;>Top 3 Board Attention Items</div>
-        <div class=&quot;panel-sub&quot;>Ranked by severity × velocity × cross-theme impact</div>
+    <!-- ===== LEFT: TOP 3 ASSIGNED COMMENTARY ===== -->
+    <section class=&quot;attention-panel top3-commentary&quot;>
+      <div class=&quot;commentary-head&quot;>
+        <div class=&quot;title&quot;>Top 3 assigned commentary</div>
+        <div class=&quot;curated&quot;>Assigned</div>
       </div>
 
-      <div class=&quot;attention-list&quot;>
+      <div class=&quot;exec-commentary-list&quot;>
 
-        <!-- #1 -->
-        <div class=&quot;attention-item sev-red&quot;>
-          <div class=&quot;att-rank&quot;>1</div>
-          <div class=&quot;att-body&quot;>
-            <div class=&quot;att-top&quot;>
-              <span class=&quot;att-theme t-appetite&quot;>Appetite</span>
-              <span class=&quot;att-theme t-controls&quot;>Controls</span>
-              <span class=&quot;att-title&quot;>Cyber &amp;amp; IT — Red appetite breach, RCSA Red position</span>
-            </div>
-            <p class=&quot;att-why&quot;>
-              <b>Newly triggered Red</b> on appetite (6 P1 incidents vs 5 trigger). Worst RCSA position is Red. 2 material controls ineffective. <b>£2.4m SOC business case awaiting decision</b>.
-            </p>
-            <div class=&quot;att-meta&quot;>
-              <span>CISO / Head of IT Risk</span>
-            </div>
+        <div class=&quot;comm-card item-1&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 1 &middot; Cyber &amp;amp; IT Risk</div>
+            <span class=&quot;comm-badge breached&quot;>Breach</span>
           </div>
-          <div class=&quot;att-ask&quot;>
-            <span class=&quot;ask-pill challenge&quot;>Challenge</span>
-            <span class=&quot;ask-refs&quot;>P3 · P4 · P6 · P8</span>
-          </div>
+          <div class=&quot;comm-owner&quot;>CISO / Head of IT Risk &middot; 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            Appetite is red after <b>six P1 incidents</b> against a trigger of five. Non-financial RCSA also shows Cyber &amp;amp; IT as a final red L2 after expert overlay; commentary should explain the L3 drivers, business-function ownership and SOC decision path.
+          </p>
         </div>
 
-        <!-- #2 -->
-        <div class=&quot;attention-item sev-red&quot;>
-          <div class=&quot;att-rank&quot;>2</div>
-          <div class=&quot;att-body&quot;>
-            <div class=&quot;att-top&quot;>
-              <span class=&quot;att-theme t-losses&quot;>Losses</span>
-              <span class=&quot;att-theme t-appetite&quot;>Appetite</span>
-              <span class=&quot;att-title&quot;>Operational losses YTD — £16.8m, 67% of £25m trigger</span>
-            </div>
-            <p class=&quot;att-why&quot;>
-              Year-end forecast <b>£67.2m breaches £40m hard appetite</b> if run-rate persists. £8.2m headroom to trigger. Largest single loss £3.2m (Operational Resilience).
-            </p>
-            <div class=&quot;att-meta&quot;>
-              <span>COO / Head of Ops Risk</span>
-            </div>
+        <div class=&quot;comm-card item-2&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 2 &middot; RCSA red L2 concentration</div>
+            <span class=&quot;comm-badge worsened&quot;>Worsened</span>
           </div>
-          <div class=&quot;att-ask&quot;>
-            <span class=&quot;ask-pill challenge&quot;>Challenge</span>
-            <span class=&quot;ask-refs&quot;>P5 · P8</span>
-          </div>
+          <div class=&quot;comm-owner&quot;>Risk Gatekeeper / L2 owners &middot; 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            The expanded RCSA view now shows <b>13 red L2 risks</b> across financial and non-financial risk. Worst L3 position drives the L2 RAG, with expert overlay only applied at L2; assigned owners should confirm cause, overlay rationale and action plan dates.
+          </p>
         </div>
 
-        <!-- #3 -->
-        <div class=&quot;attention-item sev-amber&quot;>
-          <div class=&quot;att-rank&quot;>3</div>
-          <div class=&quot;att-body&quot;>
-            <div class=&quot;att-top&quot;>
-              <span class=&quot;att-theme t-emerging&quot;>Emerging</span>
-              <span class=&quot;att-theme t-controls&quot;>Controls</span>
-              <span class=&quot;att-title&quot;>AI / GenAI model risk — Board watch, fast velocity</span>
-            </div>
-            <p class=&quot;att-why&quot;>
-              Adoption <b>outpacing governance, data leakage controls, and outcome testing</b>. Customer-facing use cases live without approved guardrails.
-            </p>
-            <div class=&quot;att-meta&quot;>
-              <span>CTO</span>
-            </div>
+        <div class=&quot;comm-card item-3&quot;>
+          <div class=&quot;comm-topline&quot;>
+            <div class=&quot;comm-risk&quot;>Item 3 &middot; Operational losses</div>
+            <span class=&quot;comm-badge warning&quot;>Warning</span>
           </div>
-          <div class=&quot;att-ask&quot;>
-            <span class=&quot;ask-pill approve&quot;>Approve</span>
-            <span class=&quot;ask-refs&quot;>P7 · P8</span>
-          </div>
+          <div class=&quot;comm-owner&quot;>COO / Head of Ops Risk &middot; 31 Mar 2026</div>
+          <p class=&quot;comm-body&quot;>
+            Losses are <b>&pound;16.8m YTD</b>, 67% of the &pound;25m trigger, with the simple run-rate forecast above hard appetite. Commentary should identify controllable drivers, near-miss read-across and Q2 mitigation confidence.
+          </p>
         </div>
 
       </div>
+
 
     </section>
 
     <!-- ===== RIGHT COLUMN ===== -->
     <aside class=&quot;right-col&quot;>
 
-      <!-- Cross-theme posture -->
-      <div class=&quot;posture-panel&quot;>
+      <div class=&quot;top-risk-panel&quot;>
         <div class=&quot;panel-head&quot; style=&quot;border-bottom: 1px solid var(--hairline-soft); padding-bottom: 6px;&quot;>
-          <div class=&quot;panel-title&quot;>Posture by Theme</div>
-          <div class=&quot;panel-sub&quot;>Q4 → Q1</div>
+          <div class=&quot;panel-title&quot;>Top 5 RCSA Risks</div>
+          <div class=&quot;risk-type-legend&quot;>
+            <span><i class=&quot;type-dot fin&quot;></i>Financial</span>
+            <span><i class=&quot;type-dot nonfin&quot;></i>Non-fin</span>
+          </div>
         </div>
-        <div class=&quot;posture-grid&quot;>
-          <div class=&quot;posture-cell p-amber&quot;>
-            <div class=&quot;posture-label&quot;>Risk Appetite</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot amber&quot;></div>
-              <div class=&quot;posture-word&quot;>Amber</div>
-            </div>
+        <div class=&quot;exec-risk-layout&quot;>
+          <svg class=&quot;exec-risk-map&quot; viewBox=&quot;0 0 156 136&quot; role=&quot;img&quot; aria-label=&quot;Top five risks heatmap&quot;>
+            <defs>
+              <pattern id=&quot;exec-green-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#e6f5f1&quot;/><circle cx=&quot;2&quot; cy=&quot;2&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.28&quot;/><circle cx=&quot;6&quot; cy=&quot;6&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.22&quot;/>
+              </pattern>
+              <pattern id=&quot;exec-amber-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fff4d1&quot;/><path d=&quot;M-2,8 L8,-2 M2,10 L10,2&quot; stroke=&quot;#8f6200&quot; stroke-width=&quot;0.7&quot; opacity=&quot;0.25&quot;/>
+              </pattern>
+              <pattern id=&quot;exec-red-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
+                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fde2e4&quot;/><path d=&quot;M0,0 L8,8 M8,0 L0,8&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.25&quot;/>
+              </pattern>
+            </defs>
+            <text x=&quot;90&quot; y=&quot;130&quot; text-anchor=&quot;middle&quot; font-size=&quot;6.2&quot; fill=&quot;#51637f&quot; font-weight=&quot;700&quot;>Likelihood</text>
+            <text x=&quot;7&quot; y=&quot;64&quot; text-anchor=&quot;middle&quot; font-size=&quot;6.2&quot; fill=&quot;#51637f&quot; font-weight=&quot;700&quot; transform=&quot;rotate(-90 7 64)&quot;>Impact</text>
+            <text x=&quot;22&quot; y=&quot;102&quot; font-size=&quot;5.8&quot; fill=&quot;#6b7890&quot;>V Low</text>
+            <text x=&quot;22&quot; y=&quot;82&quot; font-size=&quot;5.8&quot; fill=&quot;#6b7890&quot;>Low</text>
+            <text x=&quot;22&quot; y=&quot;62&quot; font-size=&quot;5.8&quot; fill=&quot;#6b7890&quot;>Med</text>
+            <text x=&quot;22&quot; y=&quot;42&quot; font-size=&quot;5.8&quot; fill=&quot;#6b7890&quot;>High</text>
+            <text x=&quot;22&quot; y=&quot;22&quot; font-size=&quot;5.8&quot; fill=&quot;#6b7890&quot;>Ext</text>
+            <g transform=&quot;translate(38 8)&quot; stroke=&quot;#d5ddea&quot; stroke-width=&quot;0.8&quot;>
+              <rect x=&quot;0&quot; y=&quot;80&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-green-zone)&quot;/><rect x=&quot;20&quot; y=&quot;80&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-green-zone)&quot;/><rect x=&quot;40&quot; y=&quot;80&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;60&quot; y=&quot;80&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;80&quot; y=&quot;80&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/>
+              <rect x=&quot;0&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-green-zone)&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-green-zone)&quot;/><rect x=&quot;40&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;60&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;80&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/>
+              <rect x=&quot;0&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-green-zone)&quot;/><rect x=&quot;20&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;40&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;60&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;80&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/>
+              <rect x=&quot;0&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;20&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;40&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;60&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/><rect x=&quot;80&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/>
+              <rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;20&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-amber-zone)&quot;/><rect x=&quot;40&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/><rect x=&quot;60&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/><rect x=&quot;80&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;url(#exec-red-zone)&quot;/>
+            </g>
+            <g font-size=&quot;5.6&quot; fill=&quot;#6b7890&quot; text-anchor=&quot;middle&quot;>
+              <text x=&quot;48&quot; y=&quot;115&quot;>V Low</text><text x=&quot;68&quot; y=&quot;115&quot;>Low</text><text x=&quot;88&quot; y=&quot;115&quot;>Med</text><text x=&quot;108&quot; y=&quot;115&quot;>High</text><text x=&quot;128&quot; y=&quot;115&quot;>Ext</text>
+            </g>
+            <g font-size=&quot;7.2&quot; font-weight=&quot;700&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; fill=&quot;#fff&quot; stroke=&quot;#fff&quot; stroke-width=&quot;0.4&quot; paint-order=&quot;stroke&quot;>
+              <circle cx=&quot;132&quot; cy=&quot;34&quot; r=&quot;7.2&quot; fill=&quot;#0076A8&quot;/><text x=&quot;132&quot; y=&quot;34&quot;>1</text>
+              <circle cx=&quot;123&quot; cy=&quot;22&quot; r=&quot;7.2&quot; fill=&quot;#5B4BB2&quot;/><text x=&quot;123&quot; y=&quot;22&quot;>2</text>
+              <circle cx=&quot;108&quot; cy=&quot;34&quot; r=&quot;7.2&quot; fill=&quot;#0076A8&quot;/><text x=&quot;108&quot; y=&quot;34&quot;>3</text>
+              <circle cx=&quot;103&quot; cy=&quot;45&quot; r=&quot;7.2&quot; fill=&quot;#5B4BB2&quot;/><text x=&quot;103&quot; y=&quot;45&quot;>4</text>
+              <circle cx=&quot;115&quot; cy=&quot;57&quot; r=&quot;7.2&quot; fill=&quot;#0076A8&quot;/><text x=&quot;115&quot; y=&quot;57&quot;>5</text>
+            </g>
+          </svg>
+          <div class=&quot;risk-mini-list&quot;>
+            <div class=&quot;risk-mini-row&quot;><div class=&quot;risk-rank nonfin&quot;>1</div><div><div class=&quot;risk-mini-name&quot;>Info Sec &amp;amp; Cyber</div><span class=&quot;risk-mini-type&quot;>Non-financial</span></div><span class=&quot;risk-mini-rag&quot;>Red</span></div>
+            <div class=&quot;risk-mini-row&quot;><div class=&quot;risk-rank fin&quot;>2</div><div><div class=&quot;risk-mini-name&quot;>Spread</div><span class=&quot;risk-mini-type&quot;>Financial</span></div><span class=&quot;risk-mini-rag&quot;>Red</span></div>
+            <div class=&quot;risk-mini-row&quot;><div class=&quot;risk-rank nonfin&quot;>3</div><div><div class=&quot;risk-mini-name&quot;>Operational Resilience</div><span class=&quot;risk-mini-type&quot;>Non-financial</span></div><span class=&quot;risk-mini-rag&quot;>Red</span></div>
+            <div class=&quot;risk-mini-row&quot;><div class=&quot;risk-rank fin&quot;>4</div><div><div class=&quot;risk-mini-name&quot;>Investment Cpty</div><span class=&quot;risk-mini-type&quot;>Financial</span></div><span class=&quot;risk-mini-rag&quot;>Red</span></div>
+            <div class=&quot;risk-mini-row&quot;><div class=&quot;risk-rank nonfin&quot;>5</div><div><div class=&quot;risk-mini-name&quot;>Regulatory Compliance</div><span class=&quot;risk-mini-type&quot;>Non-financial</span></div><span class=&quot;risk-mini-rag&quot;>Red</span></div>
           </div>
-          <div class=&quot;posture-cell p-amber&quot;>
-            <div class=&quot;posture-label&quot;>RCSA</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot amber&quot;></div>
-              <div class=&quot;posture-word&quot;>Amber</div>
-            </div>
-          </div>
-          <div class=&quot;posture-cell p-red&quot;>
-            <div class=&quot;posture-label&quot;>Controls</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot red&quot;></div>
-              <div class=&quot;posture-word&quot;>Red</div>
-            </div>
-          </div>
-          <div class=&quot;posture-cell p-amber&quot;>
-            <div class=&quot;posture-label&quot;>Losses</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot amber&quot;></div>
-              <div class=&quot;posture-word&quot;>Amber</div>
-            </div>
-          </div>
-          <div class=&quot;posture-cell p-amber&quot;>
-            <div class=&quot;posture-label&quot;>Incidents</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot amber&quot;></div>
-              <div class=&quot;posture-word&quot;>Amber</div>
-            </div>
-          </div>
-          <div class=&quot;posture-cell p-green&quot;>
-            <div class=&quot;posture-label&quot;>Emerging</div>
-            <div class=&quot;posture-status&quot;>
-              <div class=&quot;posture-dot green&quot;></div>
-              <div class=&quot;posture-word&quot;>Green</div>
-            </div>
-          </div>
+        </div>
+        <div class=&quot;risk-type-legend&quot;>
+          <span><i class=&quot;type-dot fin&quot;></i>Financial</span>
+          <span><i class=&quot;type-dot nonfin&quot;></i>Non-financial</span>
         </div>
       </div>
 
-      <!-- Decisions preview -->
-      <div class=&quot;decisions-panel&quot;>
-        <div class=&quot;decisions-head&quot; style=&quot;border-bottom: 1px solid var(--hairline-soft);&quot;>
-          <div class=&quot;panel-title&quot;>Decisions This Meeting</div>
-          <div class=&quot;panel-sub&quot;>Full detail → P8</div>
+      <div class=&quot;control-snapshot&quot;>
+        <div class=&quot;panel-head&quot; style=&quot;border-bottom: 1px solid var(--hairline-soft); padding-bottom: 6px;&quot;>
+          <div class=&quot;panel-title&quot;>Control Snapshot</div>
+          <div class=&quot;panel-sub&quot;>Material + key</div>
         </div>
-
-        <div class=&quot;dec-counts&quot;>
-          <div class=&quot;dec-count-cell&quot;>
-            <div class=&quot;dec-count-num&quot;>1</div>
-            <div class=&quot;dec-count-label&quot;>Approve</div>
+        <div class=&quot;control-snapshot-grid&quot;>
+          <div class=&quot;control-summary-card material&quot;>
+            <div class=&quot;control-card-top&quot;>
+              <div class=&quot;control-card-label&quot;>Material controls</div>
+              <div class=&quot;control-card-score&quot;>9% ineffective</div>
+            </div>
+            <div class=&quot;control-mix&quot; aria-label=&quot;Material controls status mix&quot;>
+              <div class=&quot;mix-seg effective&quot; style=&quot;width:71%;&quot;></div>
+              <div class=&quot;mix-seg partial&quot; style=&quot;width:20%;&quot;></div>
+              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:9%;&quot;></div>
+            </div>
+            <div class=&quot;control-legend-mini&quot;>
+              <span><i class=&quot;leg-dot effective&quot;></i>71% effective</span>
+              <span><i class=&quot;leg-dot partial&quot;></i>20% partial</span>
+              <span><i class=&quot;leg-dot ineffective&quot;></i>9% ineffective</span>
+            </div>
+            <div class=&quot;tested-row&quot;>
+              <div><b>47%</b> tests complete</div>
+              <div class=&quot;tested-note&quot;>21 / 45 scheduled</div>
+            </div>
+            <div class=&quot;tested-track&quot;><div class=&quot;tested-fill&quot; style=&quot;width:47%;&quot;></div></div>
           </div>
-          <div class=&quot;dec-count-cell&quot;>
-            <div class=&quot;dec-count-num&quot;>3</div>
-            <div class=&quot;dec-count-label&quot;>Challenge</div>
-          </div>
-          <div class=&quot;dec-count-cell&quot;>
-            <div class=&quot;dec-count-num&quot;>4</div>
-            <div class=&quot;dec-count-label&quot;>Note</div>
-          </div>
-          <div class=&quot;dec-count-cell&quot;>
-            <div class=&quot;dec-count-num&quot;>2</div>
-            <div class=&quot;dec-count-label&quot;>Follow-up</div>
+          <div class=&quot;control-summary-card key&quot;>
+            <div class=&quot;control-card-top&quot;>
+              <div class=&quot;control-card-label&quot;>Key controls</div>
+              <div class=&quot;control-card-score&quot;>1% ineffective</div>
+            </div>
+            <div class=&quot;control-mix&quot; aria-label=&quot;Key controls status mix&quot;>
+              <div class=&quot;mix-seg effective&quot; style=&quot;width:80%;&quot;></div>
+              <div class=&quot;mix-seg partial&quot; style=&quot;width:19%;&quot;></div>
+              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:1%;&quot;></div>
+            </div>
+            <div class=&quot;control-legend-mini&quot;>
+              <span><i class=&quot;leg-dot effective&quot;></i>80% effective</span>
+              <span><i class=&quot;leg-dot partial&quot;></i>19% partial</span>
+              <span><i class=&quot;leg-dot ineffective&quot;></i>1% ineffective</span>
+            </div>
+            <div class=&quot;tested-row&quot;>
+              <div><b>33%</b> tests complete</div>
+              <div class=&quot;tested-note&quot;>27 / 81 scheduled</div>
+            </div>
+            <div class=&quot;tested-track&quot;><div class=&quot;tested-fill&quot; style=&quot;width:33%;&quot;></div></div>
           </div>
         </div>
-
-        <div class=&quot;dec-list&quot;>
-          <div class=&quot;dec-item&quot;>
-            <div class=&quot;dec-num&quot;>D1</div>
-            <div class=&quot;dec-text&quot;><b>Approve</b> £2.4m SOC business case &amp;amp; AI governance framework</div>
-            <span class=&quot;ask-pill approve&quot;>Approve</span>
-          </div>
-          <div class=&quot;dec-item&quot;>
-            <div class=&quot;dec-num&quot;>D2</div>
-            <div class=&quot;dec-text&quot;><b>Challenge</b> Cyber Red appetite breach &amp;amp; Compliance RCSA 3-month delay</div>
-            <span class=&quot;ask-pill challenge&quot;>Challenge</span>
-          </div>
-        </div>
-
-        <div class=&quot;dec-footer&quot;>+ 8 further items · see P8 for full register</div>
       </div>
 
     </aside>
@@ -1024,15 +1324,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
     </div>
     <div class=&quot;right&quot;>
       <div>Source: Decision Focus + PowerApp</div>
@@ -1044,7 +1346,7 @@
 </div>
 
 <div class=&quot;caption-bar&quot; style=&quot;color:var(--muted-2); font-size:11px;&quot;>
-  <div>No filters visible · Curated commentary only · All numbers reconcile to analytical CRR via shared semantic model</div>
+  <div>Executive summary &middot; assigned commentary &middot; cross-RCSA heatmap and controls snapshot</div>
   <div>Typography: Aptos / Segoe UI (static app) - system fonts</div>
 </div>
 
@@ -1666,7 +1968,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P2 / 12</div>
+      <div class=&quot;page-marker&quot;>P2 / 13</div>
     </div>
   </header>
 
@@ -2028,7 +2330,7 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p3" class="inactive slide-frame" data-key="p3" srcdoc="<!doctype html>
+        <iframe id="frame-p3" class="inactive slide-frame" data-key="p3" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
 <head>
 <meta charset=&quot;utf-8&quot;/>
@@ -2150,7 +2452,7 @@
   /* KPI strip */
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: var(--sl-white); border: 1px solid var(--hairline);
@@ -2181,7 +2483,7 @@
     background: var(--sl-white); border: 1px solid var(--hairline); border-radius: 8px;
     padding: 10px 12px 8px;
     display: grid;
-    grid-template-columns: minmax(720px, 1fr) 390px;
+    grid-template-columns: minmax(820px, 1fr) 350px;
     grid-template-rows: auto minmax(0, 1fr);
     gap: 9px 14px;
     min-height: 0;
@@ -2216,8 +2518,9 @@
   .reg-head,
   .reg-row {
     display: grid;
-    grid-template-columns: 20px 68px minmax(112px, 1fr) 36px 36px 52px 42px 42px 54px minmax(132px, 1.1fr) 42px;
-    gap: 3px;
+    grid-template-columns: 20px 66px minmax(150px, 1.1fr) 42px 42px 60px 48px 40px 58px minmax(160px, 1fr) 42px;
+    column-gap: 5px;
+    row-gap: 0;
     align-items: center;
   }
   .reg-head {
@@ -2709,7 +3012,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P3 / 12</div>
+      <div class=&quot;page-marker&quot;>P3 / 13</div>
     </div>
   </header>
 
@@ -2721,7 +3024,6 @@
       <div class='kpi'>
         <div class='kpi-label'>Financial L2 Risks</div>
         <div class='kpi-value'>16</div>
-        <div class='kpi-delta flat'>Liquidity, Market, Credit, Insurance</div>
       </div>
       <div class='kpi kpi-red'>
         <div class='kpi-label'>Red</div>
@@ -2733,20 +3035,13 @@
         <div class='kpi-value'>6</div>
         <div class='kpi-delta down'>&#9650; 2 vs Q4</div>
       </div>
-      <div class='kpi kpi-green'>
-        <div class='kpi-label'>Green Hidden</div>
-        <div class='kpi-value'>5</div>
-        <div class='kpi-delta flat'>Toggle available</div>
-      </div>
       <div class='kpi kpi-amber'>
         <div class='kpi-label'>Expert Overlays</div>
         <div class='kpi-value'>2</div>
-        <div class='kpi-delta down'>Both +1 severity</div>
       </div>
       <div class='kpi kpi-red'>
         <div class='kpi-label'>Assessments Overdue</div>
         <div class='kpi-value'>2</div>
-        <div class='kpi-delta down'>Funding and Expense</div>
       </div>
     </div>
     <!-- HERO -->
@@ -2969,15 +3264,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Prior view → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -3114,7 +3411,7 @@
   /* KPI strip */
   .kpi-strip {
     grid-column: 1 / -1; grid-row: 1;
-    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
   }
   .kpi {
     background: var(--sl-white); border: 1px solid var(--hairline);
@@ -3145,7 +3442,7 @@
     background: var(--sl-white); border: 1px solid var(--hairline); border-radius: 8px;
     padding: 10px 12px 8px;
     display: grid;
-    grid-template-columns: minmax(720px, 1fr) 390px;
+    grid-template-columns: minmax(820px, 1fr) 350px;
     grid-template-rows: auto minmax(0, 1fr);
     gap: 9px 14px;
     min-height: 0;
@@ -3180,8 +3477,9 @@
   .reg-head,
   .reg-row {
     display: grid;
-    grid-template-columns: 20px 68px minmax(112px, 1fr) 36px 36px 52px 42px 42px 54px minmax(132px, 1.1fr) 42px;
-    gap: 3px;
+    grid-template-columns: 20px 66px minmax(150px, 1.1fr) 42px 42px 60px 48px 40px 58px minmax(160px, 1fr) 42px;
+    column-gap: 5px;
+    row-gap: 0;
     align-items: center;
   }
   .reg-head {
@@ -3251,8 +3549,9 @@
   /* Non-financial page carries more visible exceptions, so keep the register compact. */
   .reg-head,
   .reg-row {
-    grid-template-columns: 18px 62px minmax(116px, 1fr) 34px 34px 48px 38px 32px 50px minmax(130px, 1.05fr) 38px;
-    gap: 2px;
+    grid-template-columns: 20px 70px minmax(140px, 1.1fr) 42px 42px 58px 48px 38px 58px minmax(160px, 1.05fr) 42px;
+    column-gap: 5px;
+    row-gap: 0;
   }
   .reg-row { padding: 2px 0; font-size: 8.5px; }
   .reg-name { font-size: 9px; }
@@ -3733,7 +4032,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P5 / 12</div>
+      <div class=&quot;page-marker&quot;>P5 / 13</div>
     </div>
   </header>
 
@@ -3745,7 +4044,6 @@
       <div class='kpi'>
         <div class='kpi-label'>Non-Financial L2 Risks</div>
         <div class='kpi-value'>26</div>
-        <div class='kpi-delta flat'>Strategic, Climate, Customer, Operational</div>
       </div>
       <div class='kpi kpi-red'>
         <div class='kpi-label'>Red</div>
@@ -3757,20 +4055,13 @@
         <div class='kpi-value'>8</div>
         <div class='kpi-delta down'>&#9650; 3 vs Q4</div>
       </div>
-      <div class='kpi kpi-green'>
-        <div class='kpi-label'>Green Hidden</div>
-        <div class='kpi-value'>10</div>
-        <div class='kpi-delta flat'>Toggle available</div>
-      </div>
       <div class='kpi kpi-amber'>
         <div class='kpi-label'>Expert Overlays</div>
         <div class='kpi-value'>2</div>
-        <div class='kpi-delta down'>Both +1 severity</div>
       </div>
       <div class='kpi kpi-red'>
         <div class='kpi-label'>Assessments Overdue</div>
         <div class='kpi-value'>2</div>
-        <div class='kpi-delta down'>Operational Resilience and Technology</div>
       </div>
     </div>
     <!-- HERO -->
@@ -4072,15 +4363,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item current&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Prior view → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -4099,48 +4392,47 @@
 <html lang=&quot;en&quot;>
 <head><meta charset=&quot;utf-8&quot; /><style>
   :root{--blue:#002b7f;--navy:#092b66;--ink:#00265f;--muted:#50627f;--line:#d8e0ec;--panel:#f8fbff;--red:#c73d4a;--red-bg:#fbe3e4;--amber:#e24b20;--amber-bg:#fff1c2;--green:#007a68;--green-bg:#dff2ee;--teal:#00a887;--gold:#ffb600;--lav:#4d5bd5;--violet:#6e4db7}
-  *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:Aptos,&quot;Segoe UI&quot;,Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;background:#fff;position:relative;overflow:hidden}.brand{height:24px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;font-weight:700}.brand .logo:after{content:&quot;&quot;;display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.brand .doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.section{height:54px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 24px;border-bottom:3px solid var(--gold)}.section h1{font-size:24px;margin:0 18px 0 0;letter-spacing:-.01em;font-weight:700}.section .sub{font-size:12px;opacity:.9}.section .page-marker{margin-left:auto;font-size:16px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.crumbs{position:absolute;right:104px;top:98px;display:flex;gap:7px}.crumb{width:16px;height:3px;border-radius:99px;background:rgba(255,255,255,.28)}.crumb.active{background:var(--gold)}.body{padding:14px 24px 0;height:587px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:8px}.kpi{min-height:68px;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:var(--teal)}.kpi .label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:24px;font-weight:600;margin-top:4px}.delta{height:17px;margin-top:4px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center;gap:5px}.delta.up{background:#ffeef0;border-color:#f09ca5;color:#b01e2d}.delta.down{background:#dff3ee;border-color:#95d5c8;color:#006b5d}.main{display:grid;grid-template-columns:1fr 332px;gap:12px;height:493px}.panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title{font-weight:700;font-size:14px}.panel-sub{font-size:9px;color:var(--muted);margin-top:2px}.legend{display:flex;gap:9px;align-items:center;font-size:9px;color:#3f5270;white-space:nowrap}.key{display:inline-flex;align-items:center;gap:4px}.sw{width:13px;height:9px;border-radius:2px;border:1px solid rgba(0,0,0,.08)}.sw.red,.rag.red,.matrix-cell.red,.seg.red{background-color:var(--red-bg);background-image:repeating-linear-gradient(45deg,rgba(199,61,74,.32) 0 2px,transparent 2px 5px)}.sw.amber,.rag.amber,.matrix-cell.amber,.seg.amber{background-color:var(--amber-bg);background-image:repeating-linear-gradient(135deg,rgba(226,75,32,.26) 0 2px,transparent 2px 6px)}.sw.green,.rag.green,.matrix-cell.green,.seg.green{background-color:var(--green-bg);background-image:radial-gradient(rgba(0,122,104,.28) 1px,transparent 1px);background-size:6px 6px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 10px 8px}.driver-table{width:100%;border-collapse:collapse;table-layout:fixed}.driver-table th{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #e8edf5;padding:5px 5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:4px 5px;vertical-align:middle}.num{width:18px;height:18px;border-radius:50%;background:#4d5bd5;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:9px}.risk{font-weight:700;font-size:10px}.owner{font-size:8px;color:#5c6d85;margin-top:1px}.driver{font-size:9px;font-weight:600;color:#113b7a}.rag{display:inline-flex;min-width:46px;height:18px;border-radius:4px;align-items:center;justify-content:center;font-size:8px;font-weight:800;text-transform:uppercase;border:1px solid transparent}.rag.red{color:#9d1827;border-color:#f0a3aa}.rag.amber{color:#c54a11;border-color:#f3c968}.rag.green{color:#006b5d;border-color:#95d5c8}.move,.action{display:inline-flex;min-width:46px;height:18px;align-items:center;justify-content:center;border-radius:4px;font-size:8px;font-weight:800;text-transform:uppercase}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{font-size:8px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64}.side{display:grid;grid-template-rows:142px 1fr;gap:10px}.side-card{border:1px solid var(--line);border-radius:7px;background:#fff;padding:10px 11px;min-height:0}.side-title{font-size:13px;font-weight:700;margin-bottom:2px}.side-sub{font-size:9px;color:#56657e;margin-bottom:8px}.bar-row{display:grid;grid-template-columns:76px 1fr 30px;align-items:center;gap:7px;margin-top:8px}.bar-label{font-size:10px;font-weight:700}.stack{height:16px;border-radius:4px;overflow:hidden;background:#e8edf5;display:flex;border:1px solid #cfd8e6}.seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#00265f}.seg.red{color:#9d1827}.seg.amber{color:#9a3d12}.seg.green{color:#006b5d}.bar-count{font-size:10px;font-weight:800;text-align:right}.matrix{width:100%;border-collapse:separate;border-spacing:0 6px}.matrix th{font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#72829c;text-align:center;font-weight:700}.matrix th:first-child{text-align:left}.matrix td{font-size:10px;padding:0 3px;text-align:center}.matrix .name{text-align:left;font-weight:700;color:#092b66;width:98px}.matrix-cell{height:24px;border-radius:4px;border:1px solid #d8e0ec;display:flex;align-items:center;justify-content:center;font-weight:800;min-width:38px}.matrix-cell.zero{background:#f3f6fa;color:#6a7890}.note{margin-top:8px;border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;padding:7px}.footer{position:absolute;bottom:0;left:0;right:0;height:30px;background:#092b66;color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}
+  *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:Aptos,&quot;Segoe UI&quot;,Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;background:#fff;position:relative;overflow:hidden}.brand{height:24px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;font-weight:700}.brand .logo:after{content:&quot;&quot;;display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.brand .doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.section{height:54px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 24px;border-bottom:3px solid var(--gold)}.section h1{font-size:24px;margin:0 18px 0 0;letter-spacing:-.01em;font-weight:700}.section .sub{font-size:12px;opacity:.9}.section .page-marker{margin-left:auto;font-size:16px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.crumbs{position:absolute;right:104px;top:98px;display:flex;gap:7px}.crumb{width:16px;height:3px;border-radius:99px;background:rgba(255,255,255,.28)}.crumb.active{background:var(--gold)}.body{padding:14px 24px 0;height:587px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:8px}.kpi{min-height:68px;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:var(--teal)}.kpi .label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:24px;font-weight:600;margin-top:4px}.delta{height:17px;margin-top:4px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center;gap:5px}.delta.up{background:#ffeef0;border-color:#f09ca5;color:#b01e2d}.delta.down{background:#dff3ee;border-color:#95d5c8;color:#006b5d}.main{display:grid;grid-template-columns:minmax(0,1fr) 336px;gap:12px;height:493px}.panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title{font-weight:700;font-size:14px}.panel-sub{font-size:9px;color:var(--muted);margin-top:2px}.legend{display:flex;gap:9px;align-items:center;font-size:9px;color:#3f5270;white-space:nowrap}.key{display:inline-flex;align-items:center;gap:4px}.sw{width:13px;height:9px;border-radius:2px;border:1px solid rgba(0,0,0,.08)}.sw.red,.matrix-cell.red,.seg.red{background-color:var(--red-bg);background-image:repeating-linear-gradient(45deg,rgba(199,61,74,.32) 0 2px,transparent 2px 5px)}.sw.amber,.matrix-cell.amber,.seg.amber{background-color:var(--amber-bg);background-image:repeating-linear-gradient(135deg,rgba(226,75,32,.26) 0 2px,transparent 2px 6px)}.sw.green,.matrix-cell.green,.seg.green{background-color:var(--green-bg);background-image:radial-gradient(rgba(0,122,104,.28) 1px,transparent 1px);background-size:6px 6px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 10px 8px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px 5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(n+4),.driver-table td:nth-child(n+4){text-align:center}.driver-table th:nth-child(2),.driver-table td:nth-child(2),.driver-table th:nth-child(3),.driver-table td:nth-child(3){padding-left:8px}.driver-table tbody tr:last-child td{border-bottom:0}.num{width:17px;height:17px;border-radius:50%;background:#4d5bd5;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.5px;font-weight:600;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rag{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1;background-image:none}.rag.red{color:#9d1827;background-color:var(--red-bg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background-color:var(--amber-bg);border-color:#f3c968}.rag.green{color:#006b5d;background-color:var(--green-bg);border-color:#95d5c8}.move,.action{display:inline-flex;width:45px;height:17px;align-items:center;justify-content:center;border-radius:4px;font-size:7.2px;font-weight:800;text-transform:uppercase;line-height:1}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.side{display:grid;grid-template-rows:164px 1fr;gap:8px}.side-card{border:1px solid var(--line);border-radius:7px;background:#fff;padding:9px 10px;min-height:0;overflow:hidden}.side-title{font-size:13px;font-weight:700;margin-bottom:2px}.side-sub{font-size:8.5px;color:#56657e;margin-bottom:6px}.bar-row{display:grid;grid-template-columns:70px minmax(0,1fr) 22px;align-items:center;gap:6px;margin-top:6px}.bar-label{font-size:9.5px;font-weight:700}.stack{height:14px;border-radius:4px;overflow:hidden;background:#e8edf5;display:flex;border:1px solid #cfd8e6;min-width:0}.seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#00265f}.seg.red{color:#9d1827}.seg.amber{color:#9a3d12}.seg.green{color:#006b5d}.bar-count{font-size:9px;font-weight:800;text-align:right}.matrix{width:100%;border-collapse:separate;border-spacing:0 5px;table-layout:auto}.matrix th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:center;font-weight:700}.matrix th:first-child{text-align:left}.matrix td{font-size:9px;padding:0 2px;text-align:center}.matrix .name{text-align:left;font-weight:700;color:#092b66;width:92px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.matrix-cell{height:21px;border-radius:4px;border:1px solid #d8e0ec;display:flex;align-items:center;justify-content:center;font-weight:800;min-width:32px}.matrix-cell.zero{background:#f3f6fa;color:#6a7890}.note{margin-top:6px;border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:8px;line-height:1.2;padding:6px}.footer{position:absolute;bottom:0;left:0;right:0;height:30px;background:#092b66;color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}
 </style></head>
 <body><div class=&quot;slide&quot;>
-  <div class=&quot;brand&quot;><div class=&quot;logo&quot;>Standard Life</div><div class=&quot;doc&quot;>Board Risk Reporting<br><strong>Consolidated Risk Report ? Q1 2026</strong></div></div>
-  <div class=&quot;section&quot;><h1>RCSA - Financial Risk Detail</h1><div class=&quot;sub&quot;>L3 drivers by business function, action status and last assessment date</div><div class=&quot;page-marker&quot;>P4 / 12</div></div>
-  <div class=&quot;crumbs&quot;><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb active&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span></div>
+  <div class=&quot;brand&quot;><div class=&quot;logo&quot;>Standard Life</div><div class=&quot;doc&quot;>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div>
+  <div class=&quot;section&quot;><h1>RCSA - Financial Risk Detail</h1><div class=&quot;sub&quot;>L3 drivers by business function, overall RAG, action status and last assessment date</div><div class=&quot;page-marker&quot;>P4 / 13</div></div>
+  <div class=&quot;crumbs&quot;><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb active&quot;></span><span class=&quot;crumb &quot;></span><span class=&quot;crumb &quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span></div>
   <main class=&quot;body&quot;>
     <section class=&quot;kpis&quot;>
-      <div class=&quot;kpi&quot;><div class=&quot;label&quot;>Financial L3 Drivers</div><div class=&quot;value&quot;>12</div><div class=&quot;delta&quot;>Shown by L2 priority</div></div>
-      <div class=&quot;kpi red&quot;><div class=&quot;label&quot;>Red L3 Drivers</div><div class=&quot;value&quot;>6</div><div class=&quot;delta up&quot;>More concentrated in P&amp;S / RS&amp;AM</div></div>
-      <div class=&quot;kpi amber&quot;><div class=&quot;label&quot;>Cross-Function Variance</div><div class=&quot;value&quot;>7</div><div class=&quot;delta up&quot;>Different RAG by function</div></div>
-      <div class=&quot;kpi green&quot;><div class=&quot;label&quot;>Action Plans Open</div><div class=&quot;value&quot;>5</div><div class=&quot;delta&quot;>2 overdue / draft</div></div>
+      <div class=&quot;kpi &quot;><div class=&quot;label&quot;>Financial L3 Drivers</div><div class=&quot;value&quot;>13</div><div class=&quot;delta &quot;>Red / amber L2s</div></div>
+      <div class=&quot;kpi red&quot;><div class=&quot;label&quot;>Overall Red L2</div><div class=&quot;value&quot;>5</div><div class=&quot;delta up&quot;>Final L2 view</div></div>
+      <div class=&quot;kpi amber&quot;><div class=&quot;label&quot;>Overall Amber L2</div><div class=&quot;value&quot;>6</div><div class=&quot;delta &quot;>Final L2 view</div></div>
+      <div class=&quot;kpi green&quot;><div class=&quot;label&quot;>Action Plans Open</div><div class=&quot;value&quot;>5</div><div class=&quot;delta &quot;>2 overdue / draft</div></div>
       <div class=&quot;kpi amber&quot;><div class=&quot;label&quot;>Oldest Last RCSA</div><div class=&quot;value&quot;>76d</div><div class=&quot;delta up&quot;>Funding review overdue</div></div>
     </section>
     <section class=&quot;main&quot;>
       <div class=&quot;panel&quot;>
-        <div class=&quot;panel-head&quot;><div><div class=&quot;panel-title&quot;>Financial L3 Risk Detail by Business Function</div><div class=&quot;panel-sub&quot;>One L2 can have multiple red L3 drivers; each driver is shown separately so the source function remains visible.</div></div><div class=&quot;filters&quot;><span class=&quot;pill&quot;>Financial</span><span class=&quot;pill red&quot;>Red</span><span class=&quot;pill amber&quot;>Amber</span><span class=&quot;pill&quot;>Action plan</span></div></div>
+        <div class=&quot;panel-head&quot;><div><div class=&quot;panel-title&quot;>Financial L3 Risk Detail by Business Function</div><div class=&quot;panel-sub&quot;>Overall RAG repeats the L2 final RAG from the summary tab; function columns show where the L3 issue is concentrated.</div></div><div class=&quot;filters&quot;><span class=&quot;pill&quot;>Financial</span><span class=&quot;pill red&quot;>Red</span><span class=&quot;pill amber&quot;>Amber</span><span class=&quot;pill&quot;>Action plan</span></div></div>
         <div class=&quot;table-wrap&quot;><table class=&quot;driver-table&quot;>
-          <colgroup><col style=&quot;width:30px&quot;><col style=&quot;width:152px&quot;><col style=&quot;width:148px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:60px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:58px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:60px&quot;><col style=&quot;width:60px&quot;><col style=&quot;width:42px&quot;></colgroup>
-          <thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead>
-          <tbody>
-            <tr><td><span class=&quot;num&quot;>1</span></td><td><div class=&quot;risk&quot;>Spread</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Spread stress &amp; liquidity premium</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>14 Mar</span></td><td class=&quot;ia&quot;>4 / 6</td></tr>
-            <tr><td><span class=&quot;num&quot;>2</span></td><td><div class=&quot;risk&quot;>Spread</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Credit spread widening</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>14 Mar</span></td><td class=&quot;ia&quot;>2 / 3</td></tr>
-            <tr><td><span class=&quot;num&quot;>3</span></td><td><div class=&quot;risk&quot;>Investment Counterparty</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Default watchlist deterioration</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>22 Mar</span></td><td class=&quot;ia&quot;>3 / 5</td></tr>
-            <tr><td><span class=&quot;num&quot;>4</span></td><td><div class=&quot;risk&quot;>Investment Counterparty</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Downgrade concentration</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Draft</span></td><td><span class=&quot;date&quot;>22 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
-            <tr><td><span class=&quot;num&quot;>5</span></td><td><div class=&quot;risk&quot;>Liquidity</div><div class=&quot;owner&quot;>Liquidity &amp; Funding</div></td><td><div class=&quot;driver&quot;>Liquidity stress buffer</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>2 / 3</td></tr>
-            <tr><td><span class=&quot;num&quot;>6</span></td><td><div class=&quot;risk&quot;>Mortality</div><div class=&quot;owner&quot;>Insurance</div></td><td><div class=&quot;driver&quot;>Mortality assumption drift</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>19 Feb</span></td><td class=&quot;ia&quot;>1 / 4</td></tr>
-            <tr><td><span class=&quot;num&quot;>7</span></td><td><div class=&quot;risk&quot;>Funding</div><div class=&quot;owner&quot;>Liquidity &amp; Funding</div></td><td><div class=&quot;driver&quot;>Wholesale funding concentration</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>05 Jan</span></td><td class=&quot;ia&quot;>2 / 2</td></tr>
-            <tr><td><span class=&quot;num&quot;>8</span></td><td><div class=&quot;risk&quot;>Equity</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Equity volatility spike</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
-            <tr><td><span class=&quot;num&quot;>9</span></td><td><div class=&quot;risk&quot;>Inflation</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Inflation basis risk</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action no&quot;>No</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>1 / 1</td></tr>
-            <tr><td><span class=&quot;num&quot;>10</span></td><td><div class=&quot;risk&quot;>Interest Rate</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Basis risk watch item</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>0 / 2</td></tr>
-            <tr><td><span class=&quot;num&quot;>11</span></td><td><div class=&quot;risk&quot;>Illiquid Credit</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Valuation lag and exit depth</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action no&quot;>No</span></td><td><span class=&quot;date&quot;>18 Mar</span></td><td class=&quot;ia&quot;>2 / 1</td></tr>
-            <tr><td><span class=&quot;num&quot;>12</span></td><td><div class=&quot;risk&quot;>Expense</div><div class=&quot;owner&quot;>Insurance</div></td><td><div class=&quot;driver&quot;>Expense strain model</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>09 Jan</span></td><td class=&quot;ia&quot;>1 / 3</td></tr>
-          </tbody>
+          <colgroup><col style=&quot;width:26px&quot;><col style=&quot;width:146px&quot;><col style=&quot;width:150px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:56px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:56px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:44px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:38px&quot;></colgroup>
+          <thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead>
+          <tbody><tr><td><span class=&quot;num&quot;>1</span></td><td><div class=&quot;risk&quot;>Spread</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Spread stress &amp; liquidity premium</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>14 Mar</span></td><td class=&quot;ia&quot;>4 / 6</td></tr>
+            <tr><td><span class=&quot;num&quot;>2</span></td><td><div class=&quot;risk&quot;>Spread</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Credit spread widening</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>14 Mar</span></td><td class=&quot;ia&quot;>2 / 3</td></tr>
+            <tr><td><span class=&quot;num&quot;>3</span></td><td><div class=&quot;risk&quot;>Investment Counterparty</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Default watchlist deterioration</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>22 Mar</span></td><td class=&quot;ia&quot;>3 / 5</td></tr>
+            <tr><td><span class=&quot;num&quot;>4</span></td><td><div class=&quot;risk&quot;>Investment Counterparty</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Downgrade concentration</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>22 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>5</span></td><td><div class=&quot;risk&quot;>Liquidity</div><div class=&quot;owner&quot;>Liquidity &amp; Funding</div></td><td><div class=&quot;driver&quot;>Liquidity stress buffer</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>2 / 3</td></tr>
+            <tr><td><span class=&quot;num&quot;>6</span></td><td><div class=&quot;risk&quot;>Mortality</div><div class=&quot;owner&quot;>Insurance</div></td><td><div class=&quot;driver&quot;>Mortality assumption drift</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>19 Feb</span></td><td class=&quot;ia&quot;>1 / 4</td></tr>
+            <tr><td><span class=&quot;num&quot;>7</span></td><td><div class=&quot;risk&quot;>Funding</div><div class=&quot;owner&quot;>Liquidity &amp; Funding</div></td><td><div class=&quot;driver&quot;>Wholesale funding concentration</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>05 Jan</span></td><td class=&quot;ia&quot;>2 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>8</span></td><td><div class=&quot;risk&quot;>Equity</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Equity volatility spike</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>9</span></td><td><div class=&quot;risk&quot;>Inflation</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Inflation basis risk</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action no&quot;>No</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>1 / 1</td></tr>
+            <tr><td><span class=&quot;num&quot;>10</span></td><td><div class=&quot;risk&quot;>Interest Rate</div><div class=&quot;owner&quot;>Market</div></td><td><div class=&quot;driver&quot;>Basis risk watch item</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>0 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>11</span></td><td><div class=&quot;risk&quot;>Illiquid Credit</div><div class=&quot;owner&quot;>Credit &amp; Counterparty</div></td><td><div class=&quot;driver&quot;>Valuation lag and exit depth</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action no&quot;>No</span></td><td><span class=&quot;date&quot;>18 Mar</span></td><td class=&quot;ia&quot;>2 / 1</td></tr>
+            <tr><td><span class=&quot;num&quot;>12</span></td><td><div class=&quot;risk&quot;>Expense</div><div class=&quot;owner&quot;>Insurance</div></td><td><div class=&quot;driver&quot;>Expense strain model</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>09 Jan</span></td><td class=&quot;ia&quot;>1 / 3</td></tr>
+            <tr><td><span class=&quot;num&quot;>13</span></td><td><div class=&quot;risk&quot;>Longevity</div><div class=&quot;owner&quot;>Insurance</div></td><td><div class=&quot;driver&quot;>Reserve sensitivity</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>21 Mar</span></td><td class=&quot;ia&quot;>0 / 1</td></tr></tbody>
         </table></div>
       </div>
       <aside class=&quot;side&quot;>
         <div class=&quot;side-card&quot;><div class=&quot;side-title&quot;>Function concentration</div><div class=&quot;side-sub&quot;>Share of visible red / amber / green L3 positions by business function.</div><div class=&quot;legend&quot;><span class=&quot;key&quot;><span class=&quot;sw red&quot;></span>Red</span><span class=&quot;key&quot;><span class=&quot;sw amber&quot;></span>Amber</span><span class=&quot;key&quot;><span class=&quot;sw green&quot;></span>Green</span></div>
-          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>P&amp;S</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:42%&quot;>42</span><span class=&quot;seg amber&quot; style=&quot;width:42%&quot;>42</span><span class=&quot;seg green&quot; style=&quot;width:16%&quot;>16</span></div><div class=&quot;bar-count&quot;>12</div></div>
-          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>RS &amp; AM</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:33%&quot;>33</span><span class=&quot;seg amber&quot; style=&quot;width:58%&quot;>58</span><span class=&quot;seg green&quot; style=&quot;width:9%&quot;>9</span></div><div class=&quot;bar-count&quot;>12</div></div>
-          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>Europe</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:17%&quot;>17</span><span class=&quot;seg amber&quot; style=&quot;width:42%&quot;>42</span><span class=&quot;seg green&quot; style=&quot;width:41%&quot;>41</span></div><div class=&quot;bar-count&quot;>12</div></div>
-          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>SunLife</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:0%&quot;></span><span class=&quot;seg amber&quot; style=&quot;width:33%&quot;>33</span><span class=&quot;seg green&quot; style=&quot;width:67%&quot;>67</span></div><div class=&quot;bar-count&quot;>12</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>P&amp;S</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:31%&quot;>31</span><span class=&quot;seg amber&quot; style=&quot;width:54%&quot;>54</span><span class=&quot;seg green&quot; style=&quot;width:15%&quot;>15</span></div><div class=&quot;bar-count&quot;>13</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>RS &amp; AM</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:31%&quot;>31</span><span class=&quot;seg amber&quot; style=&quot;width:69%&quot;>69</span><span class=&quot;seg green&quot; style=&quot;width:0%&quot;></span></div><div class=&quot;bar-count&quot;>13</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>Europe</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:15%&quot;>15</span><span class=&quot;seg amber&quot; style=&quot;width:38%&quot;>38</span><span class=&quot;seg green&quot; style=&quot;width:47%&quot;>47</span></div><div class=&quot;bar-count&quot;>13</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>SunLife</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:0%&quot;></span><span class=&quot;seg amber&quot; style=&quot;width:31%&quot;>31</span><span class=&quot;seg green&quot; style=&quot;width:69%&quot;>69</span></div><div class=&quot;bar-count&quot;>13</div></div>
         </div>
         <div class=&quot;side-card&quot;><div class=&quot;side-title&quot;>Multiple Red L3 Matrix</div><div class=&quot;side-sub&quot;>Count of red L3 drivers under the same L2, split by business function.</div><table class=&quot;matrix&quot;><thead><tr><th>L2 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th></tr></thead><tbody>
           <tr><td class=&quot;name&quot;>Spread</td><td><span class=&quot;matrix-cell red&quot;>2</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
@@ -4148,12 +4440,75 @@
           <tr><td class=&quot;name&quot;>Liquidity</td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
           <tr><td class=&quot;name&quot;>Mortality</td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
           <tr><td class=&quot;name&quot;>Funding</td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
-        </tbody></table><div class=&quot;note&quot;>Where an L2 has more than one red L3, the detail table keeps each L3 visible and this matrix shows concentration by function.</div></div>
+        </tbody></table></div>
       </aside>
     </section>
   </main>
-  <footer class=&quot;footer&quot;><div class=&quot;footer-left&quot;><span>P1</span><span>P2</span><span>P3 Fin</span><span class=&quot;current&quot;>P4 Fin Detail</span><span>P5 NF</span><span>P6 Controls</span><span>P7 Loss</span><span>P8 Inc</span><span>P9 Emerg</span><span>P10 Dec</span><span class=&quot;appendix-ref&quot;>Financial L3 review</span></div><div class=&quot;footer-right&quot;><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer>
+  <footer class=&quot;footer&quot;><div class=&quot;footer-left&quot;><span>P1</span><span>P2</span><span>P3 Fin</span><span class=&quot;current&quot;>P4 Fin Det</span><span>P5 NF</span><span class=&quot;&quot;>P6 NF Det</span><span>P7 Controls</span><span>P8 Loss</span><span>P9 Inc</span><span>P10 Emerg</span><span>P11 Dec</span><span class=&quot;appendix-ref&quot;>Financial L3 review</span></div><div class=&quot;footer-right&quot;><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer>
 </div></body></html>"></iframe>
+
+    <iframe id="frame-p3nfdetail" class="inactive slide-frame" data-key="p3nfdetail" srcdoc="<!doctype html>
+<html lang=&quot;en&quot;>
+<head><meta charset=&quot;utf-8&quot; /><style>
+  :root{--blue:#002b7f;--navy:#092b66;--ink:#00265f;--muted:#50627f;--line:#d8e0ec;--panel:#f8fbff;--red:#c73d4a;--red-bg:#fbe3e4;--amber:#e24b20;--amber-bg:#fff1c2;--green:#007a68;--green-bg:#dff2ee;--teal:#00a887;--gold:#ffb600;--lav:#4d5bd5;--violet:#6e4db7}
+  *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:Aptos,&quot;Segoe UI&quot;,Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;background:#fff;position:relative;overflow:hidden}.brand{height:24px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;font-weight:700}.brand .logo:after{content:&quot;&quot;;display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.brand .doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.section{height:54px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 24px;border-bottom:3px solid var(--gold)}.section h1{font-size:24px;margin:0 18px 0 0;letter-spacing:-.01em;font-weight:700}.section .sub{font-size:12px;opacity:.9}.section .page-marker{margin-left:auto;font-size:16px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.crumbs{position:absolute;right:104px;top:98px;display:flex;gap:7px}.crumb{width:16px;height:3px;border-radius:99px;background:rgba(255,255,255,.28)}.crumb.active{background:var(--gold)}.body{padding:14px 24px 0;height:587px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:8px}.kpi{min-height:68px;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:var(--teal)}.kpi .label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:24px;font-weight:600;margin-top:4px}.delta{height:17px;margin-top:4px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center;gap:5px}.delta.up{background:#ffeef0;border-color:#f09ca5;color:#b01e2d}.delta.down{background:#dff3ee;border-color:#95d5c8;color:#006b5d}.main{display:grid;grid-template-columns:minmax(0,1fr) 336px;gap:12px;height:493px}.panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title{font-weight:700;font-size:14px}.panel-sub{font-size:9px;color:var(--muted);margin-top:2px}.legend{display:flex;gap:9px;align-items:center;font-size:9px;color:#3f5270;white-space:nowrap}.key{display:inline-flex;align-items:center;gap:4px}.sw{width:13px;height:9px;border-radius:2px;border:1px solid rgba(0,0,0,.08)}.sw.red,.matrix-cell.red,.seg.red{background-color:var(--red-bg);background-image:repeating-linear-gradient(45deg,rgba(199,61,74,.32) 0 2px,transparent 2px 5px)}.sw.amber,.matrix-cell.amber,.seg.amber{background-color:var(--amber-bg);background-image:repeating-linear-gradient(135deg,rgba(226,75,32,.26) 0 2px,transparent 2px 6px)}.sw.green,.matrix-cell.green,.seg.green{background-color:var(--green-bg);background-image:radial-gradient(rgba(0,122,104,.28) 1px,transparent 1px);background-size:6px 6px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 10px 8px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px 5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(n+4),.driver-table td:nth-child(n+4){text-align:center}.driver-table th:nth-child(2),.driver-table td:nth-child(2),.driver-table th:nth-child(3),.driver-table td:nth-child(3){padding-left:8px}.driver-table tbody tr:last-child td{border-bottom:0}.num{width:17px;height:17px;border-radius:50%;background:#4d5bd5;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.5px;font-weight:600;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rag{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1;background-image:none}.rag.red{color:#9d1827;background-color:var(--red-bg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background-color:var(--amber-bg);border-color:#f3c968}.rag.green{color:#006b5d;background-color:var(--green-bg);border-color:#95d5c8}.move,.action{display:inline-flex;width:45px;height:17px;align-items:center;justify-content:center;border-radius:4px;font-size:7.2px;font-weight:800;text-transform:uppercase;line-height:1}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.side{display:grid;grid-template-rows:164px 1fr;gap:8px}.side-card{border:1px solid var(--line);border-radius:7px;background:#fff;padding:9px 10px;min-height:0;overflow:hidden}.side-title{font-size:13px;font-weight:700;margin-bottom:2px}.side-sub{font-size:8.5px;color:#56657e;margin-bottom:6px}.bar-row{display:grid;grid-template-columns:70px minmax(0,1fr) 22px;align-items:center;gap:6px;margin-top:6px}.bar-label{font-size:9.5px;font-weight:700}.stack{height:14px;border-radius:4px;overflow:hidden;background:#e8edf5;display:flex;border:1px solid #cfd8e6;min-width:0}.seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#00265f}.seg.red{color:#9d1827}.seg.amber{color:#9a3d12}.seg.green{color:#006b5d}.bar-count{font-size:9px;font-weight:800;text-align:right}.matrix{width:100%;border-collapse:separate;border-spacing:0 5px;table-layout:auto}.matrix th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:center;font-weight:700}.matrix th:first-child{text-align:left}.matrix td{font-size:9px;padding:0 2px;text-align:center}.matrix .name{text-align:left;font-weight:700;color:#092b66;width:92px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.matrix-cell{height:21px;border-radius:4px;border:1px solid #d8e0ec;display:flex;align-items:center;justify-content:center;font-weight:800;min-width:32px}.matrix-cell.zero{background:#f3f6fa;color:#6a7890}.note{margin-top:6px;border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:8px;line-height:1.2;padding:6px}.footer{position:absolute;bottom:0;left:0;right:0;height:30px;background:#092b66;color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}
+</style></head>
+<body><div class=&quot;slide&quot;>
+  <div class=&quot;brand&quot;><div class=&quot;logo&quot;>Standard Life</div><div class=&quot;doc&quot;>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div>
+  <div class=&quot;section&quot;><h1>RCSA - Non-Financial Risk Detail</h1><div class=&quot;sub&quot;>L3 drivers by business function, overall RAG, action status and last assessment date</div><div class=&quot;page-marker&quot;>P6 / 13</div></div>
+  <div class=&quot;crumbs&quot;><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb &quot;></span><span class=&quot;crumb &quot;></span><span class=&quot;crumb active&quot;></span><span class=&quot;crumb&quot;></span><span class=&quot;crumb&quot;></span></div>
+  <main class=&quot;body&quot;>
+    <section class=&quot;kpis&quot;>
+      <div class=&quot;kpi &quot;><div class=&quot;label&quot;>Non-Fin L3 Drivers</div><div class=&quot;value&quot;>16</div><div class=&quot;delta &quot;>Red / amber L2s</div></div>
+      <div class=&quot;kpi red&quot;><div class=&quot;label&quot;>Overall Red L2</div><div class=&quot;value&quot;>8</div><div class=&quot;delta up&quot;>Final L2 view</div></div>
+      <div class=&quot;kpi amber&quot;><div class=&quot;label&quot;>Overall Amber L2</div><div class=&quot;value&quot;>8</div><div class=&quot;delta &quot;>Final L2 view</div></div>
+      <div class=&quot;kpi green&quot;><div class=&quot;label&quot;>Action Plans Open</div><div class=&quot;value&quot;>7</div><div class=&quot;delta &quot;>2 overdue / watch</div></div>
+      <div class=&quot;kpi amber&quot;><div class=&quot;label&quot;>Oldest Last RCSA</div><div class=&quot;value&quot;>86d</div><div class=&quot;delta up&quot;>Technology review overdue</div></div>
+    </section>
+    <section class=&quot;main&quot;>
+      <div class=&quot;panel&quot;>
+        <div class=&quot;panel-head&quot;><div><div class=&quot;panel-title&quot;>Non-Financial L3 Risk Detail by Business Function</div><div class=&quot;panel-sub&quot;>Overall RAG repeats the L2 final RAG from the summary tab; function columns show where the L3 issue is concentrated.</div></div><div class=&quot;filters&quot;><span class=&quot;pill&quot;>Non-financial</span><span class=&quot;pill red&quot;>Red</span><span class=&quot;pill amber&quot;>Amber</span><span class=&quot;pill&quot;>Action plan</span></div></div>
+        <div class=&quot;table-wrap&quot;><table class=&quot;driver-table&quot;>
+          <colgroup><col style=&quot;width:26px&quot;><col style=&quot;width:146px&quot;><col style=&quot;width:150px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:56px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:56px&quot;><col style=&quot;width:54px&quot;><col style=&quot;width:44px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:52px&quot;><col style=&quot;width:38px&quot;></colgroup>
+          <thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead>
+          <tbody><tr><td><span class=&quot;num&quot;>1</span></td><td><div class=&quot;risk&quot;>Information Security &amp; Cyber</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Cyber attack / data breach</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>6 / 9</td></tr>
+            <tr><td><span class=&quot;num&quot;>2</span></td><td><div class=&quot;risk&quot;>Operational Resilience</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Critical service outage</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>5 / 8</td></tr>
+            <tr><td><span class=&quot;num&quot;>3</span></td><td><div class=&quot;risk&quot;>Regulatory Compliance</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Regulatory change management</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>28 Mar</span></td><td class=&quot;ia&quot;>4 / 7</td></tr>
+            <tr><td><span class=&quot;num&quot;>4</span></td><td><div class=&quot;risk&quot;>Data Protection</div><div class=&quot;owner&quot;>Customer</div></td><td><div class=&quot;driver&quot;>Retention / breach response</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>25 Mar</span></td><td class=&quot;ia&quot;>4 / 6</td></tr>
+            <tr><td><span class=&quot;num&quot;>5</span></td><td><div class=&quot;risk&quot;>Artificial Intelligence</div><div class=&quot;owner&quot;>Customer</div></td><td><div class=&quot;driver&quot;>GenAI model governance</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>20 Mar</span></td><td class=&quot;ia&quot;>3 / 5</td></tr>
+            <tr><td><span class=&quot;num&quot;>6</span></td><td><div class=&quot;risk&quot;>Technology</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Change failure / release control</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action overdue&quot;>Overdue</span></td><td><span class=&quot;date&quot;>05 Jan</span></td><td class=&quot;ia&quot;>3 / 6</td></tr>
+            <tr><td><span class=&quot;num&quot;>7</span></td><td><div class=&quot;risk&quot;>Reputation</div><div class=&quot;owner&quot;>Strategic</div></td><td><div class=&quot;driver&quot;>External conduct exposure</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>18 Mar</span></td><td class=&quot;ia&quot;>2 / 4</td></tr>
+            <tr><td><span class=&quot;num&quot;>8</span></td><td><div class=&quot;risk&quot;>Sales &amp; Distribution</div><div class=&quot;owner&quot;>Customer</div></td><td><div class=&quot;driver&quot;>Advice / disclosure controls</div></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag red&quot;>Red</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>19 Mar</span></td><td class=&quot;ia&quot;>2 / 5</td></tr>
+            <tr><td><span class=&quot;num&quot;>9</span></td><td><div class=&quot;risk&quot;>Post-Sales Admin &amp; Claims</div><div class=&quot;owner&quot;>Customer</div></td><td><div class=&quot;driver&quot;>Claims servicing backlog</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>22 Mar</span></td><td class=&quot;ia&quot;>2 / 3</td></tr>
+            <tr><td><span class=&quot;num&quot;>10</span></td><td><div class=&quot;risk&quot;>Third Party</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Supplier resilience concentration</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>27 Mar</span></td><td class=&quot;ia&quot;>1 / 4</td></tr>
+            <tr><td><span class=&quot;num&quot;>11</span></td><td><div class=&quot;risk&quot;>Model</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Model validation delay</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>21 Mar</span></td><td class=&quot;ia&quot;>1 / 3</td></tr>
+            <tr><td><span class=&quot;num&quot;>12</span></td><td><div class=&quot;risk&quot;>Reporting</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Manual reporting adjustment</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>31 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>13</span></td><td><div class=&quot;risk&quot;>Tax Compliance</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Tax control evidence gap</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>16 Mar</span></td><td class=&quot;ia&quot;>1 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>14</span></td><td><div class=&quot;risk&quot;>People &amp; Safety</div><div class=&quot;owner&quot;>Operational</div></td><td><div class=&quot;driver&quot;>Key person dependency</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action watch&quot;>Watch</span></td><td><span class=&quot;date&quot;>15 Mar</span></td><td class=&quot;ia&quot;>0 / 2</td></tr>
+            <tr><td><span class=&quot;num&quot;>15</span></td><td><div class=&quot;risk&quot;>Greenwashing</div><div class=&quot;owner&quot;>Climate</div></td><td><div class=&quot;driver&quot;>Disclosure substantiation</div></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move flat&quot;>Flat</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>24 Mar</span></td><td class=&quot;ia&quot;>0 / 1</td></tr>
+            <tr><td><span class=&quot;num&quot;>16</span></td><td><div class=&quot;risk&quot;>Data &amp; Information Management</div><div class=&quot;owner&quot;>Customer</div></td><td><div class=&quot;driver&quot;>Data ownership gaps</div></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;rag green&quot;>Green</span></td><td><span class=&quot;rag amber&quot;>Amber</span></td><td><span class=&quot;move up&quot;>Up</span></td><td><span class=&quot;action yes&quot;>Yes</span></td><td><span class=&quot;date&quot;>29 Mar</span></td><td class=&quot;ia&quot;>0 / 2</td></tr></tbody>
+        </table></div>
+      </div>
+      <aside class=&quot;side&quot;>
+        <div class=&quot;side-card&quot;><div class=&quot;side-title&quot;>Function concentration</div><div class=&quot;side-sub&quot;>Share of visible red / amber / green L3 positions by business function.</div><div class=&quot;legend&quot;><span class=&quot;key&quot;><span class=&quot;sw red&quot;></span>Red</span><span class=&quot;key&quot;><span class=&quot;sw amber&quot;></span>Amber</span><span class=&quot;key&quot;><span class=&quot;sw green&quot;></span>Green</span></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>P&amp;S</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:25%&quot;>25</span><span class=&quot;seg amber&quot; style=&quot;width:50%&quot;>50</span><span class=&quot;seg green&quot; style=&quot;width:25%&quot;>25</span></div><div class=&quot;bar-count&quot;>16</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>RS &amp; AM</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:25%&quot;>25</span><span class=&quot;seg amber&quot; style=&quot;width:75%&quot;>75</span><span class=&quot;seg green&quot; style=&quot;width:0%&quot;></span></div><div class=&quot;bar-count&quot;>16</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>Europe</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:13%&quot;>13</span><span class=&quot;seg amber&quot; style=&quot;width:56%&quot;>56</span><span class=&quot;seg green&quot; style=&quot;width:31%&quot;>31</span></div><div class=&quot;bar-count&quot;>16</div></div>
+          <div class=&quot;bar-row&quot;><div class=&quot;bar-label&quot;>SunLife</div><div class=&quot;stack&quot;><span class=&quot;seg red&quot; style=&quot;width:13%&quot;>13</span><span class=&quot;seg amber&quot; style=&quot;width:50%&quot;>50</span><span class=&quot;seg green&quot; style=&quot;width:37%&quot;>37</span></div><div class=&quot;bar-count&quot;>16</div></div>
+        </div>
+        <div class=&quot;side-card&quot;><div class=&quot;side-title&quot;>Multiple Red L3 Matrix</div><div class=&quot;side-sub&quot;>Count of red L3 drivers under the same L2, split by business function.</div><table class=&quot;matrix&quot;><thead><tr><th>L2 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th></tr></thead><tbody>
+          <tr><td class=&quot;name&quot;>Info Sec &amp; Cyber</td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
+          <tr><td class=&quot;name&quot;>Operational Res</td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
+          <tr><td class=&quot;name&quot;>Reg Compliance</td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td></tr>
+          <tr><td class=&quot;name&quot;>Data Protection</td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
+          <tr><td class=&quot;name&quot;>Technology</td><td><span class=&quot;matrix-cell red&quot;>1</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td><td><span class=&quot;matrix-cell zero&quot;>-</span></td></tr>
+        </tbody></table></div>
+      </aside>
+    </section>
+  </main>
+  <footer class=&quot;footer&quot;><div class=&quot;footer-left&quot;><span>P1</span><span>P2</span><span>P3 Fin</span><span class=&quot;&quot;>P4 Fin Det</span><span>P5 NF</span><span class=&quot;current&quot;>P6 NF Det</span><span>P7 Controls</span><span>P8 Loss</span><span>P9 Inc</span><span>P10 Emerg</span><span>P11 Dec</span><span class=&quot;appendix-ref&quot;>Non-financial L3 review</span></div><div class=&quot;footer-right&quot;><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer>
+</div></body></html>"></iframe>
+
     <iframe id="frame-p4" class="inactive slide-frame" data-key="p4" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
 <head>
@@ -4798,7 +5153,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P6 / 12</div>
+      <div class=&quot;page-marker&quot;>P7 / 13</div>
     </div>
   </header>
 
@@ -5063,15 +5418,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item current&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item current&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Supporting controls → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -5401,7 +5758,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P7 / 12</div>
+      <div class=&quot;page-marker&quot;>P8 / 13</div>
     </div>
   </header>
 
@@ -5594,15 +5951,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P7 Loss</span>
+      <span class=&quot;toc-item current&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix D</span>
     </div>
     <div class=&quot;right&quot;>
@@ -6000,7 +6359,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P8 / 12</div>
+      <div class=&quot;page-marker&quot;>P9 / 13</div>
     </div>
   </header>
 
@@ -6221,15 +6580,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P8 Inc</span>
+      <span class=&quot;toc-item current&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix E</span>
     </div>
     <div class=&quot;right&quot;>
@@ -6436,7 +6797,7 @@
   .change-badge.red { background: var(--red-bg); color: var(--red); }
   .change-badge.amber { background: var(--amber-bg); color: var(--amber); }
 
-  /* HERO: portfolio map */
+  /* HERO: proximity radar */
   .hero {
     grid-column: 1; grid-row: 2;
     background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
@@ -6450,76 +6811,89 @@
   }
   .hero-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
   .hero-sub { font-size: 10.5px; color: var(--muted); }
-
   .map-legend {
-    display: flex; gap: 14px; align-items: center; margin: 4px 0 6px;
+    display: flex; gap: 12px; align-items: center; margin: 4px 0 6px;
     font-size: 10px; color: var(--muted);
   }
   .leg-item { display: flex; align-items: center; gap: 5px; font-weight: 500; }
   .leg-dot { width: 11px; height: 11px; border-radius: 50%; }
-  .leg-dot.high {
-    background:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.32) 0 1px, transparent 1px 5px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 5px),
-      var(--bubble-red);
+  .leg-dot.high { background: var(--bubble-red); }
+  .leg-dot.watch { background: var(--bubble-amber); }
+  .leg-dot.monitor { background: var(--bubble-green); }
+  .leg-ring {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid rgba(10,47,115,0.22); background: #f8fbff;
   }
-  .leg-dot.watch {
-    background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.30) 0 2px, transparent 2px 6px),
-      var(--bubble-amber);
-  }
-  .leg-dot.monitor {
-    background:
-      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.34) 0 1px, transparent 1.2px) 0 0 / 6px 6px,
-      var(--bubble-green);
-  }
-  .leg-size { display: flex; align-items: center; gap: 4px; font-weight: 500; }
-  .leg-size .s { width: 7px; height: 7px; border-radius: 50%; background: var(--muted-2); }
-  .leg-size .m { width: 10px; height: 10px; border-radius: 50%; background: var(--muted-2); }
-  .leg-size .l { width: 13px; height: 13px; border-radius: 50%; background: var(--muted-2); }
-
   .map-area {
     flex: 1; min-height: 0;
     display: grid;
-    grid-template-columns: 1fr 210px;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) 238px;
+    gap: 14px;
   }
-  .map-svg { width: 100%; height: 100%; min-height: 0; }
+  .map-svg {
+    width: 100%; height: 100%; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
   .map-svg svg { width: 100%; height: 100%; display: block; }
-
+  .horizon-label {
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
+    font-size: 10px; font-weight: 700; fill: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .radar-caption {
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
+    font-size: 9px; fill: var(--muted-2);
+  }
+  .radar-theme {
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
+    font-size: 9px; font-weight: 700; fill: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .risk-marker circle {
+    stroke: #fff; stroke-width: 2.2;
+    filter: drop-shadow(0 1px 2px rgba(10,47,115,0.25));
+  }
+  .risk-marker.high circle { fill: var(--bubble-red); }
+  .risk-marker.watch circle { fill: var(--bubble-amber); }
+  .risk-marker.monitor circle { fill: var(--bubble-green); }
+  .risk-marker text {
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
+    font-size: 11px; font-weight: 700; fill: #fff;
+    text-anchor: middle; dominant-baseline: central;
+  }
   .map-legend-col {
     display: flex; flex-direction: column; gap: 6px;
-    font-size: 10.5px;
-    overflow: hidden;
+    font-size: 10.5px; overflow: hidden;
   }
   .map-legend-title {
     font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted-2); padding-bottom: 4px;
     border-bottom: 1px solid var(--hairline-soft);
   }
-  .map-item { display: grid; grid-template-columns: 20px 1fr; gap: 6px; align-items: center; }
+  .horizon-row {
+    display: grid; grid-template-columns: 20px 1fr auto;
+    gap: 6px; align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--hairline-soft);
+  }
+  .horizon-row:last-child { border-bottom: 0; }
   .map-num {
     width: 18px; height: 18px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-size: 10px; font-weight: 700;
   }
-  .map-num.high {
-    background:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.20) 0 1px, transparent 1px 6px),
-      var(--bubble-red);
+  .map-num.high { background: var(--bubble-red); }
+  .map-num.watch { background: var(--bubble-amber); }
+  .map-num.monitor { background: var(--bubble-green); }
+  .map-name { font-size: 10.5px; color: var(--ink); line-height: 1.25; font-weight: 600; }
+  .map-note { font-size: 8.5px; color: var(--muted); margin-top: 1px; line-height: 1.2; }
+  .horizon-pill {
+    min-width: 42px; text-align: center;
+    font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--ink-2); background: #eef2f7; border: 1px solid #d7dee8;
+    border-radius: 3px; padding: 2px 4px;
   }
-  .map-num.watch {
-    background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
-      var(--bubble-amber);
-  }
-  .map-num.monitor {
-    background:
-      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.34) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
-      var(--bubble-green);
-  }
-  .map-name { font-size: 10.5px; color: var(--ink); line-height: 1.3; }
 
   /* Right column */
   .right-col {
@@ -6660,7 +7034,7 @@
   <header class=&quot;slide-header&quot;>
     <div class=&quot;header-left&quot;>
       <div class=&quot;header-title&quot;>Emerging Risks</div>
-      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Horizon scanning, board watch portfolio</div>
+      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Emerging risk proximity and time to impact</div>
     </div>
     <div class=&quot;header-right&quot;>
       <div class=&quot;breadcrumb&quot;>
@@ -6675,7 +7049,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P9 / 12</div>
+      <div class=&quot;page-marker&quot;>P10 / 13</div>
     </div>
   </header>
 
@@ -6685,32 +7059,32 @@
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>Emerging Risks Tracked</div>
         <div class=&quot;kpi-value&quot;>8</div>
-        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>On Board Watch</div>
+        <div class=&quot;kpi-label&quot;>0-12m Horizon</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Rising Signals</div>
-        <div class=&quot;kpi-value&quot;>5</div>
-        <div class=&quot;kpi-delta up&quot;>▼ 1 vs Q4</div>
+        <div class=&quot;kpi-label&quot;>1-2y Horizon</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Avg Readiness</div>
-        <div class=&quot;kpi-value&quot;>55%</div>
-        <div class=&quot;kpi-delta up&quot;>▲ 3pp vs Q4</div>
+        <div class=&quot;kpi-label&quot;>2-3y Horizon</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Open Actions</div>
-        <div class=&quot;kpi-value&quot;>32</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 4 vs Q4</div>
+        <div class=&quot;kpi-label&quot;>3-5y Horizon</div>
+        <div class=&quot;kpi-value&quot;>2</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>High Velocity</div>
+        <div class=&quot;kpi-label&quot;>Board Watch</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>→ No change</div>
+        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
     </div>
 
@@ -6738,153 +7112,81 @@
       </div>
     </div>
 
-    <!-- HERO: Portfolio map -->
+    <!-- HERO: Proximity radar -->
     <section class=&quot;hero&quot;>
       <div class=&quot;hero-head&quot;>
         <div>
-          <div class=&quot;hero-title&quot;>Likelihood × Impact Portfolio Map</div>
-          <div class=&quot;hero-sub&quot;>Bubble size = velocity · colour = current watch status · axes are ordinal L1–L5 / I1–I5</div>
+          <div class=&quot;hero-title&quot;>Time-to-Impact Proximity Radar</div>
+          <div class=&quot;hero-sub&quot;>Concentric rings show estimated proximity to material impact: 1, 2, 3 and 5 years</div>
         </div>
         <div class=&quot;map-legend&quot;>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot high&quot;></div>High / crosshatch</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot watch&quot;></div>Watch / diagonal</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot monitor&quot;></div>Monitor / dotted</div>
-          <div class=&quot;leg-item leg-size&quot;><span class=&quot;s&quot;></span><span class=&quot;m&quot;></span><span class=&quot;l&quot;></span>velocity</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot high&quot;></div>Board watch</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot watch&quot;></div>Watch</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-dot monitor&quot;></div>Monitor</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-ring&quot;></div>impact horizon</div>
         </div>
       </div>
 
       <div class=&quot;map-area&quot;>
 
         <div class=&quot;map-svg&quot;>
-          <svg viewBox=&quot;0 0 560 280&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;>
-            <!-- background risk zones (light colour washes) -->
-            <!-- Grid zones: lower-left = green / middle = amber / upper-right = red -->
-            <!-- 5x5 grid, cell w = (560-70)/5 = 98, h = (260-30)/5 = 46 -->
-            <!-- x origin: 70, y origin: 10 (top), 240 (bottom) -->
+          <svg viewBox=&quot;0 0 620 350&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;>
             <defs>
-              <pattern id=&quot;emerge-monitor-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
-                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#f7faf7&quot;/>
-                <circle cx=&quot;2&quot; cy=&quot;2&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.22&quot;/>
-                <circle cx=&quot;6&quot; cy=&quot;6&quot; r=&quot;0.7&quot; fill=&quot;#006B5C&quot; opacity=&quot;0.18&quot;/>
-              </pattern>
-              <pattern id=&quot;emerge-watch-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
-                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fffdf3&quot;/>
-                <path d=&quot;M-2,8 L8,-2 M2,10 L10,2&quot; stroke=&quot;#8f6200&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.22&quot;/>
-              </pattern>
-              <pattern id=&quot;emerge-high-zone&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;>
-                <rect width=&quot;8&quot; height=&quot;8&quot; fill=&quot;#fdf4f4&quot;/>
-                <path d=&quot;M0,0 L8,8 M8,0 L0,8&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;0.65&quot; opacity=&quot;0.22&quot;/>
-              </pattern>
+              <radialGradient id=&quot;proximity-bg&quot; cx=&quot;50%&quot; cy=&quot;50%&quot; r=&quot;58%&quot;>
+                <stop offset=&quot;0%&quot; stop-color=&quot;#fff8e6&quot;/>
+                <stop offset=&quot;42%&quot; stop-color=&quot;#f8fbff&quot;/>
+                <stop offset=&quot;100%&quot; stop-color=&quot;#f4f7fb&quot;/>
+              </radialGradient>
             </defs>
 
-            <!-- Red zone (top-right) -->
-            <rect x=&quot;364&quot; y=&quot;10&quot;  width=&quot;196&quot; height=&quot;138&quot; fill=&quot;url(#emerge-high-zone)&quot;/>
-            <!-- Amber zone (band) -->
-            <rect x=&quot;70&quot;  y=&quot;148&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
-            <rect x=&quot;168&quot; y=&quot;56&quot;  width=&quot;196&quot; height=&quot;92&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
-            <rect x=&quot;364&quot; y=&quot;148&quot; width=&quot;196&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-watch-zone)&quot;/>
-            <!-- Green zone (bottom-left) -->
-            <rect x=&quot;70&quot;  y=&quot;194&quot; width=&quot;294&quot; height=&quot;46&quot;  fill=&quot;url(#emerge-monitor-zone)&quot;/>
-            <rect x=&quot;70&quot;  y=&quot;56&quot;  width=&quot;98&quot;  height=&quot;138&quot; fill=&quot;url(#emerge-monitor-zone)&quot;/>
+            <rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;620&quot; height=&quot;350&quot; rx=&quot;8&quot; fill=&quot;#fbfcfe&quot;/>
+            <g transform=&quot;translate(310 178)&quot;>
+              <circle r=&quot;150&quot; fill=&quot;url(#proximity-bg)&quot; stroke=&quot;#d7dee8&quot; stroke-width=&quot;1.2&quot;/>
+              <circle r=&quot;112&quot; fill=&quot;none&quot; stroke=&quot;#d7dee8&quot; stroke-width=&quot;1.1&quot;/>
+              <circle r=&quot;76&quot; fill=&quot;none&quot; stroke=&quot;#d7dee8&quot; stroke-width=&quot;1.1&quot;/>
+              <circle r=&quot;38&quot; fill=&quot;none&quot; stroke=&quot;#d7dee8&quot; stroke-width=&quot;1.1&quot;/>
 
-            <!-- Grid lines -->
-            <g stroke=&quot;#e3e9f1&quot; stroke-width=&quot;1&quot;>
-              <!-- vertical -->
-              <line x1=&quot;70&quot;  y1=&quot;10&quot;  x2=&quot;70&quot;  y2=&quot;240&quot;/>
-              <line x1=&quot;168&quot; y1=&quot;10&quot;  x2=&quot;168&quot; y2=&quot;240&quot;/>
-              <line x1=&quot;266&quot; y1=&quot;10&quot;  x2=&quot;266&quot; y2=&quot;240&quot;/>
-              <line x1=&quot;364&quot; y1=&quot;10&quot;  x2=&quot;364&quot; y2=&quot;240&quot;/>
-              <line x1=&quot;462&quot; y1=&quot;10&quot;  x2=&quot;462&quot; y2=&quot;240&quot;/>
-              <line x1=&quot;560&quot; y1=&quot;10&quot;  x2=&quot;560&quot; y2=&quot;240&quot;/>
-              <!-- horizontal -->
-              <line x1=&quot;70&quot;  y1=&quot;10&quot;  x2=&quot;560&quot; y2=&quot;10&quot;/>
-              <line x1=&quot;70&quot;  y1=&quot;56&quot;  x2=&quot;560&quot; y2=&quot;56&quot;/>
-              <line x1=&quot;70&quot;  y1=&quot;102&quot; x2=&quot;560&quot; y2=&quot;102&quot;/>
-              <line x1=&quot;70&quot;  y1=&quot;148&quot; x2=&quot;560&quot; y2=&quot;148&quot;/>
-              <line x1=&quot;70&quot;  y1=&quot;194&quot; x2=&quot;560&quot; y2=&quot;194&quot;/>
-              <line x1=&quot;70&quot;  y1=&quot;240&quot; x2=&quot;560&quot; y2=&quot;240&quot;/>
-            </g>
+              <g stroke=&quot;#e4eaf2&quot; stroke-width=&quot;1&quot;>
+                <line x1=&quot;-160&quot; y1=&quot;0&quot; x2=&quot;160&quot; y2=&quot;0&quot;/>
+                <line x1=&quot;0&quot; y1=&quot;-160&quot; x2=&quot;0&quot; y2=&quot;160&quot;/>
+                <line x1=&quot;-113&quot; y1=&quot;-113&quot; x2=&quot;113&quot; y2=&quot;113&quot;/>
+                <line x1=&quot;-113&quot; y1=&quot;113&quot; x2=&quot;113&quot; y2=&quot;-113&quot;/>
+              </g>
 
-            <!-- Axis labels -->
-            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
-              <text x=&quot;119&quot; y=&quot;256&quot;>L1</text>
-              <text x=&quot;217&quot; y=&quot;256&quot;>L2</text>
-              <text x=&quot;315&quot; y=&quot;256&quot;>L3</text>
-              <text x=&quot;413&quot; y=&quot;256&quot;>L4</text>
-              <text x=&quot;511&quot; y=&quot;256&quot;>L5</text>
-            </g>
-            <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;9&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
-              <text x=&quot;62&quot; y=&quot;36&quot;>I5</text>
-              <text x=&quot;62&quot; y=&quot;82&quot;>I4</text>
-              <text x=&quot;62&quot; y=&quot;128&quot;>I3</text>
-              <text x=&quot;62&quot; y=&quot;174&quot;>I2</text>
-              <text x=&quot;62&quot; y=&quot;220&quot;>I1</text>
-            </g>
-            <!-- Axis titles -->
-            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9.5&quot; font-weight=&quot;700&quot; fill=&quot;#5b6b83&quot;>
-              <text x=&quot;315&quot; y=&quot;275&quot; text-anchor=&quot;middle&quot;>Likelihood →</text>
-              <text x=&quot;20&quot; y=&quot;128&quot; text-anchor=&quot;middle&quot; transform=&quot;rotate(-90 20 128)&quot;>Impact →</text>
+              <text class=&quot;horizon-label&quot; x=&quot;0&quot; y=&quot;-24&quot; text-anchor=&quot;middle&quot;>0-12m</text>
+              <text class=&quot;horizon-label&quot; x=&quot;0&quot; y=&quot;-62&quot; text-anchor=&quot;middle&quot;>1-2 years</text>
+              <text class=&quot;horizon-label&quot; x=&quot;0&quot; y=&quot;-98&quot; text-anchor=&quot;middle&quot;>2-3 years</text>
+              <text class=&quot;horizon-label&quot; x=&quot;0&quot; y=&quot;-136&quot; text-anchor=&quot;middle&quot;>3-5 years</text>
+
+              <text class=&quot;radar-theme&quot; x=&quot;0&quot; y=&quot;-166&quot; text-anchor=&quot;middle&quot;>Technology / change</text>
+              <text class=&quot;radar-theme&quot; x=&quot;170&quot; y=&quot;4&quot; text-anchor=&quot;start&quot;>External / macro</text>
+              <text class=&quot;radar-theme&quot; x=&quot;0&quot; y=&quot;176&quot; text-anchor=&quot;middle&quot;>Customer / conduct</text>
+              <text class=&quot;radar-theme&quot; x=&quot;-170&quot; y=&quot;4&quot; text-anchor=&quot;end&quot;>Regulatory</text>
+
+              <g class=&quot;risk-marker high&quot; transform=&quot;translate(20 -31)&quot;><circle r=&quot;14&quot;/><text y=&quot;1&quot;>1</text></g>
+              <g class=&quot;risk-marker high&quot; transform=&quot;translate(-28 26)&quot;><circle r=&quot;14&quot;/><text y=&quot;1&quot;>2</text></g>
+              <g class=&quot;risk-marker watch&quot; transform=&quot;translate(68 -34)&quot;><circle r=&quot;12&quot;/><text y=&quot;1&quot;>3</text></g>
+              <g class=&quot;risk-marker watch&quot; transform=&quot;translate(-58 -49)&quot;><circle r=&quot;11&quot;/><text y=&quot;1&quot;>4</text></g>
+              <g class=&quot;risk-marker watch&quot; transform=&quot;translate(96 57)&quot;><circle r=&quot;11&quot;/><text y=&quot;1&quot;>5</text></g>
+              <g class=&quot;risk-marker watch&quot; transform=&quot;translate(-88 68)&quot;><circle r=&quot;11&quot;/><text y=&quot;1&quot;>6</text></g>
+              <g class=&quot;risk-marker monitor&quot; transform=&quot;translate(-88 -118)&quot;><circle r=&quot;10&quot;/><text y=&quot;1&quot;>7</text></g>
+              <g class=&quot;risk-marker watch&quot; transform=&quot;translate(0 112)&quot;><circle r=&quot;10&quot;/><text y=&quot;1&quot;>8</text></g>
             </g>
 
-            <!-- Bubbles -->
-            <!-- 1. AI/GenAI (L4, I5, fast velocity=large, red) -->
-            <g>
-              <circle cx=&quot;408&quot; cy=&quot;33&quot; r=&quot;14&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;408&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>1</text>
-            </g>
-            <!-- 2. Systemic Cyber (L4, I5 - slight offset from 1, large, red) -->
-            <g>
-              <circle cx=&quot;442&quot; cy=&quot;33&quot; r=&quot;14&quot; fill=&quot;#CA3F4C&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;442&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>2</text>
-            </g>
-            <!-- 3. Geopolitical (L4, I4, medium, amber) -->
-            <g>
-              <circle cx=&quot;420&quot; cy=&quot;82&quot; r=&quot;12&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;420&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>3</text>
-            </g>
-            <!-- 4. RegTech (L3, I4, medium, amber) -->
-            <g>
-              <circle cx=&quot;305&quot; cy=&quot;82&quot; r=&quot;11&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;305&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>4</text>
-            </g>
-            <!-- 5. Climate Transition (L3, I4, medium, amber, slight offset) -->
-            <g>
-              <circle cx=&quot;335&quot; cy=&quot;82&quot; r=&quot;11&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;335&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>5</text>
-            </g>
-            <!-- 6. Critical Third Party (L3, I3, medium-stable, amber) -->
-            <g>
-              <circle cx=&quot;315&quot; cy=&quot;128&quot; r=&quot;10&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;315&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>6</text>
-            </g>
-            <!-- 7. Quantum Cryptography (L2, I5, slow, green) -->
-            <g>
-              <circle cx=&quot;217&quot; cy=&quot;33&quot; r=&quot;9&quot; fill=&quot;#15803d&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;217&quot; y=&quot;37&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>7</text>
-            </g>
-            <!-- 8. Consumer Harm Embedded Finance (L3, I3, medium, amber) -->
-            <g>
-              <circle cx=&quot;290&quot; cy=&quot;128&quot; r=&quot;9&quot; fill=&quot;#DE4721&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;/>
-              <text x=&quot;290&quot; y=&quot;132&quot; text-anchor=&quot;middle&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot;>8</text>
-            </g>
-
-            <!-- Zone labels -->
-            <g font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;9&quot; fill=&quot;#991b1b&quot; font-weight=&quot;600&quot; opacity=&quot;0.5&quot;>
-              <text x=&quot;462&quot; y=&quot;140&quot; text-anchor=&quot;middle&quot;>Board watch zone</text>
-            </g>
+            <text class=&quot;radar-caption&quot; x=&quot;18&quot; y=&quot;330&quot;>Closer to centre = likely to require Board response sooner. Risk number maps to the ranked register.</text>
           </svg>
         </div>
 
         <div class=&quot;map-legend-col&quot;>
-          <div class=&quot;map-legend-title&quot;>Watchlist · ranked</div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num high&quot;>1</div><div class=&quot;map-name&quot;>AI / GenAI Model Risk</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num high&quot;>2</div><div class=&quot;map-name&quot;>Systemic Cyber Event</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num watch&quot;>3</div><div class=&quot;map-name&quot;>Geopolitical Fragmentation</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num watch&quot;>4</div><div class=&quot;map-name&quot;>RegTech / SupTech Acceleration</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num watch&quot;>5</div><div class=&quot;map-name&quot;>Critical Third-Party Concentration</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num watch&quot;>6</div><div class=&quot;map-name&quot;>Climate Transition Disorder</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num monitor&quot;>7</div><div class=&quot;map-name&quot;>Quantum Cryptography Threat</div></div>
-          <div class=&quot;map-item&quot;><div class=&quot;map-num watch&quot;>8</div><div class=&quot;map-name&quot;>Consumer Harm — Embedded Finance</div></div>
+          <div class=&quot;map-legend-title&quot;>Risk proximity register</div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num high&quot;>1</div><div><div class=&quot;map-name&quot;>AI / GenAI Model Risk</div><div class=&quot;map-note&quot;>Control framework and approval path</div></div><div class=&quot;horizon-pill&quot;>1y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num high&quot;>2</div><div><div class=&quot;map-name&quot;>Systemic Cyber Event</div><div class=&quot;map-note&quot;>Shared infrastructure dependency</div></div><div class=&quot;horizon-pill&quot;>1y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num watch&quot;>3</div><div><div class=&quot;map-name&quot;>Geopolitical Fragmentation</div><div class=&quot;map-note&quot;>Sanctions and trading restrictions</div></div><div class=&quot;horizon-pill&quot;>2y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num watch&quot;>4</div><div><div class=&quot;map-name&quot;>RegTech / SupTech Acceleration</div><div class=&quot;map-note&quot;>Regulator data expectations</div></div><div class=&quot;horizon-pill&quot;>2y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num watch&quot;>5</div><div><div class=&quot;map-name&quot;>Critical Third-Party Concentration</div><div class=&quot;map-note&quot;>Supplier concentration stress</div></div><div class=&quot;horizon-pill&quot;>3y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num watch&quot;>6</div><div><div class=&quot;map-name&quot;>Climate Transition Disorder</div><div class=&quot;map-note&quot;>Policy and market disorder</div></div><div class=&quot;horizon-pill&quot;>3y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num monitor&quot;>7</div><div><div class=&quot;map-name&quot;>Quantum Cryptography Threat</div><div class=&quot;map-note&quot;>Longer-range cryptography risk</div></div><div class=&quot;horizon-pill&quot;>5y</div></div>
+          <div class=&quot;horizon-row&quot;><div class=&quot;map-num watch&quot;>8</div><div><div class=&quot;map-name&quot;>Consumer Harm - Embedded Finance</div><div class=&quot;map-note&quot;>Distribution-chain opacity</div></div><div class=&quot;horizon-pill&quot;>5y</div></div>
         </div>
 
       </div>
@@ -6899,13 +7201,13 @@
           <div class=&quot;cro-date&quot;>31 Mar 2026</div>
         </div>
         <p class=&quot;cro-text&quot;>
-          Portfolio concentrated around <b>technology-enabled disruption, external volatility, and supervisory change</b>. AI / GenAI and Systemic Cyber need immediate Board attention — high impact, fast velocity, incomplete mitigation.
+          Portfolio is small enough to review as a <b>time-to-impact radar</b>. AI / GenAI and Systemic Cyber sit inside the 0-12m ring, while the remaining risks are deliberately spaced across 2, 3 and 5 year horizons for monitoring and challenge.
         </p>
       </div>
 
       <div class=&quot;watchlist-block&quot;>
         <div class=&quot;watchlist-head&quot;>
-          <div class=&quot;title&quot;>Top 3 Board watch · key detail</div>
+          <div class=&quot;title&quot;>Top 3 proximity watch</div>
           <div class=&quot;sub&quot;>Full register → Appx D</div>
         </div>
 
@@ -6916,7 +7218,7 @@
             <div class=&quot;watch-meta&quot;>
               <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
               <span class=&quot;watch-pill fast&quot;>Fast</span>
-              <span class=&quot;watch-pill horizon&quot;>0–12m</span>
+              <span class=&quot;watch-pill horizon&quot;>1 year</span>
             </div>
             <p class=&quot;watch-why&quot;>Customer-facing use cases live <b>without approved guardrails</b>. Governance framework Q2.</p>
           </div>
@@ -6929,7 +7231,7 @@
             <div class=&quot;watch-meta&quot;>
               <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
               <span class=&quot;watch-pill fast&quot;>Fast</span>
-              <span class=&quot;watch-pill horizon&quot;>0–12m</span>
+              <span class=&quot;watch-pill horizon&quot;>1 year</span>
             </div>
             <p class=&quot;watch-why&quot;>Sector-wide incidents involving <b>shared infrastructure / cloud dependency</b>.</p>
           </div>
@@ -6942,7 +7244,7 @@
             <div class=&quot;watch-meta&quot;>
               <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
               <span class=&quot;watch-pill medium&quot;>Medium</span>
-              <span class=&quot;watch-pill horizon&quot;>0–12m</span>
+              <span class=&quot;watch-pill horizon&quot;>2 years</span>
             </div>
             <p class=&quot;watch-why&quot;><b>Sanctions, tariffs, trade restrictions</b> expanding across key corridors.</p>
           </div>
@@ -6966,15 +7268,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item current&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix F</span>
     </div>
     <div class=&quot;right&quot;>
@@ -7382,7 +7686,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P10 / 12</div>
+      <div class=&quot;page-marker&quot;>P11 / 13</div>
     </div>
   </header>
 
@@ -7587,15 +7891,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P10 Dec</span>
+      <span class=&quot;toc-item current&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Secretariat: lift into minutes</span>
     </div>
     <div class=&quot;right&quot;>
@@ -7733,7 +8039,7 @@
         <div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb active'></div>
       </div>
       <div class='divider'></div>
-      <div class='page-marker'>P11 / 12</div>
+      <div class='page-marker'>P12 / 13</div>
     </div>
   </header>
   <main class='slide-body'>
@@ -7797,7 +8103,7 @@
     </section>
   </main>
   <footer class='slide-footer'>
-    <div class='footer-left'><span>P1</span><span>P2</span><span>P3 Fin</span><span>P10 Dec</span><span class='current'>P11 Appx</span></div>
+    <div class='footer-left'><span>P1</span><span>P2</span><span>P3 Fin</span><span>P11 Dec</span><span class='current'>P11 Appx</span></div>
     <div class='footer-right'><span>Review aid</span><span>Draft commentary model</span><span>Supporting controls appendix</span><span>Design v1.3.2 &middot; Exec v0.3</span></div>
   </footer>
 </div>
@@ -8313,7 +8619,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P12 / 12</div>
+      <div class=&quot;page-marker&quot;>P13 / 13</div>
     </div>
   </header>
 
@@ -8700,15 +9006,17 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P5 NF</span>
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
-      <span class=&quot;toc-item&quot;>P6 Controls</span>
+      <span class=&quot;toc-item&quot;>P6 NF Det</span>
+      <span class=&quot;toc-sep&quot;>&rsaquo;</span>
+      <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P7 Loss</span>
+      <span class=&quot;toc-item&quot;>P8 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Inc</span>
+      <span class=&quot;toc-item&quot;>P9 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Emerg</span>
+      <span class=&quot;toc-item&quot;>P10 Emerg</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Dec</span>
+      <span class=&quot;toc-item&quot;>P11 Dec</span>
       <span class=&quot;appendix-ref&quot;>Archived P3 view</span>
     </div>
     <div class=&quot;right&quot;>
@@ -8759,32 +9067,36 @@
     <div class="t-num">P5</div>
     <div class="t-name">RCSA Non-Fin</div>
   </div>
-  <div class="thumb" data-key="p4" data-index="6">
+  <div class="thumb" data-key="p3nfdetail" data-index="6">
     <div class="t-num">P6</div>
+    <div class="t-name">RCSA NF Detail</div>
+  </div>
+  <div class="thumb" data-key="p4" data-index="7">
+    <div class="t-num">P7</div>
     <div class="t-name">Control Environment</div>
   </div>
-  <div class="thumb" data-key="p5" data-index="7">
-    <div class="t-num">P7</div>
+  <div class="thumb" data-key="p5" data-index="8">
+    <div class="t-num">P8</div>
     <div class="t-name">Losses & Near Misses</div>
   </div>
-  <div class="thumb" data-key="p6" data-index="8">
-    <div class="t-num">P8</div>
+  <div class="thumb" data-key="p6" data-index="9">
+    <div class="t-num">P9</div>
     <div class="t-name">Incidents & Breaches</div>
   </div>
-  <div class="thumb" data-key="p7" data-index="9">
-    <div class="t-num">P9</div>
+  <div class="thumb" data-key="p7" data-index="10">
+    <div class="t-num">P10</div>
     <div class="t-name">Emerging Risks</div>
   </div>
-  <div class="thumb" data-key="p8" data-index="10">
-    <div class="t-num">P10</div>
+  <div class="thumb" data-key="p8" data-index="11">
+    <div class="t-num">P11</div>
     <div class="t-name">Decisions & Actions</div>
   </div>
-  <div class="thumb" data-key="p9" data-index="11">
-    <div class="t-num">P11</div>
+  <div class="thumb" data-key="p9" data-index="12">
+    <div class="t-num">P12</div>
     <div class="t-name">Appendix</div>
   </div>
-  <div class="thumb" data-key="p10" data-index="12">
-    <div class="t-num">P12</div>
+  <div class="thumb" data-key="p10" data-index="13">
+    <div class="t-num">P13</div>
     <div class="t-name">RCSA Appx</div>
   </div>
   <div class="spacer"></div>
@@ -8800,15 +9112,16 @@ const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary", purpose: "Committee-level synthesis of the consolidated risk position, top decisions, and assigned commentary." },
   { key: "p2", num: 2, title: "Risk Appetite", purpose: "Current appetite proximity and QoQ movement across L2 risk metrics, with assigned commentary." },
   { key: "p3", num: 3, title: "RCSA: Financial Risk Summary", purpose: "Financial L2 risk summary across 16 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls." },
-  { key: "p3detail", num: 4, title: "RCSA: Financial Risk Detail", purpose: "Financial L3 risk detail showing business-function RAG, action plan status, last RCSA date, and multiple-red concentration." },
+  { key: "p3detail", num: 4, title: "RCSA: Financial Risk Detail", purpose: "Financial L3 risk detail showing business-function RAG, overall L2 final RAG, action plan status, last RCSA date, and multiple-red concentration." },
   { key: "p3nf", num: 5, title: "RCSA: Non-Financial Risk Summary", purpose: "Non-financial L2 risk summary across 26 risks. Red and amber shown by default, green risks toggleable, with heatmap movement detail below." },
-  { key: "p4", num: 6, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
-  { key: "p5", num: 7, title: "Losses & Near Misses", purpose: "Cumulative YTD operational losses vs appetite trigger and breach threshold, plus largest loss events." },
-  { key: "p6", num: 8, title: "Incidents & Breaches", purpose: "Material incident and breach trajectory with root-cause and ageing views." },
-  { key: "p7", num: 9, title: "Emerging Risks", purpose: "Forward-looking risk radar and watchlist requiring Board awareness." },
-  { key: "p8", num: 10, title: "Decisions & Actions", purpose: "Decision log and action register for the meeting." },
-  { key: "p9", num: 11, title: "Appendix", purpose: "Review notes on commentary assignment and design assumptions." },
-  { key: "p10", num: 12, title: "RCSA Current View Appendix", purpose: "Snapshot of the earlier RCSA view retained for review while the financial and non-financial split is refined." }
+  { key: "p3nfdetail", num: 6, title: "RCSA: Non-Financial Risk Detail", purpose: "Non-financial L3 risk detail showing business-function RAG, overall L2 final RAG, action plan status, last RCSA date, and multiple-red concentration." },
+  { key: "p4", num: 7, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
+  { key: "p5", num: 8, title: "Losses & Near Misses", purpose: "Cumulative YTD operational losses vs appetite trigger and breach threshold, plus largest loss events." },
+  { key: "p6", num: 9, title: "Incidents & Breaches", purpose: "Material incident and breach trajectory with root-cause and ageing views." },
+  { key: "p7", num: 10, title: "Emerging Risks", purpose: "Forward-looking risk radar and watchlist requiring Board awareness." },
+  { key: "p8", num: 11, title: "Decisions & Actions", purpose: "Decision log and action register for the meeting." },
+  { key: "p9", num: 12, title: "Appendix", purpose: "Review notes on commentary assignment and design assumptions." },
+  { key: "p10", num: 13, title: "RCSA Current View Appendix", purpose: "Snapshot of the earlier RCSA view retained for review while the financial and non-financial split is refined." }
 ];
 
 let currentIdx = 0;

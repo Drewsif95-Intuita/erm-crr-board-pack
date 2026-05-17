@@ -108,8 +108,19 @@
     position: relative;
     overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-    padding: clamp(8px, 1.6vh, 16px) 16px clamp(8px, 1.2vh, 10px);
+    padding: clamp(8px, 1.6vh, 16px) 0 clamp(8px, 1.2vh, 10px);
     min-height: 0;
+    overscroll-behavior: contain;
+  }
+  .stage.zoom-overflow {
+    overflow: auto;
+    align-items: flex-start;
+  }
+  .stage::-webkit-scrollbar { width: 8px; height: 8px; }
+  .stage::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+  .stage::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.22);
+    border-radius: 999px;
   }
   .slide-frame-wrap {
     position: relative;
@@ -160,45 +171,6 @@
   .nav-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
   .nav-arrow.prev { left: 12px; }
   .nav-arrow.next { right: 12px; }
-
-  /* INFO PANEL */
-  .info-panel {
-    position: absolute;
-    top: 16px; right: 16px;
-    width: 300px;
-    max-height: calc(100% - 32px);
-    background: #fff;
-    border: 1px solid var(--hairline);
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    padding: 14px 16px;
-    z-index: 10;
-    transform: translateX(calc(100% + 40px));
-    transition: transform 0.25s ease;
-    overflow-y: auto;
-  }
-  .info-panel.open { transform: translateX(0); }
-  .info-panel .close {
-    position: absolute; top: 8px; right: 10px;
-    background: none; border: 0; font-size: 18px; color: var(--muted);
-    cursor: pointer; padding: 2px 6px; line-height: 1;
-  }
-  .info-panel .close:hover { color: var(--ink); }
-  .info-head {
-    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--sl-heritage-blue); margin-bottom: 4px;
-  }
-  .info-title {
-    font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
-    padding-bottom: 8px; border-bottom: 1px solid var(--hairline-soft);
-  }
-  .info-purpose {
-    font-size: 11.5px; line-height: 1.55; color: var(--ink-2); margin: 0 0 10px;
-  }
-  .info-meta {
-    font-size: 10.5px; line-height: 1.5; color: var(--muted);
-  }
-  .info-meta b { color: var(--ink); font-weight: 700; }
 
   /* THUMBNAIL TRAY */
   .tray {
@@ -291,15 +263,11 @@
     <div class="doc-name">
       <span>CRR Exec Pack</span>
       <span class="v">v3 &middot; full pack</span>
-      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 15 pages</span>
+      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 16 pages</span>
     </div>
   </div>
   <div class="topbar-controls">
-    <button class="tb-btn" id="btn-info" title="Page info (I)">
-      <span>Page info</span>
-      <span class="kbd">I</span>
-    </button>
-    <div class="progress-chip" id="progress">P1 / 15</div>
+    <div class="progress-chip" id="progress">P1 / 16</div>
   </div>
 </div>
 
@@ -462,9 +430,9 @@
   .slide-body {
     padding: 18px 40px 16px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(360px, 0.62fr) minmax(0, 1.38fr);
     grid-template-rows: auto 1fr;
-    gap: 14px 20px;
+    gap: 14px 16px;
     min-height: 0;
   }
 
@@ -641,11 +609,12 @@
     flex: 0 0 auto;
   }
   .attention-panel.top3-commentary .comm-card {
-    padding: 7px 10px;
+    padding: 7px 9px;
     gap: 3px;
   }
   .attention-panel.top3-commentary .comm-body {
-    line-height: 1.35;
+    font-size: 10.5px;
+    line-height: 1.32;
   }
   .comm-card {
     background: #fff;
@@ -678,7 +647,7 @@
     grid-row: 2;
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
-    gap: 12px;
+    gap: 8px;
     min-height: 0;
   }
 
@@ -920,12 +889,15 @@
   }
 
   .risk-universe-panel {
-    padding: 10px 12px 11px;
-    gap: 7px;
+    padding: 6px 12px 8px;
+    gap: 5px;
   }
   .risk-universe-panel .panel-head {
-    padding-bottom: 5px;
+    padding-bottom: 3px;
     border-bottom: 1px solid var(--hairline-soft);
+  }
+  .risk-universe-panel .panel-title {
+    font-size: 12.5px;
   }
   .universe-legend {
     display: flex;
@@ -954,18 +926,24 @@
   .heli-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 7px;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    flex: 1;
     min-height: 0;
   }
   .heli-group {
     border: 1px solid var(--hairline-soft);
     border-radius: 6px;
     background: #f8fbff;
-    padding: 5px;
+    padding: 7px;
     min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
   .heli-head {
-    min-height: 20px;
+    min-height: 22px;
     border-radius: 4px;
     background: var(--navy);
     color: var(--sl-heritage-yellow);
@@ -973,8 +951,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2px 4px;
-    font-size: 7.2px;
+    padding: 3px 5px;
+    font-size: 7.6px;
     line-height: 1.08;
     font-weight: 700;
   }
@@ -1000,8 +978,8 @@
     flex: 1;
     border-radius: 3px;
     border: 1px solid #d6dfeb;
-    padding: 1px 0;
-    font-size: 6.6px;
+    padding: 2px 0;
+    font-size: 7px;
     font-weight: 800;
     line-height: 1;
     text-align: center;
@@ -1013,6 +991,18 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 3px;
+    flex: 1;
+    grid-auto-rows: minmax(16px, max-content);
+    align-content: start;
+  }
+  .heli-group.exception-heavy .heli-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(14px, max-content);
+  }
+  .heli-group.exception-heavy .heli-tile {
+    min-height: 14px;
+    padding: 1px 2px;
+    font-size: 6.7px;
   }
   .heli-tile {
     min-height: 16px;
@@ -1021,9 +1011,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    padding: 1px 2px;
-    font-size: 7px;
+    gap: 1px;
+    padding: 2px 3px;
+    font-size: 7.1px;
     font-weight: 600;
     line-height: 1.05;
     text-align: center;
@@ -1036,7 +1026,7 @@
     white-space: nowrap;
   }
   .heli-tile b {
-    font-size: 5.6px;
+    font-size: 5.8px;
     font-weight: 800;
     flex: 0 0 auto;
   }
@@ -1061,37 +1051,50 @@
   .heli-note b { color: var(--ink); font-weight: 700; }
 
   .control-snapshot {
-    padding: 12px 14px;
+    padding: 8px 12px 9px;
+    gap: 5px;
   }
   .control-summary-card {
-    padding: 9px 10px 10px;
+    padding: 7px 9px 8px;
   }
   .control-card-score {
     font-size: 12px;
     color: var(--red);
   }
   .control-mix {
-    height: 15px;
+    height: 18px;
     display: flex;
     overflow: hidden;
     border: 1px solid #d6dfeb;
     border-radius: 4px;
     background: #e4ebf4;
-    margin: 7px 0 6px;
+    margin: 5px 0 6px;
   }
-  .mix-seg { height: 100%; }
+  .mix-seg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  }
   .mix-seg.effective { background: var(--green); }
   .mix-seg.partial { background: #DE4721; }
   .mix-seg.ineffective { background: #7A003C; }
-  .control-legend-mini {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3px;
+  .control-status-legend {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     font-size: 8.5px;
     color: var(--muted);
     font-weight: 600;
+    white-space: nowrap;
   }
-  .control-legend-mini span {
+  .control-status-legend span {
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -1107,25 +1110,45 @@
   .leg-dot.effective { background: var(--green); }
   .leg-dot.partial { background: #DE4721; }
   .leg-dot.ineffective { background: #7A003C; }
-  .tested-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 9px;
-    font-size: 9px;
-    color: var(--ink-2);
-    font-weight: 600;
+  .control-kpi-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
   }
-  .tested-row b {
-    color: var(--ink);
-    font-size: 13px;
-    font-weight: 700;
+  .control-kpi-tile {
+    border: 1px solid #d6dfeb;
+    border-radius: 5px;
+    background: #fff;
+    padding: 5px 7px 6px;
+    min-width: 0;
   }
-  .tested-note {
+  .control-kpi-tile.alert {
+    background: #fff4f5;
+    border-color: #f0a3aa;
+  }
+  .control-kpi-label {
+    font-size: 7px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
     color: var(--muted);
-    font-size: 8.5px;
+    line-height: 1;
+  }
+  .control-kpi-value {
+    margin-top: 4px;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .control-kpi-tile.alert .control-kpi-value { color: var(--red); }
+  .control-kpi-note {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 7.6px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .tested-track {
     height: 7px;
@@ -1280,7 +1303,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P1 / 15</div>
+      <div class=&quot;page-marker&quot;>P1 / 16</div>
     </div>
   </header>
 
@@ -1370,7 +1393,6 @@
         <div class=&quot;panel-head&quot;>
           <div>
             <div class=&quot;panel-title&quot;>RCSA Helicopter View</div>
-            <div class=&quot;panel-sub&quot;>42 L2 risks across financial and non-financial risk &middot; current RAG</div>
           </div>
           <div class=&quot;universe-legend&quot;>
             <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot red&quot;></i>Red</span>
@@ -1386,8 +1408,7 @@
             <div class=&quot;heli-counts&quot;><span class=&quot;red&quot;>1R</span><span class=&quot;amber&quot;>0A</span><span class=&quot;green&quot;>2G</span></div>
             <div class=&quot;heli-tiles&quot;>
               <div class=&quot;heli-tile red flagged&quot;><span>Reputation</span><b>R</b></div>
-              <div class=&quot;heli-tile green&quot;><span>Strategy Exec</span><b>G</b></div>
-              <div class=&quot;heli-tile green&quot;><span>Strategy Select</span><b>G</b></div>
+              <div class=&quot;heli-tile more&quot;><span>+2 green</span></div>
             </div>
           </div>
 
@@ -1397,8 +1418,7 @@
             <div class=&quot;heli-counts&quot;><span class=&quot;red&quot;>0R</span><span class=&quot;amber&quot;>1A</span><span class=&quot;green&quot;>2G</span></div>
             <div class=&quot;heli-tiles&quot;>
               <div class=&quot;heli-tile amber&quot;><span>Greenwashing</span><b>A</b></div>
-              <div class=&quot;heli-tile green&quot;><span>Physical</span><b>G</b></div>
-              <div class=&quot;heli-tile green&quot;><span>Transition</span><b>G</b></div>
+              <div class=&quot;heli-tile more&quot;><span>+2 green</span></div>
             </div>
           </div>
 
@@ -1431,7 +1451,7 @@
             <div class=&quot;heli-tiles&quot;>
               <div class=&quot;heli-tile red flagged&quot;><span>Investment Cpty</span><b>R</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Illiquid Credit</span><b>A</b></div>
-              <div class=&quot;heli-tile green&quot;><span>Reinsurance Cpty</span><b>G</b></div>
+              <div class=&quot;heli-tile more&quot;><span>+1 green</span></div>
             </div>
           </div>
 
@@ -1447,27 +1467,35 @@
             </div>
           </div>
 
-          <div class=&quot;heli-group&quot;>
+          <div class=&quot;heli-group exception-heavy&quot;>
             <div class=&quot;heli-head&quot;>Customer</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:38%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div>
             <div class=&quot;heli-counts&quot;><span class=&quot;red&quot;>3R</span><span class=&quot;amber&quot;>2A</span><span class=&quot;green&quot;>3G</span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Data Protection</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Data Prot</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>AI</span><b>R</b></div>
-              <div class=&quot;heli-tile red&quot;><span>Sales &amp; Distrib</span><b>R</b></div>
-              <div class=&quot;heli-tile more&quot;><span>+5 risks</span></div>
+              <div class=&quot;heli-tile red&quot;><span>Sales</span><b>R</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Post-Sales</span><b>A</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Data Mgmt</span><b>A</b></div>
+              <div class=&quot;heli-tile more&quot;><span>+3 green</span></div>
             </div>
           </div>
 
-          <div class=&quot;heli-group&quot;>
+          <div class=&quot;heli-group exception-heavy&quot;>
             <div class=&quot;heli-head&quot;>Operational</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:42%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div>
             <div class=&quot;heli-counts&quot;><span class=&quot;red&quot;>4R</span><span class=&quot;amber&quot;>5A</span><span class=&quot;green&quot;>3G</span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Info Sec &amp; Cyber</span><b>R</b></div>
-              <div class=&quot;heli-tile red flagged&quot;><span>Op Resilience</span><b>R</b></div>
-              <div class=&quot;heli-tile red&quot;><span>Reg Compliance</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Info Sec</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Op Res</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Reg Comp</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Technology</span><b>R</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Third Party</span><b>A</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Model</span><b>A</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Reporting</span><b>A</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>Tax</span><b>A</b></div>
+              <div class=&quot;heli-tile amber&quot;><span>People</span><b>A</b></div>
+              <div class=&quot;heli-tile more&quot;><span>+3 green</span></div>
             </div>
           </div>
         </div>
@@ -1476,50 +1504,56 @@
       <div class=&quot;control-snapshot&quot;>
         <div class=&quot;panel-head&quot; style=&quot;border-bottom: 1px solid var(--hairline-soft); padding-bottom: 6px;&quot;>
           <div class=&quot;panel-title&quot;>Control Snapshot</div>
-          <div class=&quot;panel-sub&quot;>Material + key</div>
+          <div class=&quot;control-status-legend&quot;>
+            <span><i class=&quot;leg-dot effective&quot;></i>Effective</span>
+            <span><i class=&quot;leg-dot partial&quot;></i>Partial</span>
+            <span><i class=&quot;leg-dot ineffective&quot;></i>Ineffective</span>
+          </div>
         </div>
         <div class=&quot;control-snapshot-grid&quot;>
           <div class=&quot;control-summary-card material&quot;>
             <div class=&quot;control-card-top&quot;>
               <div class=&quot;control-card-label&quot;>Material controls</div>
-              <div class=&quot;control-card-score&quot;>9% ineffective</div>
             </div>
             <div class=&quot;control-mix&quot; aria-label=&quot;Material controls status mix&quot;>
-              <div class=&quot;mix-seg effective&quot; style=&quot;width:71%;&quot;></div>
-              <div class=&quot;mix-seg partial&quot; style=&quot;width:20%;&quot;></div>
-              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:9%;&quot;></div>
+              <div class=&quot;mix-seg effective&quot; style=&quot;width:71%;&quot;>71%</div>
+              <div class=&quot;mix-seg partial&quot; style=&quot;width:20%;&quot;>20%</div>
+              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:9%;&quot;>9%</div>
             </div>
-            <div class=&quot;control-legend-mini&quot;>
-              <span><i class=&quot;leg-dot effective&quot;></i>71% effective</span>
-              <span><i class=&quot;leg-dot partial&quot;></i>20% partial</span>
-              <span><i class=&quot;leg-dot ineffective&quot;></i>9% ineffective</span>
+            <div class=&quot;control-kpi-row&quot;>
+              <div class=&quot;control-kpi-tile alert&quot;>
+                <div class=&quot;control-kpi-label&quot;>Ineffective</div>
+                <div class=&quot;control-kpi-value&quot;>9%</div>
+                <div class=&quot;control-kpi-note&quot;>4 / 45 controls</div>
+              </div>
+              <div class=&quot;control-kpi-tile&quot;>
+                <div class=&quot;control-kpi-label&quot;>Tests complete</div>
+                <div class=&quot;control-kpi-value&quot;>47%</div>
+                <div class=&quot;control-kpi-note&quot;>21 / 45 scheduled</div>
+              </div>
             </div>
-            <div class=&quot;tested-row&quot;>
-              <div><b>47%</b> tests complete</div>
-              <div class=&quot;tested-note&quot;>21 / 45 scheduled</div>
-            </div>
-            <div class=&quot;tested-track&quot;><div class=&quot;tested-fill&quot; style=&quot;width:47%;&quot;></div></div>
           </div>
           <div class=&quot;control-summary-card key&quot;>
             <div class=&quot;control-card-top&quot;>
               <div class=&quot;control-card-label&quot;>Key controls</div>
-              <div class=&quot;control-card-score&quot;>1% ineffective</div>
             </div>
             <div class=&quot;control-mix&quot; aria-label=&quot;Key controls status mix&quot;>
-              <div class=&quot;mix-seg effective&quot; style=&quot;width:80%;&quot;></div>
-              <div class=&quot;mix-seg partial&quot; style=&quot;width:19%;&quot;></div>
-              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:1%;&quot;></div>
+              <div class=&quot;mix-seg effective&quot; style=&quot;width:80%;&quot;>80%</div>
+              <div class=&quot;mix-seg partial&quot; style=&quot;width:19%;&quot;>19%</div>
+              <div class=&quot;mix-seg ineffective&quot; style=&quot;width:1%;&quot;>1%</div>
             </div>
-            <div class=&quot;control-legend-mini&quot;>
-              <span><i class=&quot;leg-dot effective&quot;></i>80% effective</span>
-              <span><i class=&quot;leg-dot partial&quot;></i>19% partial</span>
-              <span><i class=&quot;leg-dot ineffective&quot;></i>1% ineffective</span>
+            <div class=&quot;control-kpi-row&quot;>
+              <div class=&quot;control-kpi-tile alert&quot;>
+                <div class=&quot;control-kpi-label&quot;>Ineffective</div>
+                <div class=&quot;control-kpi-value&quot;>1%</div>
+                <div class=&quot;control-kpi-note&quot;>1 / 80 controls</div>
+              </div>
+              <div class=&quot;control-kpi-tile&quot;>
+                <div class=&quot;control-kpi-label&quot;>Tests complete</div>
+                <div class=&quot;control-kpi-value&quot;>33%</div>
+                <div class=&quot;control-kpi-note&quot;>27 / 81 scheduled</div>
+              </div>
             </div>
-            <div class=&quot;tested-row&quot;>
-              <div><b>33%</b> tests complete</div>
-              <div class=&quot;tested-note&quot;>27 / 81 scheduled</div>
-            </div>
-            <div class=&quot;tested-track&quot;><div class=&quot;tested-fill&quot; style=&quot;width:33%;&quot;></div></div>
           </div>
         </div>
       </div>
@@ -1545,11 +1579,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
     </div>
     <div class=&quot;right&quot;>
       <div>Source: Decision Focus + PowerApp</div>
@@ -2183,7 +2217,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P2 / 15</div>
+      <div class=&quot;page-marker&quot;>P2 / 16</div>
     </div>
   </header>
 
@@ -2975,19 +3009,29 @@
   .risk-note b { color: var(--ink); font-weight: 700; }
   .matrix-head {
     display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px;
     margin-bottom: 5px;
   }
+  .matrix-head > div:first-child { min-width: 0; flex: 1 1 auto; }
   .matrix-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
-  .matrix-sub { font-size: 8.5px; color: var(--muted); }
-  .limit-controls { display: flex; align-items: center; gap: 4px; }
+  .matrix-sub { font-size: 7.8px; color: var(--muted); white-space: nowrap; }
+  .limit-controls { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
   .limit-pill {
     border: 1px solid var(--hairline);
     background: #f6f8fb;
     color: var(--muted);
     border-radius: 3px;
-    padding: 2px 6px;
+    width: 34px;
+    min-width: 34px;
+    height: 24px;
+    padding: 0 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     font-size: 8px;
     font-weight: 700;
+    line-height: 1.05;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     cursor: pointer;
@@ -3233,7 +3277,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P3 / 15</div>
+      <div class=&quot;page-marker&quot;>P3 / 16</div>
     </div>
   </header>
 
@@ -3492,11 +3536,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Prior view → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -3960,19 +4004,29 @@
   .risk-note b { color: var(--ink); font-weight: 700; }
   .matrix-head {
     display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px;
     margin-bottom: 5px;
   }
+  .matrix-head > div:first-child { min-width: 0; flex: 1 1 auto; }
   .matrix-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
-  .matrix-sub { font-size: 8.5px; color: var(--muted); }
-  .limit-controls { display: flex; align-items: center; gap: 4px; }
+  .matrix-sub { font-size: 7.8px; color: var(--muted); white-space: nowrap; }
+  .limit-controls { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
   .limit-pill {
     border: 1px solid var(--hairline);
     background: #f6f8fb;
     color: var(--muted);
     border-radius: 3px;
-    padding: 2px 6px;
+    width: 34px;
+    min-width: 34px;
+    height: 24px;
+    padding: 0 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     font-size: 8px;
     font-weight: 700;
+    line-height: 1.05;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     cursor: pointer;
@@ -4260,7 +4314,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P5 / 15</div>
+      <div class=&quot;page-marker&quot;>P5 / 16</div>
     </div>
   </header>
 
@@ -4598,11 +4652,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Prior view → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -4617,7 +4671,7 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p3detail" class="inactive slide-frame" data-key="p3detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:9px}.kpi{min-height:54px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:25px;font-weight:600;margin-top:5px}.delta{height:17px;margin-top:3px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:508px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head,.commentary-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:14px}.panel-sub,.commentary-sub{font-size:9px;color:var(--muted);margin-top:2px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 4px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(4),.driver-table td:nth-child(4),.driver-table th:nth-child(n+5):nth-child(-n+8),.driver-table td:nth-child(n+5):nth-child(-n+8){text-align:center}.num{width:17px;height:17px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.7px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.1px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.move,.action{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Financial Risk Detail</h1><div class='sub'>L2 and L3 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P4 / 15</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Financial L3 Risks</div><div class='value'>13</div></div><div class='kpi red'><div class='label'>Overall Red L2</div><div class='value'>7</div></div><div class='kpi amber'><div class='label'>Overall Amber L2</div><div class='value'>6</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>11</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Financial L3 Risk Detail</div><div class='panel-sub'>Business-function split moved to RCSA appendix; this view focuses on L2/L3 risk, overall rating and action status.</div></div><div class='filters'><span class='pill'>Financial</span><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Action plan</span></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:24px'><col style='width:132px'><col style='width:178px'><col style='width:54px'><col style='width:48px'><col style='width:54px'><col style='width:54px'><col style='width:38px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>14 Mar</span></td><td class='ia'>4 / 6</td></tr>
+    <iframe id="frame-p3detail" class="inactive slide-frame" data-key="p3detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:9px}.kpi{min-height:54px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:25px;font-weight:600;margin-top:5px}.delta{height:17px;margin-top:3px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:508px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head,.commentary-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:14px}.panel-sub,.commentary-sub{font-size:9px;color:var(--muted);margin-top:2px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 4px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(4),.driver-table td:nth-child(4),.driver-table th:nth-child(n+5):nth-child(-n+8),.driver-table td:nth-child(n+5):nth-child(-n+8){text-align:center}.num{width:17px;height:17px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.7px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.1px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.move,.action{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Financial Risk Detail</h1><div class='sub'>L2 and L3 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P4 / 16</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Financial L3 Risks</div><div class='value'>13</div></div><div class='kpi red'><div class='label'>Overall Red L2</div><div class='value'>7</div></div><div class='kpi amber'><div class='label'>Overall Amber L2</div><div class='value'>6</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>11</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Financial L3 Risk Detail</div><div class='panel-sub'>Business-function split moved to RCSA appendix; this view focuses on L2/L3 risk, overall rating and action status.</div></div><div class='filters'><span class='pill'>Financial</span><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Action plan</span></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:24px'><col style='width:132px'><col style='width:178px'><col style='width:54px'><col style='width:48px'><col style='width:54px'><col style='width:54px'><col style='width:38px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>14 Mar</span></td><td class='ia'>4 / 6</td></tr>
 <tr><td><span class='num'>2</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Credit spread widening</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>14 Mar</span></td><td class='ia'>2 / 3</td></tr>
 <tr><td><span class='num'>3</span></td><td><div class='risk'>Investment Counterparty</div><div class='owner'>Credit &amp; Counterparty</div></td><td><div class='driver'>Default watchlist deterioration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>22 Mar</span></td><td class='ia'>3 / 5</td></tr>
 <tr><td><span class='num'>4</span></td><td><div class='risk'>Investment Counterparty</div><div class='owner'>Credit &amp; Counterparty</div></td><td><div class='driver'>Downgrade concentration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action watch'>Watch</span></td><td><span class='date'>22 Mar</span></td><td class='ia'>1 / 2</td></tr>
@@ -4633,7 +4687,7 @@
 <div class='comm-card red'><div class='comm-top'><span class='item'>Top item 2</span><strong>Investment Counterparty</strong><span class='badge'>Worsened</span></div><div class='owner-line'>Credit Risk Lead - 22 Mar 2026</div><p>Default watchlist deterioration and downgrade concentration have pushed the L2 to <b>Red</b>. Owner commentary should cover exposure, exit criteria, watchlist governance and any dependency on external ratings.</p></div>
 <div class='comm-card blue'><div class='comm-top'><span class='item'>Top item 3</span><strong>Liquidity</strong><span class='badge'>Overlay</span></div><div class='owner-line'>Treasury / Liquidity Lead - 31 Mar 2026</div><p>Underlying data remains amber, but expert overlay moves the L2 to <b>Red</b>. Commentary should explain the management judgement, buffer adequacy, action owner and expected return path.</p></div><div class='spill-note'><b>Spillover:</b> 4 further red financial L3 rows spill to a secondary commentary page when enabled.</div></aside></section></main><footer class='footer'><div class='footer-left'><span>P1</span><span>P2</span><span>P3 Fin</span><span class='current'>P4 Fin Det</span><span>P5 NF</span><span>P6 NF Det</span><span>P7 Controls</span><span class='appendix-ref'>Function split -> RCSA Appx</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
 
-    <iframe id="frame-p3nfdetail" class="inactive slide-frame" data-key="p3nfdetail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Non-Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:9px}.kpi{min-height:54px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:25px;font-weight:600;margin-top:5px}.delta{height:17px;margin-top:3px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:508px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head,.commentary-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:14px}.panel-sub,.commentary-sub{font-size:9px;color:var(--muted);margin-top:2px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 4px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(4),.driver-table td:nth-child(4),.driver-table th:nth-child(n+5):nth-child(-n+8),.driver-table td:nth-child(n+5):nth-child(-n+8){text-align:center}.num{width:17px;height:17px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.7px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.1px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.move,.action{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Non-Financial Risk Detail</h1><div class='sub'>L2 and L3 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P6 / 15</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Non-Fin L3 Risks</div><div class='value'>16</div></div><div class='kpi red'><div class='label'>Overall Red L2</div><div class='value'>8</div></div><div class='kpi amber'><div class='label'>Overall Amber L2</div><div class='value'>8</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>16</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Non-Financial L3 Risk Detail</div><div class='panel-sub'>Business-function split moved to RCSA appendix; this view focuses on L2/L3 risk, overall rating and action status.</div></div><div class='filters'><span class='pill'>Non-Financial</span><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Action plan</span></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:24px'><col style='width:132px'><col style='width:178px'><col style='width:54px'><col style='width:48px'><col style='width:54px'><col style='width:54px'><col style='width:38px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Information Security &amp; Cyber</div><div class='owner'>Operational</div></td><td><div class='driver'>Cyber attack / data breach</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>6 / 9</td></tr>
+    <iframe id="frame-p3nfdetail" class="inactive slide-frame" data-key="p3nfdetail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Non-Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:9px}.kpi{min-height:54px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:8px 11px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:25px;font-weight:600;margin-top:5px}.delta{height:17px;margin-top:3px;padding:2px 7px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:9px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:508px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head,.commentary-head{padding:8px 12px 6px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:14px}.panel-sub,.commentary-sub{font-size:9px;color:var(--muted);margin-top:2px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 4px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:5px;font-weight:700}.driver-table td{border-bottom:1px solid #edf1f7;padding:2px 5px;vertical-align:middle}.driver-table th:nth-child(4),.driver-table td:nth-child(4),.driver-table th:nth-child(n+5):nth-child(-n+8),.driver-table td:nth-child(n+5):nth-child(-n+8){text-align:center}.num{width:17px;height:17px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8.5px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.5px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:7.5px;color:#5c6d85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.7px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.1px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.move,.action{display:inline-flex;width:46px;height:17px;border-radius:4px;align-items:center;justify-content:center;font-size:7.2px;font-weight:800;text-transform:uppercase;border:1px solid transparent;line-height:1}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.action.yes{background:#dff3ee;color:#006b5d}.action.watch{background:#fff2c8;color:#9a3d12}.action.overdue{background:#ffe7e9;color:#9d1827}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:48px;height:17px;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Non-Financial Risk Detail</h1><div class='sub'>L2 and L3 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P6 / 16</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Non-Fin L3 Risks</div><div class='value'>16</div></div><div class='kpi red'><div class='label'>Overall Red L2</div><div class='value'>8</div></div><div class='kpi amber'><div class='label'>Overall Amber L2</div><div class='value'>8</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>16</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Non-Financial L3 Risk Detail</div><div class='panel-sub'>Business-function split moved to RCSA appendix; this view focuses on L2/L3 risk, overall rating and action status.</div></div><div class='filters'><span class='pill'>Non-Financial</span><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Action plan</span></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:24px'><col style='width:132px'><col style='width:178px'><col style='width:54px'><col style='width:48px'><col style='width:54px'><col style='width:54px'><col style='width:38px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Information Security &amp; Cyber</div><div class='owner'>Operational</div></td><td><div class='driver'>Cyber attack / data breach</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>6 / 9</td></tr>
 <tr><td><span class='num'>2</span></td><td><div class='risk'>Operational Resilience</div><div class='owner'>Operational</div></td><td><div class='driver'>Critical service outage</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action overdue'>Overdue</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>5 / 8</td></tr>
 <tr><td><span class='num'>3</span></td><td><div class='risk'>Regulatory Compliance</div><div class='owner'>Operational</div></td><td><div class='driver'>Regulatory change management</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>4 / 7</td></tr>
 <tr><td><span class='num'>4</span></td><td><div class='risk'>Data Protection</div><div class='owner'>Customer</div></td><td><div class='driver'>Retention / breach response</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat'>Flat</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>25 Mar</span></td><td class='ia'>4 / 6</td></tr>
@@ -5296,7 +5350,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P7 / 15</div>
+      <div class=&quot;page-marker&quot;>P7 / 16</div>
     </div>
   </header>
 
@@ -5377,20 +5431,20 @@
             </div>
             <div class=&quot;bar-stack&quot;>
               <div class=&quot;bar-row&quot;>
-                <div class=&quot;bar-label&quot;>Control Assessment</div>
-                <div class=&quot;stacked-bar&quot;>
-                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 71.1%;&quot;>32</div>
-                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 20.0%;&quot;>9</div>
-                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 8.9%;&quot;>4</div>
-                </div>
-              </div>
-              <div class=&quot;bar-row&quot;>
                 <div class=&quot;bar-label&quot;>Control Test</div>
                 <div class=&quot;stacked-bar&quot;>
                   <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 28.9%;&quot;>13</div>
                   <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 11.1%;&quot;>5</div>
                   <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 6.7%;&quot;>3</div>
                   <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 53.3%;&quot;>24</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Assessment</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 71.1%;&quot;>32</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 20.0%;&quot;>9</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 8.9%;&quot;>4</div>
                 </div>
               </div>
             </div>
@@ -5408,19 +5462,19 @@
             </div>
             <div class=&quot;bar-stack&quot;>
               <div class=&quot;bar-row&quot;>
-                <div class=&quot;bar-label&quot;>Control Assessment</div>
-                <div class=&quot;stacked-bar&quot;>
-                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 80.0%;&quot;>64</div>
-                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 18.75%;&quot;>15</div>
-                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 1.25%;&quot;>&amp;nbsp;</div>
-                </div>
-              </div>
-              <div class=&quot;bar-row&quot;>
                 <div class=&quot;bar-label&quot;>Control Test</div>
                 <div class=&quot;stacked-bar&quot;>
                   <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 22.5%;&quot;>18</div>
                   <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 8.75%;&quot;>7</div>
                   <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 67.5%;&quot;>54</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row&quot;>
+                <div class=&quot;bar-label&quot;>Control Assessment</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 80.0%;&quot;>64</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 18.75%;&quot;>15</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 1.25%;&quot;>&amp;nbsp;</div>
                 </div>
               </div>
             </div>
@@ -5565,11 +5619,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item current&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Supporting controls → Appendix</span>
     </div>
     <div class=&quot;right&quot;>
@@ -5589,6 +5643,8 @@
 </body>
 </html>
 "></iframe>
+    <iframe id="frame-p4detail" class="inactive slide-frame" data-key="p4detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Control Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#2140CE}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section-head{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section-head h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section-head .sub{font-size:12px;opacity:.86;color:#fff}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:8px 22px 0;height:596px}.panel{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden;display:flex;flex-direction:column}.panel-top{height:34px;padding:6px 10px;border-bottom:1px solid #dfe6f1;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.title{font-size:13px;font-weight:700}.subtitle{font-size:7.6px;color:var(--muted);margin-top:1px}.reconcile{display:flex;gap:6px;align-items:center;white-space:nowrap}.rec-chip{height:18px;border:1px solid #d7dee8;border-radius:4px;background:#f6f8fb;padding:2px 6px;font-size:6.8px;font-weight:700;color:#27436f}.rec-chip.red{background:var(--redbg);border-color:#f0a3aa;color:#9d1827}.rec-chip.amber{background:var(--amberbg);border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 3px;flex:1;min-height:0;overflow:hidden}.table-wrap::-webkit-scrollbar{width:9px}.table-wrap::-webkit-scrollbar-track{background:#eef3f8;border-left:1px solid #d8e0ec}.table-wrap::-webkit-scrollbar-thumb{background:#9aa8ba;border-radius:999px;border:2px solid #eef3f8}.control-table{width:100%;border-collapse:collapse;table-layout:fixed}.control-table col:nth-child(1){width:285px}.control-table col:nth-child(2){width:145px}.control-table col:nth-child(3){width:220px}.control-table col:nth-child(4){width:104px}.control-table col:nth-child(5){width:112px}.control-table col:nth-child(n+6){width:64px}.control-table th{height:16px;padding:2px 5px;text-align:left;border-bottom:1px solid #cfd8e6;background:#f3f6fb;color:#445a7c;font-size:6.2px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.control-table th:nth-child(n+6),.control-table td:nth-child(n+6){text-align:center}.control-table td{height:12px;padding:1px 5px;border-bottom:1px solid #e6ecf5;vertical-align:middle;color:#001b4c;font-size:6.7px;line-height:1.02;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.section td{height:13px;background:#eef3fb;border-bottom:1px solid #cfd8e6;font-size:6.9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.section.red td{color:#681a38}.section.amber td{color:#b4440f}.section span{float:right;color:#5b6b83;font-weight:700;text-transform:none;letter-spacing:0}.ctrl-code{display:inline;font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;font-size:6px;color:#345174;margin:0 5px 0 0}.ctrl-name,.area,.risk{display:inline;font-weight:700;color:#001b4c;font-size:6.8px}.sub{display:none}.outcome,.retest{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;height:12px;padding:0 5px;font-size:5.8px;font-weight:800;white-space:nowrap}.outcome.bad{background:#fde2e4;color:#9d1827;border:1px solid #f0a3aa}.outcome.partial{background:#fff4d1;color:#9a3d12;border:1px solid #f0c96d}.retest.up{background:#e6f5f1;color:#006b5d;border:1px solid #95d5c8}.retest.watch{background:#fff4d1;color:#9a3d12;border:1px solid #f0c96d}.retest.overdue{background:#fde2e4;color:#9d1827;border:1px solid #f0a3aa}.date{display:inline;margin-left:4px;font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;color:#5b6b83;font-size:5.7px}.num{font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;font-weight:800;color:#001b4c}.footnote{height:18px;padding:3px 10px;border-top:1px solid #dfe6f1;background:#f8fbff;color:#405374;font-size:7.2px;display:flex;align-items:center;justify-content:space-between}.footnote b{color:var(--ink)}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Control Detail</h1><div class='sub'>Board Risk Committee - material and key control exceptions</div><div class='page-marker'>P8 / 16</div></div><main class='body'><section class='panel'><div class='panel-top'><div><div class='title'>Material and key control detail</div><div class='subtitle'>Exception-level view for ineffective and partially effective controls; supporting controls remain in appendix read-across.</div></div><div class='reconcile'><span class='rec-chip red'>Material: 4 ineffective / 9 partial</span><span class='rec-chip amber'>Key: 1 ineffective / 15 partial</span><span class='rec-chip'>Open issues 26 - open actions 37</span></div></div><div class='table-wrap'><table class='control-table'><colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th>Control</th><th>Mgmt area</th><th>Linked risk</th><th>Outcome</th><th>Scheduled retest</th><th>Open issues</th><th>Open incidents</th><th>Open actions</th><th>Overdue actions</th></tr></thead><tbody><tr class='section red'><td colspan='9'>Material ineffective - current committee focus <span>4 controls</span></td></tr><tr><td><div class='ctrl-code'>CTL_CO_612</div><div class='ctrl-name'>Advice suitability 2nd-line QA sample</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Wealth Management</div></td><td><div class='risk'>Advice file review quality</div><div class='sub'>Sales & Distribution</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>14-02-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>3</td><td class='num'>3</td></tr><tr><td><div class='ctrl-code'>CTL_IS_112</div><div class='ctrl-name'>Endpoint vulnerability remediation SLA</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Vulnerability management execution</div><div class='sub'>Information Security & Cyber</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>01-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>2</td><td class='num'>2</td></tr><tr><td><div class='ctrl-code'>CTL_FC_031</div><div class='ctrl-name'>AML transaction monitoring alert QA</div></td><td><div class='area'>Compliance & Fin Crime</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Alert quality assurance</div><div class='sub'>Financial Crime</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>05-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>2</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_TP_101</div><div class='ctrl-name'>Critical vendor resilience attestation</div></td><td><div class='area'>Third Party Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Critical supplier resilience evidence</div><div class='sub'>Third Party</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>04-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr class='section amber'><td colspan='9'>Material partially effective - under remediation <span>9 controls</span></td></tr><tr><td><div class='ctrl-code'>CTL_CO_701</div><div class='ctrl-name'>Consumer Duty outcomes monitoring</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Wealth Management</div></td><td><div class='risk'>Outcome monitoring and attestation</div><div class='sub'>Post-Sales Administration & Claims</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>28-02-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_BR_240</div><div class='ctrl-name'>Important business service breach reporting</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Impact tolerance breach reporting</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>08-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_DP_088</div><div class='ctrl-name'>Data retention exception review</div></td><td><div class='area'>Data Protection Office</div><div class='sub'>Customer</div></td><td><div class='risk'>Retention and deletion control</div><div class='sub'>Data Protection</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>21-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_AI_044</div><div class='ctrl-name'>GenAI use-case approval evidence</div></td><td><div class='area'>AI Governance</div><div class='sub'>Customer</div></td><td><div class='risk'>Model accountability evidence</div><div class='sub'>Artificial Intelligence</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>29-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_RC_125</div><div class='ctrl-name'>Regulatory change impact assessment</div></td><td><div class='area'>Compliance</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Regulatory change management</div><div class='sub'>Regulatory Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>17-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_OP_332</div><div class='ctrl-name'>Operational resilience scenario evidence</div></td><td><div class='area'>Operational Resilience</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Scenario test evidence</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>18-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_MK_056</div><div class='ctrl-name'>Market valuation challenge pack</div></td><td><div class='area'>Market Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Independent price verification</div><div class='sub'>Spread</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>11-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_LQ_077</div><div class='ctrl-name'>Liquidity buffer daily evidence review</div></td><td><div class='area'>Treasury</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Liquidity buffer monitoring</div><div class='sub'>Liquidity</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>13-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_TX_063</div><div class='ctrl-name'>Tax control evidence refresh</div></td><td><div class='area'>Tax</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Manual tax adjustment evidence</div><div class='sub'>Tax Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>25-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>1</td></tr><tr class='section red'><td colspan='9'>Key ineffective - exception <span>1 control</span></td></tr><tr><td><div class='ctrl-code'>KCT_TE_018</div><div class='ctrl-name'>Privileged access recertification</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Privileged access control</div><div class='sub'>Information Security & Cyber</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest overdue'>Overdue</span><div class='date'>10-01-2027</div></td><td class='num'>2</td><td class='num'>1</td><td class='num'>3</td><td class='num'>2</td></tr><tr class='section amber'><td colspan='9'>Key partially effective - monitored <span>15 controls</span></td></tr><tr><td><div class='ctrl-code'>KCT_CO_144</div><div class='ctrl-name'>Vulnerable customer QA sample</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Pensions & Savings</div></td><td><div class='risk'>Customer outcome testing</div><div class='sub'>Customer Outcomes</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>06-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_BR_085</div><div class='ctrl-name'>Incident severity triage review</div></td><td><div class='area'>Service Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Incident and breach triage</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>09-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_DP_157</div><div class='ctrl-name'>Breach response timeline check</div></td><td><div class='area'>Data Protection Office</div><div class='sub'>Customer</div></td><td><div class='risk'>Breach response evidence</div><div class='sub'>Data Protection</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>27-04-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_FC_266</div><div class='ctrl-name'>Sanctions screening exception QA</div></td><td><div class='area'>Financial Crime</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Screening exception QA</div><div class='sub'>Financial Crime</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>16-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_RC_092</div><div class='ctrl-name'>Regulatory obligation owner review</div></td><td><div class='area'>Compliance</div><div class='sub'>Europe</div></td><td><div class='risk'>Obligation owner review</div><div class='sub'>Regulatory Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>30-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_TP_073</div><div class='ctrl-name'>Supplier exit plan evidence</div></td><td><div class='area'>Third Party Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Exit plan evidence</div><div class='sub'>Third Party</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>12-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_MD_039</div><div class='ctrl-name'>Model validation issue closure</div></td><td><div class='area'>Model Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Validation finding closure</div><div class='sub'>Model</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>02-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>KCT_RP_118</div><div class='ctrl-name'>Manual reporting adjustment log</div></td><td><div class='area'>Finance Risk</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Manual reporting adjustment</div><div class='sub'>Reporting</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>20-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_PS_027</div><div class='ctrl-name'>Key person dependency review</div></td><td><div class='area'>People Risk</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Role dependency assessment</div><div class='sub'>People & Safety</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>08-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_GW_064</div><div class='ctrl-name'>Disclosure substantiation pack</div></td><td><div class='area'>Climate Risk</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Greenwashing substantiation</div><div class='sub'>Greenwashing</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>22-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_IR_033</div><div class='ctrl-name'>Interest rate basis review</div></td><td><div class='area'>Market Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Basis risk watch item</div><div class='sub'>Interest Rate</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>24-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_IC_109</div><div class='ctrl-name'>Illiquid credit valuation review</div></td><td><div class='area'>Credit Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Valuation lag and exit depth</div><div class='sub'>Illiquid Credit</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>01-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_EX_051</div><div class='ctrl-name'>Expense allocation model review</div></td><td><div class='area'>Finance Risk</div><div class='sub'>SunLife</div></td><td><div class='risk'>Expense strain model</div><div class='sub'>Expense</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>19-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_DA_129</div><div class='ctrl-name'>Data ownership attestation</div></td><td><div class='area'>Data Governance</div><div class='sub'>Customer</div></td><td><div class='risk'>Data ownership gaps</div><div class='sub'>Data & Information Management</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>05-05-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_SA_203</div><div class='ctrl-name'>Sales disclosure sampling</div></td><td><div class='area'>Distribution Risk</div><div class='sub'>Pensions & Savings</div></td><td><div class='risk'>Advice and disclosure controls</div><div class='sub'>Sales & Distribution</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>26-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr></tbody></table></div><div class='footnote'><span><b>Reconciles to Control Environment:</b> Material assessment 32 effective / 9 partial / 4 ineffective; key assessment 64 effective / 15 partial / 1 ineffective.</span><span>Q1 control detail - material + key only</span></div></section></main><footer class='footer'><div class='footer-left'><span>P7 Controls</span><span class='current'>P8 Control Detail</span><span>P9 Loss</span><span>P10 Inc</span><span>P11 Emerging</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+
     <iframe id="frame-p5" class="inactive slide-frame" data-key="p5" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
 <head>
@@ -5899,7 +5955,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P8 / 15</div>
+      <div class=&quot;page-marker&quot;>P9 / 16</div>
     </div>
   </header>
 
@@ -6096,11 +6152,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P8 Loss</span>
+      <span class=&quot;toc-item current&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix D</span>
     </div>
     <div class=&quot;right&quot;>
@@ -6498,7 +6554,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P9 / 15</div>
+      <div class=&quot;page-marker&quot;>P10 / 16</div>
     </div>
   </header>
 
@@ -6723,11 +6779,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P9 Inc</span>
+      <span class=&quot;toc-item current&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix E</span>
     </div>
     <div class=&quot;right&quot;>
@@ -7186,7 +7242,7 @@
         <div class=&quot;crumb&quot;></div>
       </div>
       <div class=&quot;divider&quot;></div>
-      <div class=&quot;page-marker&quot;>P10 / 15</div>
+      <div class=&quot;page-marker&quot;>P11 / 16</div>
     </div>
   </header>
 
@@ -7409,11 +7465,11 @@
       <span class=&quot;toc-sep&quot;>&rsaquo;</span>
       <span class=&quot;toc-item&quot;>P7 Controls</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P8 Loss</span>
+      <span class=&quot;toc-item&quot;>P9 Loss</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item&quot;>P9 Inc</span>
+      <span class=&quot;toc-item&quot;>P10 Inc</span>
       <span class=&quot;toc-sep&quot;>›</span>
-      <span class=&quot;toc-item current&quot;>P10 Emerg</span>
+      <span class=&quot;toc-item current&quot;>P11 Emerg</span>
       <span class=&quot;appendix-ref&quot;>Detail → Appendix F</span>
     </div>
     <div class=&quot;right&quot;>
@@ -7433,7 +7489,7 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p8" class="inactive slide-frame" data-key="p8" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Regulatory Risks Placeholder</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:16px 30px 0;height:596px;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:12px}.panel,.commentary{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:10px 12px 7px;border-bottom:1px solid #e8edf5;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.panel-title{font-size:15px;font-weight:700}.panel-sub{font-size:9.5px;color:var(--muted);margin-top:2px}.pill-row{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.pill{border:1px solid #d5deeb;background:#f2f6fb;border-radius:4px;padding:3px 7px;font-size:8.5px;font-weight:800;color:#27436f;text-transform:uppercase;letter-spacing:.04em}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.risk-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.risk-table th{font-size:7.6px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:7px 6px;font-weight:700}.risk-table td{border-bottom:1px solid #edf1f7;padding:6px 6px;vertical-align:middle}.risk-table th:nth-child(1),.risk-table td:nth-child(1),.risk-table th:nth-child(4),.risk-table td:nth-child(4),.risk-table th:nth-child(5),.risk-table td:nth-child(5){text-align:center}.num{width:18px;height:18px;border-radius:50%;background:#4d5bd5;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:8.5px}.risk-name{font-size:10.5px;font-weight:700;color:var(--ink);line-height:1.15}.risk-meta{font-size:8.2px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:9px;font-weight:700;color:#173b72}.owner span{display:block;font-size:8px;font-weight:500;color:var(--muted);margin-top:1px}.rag,.move,.status{display:inline-flex;min-width:48px;height:18px;border-radius:4px;align-items:center;justify-content:center;font-size:7.4px;font-weight:800;text-transform:uppercase;border:1px solid transparent}.rag.red{background:var(--redbg);color:#9d1827;border-color:#f0a3aa}.rag.amber{background:var(--amberbg);color:#c54a11;border-color:#f3c968}.rag.green{background:var(--greenbg);color:#006b5d;border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.move.down{background:#e6f5f1;color:#006b5d}.status.watch{background:#fff2c8;color:#9a3d12}.status.due{background:#edf3fb;color:#27436f}.status.overdue{background:#ffe7e9;color:#9d1827}.commentary{display:flex;flex-direction:column;padding:0 10px 10px;gap:9px}.commentary .panel-head{margin:0 -10px 0;padding:10px 12px 7px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.comm-top strong{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.watch{color:#9a3d12;background:#fff2c8}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.3px;color:var(--ink2);line-height:1.36;margin:5px 0 0}.note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.35;padding:8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Regulatory Risks</h1><div class='sub'>Placeholder list view with assigned commentary slots</div><div class='page-marker'>P11 / 15</div></div><main class='body'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Regulatory risk watchlist</div><div class='panel-sub'>Simple placeholder for regulatory themes, RAG, trend and owner. No KPI strip until the source data is clearer.</div></div><div class='pill-row'><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Watchlist</span></div></div><table class='risk-table'><colgroup><col style='width:34px'><col style='width:98px'><col><col style='width:58px'><col style='width:54px'><col style='width:116px'><col style='width:68px'></colgroup><thead><tr><th>#</th><th>Area</th><th>Risk / Theme</th><th>RAG</th><th>QoQ</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk-meta'>Conduct</div></td><td><div class='risk-name'>Consumer Duty evidence and outcomes testing</div><div class='risk-meta'>Board needs confidence that outcomes evidence is consistent across functions.</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Conduct Risk<span>Retail / P&amp;S</span></div></td><td><span class='status overdue'>Overdue</span></td></tr><tr><td><span class='num'>2</span></td><td><div class='risk-meta'>Operational</div></td><td><div class='risk-name'>Operational resilience mapping and scenario evidence</div><div class='risk-meta'>Important business services need clearer tolerances and evidence pack.</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Ops Resilience<span>Group Ops</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>3</span></td><td><div class='risk-meta'>Data / AI</div></td><td><div class='risk-name'>AI governance and model accountability expectations</div><div class='risk-meta'>Regulatory interpretation still emerging; ownership and policy controls to be confirmed.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>AI Governance<span>Customer / Tech</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>4</span></td><td><div class='risk-meta'>Privacy</div></td><td><div class='risk-name'>Data retention, DSAR and breach response controls</div><div class='risk-meta'>Links to non-financial RCSA Data Protection red position.</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>DPO<span>Customer</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>5</span></td><td><div class='risk-meta'>Financial Crime</div></td><td><div class='risk-name'>AML, sanctions and transaction monitoring change</div><div class='risk-meta'>Change delivery and evidence quality remain under regulatory scrutiny.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>MLRO<span>Financial Crime</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>6</span></td><td><div class='risk-meta'>Reporting</div></td><td><div class='risk-name'>Regulatory reporting lineage and manual adjustments</div><div class='risk-meta'>Manual reporting adjustment appears in non-financial RCSA; evidence required.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Finance Risk<span>Reporting</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>7</span></td><td><div class='risk-meta'>Third Party</div></td><td><div class='risk-name'>Outsourcing, supplier resilience and exit plans</div><div class='risk-meta'>Supplier resilience concentration visible in non-financial RCSA detail.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Procurement<span>Group Ops</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>8</span></td><td><div class='risk-meta'>Disclosure</div></td><td><div class='risk-name'>Climate and sustainability disclosure substantiation</div><div class='risk-meta'>Greenwashing and climate disclosure remain monitored themes.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>Climate Risk<span>Strategy</span></div></td><td><span class='status due'>Due</span></td></tr></tbody></table></section><aside class='commentary'><div class='panel-head'><div><div class='panel-title'>Assigned commentary</div><div class='panel-sub'>Placeholder slots for gatekeeper assignment</div></div><span class='assigned'>3 slots</span></div><div class='comm-card red'><div class='comm-top'><span class='item'>Item 1</span><strong>Consumer Duty evidence</strong><span class='badge'>Red</span></div><div class='owner-line'>Conduct Risk Lead - 31 Mar 2026</div><p>Commentary should explain the evidence gap, affected business functions and whether the Q2 outcomes testing plan is enough for Board confidence.</p></div><div class='comm-card'><div class='comm-top'><span class='item'>Item 2</span><strong>Operational resilience</strong><span class='badge'>Red</span></div><div class='owner-line'>Head of Operational Resilience - 31 Mar 2026</div><p>Summarise the mapping and scenario evidence issue, key services affected, action owner and expected regulatory-readiness date.</p></div><div class='comm-card blue'><div class='comm-top'><span class='item'>Item 3</span><strong>AI governance</strong><span class='badge watch'>Watch</span></div><div class='owner-line'>AI Governance Lead - 31 Mar 2026</div><p>Placeholder for regulatory interpretation and model accountability. Confirm whether this becomes a standing regulatory watch item.</p></div><div class='note'>Intended as a simple early placeholder. Once the source data is agreed, this can evolve into a filtered regulatory-risk page or remain a commentary-led watchlist.</div></aside></main><footer class='footer'><div class='footer-left'><span>P10 Emerging</span><span class='current'>P11 Regulatory</span><span>P12 Appendix</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+    <iframe id="frame-p8" class="inactive slide-frame" data-key="p8" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Regulatory Risks Placeholder</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:16px 30px 0;height:596px;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:12px}.panel,.commentary{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:10px 12px 7px;border-bottom:1px solid #e8edf5;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.panel-title{font-size:15px;font-weight:700}.panel-sub{font-size:9.5px;color:var(--muted);margin-top:2px}.pill-row{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.pill{border:1px solid #d5deeb;background:#f2f6fb;border-radius:4px;padding:3px 7px;font-size:8.5px;font-weight:800;color:#27436f;text-transform:uppercase;letter-spacing:.04em}.pill.red{background:#ffe9eb;border-color:#f0a3aa;color:#9a1524}.pill.amber{background:#fff2c8;border-color:#f0c96d;color:#9a3d12}.risk-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.risk-table th{font-size:7.6px;text-transform:uppercase;letter-spacing:.08em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:7px 6px;font-weight:700}.risk-table td{border-bottom:1px solid #edf1f7;padding:6px 6px;vertical-align:middle}.risk-table th:nth-child(1),.risk-table td:nth-child(1),.risk-table th:nth-child(4),.risk-table td:nth-child(4),.risk-table th:nth-child(5),.risk-table td:nth-child(5){text-align:center}.num{width:18px;height:18px;border-radius:50%;background:#4d5bd5;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:8.5px}.risk-name{font-size:10.5px;font-weight:700;color:var(--ink);line-height:1.15}.risk-meta{font-size:8.2px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{font-size:9px;font-weight:700;color:#173b72}.owner span{display:block;font-size:8px;font-weight:500;color:var(--muted);margin-top:1px}.rag,.move,.status{display:inline-flex;min-width:48px;height:18px;border-radius:4px;align-items:center;justify-content:center;font-size:7.4px;font-weight:800;text-transform:uppercase;border:1px solid transparent}.rag.red{background:var(--redbg);color:#9d1827;border-color:#f0a3aa}.rag.amber{background:var(--amberbg);color:#c54a11;border-color:#f3c968}.rag.green{background:var(--greenbg);color:#006b5d;border-color:#95d5c8}.move.up{background:#fff2c8;color:#b4440f}.move.flat{background:#edf2f7;color:#53647c}.move.down{background:#e6f5f1;color:#006b5d}.status.watch{background:#fff2c8;color:#9a3d12}.status.due{background:#edf3fb;color:#27436f}.status.overdue{background:#ffe7e9;color:#9d1827}.commentary{display:flex;flex-direction:column;padding:0 10px 10px;gap:9px}.commentary .panel-head{margin:0 -10px 0;padding:10px 12px 7px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.comm-top strong{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.watch{color:#9a3d12;background:#fff2c8}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.3px;color:var(--ink2);line-height:1.36;margin:5px 0 0}.note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.35;padding:8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Regulatory Risks</h1><div class='sub'>Placeholder list view with assigned commentary slots</div><div class='page-marker'>P12 / 16</div></div><main class='body'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Regulatory risk watchlist</div><div class='panel-sub'>Simple placeholder for regulatory themes, RAG, trend and owner. No KPI strip until the source data is clearer.</div></div><div class='pill-row'><span class='pill red'>Red</span><span class='pill amber'>Amber</span><span class='pill'>Watchlist</span></div></div><table class='risk-table'><colgroup><col style='width:34px'><col style='width:98px'><col><col style='width:58px'><col style='width:54px'><col style='width:116px'><col style='width:68px'></colgroup><thead><tr><th>#</th><th>Area</th><th>Risk / Theme</th><th>RAG</th><th>QoQ</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk-meta'>Conduct</div></td><td><div class='risk-name'>Consumer Duty evidence and outcomes testing</div><div class='risk-meta'>Board needs confidence that outcomes evidence is consistent across functions.</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Conduct Risk<span>Retail / P&amp;S</span></div></td><td><span class='status overdue'>Overdue</span></td></tr><tr><td><span class='num'>2</span></td><td><div class='risk-meta'>Operational</div></td><td><div class='risk-name'>Operational resilience mapping and scenario evidence</div><div class='risk-meta'>Important business services need clearer tolerances and evidence pack.</div></td><td><span class='rag red'>Red</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Ops Resilience<span>Group Ops</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>3</span></td><td><div class='risk-meta'>Data / AI</div></td><td><div class='risk-name'>AI governance and model accountability expectations</div><div class='risk-meta'>Regulatory interpretation still emerging; ownership and policy controls to be confirmed.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>AI Governance<span>Customer / Tech</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>4</span></td><td><div class='risk-meta'>Privacy</div></td><td><div class='risk-name'>Data retention, DSAR and breach response controls</div><div class='risk-meta'>Links to non-financial RCSA Data Protection red position.</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>DPO<span>Customer</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>5</span></td><td><div class='risk-meta'>Financial Crime</div></td><td><div class='risk-name'>AML, sanctions and transaction monitoring change</div><div class='risk-meta'>Change delivery and evidence quality remain under regulatory scrutiny.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>MLRO<span>Financial Crime</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>6</span></td><td><div class='risk-meta'>Reporting</div></td><td><div class='risk-name'>Regulatory reporting lineage and manual adjustments</div><div class='risk-meta'>Manual reporting adjustment appears in non-financial RCSA; evidence required.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Finance Risk<span>Reporting</span></div></td><td><span class='status watch'>Watch</span></td></tr><tr><td><span class='num'>7</span></td><td><div class='risk-meta'>Third Party</div></td><td><div class='risk-name'>Outsourcing, supplier resilience and exit plans</div><div class='risk-meta'>Supplier resilience concentration visible in non-financial RCSA detail.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up'>Up</span></td><td><div class='owner'>Procurement<span>Group Ops</span></div></td><td><span class='status due'>Due</span></td></tr><tr><td><span class='num'>8</span></td><td><div class='risk-meta'>Disclosure</div></td><td><div class='risk-name'>Climate and sustainability disclosure substantiation</div><div class='risk-meta'>Greenwashing and climate disclosure remain monitored themes.</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat'>Flat</span></td><td><div class='owner'>Climate Risk<span>Strategy</span></div></td><td><span class='status due'>Due</span></td></tr></tbody></table></section><aside class='commentary'><div class='panel-head'><div><div class='panel-title'>Assigned commentary</div><div class='panel-sub'>Placeholder slots for gatekeeper assignment</div></div><span class='assigned'>3 slots</span></div><div class='comm-card red'><div class='comm-top'><span class='item'>Item 1</span><strong>Consumer Duty evidence</strong><span class='badge'>Red</span></div><div class='owner-line'>Conduct Risk Lead - 31 Mar 2026</div><p>Commentary should explain the evidence gap, affected business functions and whether the Q2 outcomes testing plan is enough for Board confidence.</p></div><div class='comm-card'><div class='comm-top'><span class='item'>Item 2</span><strong>Operational resilience</strong><span class='badge'>Red</span></div><div class='owner-line'>Head of Operational Resilience - 31 Mar 2026</div><p>Summarise the mapping and scenario evidence issue, key services affected, action owner and expected regulatory-readiness date.</p></div><div class='comm-card blue'><div class='comm-top'><span class='item'>Item 3</span><strong>AI governance</strong><span class='badge watch'>Watch</span></div><div class='owner-line'>AI Governance Lead - 31 Mar 2026</div><p>Placeholder for regulatory interpretation and model accountability. Confirm whether this becomes a standing regulatory watch item.</p></div><div class='note'>Intended as a simple early placeholder. Once the source data is agreed, this can evolve into a filtered regulatory-risk page or remain a commentary-led watchlist.</div></aside></main><footer class='footer'><div class='footer-left'><span>P11 Emerging</span><span class='current'>P12 Regulatory</span><span>P13 Appendix</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
     <iframe id="frame-p9" class="inactive slide-frame" data-key="p9" srcdoc="<!doctype html>
 <html lang='en'>
 <head>
@@ -7552,7 +7608,7 @@
         <div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb'></div><div class='crumb active'></div>
       </div>
       <div class='divider'></div>
-      <div class='page-marker'>P12 / 15</div>
+      <div class='page-marker'>P13 / 16</div>
     </div>
   </header>
   <main class='slide-body'>
@@ -7623,7 +7679,7 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p10" class="inactive slide-frame" data-key="p10" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix - RCSA business function split</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:10px 22px 0;height:596px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:10px}.panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:5px 10px 4px;border-bottom:1px solid #e8edf5;display:flex;align-items:flex-start;justify-content:space-between}.panel-title{font-weight:700;font-size:12px}.panel-sub{font-size:7.6px;color:var(--muted);margin-top:1px}.table-wrap{padding:0 8px 4px}.bf-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.bf-table th{font-size:6.1px;text-transform:uppercase;letter-spacing:.07em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:2px 4px}.bf-table td{border-bottom:1px solid #edf1f7;padding:1px 4px;vertical-align:middle;height:14px}.bf-table th:nth-child(n+4),.bf-table td:nth-child(n+4){text-align:center}.num{width:13px;height:13px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:6.6px}.risk{font-weight:700;font-size:7.3px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{display:none}.driver{font-size:7.2px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rag{display:inline-flex;width:38px;height:13px;border-radius:3px;align-items:center;justify-content:center;font-size:5.8px;font-weight:800;text-transform:uppercase;border:1px solid transparent}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.note{font-size:9px;color:#405374;background:#f8fbff;border:1px dashed #cdd7e6;border-radius:5px;padding:5px 8px}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: RCSA business-function split</h1><div class='sub'>Reference view for P&amp;S, RS &amp; AM, Europe and SunLife concentration</div><div class='page-marker'>P13 / 15</div></div><main class='body'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Financial risk business-function split</div><div class='panel-sub'>Moved out of the detail page so the main tab can focus on overall L2/L3 rating and commentary.</div></div><div class='note'>Reference only</div></div><div class='table-wrap'><table class='bf-table'><colgroup><col style='width:24px'><col style='width:112px'><col><col style='width:44px'><col style='width:50px'><col style='width:44px'><col style='width:50px'><col style='width:48px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th><th>Overall</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium</div></td><td><span class='rag red'>Red</span></td><td><span class='rag red'>Red</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag red'>Red</span></td></tr>
+    <iframe id="frame-p10" class="inactive slide-frame" data-key="p10" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix - RCSA business function split</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:10px 22px 0;height:596px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:10px}.panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel-head{padding:5px 10px 4px;border-bottom:1px solid #e8edf5;display:flex;align-items:flex-start;justify-content:space-between}.panel-title{font-weight:700;font-size:12px}.panel-sub{font-size:7.6px;color:var(--muted);margin-top:1px}.table-wrap{padding:0 8px 4px}.bf-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.bf-table th{font-size:6.1px;text-transform:uppercase;letter-spacing:.07em;color:#72829c;text-align:left;border-bottom:1px solid #dfe6f1;padding:2px 4px}.bf-table td{border-bottom:1px solid #edf1f7;padding:1px 4px;vertical-align:middle;height:14px}.bf-table th:nth-child(n+4),.bf-table td:nth-child(n+4){text-align:center}.num{width:13px;height:13px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:6.6px}.risk{font-weight:700;font-size:7.3px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.owner{display:none}.driver{font-size:7.2px;font-weight:700;color:#113b7a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rag{display:inline-flex;width:38px;height:13px;border-radius:3px;align-items:center;justify-content:center;font-size:5.8px;font-weight:800;text-transform:uppercase;border:1px solid transparent}.rag.red{color:#9d1827;background:var(--redbg);border-color:#f0a3aa}.rag.amber{color:#c54a11;background:var(--amberbg);border-color:#f3c968}.rag.green{color:#006b5d;background:var(--greenbg);border-color:#95d5c8}.note{font-size:9px;color:#405374;background:#f8fbff;border:1px dashed #cdd7e6;border-radius:5px;padding:5px 8px}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: RCSA business-function split</h1><div class='sub'>Reference view for P&amp;S, RS &amp; AM, Europe and SunLife concentration</div><div class='page-marker'>P14 / 16</div></div><main class='body'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Financial risk business-function split</div><div class='panel-sub'>Moved out of the detail page so the main tab can focus on overall L2/L3 rating and commentary.</div></div><div class='note'>Reference only</div></div><div class='table-wrap'><table class='bf-table'><colgroup><col style='width:24px'><col style='width:112px'><col><col style='width:44px'><col style='width:50px'><col style='width:44px'><col style='width:50px'><col style='width:48px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L3 Risk</th><th>P&amp;S</th><th>RS &amp; AM</th><th>Europe</th><th>SunLife</th><th>Overall</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium</div></td><td><span class='rag red'>Red</span></td><td><span class='rag red'>Red</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag red'>Red</span></td></tr>
 <tr><td><span class='num'>2</span></td><td><div class='risk'>Spread</div><div class='owner'>Market</div></td><td><div class='driver'>Credit spread widening</div></td><td><span class='rag red'>Red</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag red'>Red</span></td></tr>
 <tr><td><span class='num'>3</span></td><td><div class='risk'>Investment Counterparty</div><div class='owner'>Credit &amp; Counterparty</div></td><td><div class='driver'>Default watchlist deterioration</div></td><td><span class='rag amber'>Amber</span></td><td><span class='rag red'>Red</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag red'>Red</span></td></tr>
 <tr><td><span class='num'>4</span></td><td><div class='risk'>Investment Counterparty</div><div class='owner'>Credit &amp; Counterparty</div></td><td><div class='driver'>Downgrade concentration</div></td><td><span class='rag amber'>Amber</span></td><td><span class='rag red'>Red</span></td><td><span class='rag green'>Green</span></td><td><span class='rag green'>Green</span></td><td><span class='rag red'>Red</span></td></tr>
@@ -7650,8 +7706,8 @@
 <tr><td><span class='num'>13</span></td><td><div class='risk'>Tax Compliance</div><div class='owner'>Operational</div></td><td><div class='driver'>Tax control evidence gap</div></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td></tr>
 <tr><td><span class='num'>14</span></td><td><div class='risk'>People &amp; Safety</div><div class='owner'>Operational</div></td><td><div class='driver'>Key person dependency</div></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td></tr>
 <tr><td><span class='num'>15</span></td><td><div class='risk'>Greenwashing</div><div class='owner'>Climate</div></td><td><div class='driver'>Disclosure substantiation</div></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td></tr>
-<tr><td><span class='num'>16</span></td><td><div class='risk'>Data &amp; Information Management</div><div class='owner'>Customer</div></td><td><div class='driver'>Data ownership gaps</div></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td></tr></tbody></table></div></section></main><footer class='footer'><div class='footer-left'><span>P3 Fin</span><span>P4 Fin Detail</span><span>P5 NF</span><span>P6 NF Detail</span><span class='current'>P13 RCSA Appx</span></div><div class='footer-right'><span>Business-function reference</span><span>Can be hidden/shown as an appendix in Power BI</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
-    <iframe id="frame-p11" class="inactive slide-frame" data-key="p11" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix: Financial commentary spillover</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--amber:#DE4721;--green:#006B5C}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.cards{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}.comm-card{border:1px solid #d8e0ec;border-left:4px solid var(--gold);border-radius:6px;background:#fff;padding:12px;min-height:128px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-card.green{border-left-color:var(--green)}.comm-card.amber{border-left-color:var(--amber)}.comm-top{display:flex;align-items:center;gap:8px;min-width:0}.comm-top strong{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.merge{color:#27436f;background:#edf3fb}.owner-line{font-size:8px;color:#5c6d85;margin-top:5px}.comm-card p{font-size:10.6px;color:var(--ink2);line-height:1.38;margin:7px 0 0}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: Financial commentary spillover</h1><div class='sub'>Assigned financial RCSA commentary overflow</div><div class='page-marker'>P14 / 15</div></div><main class='body'><section class='cards'>
+<tr><td><span class='num'>16</span></td><td><div class='risk'>Data &amp; Information Management</div><div class='owner'>Customer</div></td><td><div class='driver'>Data ownership gaps</div></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag amber'>Amber</span></td><td><span class='rag green'>Green</span></td><td><span class='rag amber'>Amber</span></td></tr></tbody></table></div></section></main><footer class='footer'><div class='footer-left'><span>P3 Fin</span><span>P4 Fin Detail</span><span>P5 NF</span><span>P6 NF Detail</span><span class='current'>P14 RCSA Appx</span></div><div class='footer-right'><span>Business-function reference</span><span>Can be hidden/shown as an appendix in Power BI</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+    <iframe id="frame-p11" class="inactive slide-frame" data-key="p11" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix: Financial commentary spillover</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--amber:#DE4721;--green:#006B5C}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.cards{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}.comm-card{border:1px solid #d8e0ec;border-left:4px solid var(--gold);border-radius:6px;background:#fff;padding:12px;min-height:128px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-card.green{border-left-color:var(--green)}.comm-card.amber{border-left-color:var(--amber)}.comm-top{display:flex;align-items:center;gap:8px;min-width:0}.comm-top strong{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.merge{color:#27436f;background:#edf3fb}.owner-line{font-size:8px;color:#5c6d85;margin-top:5px}.comm-card p{font-size:10.6px;color:var(--ink2);line-height:1.38;margin:7px 0 0}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: Financial commentary spillover</h1><div class='sub'>Assigned financial RCSA commentary overflow</div><div class='page-marker'>P15 / 16</div></div><main class='body'><section class='cards'>
         <article class='comm-card amber'>
           <div class='comm-top'>
             <span class='item'>Top item 4</span>
@@ -7688,8 +7744,8 @@
           <div class='owner-line'>Treasury / Liquidity Lead &amp;middot; 05 Jan 2026</div>
           <p>Action plan is overdue. Commentary should cover concentration exposure, contingency funding options, revised delivery date and evidence needed before the next quarter.</p>
         </article>
-      </section></main><footer class='footer'><div class='footer-left'><span>P4 Fin Detail</span><span>P6 NF Detail</span><span class='current'>P14 Fin Spillover</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
-    <iframe id="frame-p12" class="inactive slide-frame" data-key="p12" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix: Non-financial commentary spillover</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--amber:#DE4721;--green:#006B5C}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.cards{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}.comm-card{border:1px solid #d8e0ec;border-left:4px solid var(--gold);border-radius:6px;background:#fff;padding:12px;min-height:128px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-card.green{border-left-color:var(--green)}.comm-card.amber{border-left-color:var(--amber)}.comm-top{display:flex;align-items:center;gap:8px;min-width:0}.comm-top strong{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.merge{color:#27436f;background:#edf3fb}.owner-line{font-size:8px;color:#5c6d85;margin-top:5px}.comm-card p{font-size:10.6px;color:var(--ink2);line-height:1.38;margin:7px 0 0}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: Non-financial commentary spillover</h1><div class='sub'>Assigned non-financial RCSA commentary overflow</div><div class='page-marker'>P15 / 15</div></div><main class='body'><section class='cards'>
+      </section></main><footer class='footer'><div class='footer-left'><span>P4 Fin Detail</span><span>P6 NF Detail</span><span class='current'>P15 Fin Spillover</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+    <iframe id="frame-p12" class="inactive slide-frame" data-key="p12" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Appendix: Non-financial commentary spillover</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--red:#CA3F4C;--amber:#DE4721;--green:#006B5C}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:14px 30px 0;height:596px}.cards{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}.comm-card{border:1px solid #d8e0ec;border-left:4px solid var(--gold);border-radius:6px;background:#fff;padding:12px;min-height:128px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-card.green{border-left-color:var(--green)}.comm-card.amber{border-left-color:var(--amber)}.comm-top{display:flex;align-items:center;gap:8px;min-width:0}.comm-top strong{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.badge.merge{color:#27436f;background:#edf3fb}.owner-line{font-size:8px;color:#5c6d85;margin-top:5px}.comm-card p{font-size:10.6px;color:var(--ink2);line-height:1.38;margin:7px 0 0}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>Appendix: Non-financial commentary spillover</h1><div class='sub'>Assigned non-financial RCSA commentary overflow</div><div class='page-marker'>P16 / 16</div></div><main class='body'><section class='cards'>
         <article class='comm-card red'>
           <div class='comm-top'>
             <span class='item'>Top item 4</span>
@@ -7735,20 +7791,12 @@
           <div class='owner-line'>Distribution Risk Lead &amp;middot; 21 Mar 2026</div>
           <p>Assigned commentary should cover disclosure-control weakness, business-function concentration and the action plan evidence required to return to amber.</p>
         </article>
-      </section></main><footer class='footer'><div class='footer-left'><span>P4 Fin Detail</span><span>P6 NF Detail</span><span class='current'>P15 NF Spillover</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+      </section></main><footer class='footer'><div class='footer-left'><span>P4 Fin Detail</span><span>P6 NF Detail</span><span class='current'>P16 NF Spillover</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
 
 
   </div>
 
   <button class="nav-arrow next" id="nav-next" title="Next (→)">&rsaquo;</button>
-
-  <div class="info-panel" id="info-panel">
-    <button class="close" id="info-close">&times;</button>
-    <div class="info-head">Page info</div>
-    <div class="info-title" id="info-title">Page title</div>
-    <p class="info-purpose" id="info-purpose">Purpose</p>
-    <div class="info-meta" id="info-meta"></div>
-  </div>
 
 </div>
 
@@ -7781,43 +7829,46 @@
     <div class="t-num">P7</div>
     <div class="t-name">Control Environment</div>
   </div>
-  <div class="thumb" data-key="p5" data-index="8">
+  <div class="thumb" data-key="p4detail" data-index="8">
     <div class="t-num">P8</div>
+    <div class="t-name">Control Detail</div>
+  </div>
+  <div class="thumb" data-key="p5" data-index="9">
+    <div class="t-num">P9</div>
     <div class="t-name">Losses & Near Misses</div>
   </div>
-  <div class="thumb" data-key="p6" data-index="9">
-    <div class="t-num">P9</div>
+  <div class="thumb" data-key="p6" data-index="10">
+    <div class="t-num">P10</div>
     <div class="t-name">Incidents & Breaches</div>
   </div>
-  <div class="thumb" data-key="p7" data-index="10">
-    <div class="t-num">P10</div>
+  <div class="thumb" data-key="p7" data-index="11">
+    <div class="t-num">P11</div>
     <div class="t-name">Emerging Risks</div>
   </div>
-  <div class="thumb" data-key="p8" data-index="11">
-    <div class="t-num">P11</div>
+  <div class="thumb" data-key="p8" data-index="12">
+    <div class="t-num">P12</div>
     <div class="t-name">Regulatory Risks</div>
   </div>
-  <div class="thumb" data-key="p9" data-index="12">
-    <div class="t-num">P12</div>
+  <div class="thumb" data-key="p9" data-index="13">
+    <div class="t-num">P13</div>
     <div class="t-name">Appendix</div>
   </div>
-  <div class="thumb" data-key="p10" data-index="13">
-    <div class="t-num">P13</div>
+  <div class="thumb" data-key="p10" data-index="14">
+    <div class="t-num">P14</div>
     <div class="t-name">RCSA Appx</div>
   </div>
-  <div class="thumb" data-key="p11" data-index="14">
-    <div class="t-num">P14</div>
+  <div class="thumb" data-key="p11" data-index="15">
+    <div class="t-num">P15</div>
     <div class="t-name">Fin Spillover</div>
   </div>
-  <div class="thumb" data-key="p12" data-index="15">
-    <div class="t-num">P15</div>
+  <div class="thumb" data-key="p12" data-index="16">
+    <div class="t-num">P16</div>
     <div class="t-name">NF Spillover</div>
   </div>
   <div class="spacer"></div>
   <div class="hint">
     <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> navigate
     <span class="kbd">1</span>&ndash;<span class="kbd">9</span>, <span class="kbd">0</span> jump
-    <span class="kbd">I</span> info
   </div>
 </div>
 
@@ -7826,36 +7877,32 @@ const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary", purpose: "Committee-level synthesis of the consolidated risk position, top risks, and assigned commentary." },
   { key: "p2", num: 2, title: "Risk Appetite", purpose: "Current appetite proximity and QoQ movement across L2 risk metrics, with assigned commentary." },
   { key: "p3", num: 3, title: "RCSA: Financial Risk Summary", purpose: "Financial L2 risk summary across 16 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
-  { key: "p3detail", num: 4, title: "RCSA: Financial Risk Detail", purpose: "Financial L3 risk detail showing business-function RAG, overall L2 final RAG, action plan status, last RCSA date, and multiple-red concentration." },
+  { key: "p3detail", num: 4, title: "RCSA: Financial Risk Detail", purpose: "Financial L3 risk detail showing overall L2 final RAG, action plan status, last RCSA date, and assigned commentary." },
   { key: "p3nf", num: 5, title: "RCSA: Non-Financial Risk Summary", purpose: "Non-financial L2 risk summary across 26 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
-  { key: "p3nfdetail", num: 6, title: "RCSA: Non-Financial Risk Detail", purpose: "Non-financial L3 risk detail showing business-function RAG, overall L2 final RAG, action plan status, last RCSA date, and multiple-red concentration." },
+  { key: "p3nfdetail", num: 6, title: "RCSA: Non-Financial Risk Detail", purpose: "Non-financial L3 risk detail showing overall L2 final RAG, action plan status, last RCSA date, and assigned commentary." },
   { key: "p4", num: 7, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
-  { key: "p5", num: 8, title: "Losses & Near Misses", purpose: "Cumulative YTD operational losses vs appetite trigger and breach threshold, plus largest loss events." },
-  { key: "p6", num: 9, title: "Incidents & Breaches", purpose: "Material incident and breach trajectory with root-cause and ageing views." },
-  { key: "p7", num: 10, title: "Emerging Risks", purpose: "Forward-looking risk radar and watchlist requiring Board awareness." },
-  { key: "p8", num: 11, title: "Regulatory Risks", purpose: "Placeholder regulatory-risk watchlist with simple risk list and assigned commentary slots." },
-  { key: "p9", num: 12, title: "Appendix", purpose: "Review notes on commentary assignment and design assumptions." },
-  { key: "p10", num: 13, title: "RCSA Business Function Appendix", purpose: "Reference appendix holding the business-function split moved out of the RCSA detail tabs." },
-  { key: "p11", num: 14, title: "RCSA: Financial Commentary Spillover", purpose: "Appendix mock-up for financial commentary items that overflow the three visible detail slots." },
-  { key: "p12", num: 15, title: "RCSA: Non-Financial Commentary Spillover", purpose: "Appendix mock-up for non-financial commentary items that overflow the three visible detail slots." }
+  { key: "p4detail", num: 8, title: "Control Detail", purpose: "Material and key control exception table showing ineffective and partially effective controls, linked risks, retest status, issues, incidents and actions." },
+  { key: "p5", num: 9, title: "Losses & Near Misses", purpose: "Cumulative YTD operational losses vs appetite trigger and breach threshold, plus largest loss events." },
+  { key: "p6", num: 10, title: "Incidents & Breaches", purpose: "Material incident and breach trajectory with root-cause and ageing views." },
+  { key: "p7", num: 11, title: "Emerging Risks", purpose: "Forward-looking risk radar and watchlist requiring Board awareness." },
+  { key: "p8", num: 12, title: "Regulatory Risks", purpose: "Placeholder regulatory-risk watchlist with simple risk list and assigned commentary slots." },
+  { key: "p9", num: 13, title: "Appendix", purpose: "Review notes on commentary assignment and design assumptions." },
+  { key: "p10", num: 14, title: "RCSA Business Function Appendix", purpose: "Reference appendix holding the business-function split moved out of the RCSA detail tabs." },
+  { key: "p11", num: 15, title: "RCSA: Financial Commentary Spillover", purpose: "Appendix mock-up for financial commentary items that overflow the three visible detail slots." },
+  { key: "p12", num: 16, title: "RCSA: Non-Financial Commentary Spillover", purpose: "Appendix mock-up for non-financial commentary items that overflow the three visible detail slots." }
 ];
 
 let currentIdx = 0;
-let infoOpen = false;
 
 const frames = document.querySelectorAll('.slide-frame');
 const thumbs = document.querySelectorAll('.thumb');
 const progress = document.getElementById('progress');
 const prevBtn = document.getElementById('nav-prev');
 const nextBtn = document.getElementById('nav-next');
-const btnInfo = document.getElementById('btn-info');
-const infoPanel = document.getElementById('info-panel');
-const infoClose = document.getElementById('info-close');
-const infoTitle = document.getElementById('info-title');
-const infoPurpose = document.getElementById('info-purpose');
-const infoMeta = document.getElementById('info-meta');
 const stage = document.querySelector('.stage');
 const slideFrameWrap = document.querySelector('.slide-frame-wrap');
+const slideBaseDpr = Number(sessionStorage.getItem('crr-slide-base-dpr')) || window.devicePixelRatio || 1;
+sessionStorage.setItem('crr-slide-base-dpr', String(Math.min(slideBaseDpr, window.devicePixelRatio || slideBaseDpr)));
 
 let slideFrameScale = slideFrameWrap.querySelector('.slide-frame-scale');
 if (!slideFrameScale) {
@@ -7871,11 +7918,15 @@ function fitSlideFrame() {
   const verticalPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
   const availableWidth = Math.max(320, stage.clientWidth - horizontalPadding);
   const availableHeight = Math.max(180, stage.clientHeight - verticalPadding);
-  const scale = Math.min(availableWidth / 1280, availableHeight / 720, 1);
+  const fitScale = Math.min(availableWidth / 1280, availableHeight / 720, 1);
+  const zoomCompensation = Math.max(1, Math.min((window.devicePixelRatio || slideBaseDpr) / slideBaseDpr, 1.55));
+  const readabilityBoost = 1.06;
+  const scale = Math.min(fitScale * zoomCompensation * readabilityBoost, 1);
 
   slideFrameWrap.style.width = `${Math.floor(1280 * scale)}px`;
   slideFrameWrap.style.height = `${Math.floor(720 * scale)}px`;
   slideFrameScale.style.transform = `scale(${scale})`;
+  stage.classList.toggle('zoom-overflow', scale > fitScale + 0.01);
 }
 
 window.addEventListener('resize', fitSlideFrame);
@@ -7916,33 +7967,10 @@ function showSlide(idx) {
   progress.textContent = `P${slide.num} / ${SLIDES.length}`;
   prevBtn.disabled = (idx === 0);
   nextBtn.disabled = (idx === SLIDES.length - 1);
-
-  if (infoOpen) updateInfoPanel();
-}
-
-function updateInfoPanel() {
-  const slide = SLIDES[currentIdx];
-  infoTitle.innerHTML = `P${slide.num} &mdash; ${slide.title}`;
-  infoPurpose.textContent = slide.purpose;
-  infoMeta.innerHTML = "<b>Source:</b> Decision Focus + PowerApp<br><b>Refresh:</b> 31 Mar 2026<br><b>Design:</b> v1.3.2 &middot; Exec v0.3";
-}
-
-function toggleInfo() {
-  infoOpen = !infoOpen;
-  if (infoOpen) {
-    updateInfoPanel();
-    infoPanel.classList.add('open');
-    btnInfo.classList.add('active');
-  } else {
-    infoPanel.classList.remove('open');
-    btnInfo.classList.remove('active');
-  }
 }
 
 prevBtn.addEventListener('click', () => showSlide(currentIdx - 1));
 nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
-btnInfo.addEventListener('click', toggleInfo);
-infoClose.addEventListener('click', toggleInfo);
 
 thumbs.forEach((t, i) => {
   t.addEventListener('click', () => showSlide(i));
@@ -7953,11 +7981,6 @@ document.addEventListener('keydown', (e) => {
 
   if (e.key === 'ArrowLeft') { showSlide(currentIdx - 1); e.preventDefault(); }
   else if (e.key === 'ArrowRight') { showSlide(currentIdx + 1); e.preventDefault(); }
-  else if (e.key === 'i' || e.key === 'I') { toggleInfo(); e.preventDefault(); }
-  else if (e.key === 'Escape') {
-    if (infoOpen) toggleInfo();
-    e.preventDefault();
-  }
   else if (/^[1-9]$/.test(e.key)) {
     const n = parseInt(e.key, 10) - 1;
     if (n < SLIDES.length) showSlide(n);

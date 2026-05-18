@@ -28,7 +28,7 @@
     --bg:          #16224a;
 
     --green: var(--sl-core-teal);
-    --tray-height: 64px;
+    --tray-height: 48px;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -48,26 +48,26 @@
   /* TOP BAR */
   .topbar {
     background: var(--navy-deep); color: #fff;
-    padding: 10px 24px;
+    padding: 6px 20px;
     display: flex; align-items: center; justify-content: space-between;
-    gap: 20px;
+    gap: 16px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .topbar .brand-block {
-    display: flex; align-items: center; gap: 14px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .topbar .wordmark svg { height: 20px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.92; }
+  .topbar .wordmark svg { height: 17px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.92; }
   .topbar .doc-name {
-    font-size: 13px; font-weight: 700; letter-spacing: -0.005em;
+    font-size: 12px; font-weight: 700; letter-spacing: -0.005em;
     display: flex; align-items: baseline; gap: 10px;
   }
   .topbar .doc-name .v {
-    display: inline-block; font-size: 9px; font-weight: 700;
-    background: var(--sl-core-teal); color: #fff; padding: 2px 7px; border-radius: 3px;
+    display: inline-block; font-size: 8px; font-weight: 700;
+    background: var(--sl-core-teal); color: #fff; padding: 2px 6px; border-radius: 3px;
     letter-spacing: 0.08em; text-transform: uppercase;
   }
   .topbar .doc-name .sub {
-    font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 400;
+    font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 400;
     letter-spacing: 0.02em;
   }
 
@@ -97,10 +97,10 @@
 
   .progress-chip {
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
-    font-size: 11px; font-weight: 600;
+    font-size: 10px; font-weight: 600;
     color: #fff;
     background: rgba(255,255,255,0.10);
-    padding: 5px 10px; border-radius: 3px;
+    padding: 4px 9px; border-radius: 3px;
   }
 
   /* STAGE */
@@ -180,7 +180,7 @@
     z-index: 20;
     background: var(--navy-deep);
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 8px 14px 10px;
+    padding: 5px 12px 6px;
     display: flex; align-items: center; gap: 5px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -188,7 +188,7 @@
     scrollbar-gutter: stable;
     -webkit-overflow-scrolling: touch;
   }
-  .tray::-webkit-scrollbar { height: 8px; }
+  .tray::-webkit-scrollbar { height: 6px; }
   .tray::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
   .tray::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.22);
@@ -196,16 +196,16 @@
   }
   .tray::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.34); }
   .thumb {
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    padding: 5px 6px;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 4px 6px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.10);
     border-radius: 4px;
     cursor: pointer;
-    flex: 0 0 92px;
-    width: 92px;
-    min-width: 92px;
-    height: 46px;
+    flex: 0 0 88px;
+    width: 88px;
+    min-width: 88px;
+    height: 34px;
     transition: all 0.12s;
   }
   .thumb:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.20); }
@@ -214,13 +214,13 @@
     border-color: var(--sl-heritage-yellow);
   }
   .thumb .t-num {
-    font-size: 8.5px; font-weight: 700; color: rgba(255,255,255,0.55);
+    font-size: 7.8px; font-weight: 700; color: rgba(255,255,255,0.55);
     letter-spacing: 0.12em; text-transform: uppercase;
   }
   .thumb.active .t-num { color: var(--sl-heritage-yellow); }
   .thumb .t-name {
-    font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.88);
-    white-space: nowrap; max-width: 76px; overflow: hidden; text-overflow: ellipsis; text-align: center;
+    font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.88);
+    white-space: nowrap; max-width: 74px; overflow: hidden; text-overflow: ellipsis; text-align: center;
   }
   .thumb.active .t-name { color: #fff; font-weight: 700; }
 
@@ -242,10 +242,10 @@
   }
 
   @media (max-width: 720px) {
-    :root { --tray-height: 66px; }
-    .topbar { padding: 8px 12px; gap: 10px; }
+    :root { --tray-height: 50px; }
+    .topbar { padding: 6px 12px; gap: 10px; }
     .topbar .doc-name .sub { display: none; }
-    .thumb { flex-basis: 88px; width: 88px; min-width: 88px; }
+    .thumb { flex-basis: 84px; width: 84px; min-width: 84px; }
   }
 
 </style>
@@ -6292,7 +6292,7 @@
     padding: 12px 32px 10px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 370px;
-    grid-template-rows: auto 148px minmax(0, 1fr);
+    grid-template-rows: auto 186px minmax(0, 1fr);
     gap: 10px 16px;
     min-height: 0;
   }
@@ -6510,8 +6510,9 @@
   .incident-snapshot {
     grid-column: 1; grid-row: 2;
     background: var(--sl-white); border: 1px solid var(--hairline); border-radius: 8px;
-    padding: 8px 14px 7px;
+    padding: 9px 16px 7px;
     display: flex; flex-direction: column; min-height: 0;
+    overflow: hidden;
   }
   .snapshot-head {
     display: flex; justify-content: space-between; align-items: baseline;
@@ -6527,7 +6528,7 @@
     flex: 1; min-height: 0;
   }
   .incident-table > div {
-    padding: 3.7px 6px;
+    padding: 3px 6px;
     border-bottom: 1px solid var(--hairline-soft);
     display: flex; align-items: center;
     min-width: 0;
@@ -6535,18 +6536,23 @@
   .incident-table .head {
     font-size: 8.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--muted); border-bottom: 1px solid var(--hairline);
-    padding: 3.5px 6px;
+    padding: 3px 6px;
   }
   .incident-table .rank-cell {
     color: var(--muted); font-size: 9px; font-weight: 700; justify-content: center;
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
   }
   .incident-table .incident-cell {
-    color: var(--ink); font-weight: 700; line-height: 1.15;
+    display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px; align-items: center;
+    color: var(--ink); font-weight: 700; line-height: 1.1;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
+  .incident-table .incident-cell b {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.4px; color: var(--ink); font-weight: 700;
+  }
   .incident-table .incident-cell span {
-    display: block; color: var(--ink-2); font-weight: 600; font-size: 8.8px;
+    display: block; color: var(--ink-2); font-weight: 600; font-size: 8.4px; line-height: 1.1;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .incident-table .date-cell,
@@ -6621,7 +6627,7 @@
 
   .analysis-grid {
     grid-column: 1; grid-row: 3;
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px;
+    display: grid; grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr); gap: 10px;
     min-height: 0;
   }
   .analysis-grid .heatmap-block,
@@ -6630,8 +6636,58 @@
     min-width: 0;
   }
   .analysis-grid .heatmap-block { padding: 9px 12px 8px; }
-  .analysis-grid .hm-row { grid-template-columns: 92px 1fr 1fr 1fr 1fr 42px; }
-  .analysis-grid .rem-row { grid-template-columns: 58px minmax(0, 1fr) 58px; }
+  .analysis-grid .hm-row { grid-template-columns: 86px 1fr 1fr 1fr 1fr 36px; }
+  .analysis-grid .hm-cell { padding: 4px; font-size: 10px; }
+  .analysis-grid .hm-row .hm-org { font-size: 9.6px; }
+  .analysis-grid .hm-total { font-size: 10px; padding-right: 2px; }
+  .analysis-grid .heatmap-title { font-size: 11.4px; }
+  .analysis-grid .heatmap-sub { font-size: 8.8px; }
+
+  .analysis-grid .remediation-block {
+    background: var(--sl-white);
+    padding: 9px 12px 8px;
+  }
+  .analysis-grid .remediation-title {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+  .analysis-grid .rem-row {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr) 62px 42px;
+    gap: 8px; align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--hairline-soft);
+    font-size: 9px;
+  }
+  .analysis-grid .rem-row.head {
+    padding: 4px 0 5px;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--muted);
+    font-size: 7.7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .analysis-grid .rem-id { font-size: 8.4px; }
+  .analysis-grid .rem-desc {
+    line-height: 1.2;
+    overflow: hidden;
+  }
+  .analysis-grid .rem-desc b {
+    display: block; color: var(--ink); font-size: 9px; font-weight: 700;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .analysis-grid .rem-desc .risk-tag {
+    font-size: 7.8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .analysis-grid .rem-status { text-align: left; padding-top: 0; }
+  .analysis-grid .rem-status .pill {
+    width: 100%;
+    text-align: center;
+    font-size: 7.4px;
+    padding: 2px 4px;
+  }
+  .analysis-grid .rem-days {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.2px; color: var(--muted); text-align: right;
+  }
 
   /* Footer */
   .slide-footer {
@@ -6718,17 +6774,17 @@
     <div class=&quot;kpi-strip&quot;>
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>Total Incidents Q1</div>
-        <div class=&quot;kpi-value&quot;>155</div>
-        <div class=&quot;kpi-delta down&quot;>▲ 23 vs Q4</div>
+        <div class=&quot;kpi-value&quot;>11</div>
+        <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>New Sev 1 / Sev 2</div>
-        <div class=&quot;kpi-value&quot;>5</div>
+        <div class=&quot;kpi-label&quot;>Total Sev 1 / Sev 2</div>
+        <div class=&quot;kpi-value&quot;>7</div>
         <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Reg. Notifiable Events</div>
-        <div class=&quot;kpi-value&quot;>6</div>
+        <div class=&quot;kpi-value&quot;>4</div>
         <div class=&quot;kpi-delta down&quot;>▲ 1 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
@@ -6756,35 +6812,35 @@
         <div class=&quot;head&quot;>Reg. status</div>
 
         <div class=&quot;rank-cell&quot;>1</div>
-        <div class=&quot;incident-cell&quot;>EVT-1101<span>AML screening outage - 48hr monitoring gap</span></div>
+        <div class=&quot;incident-cell&quot;><b>EVT-1101</b><span>AML screening outage - 48hr monitoring gap</span></div>
         <div class=&quot;date-cell&quot;>22 Feb 2026</div>
         <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
         <div class=&quot;loss-cell&quot;>£4.62m</div>
         <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
 
         <div class=&quot;rank-cell&quot;>2</div>
-        <div class=&quot;incident-cell&quot;>EVT-1089<span>Data breach - 12,400 customer records via API flaw</span></div>
+        <div class=&quot;incident-cell&quot;><b>EVT-1089</b><span>Data breach - 12,400 customer records via API flaw</span></div>
         <div class=&quot;date-cell&quot;>03 Jan 2026</div>
         <div class=&quot;sev-cell sev1&quot;>Sev 1</div>
         <div class=&quot;loss-cell&quot;>£2.15m</div>
         <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
 
         <div class=&quot;rank-cell&quot;>3</div>
-        <div class=&quot;incident-cell&quot;>EVT-1114<span>Incorrect capital calculation in quarterly return</span></div>
+        <div class=&quot;incident-cell&quot;><b>EVT-1114</b><span>Incorrect capital calculation in quarterly return</span></div>
         <div class=&quot;date-cell&quot;>28 Feb 2026</div>
         <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
         <div class=&quot;loss-cell&quot;>£1.18m</div>
         <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
 
         <div class=&quot;rank-cell&quot;>4</div>
-        <div class=&quot;incident-cell&quot;>EVT-1123<span>Outsourced call centre - recordings without consent</span></div>
+        <div class=&quot;incident-cell&quot;><b>EVT-1123</b><span>Outsourced call centre - recordings without consent</span></div>
         <div class=&quot;date-cell&quot;>10 Mar 2026</div>
         <div class=&quot;sev-cell sev3&quot;>Sev 3</div>
         <div class=&quot;loss-cell&quot;>£0.88m</div>
         <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
 
         <div class=&quot;rank-cell&quot;>5</div>
-        <div class=&quot;incident-cell&quot;>EVT-1129<span>Customer portal credential stuffing event</span></div>
+        <div class=&quot;incident-cell&quot;><b>EVT-1129</b><span>Customer portal credential stuffing event</span></div>
         <div class=&quot;date-cell&quot;>12 Jan 2026</div>
         <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
         <div class=&quot;loss-cell&quot;>£0.46m</div>
@@ -6905,34 +6961,46 @@
     <div class=&quot;remediation-block&quot;>
       <div class=&quot;remediation-title&quot;>Sev 1 / Sev 2 Remediation Register</div>
 
+      <div class=&quot;rem-row head&quot;>
+        <div>Event</div>
+        <div>Incident</div>
+        <div>Status</div>
+        <div>Age</div>
+      </div>
+
       <div class=&quot;rem-row&quot;>
         <div class=&quot;rem-id&quot;>EVT-1042</div>
-        <div class=&quot;rem-desc&quot;>FX mis-pricing &amp;mdash; retail platform<span class=&quot;risk-tag&quot;>Pre-Sales Disclosure &amp;amp; Distribution</span></div>
-        <div class=&quot;rem-status&quot;><span class=&quot;pill open&quot;>Open</span><span class=&quot;days&quot;>194 days</span></div>
+        <div class=&quot;rem-desc&quot;><b>FX mis-pricing &amp;mdash; retail platform</b><span class=&quot;risk-tag&quot;>Pre-Sales Disclosure &amp;amp; Distribution</span></div>
+        <div class=&quot;rem-status&quot;><span class=&quot;pill open&quot;>Open</span></div>
+        <div class=&quot;rem-days&quot;>194d</div>
       </div>
 
       <div class=&quot;rem-row&quot;>
         <div class=&quot;rem-id&quot;>EVT-1089</div>
-        <div class=&quot;rem-desc&quot;>Data breach 12,400 records<span class=&quot;risk-tag&quot;>Information Security &amp;amp; Cyber</span></div>
-        <div class=&quot;rem-status&quot;><span class=&quot;pill progress&quot;>In progress</span><span class=&quot;days&quot;>87 days</span></div>
+        <div class=&quot;rem-desc&quot;><b>Data breach 12,400 records</b><span class=&quot;risk-tag&quot;>Information Security &amp;amp; Cyber</span></div>
+        <div class=&quot;rem-status&quot;><span class=&quot;pill progress&quot;>In progress</span></div>
+        <div class=&quot;rem-days&quot;>87d</div>
       </div>
 
       <div class=&quot;rem-row&quot;>
         <div class=&quot;rem-id&quot;>EVT-1101</div>
-        <div class=&quot;rem-desc&quot;>AML screening 48hr outage<span class=&quot;risk-tag&quot;>Financial Crime</span></div>
-        <div class=&quot;rem-status&quot;><span class=&quot;pill overdue&quot;>Overdue</span><span class=&quot;days&quot;>38 days</span></div>
+        <div class=&quot;rem-desc&quot;><b>AML screening 48hr outage</b><span class=&quot;risk-tag&quot;>Financial Crime</span></div>
+        <div class=&quot;rem-status&quot;><span class=&quot;pill overdue&quot;>Overdue</span></div>
+        <div class=&quot;rem-days&quot;>38d</div>
       </div>
 
       <div class=&quot;rem-row&quot;>
         <div class=&quot;rem-id&quot;>EVT-1114</div>
-        <div class=&quot;rem-desc&quot;>Capital calculation error<span class=&quot;risk-tag&quot;>Regulatory Compliance</span></div>
-        <div class=&quot;rem-status&quot;><span class=&quot;pill progress&quot;>In progress</span><span class=&quot;days&quot;>32 days</span></div>
+        <div class=&quot;rem-desc&quot;><b>Capital calculation error</b><span class=&quot;risk-tag&quot;>Regulatory Compliance</span></div>
+        <div class=&quot;rem-status&quot;><span class=&quot;pill progress&quot;>In progress</span></div>
+        <div class=&quot;rem-days&quot;>32d</div>
       </div>
 
       <div class=&quot;rem-row&quot;>
         <div class=&quot;rem-id&quot;>BR-204</div>
-        <div class=&quot;rem-desc&quot;>Policy breach<span class=&quot;risk-tag&quot;>Regulatory Compliance</span></div>
-        <div class=&quot;rem-status&quot;><span class=&quot;pill overdue&quot;>Overdue</span><span class=&quot;days&quot;>42 days</span></div>
+        <div class=&quot;rem-desc&quot;><b>Policy breach</b><span class=&quot;risk-tag&quot;>Regulatory Compliance</span></div>
+        <div class=&quot;rem-status&quot;><span class=&quot;pill overdue&quot;>Overdue</span></div>
+        <div class=&quot;rem-days&quot;>42d</div>
       </div>
     </div>
     </section>

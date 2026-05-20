@@ -55,11 +55,14 @@
   }
   .topbar .brand-block {
     display: flex; align-items: center; gap: 12px;
+    min-width: 0;
   }
   .topbar .wordmark svg { height: 17px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.92; }
   .topbar .doc-name {
     font-size: 12px; font-weight: 700; letter-spacing: -0.005em;
-    display: flex; align-items: baseline; gap: 10px;
+    display: flex; align-items: center; gap: 10px;
+    min-width: 0;
+    white-space: nowrap;
   }
   .topbar .doc-name .v {
     display: inline-block; font-size: 8px; font-weight: 700;
@@ -69,9 +72,46 @@
   .topbar .doc-name .sub {
     font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 400;
     letter-spacing: 0.02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .topbar-controls { display: flex; align-items: center; gap: 6px; }
+  .topbar-controls { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+  .quarter-filter {
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.88);
+  }
+  .quarter-filter label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(255,255,255,0.62);
+  }
+  .quarter-filter select {
+    height: 22px;
+    min-width: 102px;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 3px;
+    background: #fff;
+    color: var(--sl-heritage-blue);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 24px 0 7px;
+    cursor: pointer;
+  }
+  .quarter-filter select:focus {
+    outline: 2px solid var(--sl-heritage-yellow);
+    outline-offset: 1px;
+  }
   .tb-btn {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.14);
@@ -241,10 +281,15 @@
     border: 1px solid rgba(255,255,255,0.10);
   }
 
+  @media (max-width: 980px) {
+    .topbar .doc-name .sub { display: none; }
+  }
+
   @media (max-width: 720px) {
     :root { --tray-height: 50px; }
     .topbar { padding: 6px 12px; gap: 10px; }
-    .topbar .doc-name .sub { display: none; }
+    .quarter-filter label { display: none; }
+    .quarter-filter select { min-width: 94px; }
     .thumb { flex-basis: 84px; width: 84px; min-width: 84px; }
   }
 
@@ -263,7 +308,7 @@
     <div class="doc-name">
       <span>CRR Exec Pack</span>
       <span class="v">v3 &middot; full pack</span>
-      <span class="sub">Board Risk Committee &middot; Q1 2026 &middot; 17 pages</span>
+      <span class="sub">Board Risk Committee &middot; <span id="topbar-quarter">Q1 2026</span> &middot; 17 pages</span>
     </div>
   </div>
   <div class="topbar-controls">
@@ -1297,27 +1342,22 @@
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Red / Amber Appetite</div>
         <div class=&quot;kpi-value&quot;>18%</div>
-        <div class=&quot;kpi-delta down&quot;>2 / 11 metrics</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>RCSA Red L2 Risks</div>
         <div class=&quot;kpi-value&quot;>13</div>
-        <div class=&quot;kpi-delta down&quot;>5 financial &middot; 8 non-fin</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Overdue Assessments</div>
         <div class=&quot;kpi-value&quot;>4</div>
-        <div class=&quot;kpi-delta down&quot;>2 financial &middot; 2 non-fin</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Loss YTD vs &pound;25m Trigger</div>
         <div class=&quot;kpi-value&quot;>67%</div>
-        <div class=&quot;kpi-delta down&quot;>&pound;16.8m YTD</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Material Controls Ineffective</div>
         <div class=&quot;kpi-value&quot;>9%</div>
-        <div class=&quot;kpi-delta down&quot;>4 / 45 controls</div>
       </div>
     </div>
 
@@ -1337,7 +1377,7 @@
           </div>
           <div class=&quot;comm-owner&quot;>Risk Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
           <p class=&quot;comm-body&quot;>
-            Overall risk posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, four overdue assessments, losses at <b>&pound;16.8m YTD</b> and <b>9%</b> material controls ineffective. The Board should focus on whether the Cyber &amp;amp; IT appetite breach, RCSA red-risk concentration, loss forecast and material/key control response are on credible Q2 recovery paths, with named owners and action dates visible in the supporting pages.
+            Overall risk posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, four overdue assessments, losses at <b>&pound;16.8m YTD</b> and <b>9%</b> material controls ineffective. The Board should focus on whether the Cyber &amp;amp; IT appetite breach, RCSA red-risk concentration, rolling loss trend and material/key control response are on credible Q2 recovery paths, with named owners and action dates visible in the supporting pages.
           </p>
         </div>
 
@@ -3203,7 +3243,6 @@
 </div>
 
 <div class=&quot;slide&quot;>
-
   <!-- ===== BRAND STRIP ===== -->
   <div class=&quot;brand-strip&quot;>
     <div class=&quot;logo&quot;>
@@ -4797,9 +4836,44 @@
   .header-left { display: flex; align-items: baseline; gap: 18px; }
   .header-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
   .header-sub { font-size: 12px; color: rgba(255,255,255,0.72); letter-spacing: 0.02em; }
-  .header-right { display: flex; align-items: center; gap: 18px; font-size: 11px; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.14em; }
+  .header-right { display: flex; align-items: center; gap: 10px; font-size: 11px; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.14em; }
   .header-right .page-marker { color: #fff; font-weight: 700; font-size: 11px; }
   .header-right .divider { width: 1px; height: 14px; background: rgba(255,255,255,0.25); }
+  .control-period-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .control-period-toggle {
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.10);
+    border-radius: 4px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .control-period-toggle label {
+    height: 18px;
+    min-width: 42px;
+    padding: 0 8px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.72);
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.08em;
+  }
+  #control-period-q:checked ~ .slide-header label[for=&quot;control-period-q&quot;],
+  #control-period-ytd:checked ~ .slide-header label[for=&quot;control-period-ytd&quot;] {
+    background: #fff;
+    color: var(--sl-heritage-blue);
+  }
   .breadcrumb { display: flex; gap: 5px; align-items: center; }
   .breadcrumb .crumb {
     width: 16px; height: 3px; background: rgba(255,255,255,0.25); border-radius: 1px;
@@ -4824,9 +4898,9 @@
   .kpi {
     background: #fff; border: 1px solid var(--hairline);
     border-top: 3px solid var(--navy); border-radius: 6px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
-    min-height: 78px;
+    min-height: 72px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
@@ -4847,6 +4921,11 @@
   .kpi-delta.down { color: var(--red); background: var(--red-bg); border-color: rgba(202,63,76,0.75); }
   .kpi-delta.warn { color: var(--amber); background: var(--amber-bg); border-color: var(--sl-heritage-yellow); }
   .kpi-delta.flat { color: var(--ink-2); background: #eef2f7; border-color: #d7dee8; }
+  .period-ytd { display: none !important; }
+  #control-period-ytd:checked ~ .slide-body .period-q { display: none !important; }
+  #control-period-ytd:checked ~ .slide-body .period-ytd.period-inline { display: inline !important; }
+  #control-period-ytd:checked ~ .slide-body .period-ytd.period-block { display: block !important; }
+  #control-period-ytd:checked ~ .slide-body .period-ytd.period-grid { display: grid !important; }
 
   /* What changed row */
   .changed-row {
@@ -4947,7 +5026,7 @@
   }
   .control-detail-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 176px;
+    grid-template-columns: minmax(0, 1fr) 198px;
     gap: 10px;
     min-height: 0;
   }
@@ -5031,11 +5110,52 @@
     flex-direction: column;
   }
   .manorg-head {
-    display: flex; justify-content: space-between; align-items: baseline;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px;
     padding-bottom: 4px; border-bottom: 1px solid var(--hairline-soft);
   }
+  .manorg-heading { min-width: 0; }
   .manorg-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
   .manorg-sub { font-size: 8.5px; color: var(--muted); }
+  .view-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .view-toggle {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #cfd8e6;
+    background: #f6f8fb;
+    border-radius: 5px;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+  .view-toggle label {
+    height: 19px;
+    min-width: 68px;
+    padding: 0 8px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7.4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+  }
+  #control-view-function:checked ~ .manorg-head label[for=&quot;control-view-function&quot;],
+  #control-view-unit:checked ~ .manorg-head label[for=&quot;control-view-unit&quot;] {
+    background: var(--sl-heritage-blue);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(10,47,115,0.18);
+  }
+  .manorg-view { display: none; min-height: 0; }
+  #control-view-function:checked ~ .manorg-view.function-view,
+  #control-view-unit:checked ~ .manorg-view.unit-view { display: block; }
   .manorg-table {
     display: grid;
     grid-template-columns: minmax(116px, 1.2fr) repeat(6, minmax(44px, 0.55fr));
@@ -5120,21 +5240,30 @@
     gap: 8px;
   }
   .coverage-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
     padding-bottom: 4px;
     border-bottom: 1px solid var(--hairline-soft);
   }
+  .coverage-heading { min-width: 0; }
   .coverage-title { font-size: 11.2px; font-weight: 700; color: var(--ink); }
   .coverage-sub { font-size: 8.5px; color: var(--muted); }
+  .coverage-view { display: block; }
   .coverage-donut-wrap {
+    position: relative;
     display: flex; justify-content: center; align-items: center;
-    padding: 5px 0 2px;
+    min-height: 142px;
+    padding: 12px 0 4px;
   }
   .coverage-donut {
-    --done: 67%;
+    --done: 38%;
+    --overdue: 6%;
     position: relative;
-    width: 108px; height: 108px;
+    width: 106px; height: 106px;
     border-radius: 50%;
-    background: conic-gradient(var(--bar-green) 0 var(--done), #e3e9f2 var(--done) 100%);
+    background: conic-gradient(var(--bar-green) 0 var(--done), var(--bar-red) var(--done) calc(var(--done) + var(--overdue)), #e3e9f2 calc(var(--done) + var(--overdue)) 100%);
     box-shadow: inset 0 0 0 1px rgba(10,47,115,0.08);
   }
   .coverage-donut::before {
@@ -5152,17 +5281,41 @@
   }
   .coverage-donut-label strong { font-size: 25px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; }
   .coverage-donut-label span { margin-top: 2px; font-size: 8px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .coverage-split {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
-    font-size: 8.2px; color: var(--ink-2);
-  }
-  .coverage-split div {
+  .coverage-donut-label em { margin-top: 2px; font-size: 7.4px; font-style: normal; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.04em; }
+  .donut-callout {
+    position: absolute;
+    min-width: 58px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 5px;
     border: 1px solid var(--hairline-soft);
-    background: #f6f8fb;
     border-radius: 4px;
-    padding: 4px 5px;
+    background: rgba(255,255,255,0.94);
+    color: var(--ink-2);
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(10,47,115,0.05);
   }
-  .coverage-split b { display: block; font-size: 13px; line-height: 1; color: var(--ink); font-weight: 700; }
+  .donut-callout b {
+    color: var(--ink);
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .donut-callout .swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(10,47,115,0.12);
+  }
+  .donut-callout.done { left: 2px; top: 16px; }
+  .donut-callout.open { left: 2px; bottom: 13px; }
+  .donut-callout.overdue { right: 0; bottom: 19px; }
+  .donut-callout.done .swatch { background: var(--bar-green); }
+  .donut-callout.open .swatch { background: #e3e9f2; }
+  .donut-callout.overdue .swatch { background: var(--bar-red); }
   .coverage-note {
     margin-top: auto;
     border-top: 1px solid var(--hairline-soft);
@@ -5295,6 +5448,8 @@
 </div>
 
 <div class=&quot;slide&quot;>
+  <input class=&quot;control-period-radio&quot; type=&quot;radio&quot; id=&quot;control-period-q&quot; name=&quot;control-period&quot; checked>
+  <input class=&quot;control-period-radio&quot; type=&quot;radio&quot; id=&quot;control-period-ytd&quot; name=&quot;control-period&quot;>
 
   <!-- ===== BRAND STRIP ===== -->
   <div class=&quot;brand-strip&quot;>
@@ -5316,6 +5471,10 @@
       <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Material and key control focus</div>
     </div>
     <div class=&quot;header-right&quot;>
+      <div class=&quot;control-period-toggle&quot; aria-label=&quot;Control period view&quot;>
+        <label for=&quot;control-period-q&quot;>Q</label>
+        <label for=&quot;control-period-ytd&quot;>YTD</label>
+      </div>
       <div class=&quot;breadcrumb&quot;>
         <div class=&quot;crumb&quot;></div>
         <div class=&quot;crumb&quot;></div>
@@ -5345,13 +5504,13 @@
         <div class=&quot;kpi-delta down&quot;>▲ 2 vs Q4</div>
       </div>
       <div class=&quot;kpi kpi-navy&quot;>
-        <div class=&quot;kpi-label&quot;>Material / Key Test Cover</div>
-        <div class=&quot;kpi-value&quot;>38%</div>
+        <div class=&quot;kpi-label&quot;><span class=&quot;period-q period-inline&quot;>Q Test Complete</span><span class=&quot;period-ytd period-inline&quot;>YTD Test Complete</span></div>
+        <div class=&quot;kpi-value&quot;><span class=&quot;period-q period-inline&quot;>68%</span><span class=&quot;period-ytd period-inline&quot;>38%</span></div>
+        <div class=&quot;kpi-delta flat&quot;><span class=&quot;period-q period-inline&quot;>27 / 40 scheduled</span><span class=&quot;period-ytd period-inline&quot;>47 / 125 scheduled</span></div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Open Issues</div>
-        <div class=&quot;kpi-value&quot;>26</div>
-        <div class=&quot;kpi-delta up&quot;>▼ 4 vs Q4</div>
+        <div class=&quot;kpi-label&quot;>Overdue Tests</div>
+        <div class=&quot;kpi-value&quot;><span class=&quot;period-q period-inline&quot;>5</span><span class=&quot;period-ytd period-inline&quot;>8</span></div>
       </div>
       <div class=&quot;kpi kpi-teal&quot;>
         <div class=&quot;kpi-label&quot;>Open Actions</div>
@@ -5408,7 +5567,16 @@
               <div class=&quot;control-card-sub&quot;>Directly evidence risk appetite</div>
             </div>
             <div class=&quot;bar-stack&quot;>
-              <div class=&quot;bar-row&quot;>
+              <div class=&quot;bar-row period-q period-grid&quot;>
+                <div class=&quot;bar-label&quot;>Control Test</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 42.9%;&quot;>6</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 21.4%;&quot;>3</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 7.1%;&quot;>1</div>
+                  <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 28.6%;&quot;>4</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row period-ytd period-grid&quot;>
                 <div class=&quot;bar-label&quot;>Control Test</div>
                 <div class=&quot;stacked-bar&quot;>
                   <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 28.9%;&quot;>13</div>
@@ -5428,8 +5596,8 @@
             </div>
             <div class=&quot;control-stats&quot;>
               <div class=&quot;control-stat&quot;><strong>71%</strong> Assessment effective</div>
-              <div class=&quot;control-stat&quot;><strong>62%</strong> Test effective</div>
-              <div class=&quot;control-stat&quot;><strong>47%</strong> Controls tested</div>
+              <div class=&quot;control-stat&quot;><strong><span class=&quot;period-q period-inline&quot;>60%</span><span class=&quot;period-ytd period-inline&quot;>62%</span></strong> Test effective</div>
+              <div class=&quot;control-stat&quot;><strong><span class=&quot;period-q period-inline&quot;>71%</span><span class=&quot;period-ytd period-inline&quot;>47%</span></strong> Controls tested</div>
             </div>
           </div>
 
@@ -5439,11 +5607,21 @@
               <div class=&quot;control-card-sub&quot;>Primary prevention and detection</div>
             </div>
             <div class=&quot;bar-stack&quot;>
-              <div class=&quot;bar-row&quot;>
+              <div class=&quot;bar-row period-q period-grid&quot;>
+                <div class=&quot;bar-label&quot;>Control Test</div>
+                <div class=&quot;stacked-bar&quot;>
+                  <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 46.2%;&quot;>12</div>
+                  <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 15.4%;&quot;>4</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 3.8%;&quot;>1</div>
+                  <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 34.6%;&quot;>9</div>
+                </div>
+              </div>
+              <div class=&quot;bar-row period-ytd period-grid&quot;>
                 <div class=&quot;bar-label&quot;>Control Test</div>
                 <div class=&quot;stacked-bar&quot;>
                   <div class=&quot;stacked-segment seg-green&quot; style=&quot;width: 22.5%;&quot;>18</div>
                   <div class=&quot;stacked-segment seg-amber&quot; style=&quot;width: 8.75%;&quot;>7</div>
+                  <div class=&quot;stacked-segment seg-red&quot; style=&quot;width: 1.25%;&quot;>1</div>
                   <div class=&quot;stacked-segment seg-untested&quot; style=&quot;width: 67.5%;&quot;>54</div>
                 </div>
               </div>
@@ -5458,74 +5636,167 @@
             </div>
             <div class=&quot;control-stats&quot;>
               <div class=&quot;control-stat&quot;><strong>80%</strong> Assessment effective</div>
-              <div class=&quot;control-stat&quot;><strong>69%</strong> Test effective</div>
-              <div class=&quot;control-stat&quot;><strong>33%</strong> Controls tested</div>
+              <div class=&quot;control-stat&quot;><strong><span class=&quot;period-q period-inline&quot;>71%</span><span class=&quot;period-ytd period-inline&quot;>69%</span></strong> Test effective</div>
+              <div class=&quot;control-stat&quot;><strong><span class=&quot;period-q period-inline&quot;>65%</span><span class=&quot;period-ytd period-inline&quot;>33%</span></strong> Controls tested</div>
             </div>
           </div>
         </div>
 
         <div class=&quot;control-detail-grid&quot;>
           <div class=&quot;manorg-panel&quot;>
+            <input class=&quot;view-radio&quot; type=&quot;radio&quot; id=&quot;control-view-function&quot; name=&quot;control-view&quot; checked>
+            <input class=&quot;view-radio&quot; type=&quot;radio&quot; id=&quot;control-view-unit&quot; name=&quot;control-view&quot;>
             <div class=&quot;manorg-head&quot;>
-              <div class=&quot;manorg-title&quot;>Control RAG by Business Function</div>
-              <div class=&quot;manorg-sub&quot;>Q4 &amp;rarr; Q1 status by control type</div>
+              <div class=&quot;manorg-heading&quot;>
+                <div class=&quot;manorg-title&quot;>Control RAG split</div>
+                <div class=&quot;manorg-sub&quot;>Toggle business function / business unit; Q4 &amp;rarr; Q1 by control type</div>
+              </div>
+              <div class=&quot;view-toggle&quot; aria-label=&quot;Control split view&quot;>
+                <label for=&quot;control-view-function&quot;>Function</label>
+                <label for=&quot;control-view-unit&quot;>Unit</label>
+              </div>
             </div>
-            <div class=&quot;manorg-table&quot;>
-              <div class=&quot;manorg-th&quot;>Business Function</div>
-              <div class=&quot;manorg-th&quot;>Mat Q4</div>
-              <div class=&quot;manorg-th&quot;>Mat Q1</div>
-              <div class=&quot;manorg-th&quot;>Key Q4</div>
-              <div class=&quot;manorg-th&quot;>Key Q1</div>
-              <div class=&quot;manorg-th&quot;>Supp Q4</div>
-              <div class=&quot;manorg-th&quot;>Supp Q1</div>
+            <div class=&quot;manorg-view function-view&quot;>
+              <div class=&quot;manorg-table&quot;>
+                <div class=&quot;manorg-th&quot;>Business Function</div>
+                <div class=&quot;manorg-th&quot;>Mat Q4</div>
+                <div class=&quot;manorg-th&quot;>Mat Q1</div>
+                <div class=&quot;manorg-th&quot;>Key Q4</div>
+                <div class=&quot;manorg-th&quot;>Key Q1</div>
+                <div class=&quot;manorg-th&quot;>Supp Q4</div>
+                <div class=&quot;manorg-th&quot;>Supp Q1</div>
 
-              <div class=&quot;manorg-org&quot;>Pensions &amp;amp; Savings <span class=&quot;count&quot;>(P&amp;amp;S)</span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>6 / 9</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>22 / 26</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>35 / 39</span></span></div>
+                <div class=&quot;manorg-org&quot;>Operations</div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill red&quot;>Red</span></div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
 
-              <div class=&quot;manorg-org&quot;>Retirement Solutions &amp;amp; Asset Management <span class=&quot;count&quot;>(RS &amp;amp; AM)</span></div>
-              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
-              <div><span class=&quot;ctrl-pill red&quot;>Red<span class=&quot;count&quot;>4 / 7</span></span></div>
-              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
-              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>14 / 18</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>28 / 31</span></span></div>
+                <div class=&quot;manorg-org&quot;>Risk</div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
 
-              <div class=&quot;manorg-org&quot;>Europe</div>
-              <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
-              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>5 / 8</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>16 / 19</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill amber&quot;>Amber<span class=&quot;count&quot;>21 / 27</span></span></div>
+                <div class=&quot;manorg-org&quot;>Finance</div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
 
-              <div class=&quot;manorg-org&quot;>SunLife</div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>3 / 3</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>8 / 9</span></span></div>
-              <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
-              <div><span class=&quot;ctrl-pill green&quot;>Green<span class=&quot;count&quot;>18 / 19</span></span></div>
+                <div class=&quot;manorg-org&quot;>People Function</div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+
+                <div class=&quot;manorg-org&quot;>Corporate Affairs &amp;amp; Brand</div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+
+                <div class=&quot;manorg-org&quot;>Internal Audit</div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+
+                <div class=&quot;manorg-org&quot;>General Counsel</div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+              </div>
+            </div>
+
+            <div class=&quot;manorg-view unit-view&quot;>
+              <div class=&quot;manorg-table&quot;>
+                <div class=&quot;manorg-th&quot;>Business Unit</div>
+                <div class=&quot;manorg-th&quot;>Mat Q4</div>
+                <div class=&quot;manorg-th&quot;>Mat Q1</div>
+                <div class=&quot;manorg-th&quot;>Key Q4</div>
+                <div class=&quot;manorg-th&quot;>Key Q1</div>
+                <div class=&quot;manorg-th&quot;>Supp Q4</div>
+                <div class=&quot;manorg-th&quot;>Supp Q1</div>
+
+                <div class=&quot;manorg-org&quot;>Pensions &amp;amp; Savings <span class=&quot;count&quot;>(P&amp;amp;S)</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+
+                <div class=&quot;manorg-org&quot;>Retirement Solutions &amp;amp; Asset Management <span class=&quot;count&quot;>(RS &amp;amp; AM)</span></div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill red&quot;>Red</span></div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+
+                <div class=&quot;manorg-org&quot;>Europe</div>
+                <div><span class=&quot;ctrl-pill prev amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill amber&quot;>Amber</span></div>
+
+                <div class=&quot;manorg-org&quot;>SunLife &amp;amp; Protection</div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill prev green&quot;>Green</span></div>
+                <div><span class=&quot;ctrl-pill green&quot;>Green</span></div>
+              </div>
             </div>
           </div>
 
           <div class=&quot;coverage-panel&quot;>
             <div class=&quot;coverage-head&quot;>
-              <div class=&quot;coverage-title&quot;>Q1 Test Coverage</div>
-              <div class=&quot;coverage-sub&quot;>Material + key controls</div>
-            </div>
-            <div class=&quot;coverage-donut-wrap&quot;>
-              <div class=&quot;coverage-donut&quot; style=&quot;--done:67%;&quot;>
-                <div class=&quot;coverage-donut-label&quot;><strong>67%</strong><span>done</span></div>
+              <div class=&quot;coverage-heading&quot;>
+                <div class=&quot;coverage-title&quot;>Test Coverage</div>
+                <div class=&quot;coverage-sub&quot;>Material + key scheduled tests</div>
               </div>
             </div>
-            <div class=&quot;coverage-split&quot;>
-              <div><b>43</b>Done</div>
-              <div><b>21</b>Open</div>
+
+            <div class=&quot;coverage-view period-q period-block&quot;>
+              <div class=&quot;coverage-donut-wrap&quot;>
+                <div class=&quot;donut-callout done&quot;><span class=&quot;swatch&quot;></span><b>27</b>Done</div>
+                <div class=&quot;donut-callout open&quot;><span class=&quot;swatch&quot;></span><b>8</b>Open</div>
+                <div class=&quot;donut-callout overdue&quot;><span class=&quot;swatch&quot;></span><b>5</b>Overdue</div>
+                <div class=&quot;coverage-donut&quot; style=&quot;--done:68%; --overdue:13%;&quot;>
+                  <div class=&quot;coverage-donut-label&quot;><strong>68%</strong><span>complete</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class=&quot;coverage-view period-ytd period-block&quot;>
+              <div class=&quot;coverage-donut-wrap&quot;>
+                <div class=&quot;donut-callout done&quot;><span class=&quot;swatch&quot;></span><b>47</b>Done</div>
+                <div class=&quot;donut-callout open&quot;><span class=&quot;swatch&quot;></span><b>70</b>Open</div>
+                <div class=&quot;donut-callout overdue&quot;><span class=&quot;swatch&quot;></span><b>8</b>Overdue</div>
+                <div class=&quot;coverage-donut&quot; style=&quot;--done:38%; --overdue:6%;&quot;>
+                  <div class=&quot;coverage-donut-label&quot;><strong>38%</strong><span>complete</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -5549,7 +5820,7 @@
           </div>
           <div class=&quot;comm-owner&quot;>Control Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
           <p class=&quot;comm-body&quot;>
-            The control environment remains under Board focus. Material controls show <b>4 ineffective</b> and <b>9 partially effective</b> ratings, with <b>47%</b> of scheduled material tests complete. Key controls are stronger overall, but one ineffective key control and 15 partial ratings mean remediation confidence depends on retest completion, overdue action closure and clearer ownership across the affected business functions. Supporting control detail remains available in the appendix while this page stays focused on material and key controls.
+            The control environment remains under Board focus. Material controls show <b>4 ineffective</b> and <b>9 partially effective</b> ratings. <span class=&quot;period-q period-inline&quot;>For the quarter, <b>68%</b> of scheduled material and key tests are complete, with <b>5 overdue tests</b> requiring owner follow-up.</span><span class=&quot;period-ytd period-inline&quot;>Year to date, <b>38%</b> of scheduled material and key tests are complete, with <b>8 overdue tests</b> requiring owner follow-up.</span> Key controls are stronger overall, but one ineffective key control and 15 partial ratings mean remediation confidence depends on retest completion, overdue closure and clearer ownership across the affected business functions.
           </p>
         </div>
 
@@ -5599,7 +5870,7 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p4detail" class="inactive slide-frame" data-key="p4detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Control Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#2140CE}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section-head{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section-head h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section-head .sub{font-size:12px;opacity:.86;color:#fff}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:8px 22px 0;height:596px}.panel{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden;display:flex;flex-direction:column}.panel-top{height:34px;padding:6px 10px;border-bottom:1px solid #dfe6f1;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.title{font-size:13px;font-weight:700}.subtitle{font-size:7.6px;color:var(--muted);margin-top:1px}.reconcile{display:flex;gap:6px;align-items:center;white-space:nowrap}.rec-chip{height:18px;border:1px solid #d7dee8;border-radius:4px;background:#f6f8fb;padding:2px 6px;font-size:6.8px;font-weight:700;color:#27436f}.rec-chip.red{background:var(--redbg);border-color:#f0a3aa;color:#9d1827}.rec-chip.amber{background:var(--amberbg);border-color:#f0c96d;color:#9a3d12}.table-wrap{padding:0 8px 3px;flex:1;min-height:0;overflow:hidden}.table-wrap::-webkit-scrollbar{width:9px}.table-wrap::-webkit-scrollbar-track{background:#eef3f8;border-left:1px solid #d8e0ec}.table-wrap::-webkit-scrollbar-thumb{background:#9aa8ba;border-radius:999px;border:2px solid #eef3f8}.control-table{width:100%;border-collapse:collapse;table-layout:fixed}.control-table col:nth-child(1){width:285px}.control-table col:nth-child(2){width:145px}.control-table col:nth-child(3){width:220px}.control-table col:nth-child(4){width:104px}.control-table col:nth-child(5){width:112px}.control-table col:nth-child(n+6){width:64px}.control-table th{height:16px;padding:2px 5px;text-align:left;border-bottom:1px solid #cfd8e6;background:#f3f6fb;color:#445a7c;font-size:6.2px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.control-table th:nth-child(n+6),.control-table td:nth-child(n+6){text-align:center}.control-table td{height:12px;padding:1px 5px;border-bottom:1px solid #e6ecf5;vertical-align:middle;color:#001b4c;font-size:6.7px;line-height:1.02;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.section td{height:13px;background:#eef3fb;border-bottom:1px solid #cfd8e6;font-size:6.9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.section.red td{color:#681a38}.section.amber td{color:#b4440f}.section span{float:right;color:#5b6b83;font-weight:700;text-transform:none;letter-spacing:0}.ctrl-code{display:inline;font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;font-size:6px;color:#345174;margin:0 5px 0 0}.ctrl-name,.area,.risk{display:inline;font-weight:700;color:#001b4c;font-size:6.8px}.sub{display:none}.outcome,.retest{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;height:12px;padding:0 5px;font-size:5.8px;font-weight:800;white-space:nowrap}.outcome.bad{background:#fde2e4;color:#9d1827;border:1px solid #f0a3aa}.outcome.partial{background:#fff4d1;color:#9a3d12;border:1px solid #f0c96d}.retest.up{background:#e6f5f1;color:#006b5d;border:1px solid #95d5c8}.retest.watch{background:#fff4d1;color:#9a3d12;border:1px solid #f0c96d}.retest.overdue{background:#fde2e4;color:#9d1827;border:1px solid #f0a3aa}.date{display:inline;margin-left:4px;font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;color:#5b6b83;font-size:5.7px}.num{font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;font-weight:800;color:#001b4c}.footnote{height:18px;padding:3px 10px;border-top:1px solid #dfe6f1;background:#f8fbff;color:#405374;font-size:7.2px;display:flex;align-items:center;justify-content:space-between}.footnote b{color:var(--ink)}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Control Detail</h1><div class='sub'>Board Risk Committee - material and key control exceptions</div><div class='page-marker'>P8 / 17</div></div><main class='body'><section class='panel'><div class='panel-top'><div><div class='title'>Material and key control detail</div><div class='subtitle'>Exception-level view for ineffective and partially effective controls; supporting controls remain in appendix read-across.</div></div><div class='reconcile'><span class='rec-chip red'>Material: 4 ineffective / 9 partial</span><span class='rec-chip amber'>Key: 1 ineffective / 15 partial</span><span class='rec-chip'>Open issues 26 - open actions 37</span></div></div><div class='table-wrap'><table class='control-table'><colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th>Control</th><th>Mgmt area</th><th>Linked risk</th><th>Outcome</th><th>Scheduled retest</th><th>Open issues</th><th>Open incidents</th><th>Open actions</th><th>Overdue actions</th></tr></thead><tbody><tr class='section red'><td colspan='9'>Material ineffective - current committee focus <span>4 controls</span></td></tr><tr><td><div class='ctrl-code'>CTL_CO_612</div><div class='ctrl-name'>Advice suitability 2nd-line QA sample</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Wealth Management</div></td><td><div class='risk'>Advice file review quality</div><div class='sub'>Sales & Distribution</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>14-02-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>3</td><td class='num'>3</td></tr><tr><td><div class='ctrl-code'>CTL_IS_112</div><div class='ctrl-name'>Endpoint vulnerability remediation SLA</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Vulnerability management execution</div><div class='sub'>Information Security & Cyber</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>01-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>2</td><td class='num'>2</td></tr><tr><td><div class='ctrl-code'>CTL_FC_031</div><div class='ctrl-name'>AML transaction monitoring alert QA</div></td><td><div class='area'>Compliance & Fin Crime</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Alert quality assurance</div><div class='sub'>Financial Crime</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>05-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>2</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_TP_101</div><div class='ctrl-name'>Critical vendor resilience attestation</div></td><td><div class='area'>Third Party Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Critical supplier resilience evidence</div><div class='sub'>Third Party</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest up'>Up to date</span><div class='date'>04-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr class='section amber'><td colspan='9'>Material partially effective - under remediation <span>9 controls</span></td></tr><tr><td><div class='ctrl-code'>CTL_CO_701</div><div class='ctrl-name'>Consumer Duty outcomes monitoring</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Wealth Management</div></td><td><div class='risk'>Outcome monitoring and attestation</div><div class='sub'>Post-Sales Administration & Claims</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>28-02-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_BR_240</div><div class='ctrl-name'>Important business service breach reporting</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Impact tolerance breach reporting</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>08-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_DP_088</div><div class='ctrl-name'>Data retention exception review</div></td><td><div class='area'>Data Protection Office</div><div class='sub'>Customer</div></td><td><div class='risk'>Retention and deletion control</div><div class='sub'>Data Protection</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>21-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_AI_044</div><div class='ctrl-name'>GenAI use-case approval evidence</div></td><td><div class='area'>AI Governance</div><div class='sub'>Customer</div></td><td><div class='risk'>Model accountability evidence</div><div class='sub'>Artificial Intelligence</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>29-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_RC_125</div><div class='ctrl-name'>Regulatory change impact assessment</div></td><td><div class='area'>Compliance</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Regulatory change management</div><div class='sub'>Regulatory Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>17-03-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>CTL_OP_332</div><div class='ctrl-name'>Operational resilience scenario evidence</div></td><td><div class='area'>Operational Resilience</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Scenario test evidence</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>18-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_MK_056</div><div class='ctrl-name'>Market valuation challenge pack</div></td><td><div class='area'>Market Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Independent price verification</div><div class='sub'>Spread</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>11-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_LQ_077</div><div class='ctrl-name'>Liquidity buffer daily evidence review</div></td><td><div class='area'>Treasury</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Liquidity buffer monitoring</div><div class='sub'>Liquidity</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>13-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>CTL_TX_063</div><div class='ctrl-name'>Tax control evidence refresh</div></td><td><div class='area'>Tax</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Manual tax adjustment evidence</div><div class='sub'>Tax Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>25-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>1</td></tr><tr class='section red'><td colspan='9'>Key ineffective - exception <span>1 control</span></td></tr><tr><td><div class='ctrl-code'>KCT_TE_018</div><div class='ctrl-name'>Privileged access recertification</div></td><td><div class='area'>Technology & Cyber</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Privileged access control</div><div class='sub'>Information Security & Cyber</div></td><td><span class='outcome bad'>Ineffective</span></td><td><span class='retest overdue'>Overdue</span><div class='date'>10-01-2027</div></td><td class='num'>2</td><td class='num'>1</td><td class='num'>3</td><td class='num'>2</td></tr><tr class='section amber'><td colspan='9'>Key partially effective - monitored <span>15 controls</span></td></tr><tr><td><div class='ctrl-code'>KCT_CO_144</div><div class='ctrl-name'>Vulnerable customer QA sample</div></td><td><div class='area'>Wealth Advisory</div><div class='sub'>Pensions & Savings</div></td><td><div class='risk'>Customer outcome testing</div><div class='sub'>Customer Outcomes</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>06-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_BR_085</div><div class='ctrl-name'>Incident severity triage review</div></td><td><div class='area'>Service Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Incident and breach triage</div><div class='sub'>Operational Resilience</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>09-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_DP_157</div><div class='ctrl-name'>Breach response timeline check</div></td><td><div class='area'>Data Protection Office</div><div class='sub'>Customer</div></td><td><div class='risk'>Breach response evidence</div><div class='sub'>Data Protection</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>27-04-2027</div></td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_FC_266</div><div class='ctrl-name'>Sanctions screening exception QA</div></td><td><div class='area'>Financial Crime</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Screening exception QA</div><div class='sub'>Financial Crime</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>16-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_RC_092</div><div class='ctrl-name'>Regulatory obligation owner review</div></td><td><div class='area'>Compliance</div><div class='sub'>Europe</div></td><td><div class='risk'>Obligation owner review</div><div class='sub'>Regulatory Compliance</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>30-04-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_TP_073</div><div class='ctrl-name'>Supplier exit plan evidence</div></td><td><div class='area'>Third Party Management</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Exit plan evidence</div><div class='sub'>Third Party</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>12-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_MD_039</div><div class='ctrl-name'>Model validation issue closure</div></td><td><div class='area'>Model Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Validation finding closure</div><div class='sub'>Model</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>02-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>2</td><td class='num'>1</td></tr><tr><td><div class='ctrl-code'>KCT_RP_118</div><div class='ctrl-name'>Manual reporting adjustment log</div></td><td><div class='area'>Finance Risk</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Manual reporting adjustment</div><div class='sub'>Reporting</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>20-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_PS_027</div><div class='ctrl-name'>Key person dependency review</div></td><td><div class='area'>People Risk</div><div class='sub'>Group Operations</div></td><td><div class='risk'>Role dependency assessment</div><div class='sub'>People & Safety</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>08-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_GW_064</div><div class='ctrl-name'>Disclosure substantiation pack</div></td><td><div class='area'>Climate Risk</div><div class='sub'>Group Functions</div></td><td><div class='risk'>Greenwashing substantiation</div><div class='sub'>Greenwashing</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>22-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_IR_033</div><div class='ctrl-name'>Interest rate basis review</div></td><td><div class='area'>Market Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Basis risk watch item</div><div class='sub'>Interest Rate</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>24-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_IC_109</div><div class='ctrl-name'>Illiquid credit valuation review</div></td><td><div class='area'>Credit Risk</div><div class='sub'>RS & AM</div></td><td><div class='risk'>Valuation lag and exit depth</div><div class='sub'>Illiquid Credit</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>01-05-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_EX_051</div><div class='ctrl-name'>Expense allocation model review</div></td><td><div class='area'>Finance Risk</div><div class='sub'>SunLife</div></td><td><div class='risk'>Expense strain model</div><div class='sub'>Expense</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>19-03-2027</div></td><td class='num'>1</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_DA_129</div><div class='ctrl-name'>Data ownership attestation</div></td><td><div class='area'>Data Governance</div><div class='sub'>Customer</div></td><td><div class='risk'>Data ownership gaps</div><div class='sub'>Data & Information Management</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest watch'>Due Q2</span><div class='date'>05-05-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td></tr><tr><td><div class='ctrl-code'>KCT_SA_203</div><div class='ctrl-name'>Sales disclosure sampling</div></td><td><div class='area'>Distribution Risk</div><div class='sub'>Pensions & Savings</div></td><td><div class='risk'>Advice and disclosure controls</div><div class='sub'>Sales & Distribution</div></td><td><span class='outcome partial'>Partially Effective</span></td><td><span class='retest up'>Up to date</span><div class='date'>26-03-2027</div></td><td class='num'>0</td><td class='num'>0</td><td class='num'>1</td><td class='num'>0</td></tr></tbody></table></div><div class='footnote'><span><b>Reconciles to Control Environment:</b> Material assessment 32 effective / 9 partial / 4 ineffective; key assessment 64 effective / 15 partial / 1 ineffective.</span><span>Q1 control detail - material + key only</span></div></section></main><footer class='footer'><div class='footer-left'><span>P7 Controls</span><span class='current'>P8 Control Detail</span><span>P9 Loss</span><span>P10 Inc</span><span>P11 Emerging</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
+    <iframe id="frame-p4detail" class="inactive slide-frame" data-key="p4detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Control Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde6e8;--amber:#DE7A00;--amberbg:#fff2c2;--green:#006B5C;--greenbg:#e3f3ef;--grey:#eef3f8}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section-head{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section-head h1{font-size:22px;margin:0 18px 0 0;font-weight:700}.section-head .sub{font-size:12px;opacity:.86;color:#fff}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:10px 24px 0;height:596px}.panel{height:100%;border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden;display:flex;flex-direction:column}.filter-radio{position:absolute;opacity:0;pointer-events:none}.panel-top{height:48px;padding:8px 11px;border-bottom:1px solid #dfe6f1;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff}.title{font-size:15px;font-weight:700;line-height:1.1}.subtitle{font-size:9px;color:var(--muted);margin-top:3px}.toolbar{display:flex;align-items:center;gap:8px}.toggle{display:inline-flex;border:1px solid #c9d4e5;border-radius:6px;background:#f3f6fb;padding:3px;gap:3px}.toggle label{min-width:92px;height:25px;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:8.8px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#52647f;cursor:pointer}.toggle label b{font-size:8.8px}#detail-material:checked~.panel-top label[for='detail-material'],#detail-key:checked~.panel-top label[for='detail-key']{background:#0A2F73;color:#fff;box-shadow:0 1px 0 rgba(0,0,0,.08)}.view{display:none;flex:1;min-height:0;flex-direction:column}.view-head{height:28px;padding:6px 11px;border-bottom:1px solid #e3e9f3;background:#fbfcfe;display:flex;align-items:center;justify-content:space-between}.view-title{font-size:11.4px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.view-title.material{color:#681a38}.view-title.key{color:#b4440f}.view-meta{font-size:8.6px;color:#5d6e86}#detail-material:checked~.material-view,#detail-key:checked~.key-view{display:flex}.table-wrap{padding:0 8px 5px;flex:1;min-height:0;overflow:hidden}.detail-table{width:100%;border-collapse:collapse;table-layout:fixed}.detail-table col.id{width:62px}.detail-table col.control{width:194px}.detail-table col.area{width:96px}.detail-table col.bu{width:55px}.detail-table col.risk{width:118px}.detail-table col.l2{width:82px}.detail-table col.date{width:54px}.detail-table col.outcome{width:72px}.detail-table col.test{width:76px}.detail-table col.first{width:55px}.detail-table col.current{width:60px}.detail-table col.rev{width:45px}.detail-table col.actions{width:46px}.detail-table col.noneff{width:52px}.detail-table th{height:22px;padding:4px 4px;border-bottom:1px solid #cfd8e6;background:#f2f5fa;color:#405578;font-size:7.1px;font-weight:800;text-align:left;text-transform:uppercase;letter-spacing:.055em;line-height:1.12}.detail-table th:nth-child(n+7),.detail-table td:nth-child(n+7){text-align:center}.detail-table td{height:29px;padding:4px 4px;border-bottom:1px solid #e6ecf5;color:#001b4c;font-size:8px;line-height:1.12;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.control-name{font-weight:800;font-size:8.4px;color:#001b4c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cell-main{font-weight:700;color:#001b4c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.code-text,.date-text,.metric-num{font-family:'Aptos Mono','Cascadia Mono',Consolas,monospace;color:#173260;font-size:8px;font-weight:700}.metric-num{font-size:9px;color:#001b4c}.pill{display:inline-flex;align-items:center;justify-content:center;min-width:60px;height:16px;border-radius:4px;padding:0 5px;font-size:6.5px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}.pill.bad{background:var(--redbg);border:1px solid #eea5ad;color:#a51d2e}.pill.partial{background:var(--amberbg);border:1px solid #efc568;color:#9a3d12}.pill.good{background:var(--greenbg);border:1px solid #9bd6c9;color:#006b5d}.pill.none{background:#eef3f8;border:1px solid #d3deeb;color:#405374}.footnote{height:24px;padding:5px 11px;border-top:1px solid #dfe6f1;background:#f8fbff;color:#405374;font-size:8px;display:flex;align-items:center;justify-content:space-between}.footnote b{color:var(--ink)}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Control Detail</h1><div class='sub'>Board Risk Committee - material and key control testing detail</div><div class='page-marker'>P8 / 17</div></div><main class='body'><section class='panel'><input class='filter-radio' type='radio' id='detail-material' name='detail-view' checked><input class='filter-radio' type='radio' id='detail-key' name='detail-view'><div class='panel-top'><div><div class='title'>Control testing register</div><div class='subtitle'>Flat Power BI table structure: control IDs, business unit, L2 risk and test dates are separate fields rather than stacked text.</div></div><div class='toolbar'><div class='toggle'><label for='detail-material'>Material <b>13</b></label><label for='detail-key'>Key <b>16</b></label></div></div></div><div class='view material-view'><div class='view-head'><div class='view-title material'>Material controls</div><div class='view-meta'>4 ineffective + 9 partially effective; no non-effective RCSA rows show an effective test result</div></div><div class='table-wrap'><table class='detail-table'><colgroup><col class='id'><col class='control'><col class='area'><col class='bu'><col class='risk'><col class='l2'><col class='date'><col class='outcome'><col class='test'><col class='date'><col class='first'><col class='current'><col class='rev'><col class='actions'><col class='noneff'></colgroup><thead><tr><th>Control ID</th><th>Control</th><th>Mgmt area</th><th>BU</th><th>Linked risk</th><th>L2 risk</th><th>RCSA test</th><th>RCSA outcome</th><th>Test outcome</th><th>Test date</th><th>First sched.</th><th>Current sched.</th><th>Due rev.</th><th>Actions</th><th>Non-eff</th></tr></thead><tbody><tr><td><span class='code-text'>CTL_CO_612</span></td><td><div class='control-name'>Advice suitability 2nd-line QA sample</div></td><td><div class='cell-main'>Wealth Advisory</div></td><td><div class='cell-main'>P&amp;S</div></td><td><div class='cell-main'>Advice file review quality</div></td><td><div class='cell-main'>Sales &amp; Dist.</div></td><td><span class='date-text'>14 Mar</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='date-text'>21 Mar</span></td><td><span class='date-text'>14 Apr</span></td><td><span class='date-text'>14 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>3</span></td><td><span class='metric-num'>2</span></td></tr><tr><td><span class='code-text'>CTL_IS_112</span></td><td><div class='control-name'>Endpoint vulnerability remediation SLA</div></td><td><div class='cell-main'>Technology &amp; Cyber</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Vulnerability management</div></td><td><div class='cell-main'>Info Sec &amp; Cyber</div></td><td><span class='date-text'>01 Mar</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='date-text'>18 Mar</span></td><td><span class='date-text'>01 Apr</span></td><td><span class='date-text'>12 Apr</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>3</span></td></tr><tr><td><span class='code-text'>CTL_FC_031</span></td><td><div class='control-name'>AML transaction monitoring alert QA</div></td><td><div class='cell-main'>Compliance &amp; Fin Crime</div></td><td><div class='cell-main'>Risk</div></td><td><div class='cell-main'>Alert quality assurance</div></td><td><div class='cell-main'>Financial Crime</div></td><td><span class='date-text'>05 Mar</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='date-text'>22 Mar</span></td><td><span class='date-text'>05 Apr</span></td><td><span class='date-text'>05 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>2</span></td></tr><tr><td><span class='code-text'>CTL_TP_101</span></td><td><div class='control-name'>Critical vendor resilience attestation</div></td><td><div class='cell-main'>Third Party Mgmt</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Supplier resilience evidence</div></td><td><div class='cell-main'>Third Party</div></td><td><span class='date-text'>04 Mar</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>04 Apr</span></td><td><span class='date-text'>18 Apr</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_CO_701</span></td><td><div class='control-name'>Consumer Duty outcomes monitoring</div></td><td><div class='cell-main'>Wealth Advisory</div></td><td><div class='cell-main'>P&amp;S</div></td><td><div class='cell-main'>Outcome monitoring</div></td><td><div class='cell-main'>Post-sales claims</div></td><td><span class='date-text'>28 Feb</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>20 Mar</span></td><td><span class='date-text'>28 Mar</span></td><td><span class='date-text'>28 Mar</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_BR_240</span></td><td><div class='control-name'>Important business service breach reporting</div></td><td><div class='cell-main'>Technology &amp; Cyber</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Impact tolerance breach</div></td><td><div class='cell-main'>Op Resilience</div></td><td><span class='date-text'>08 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>25 Mar</span></td><td><span class='date-text'>08 Apr</span></td><td><span class='date-text'>08 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_DP_088</span></td><td><div class='control-name'>Data retention exception review</div></td><td><div class='cell-main'>Data Protection</div></td><td><div class='cell-main'>Customer</div></td><td><div class='cell-main'>Retention controls</div></td><td><div class='cell-main'>Data Protection</div></td><td><span class='date-text'>17 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>21 Apr</span></td><td><span class='date-text'>06 May</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>CTL_AI_044</span></td><td><div class='control-name'>GenAI use-case approval evidence</div></td><td><div class='cell-main'>AI Governance</div></td><td><div class='cell-main'>Customer</div></td><td><div class='cell-main'>Model accountability</div></td><td><div class='cell-main'>Artificial Intel.</div></td><td><span class='date-text'>20 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>27 Mar</span></td><td><span class='date-text'>29 Apr</span></td><td><span class='date-text'>29 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_RC_125</span></td><td><div class='control-name'>Regulatory change impact assessment</div></td><td><div class='cell-main'>Compliance</div></td><td><div class='cell-main'>RS &amp; AM</div></td><td><div class='cell-main'>Regulatory change mgmt</div></td><td><div class='cell-main'>Reg Compliance</div></td><td><span class='date-text'>17 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>17 Apr</span></td><td><span class='date-text'>01 May</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>CTL_OP_332</span></td><td><div class='control-name'>Operational resilience scenario evidence</div></td><td><div class='cell-main'>Ops Resilience</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Scenario test evidence</div></td><td><div class='cell-main'>Op Resilience</div></td><td><span class='date-text'>18 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>18 Apr</span></td><td><span class='date-text'>18 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>CTL_MK_056</span></td><td><div class='control-name'>Market valuation challenge pack</div></td><td><div class='cell-main'>Market Risk</div></td><td><div class='cell-main'>RS &amp; AM</div></td><td><div class='cell-main'>Price verification</div></td><td><div class='cell-main'>Spread</div></td><td><span class='date-text'>11 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>28 Mar</span></td><td><span class='date-text'>11 Apr</span></td><td><span class='date-text'>11 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_LQ_077</span></td><td><div class='control-name'>Liquidity buffer daily evidence review</div></td><td><div class='cell-main'>Treasury</div></td><td><div class='cell-main'>Finance</div></td><td><div class='cell-main'>Liquidity buffer monitoring</div></td><td><div class='cell-main'>Liquidity</div></td><td><span class='date-text'>13 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>26 Mar</span></td><td><span class='date-text'>13 Apr</span></td><td><span class='date-text'>22 Apr</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>CTL_TX_063</span></td><td><div class='control-name'>Tax control evidence refresh</div></td><td><div class='cell-main'>Tax</div></td><td><div class='cell-main'>Finance</div></td><td><div class='cell-main'>Manual tax adjustment</div></td><td><div class='cell-main'>Tax Compliance</div></td><td><span class='date-text'>16 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>25 Apr</span></td><td><span class='date-text'>09 May</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr></tbody></table></div></div><div class='view key-view'><div class='view-head'><div class='view-title key'>Key controls</div><div class='view-meta'>1 ineffective + 15 partially effective; test outcomes align to the RCSA status</div></div><div class='table-wrap'><table class='detail-table'><colgroup><col class='id'><col class='control'><col class='area'><col class='bu'><col class='risk'><col class='l2'><col class='date'><col class='outcome'><col class='test'><col class='date'><col class='first'><col class='current'><col class='rev'><col class='actions'><col class='noneff'></colgroup><thead><tr><th>Control ID</th><th>Control</th><th>Mgmt area</th><th>BU</th><th>Linked risk</th><th>L2 risk</th><th>RCSA test</th><th>RCSA outcome</th><th>Test outcome</th><th>Test date</th><th>First sched.</th><th>Current sched.</th><th>Due rev.</th><th>Actions</th><th>Non-eff</th></tr></thead><tbody><tr><td><span class='code-text'>KCT_TE_018</span></td><td><div class='control-name'>Privileged access recertification</div></td><td><div class='cell-main'>Technology &amp; Cyber</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Privileged access control</div></td><td><div class='cell-main'>Info Sec &amp; Cyber</div></td><td><span class='date-text'>10 Mar</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='pill bad'>Ineffective</span></td><td><span class='date-text'>20 Mar</span></td><td><span class='date-text'>10 Apr</span></td><td><span class='date-text'>24 Apr</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>3</span></td><td><span class='metric-num'>3</span></td></tr><tr><td><span class='code-text'>KCT_CO_144</span></td><td><div class='control-name'>Vulnerable customer QA sample</div></td><td><div class='cell-main'>Wealth Advisory</div></td><td><div class='cell-main'>P&amp;S</div></td><td><div class='cell-main'>Customer outcome testing</div></td><td><div class='cell-main'>Customer Outcomes</div></td><td><span class='date-text'>06 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>16 Mar</span></td><td><span class='date-text'>06 Apr</span></td><td><span class='date-text'>06 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_BR_085</span></td><td><div class='control-name'>Incident severity triage review</div></td><td><div class='cell-main'>Service Mgmt</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Incident triage</div></td><td><div class='cell-main'>Op Resilience</div></td><td><span class='date-text'>09 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>24 Mar</span></td><td><span class='date-text'>09 Apr</span></td><td><span class='date-text'>09 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_DP_157</span></td><td><div class='control-name'>Breach response timeline check</div></td><td><div class='cell-main'>Data Protection</div></td><td><div class='cell-main'>Customer</div></td><td><div class='cell-main'>Breach response evidence</div></td><td><div class='cell-main'>Data Protection</div></td><td><span class='date-text'>12 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>27 Apr</span></td><td><span class='date-text'>04 May</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_FC_266</span></td><td><div class='control-name'>Sanctions screening exception QA</div></td><td><div class='cell-main'>Financial Crime</div></td><td><div class='cell-main'>Risk</div></td><td><div class='cell-main'>Screening exception QA</div></td><td><div class='cell-main'>Financial Crime</div></td><td><span class='date-text'>16 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>26 Mar</span></td><td><span class='date-text'>16 Apr</span></td><td><span class='date-text'>16 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_RC_092</span></td><td><div class='control-name'>Regulatory obligation owner review</div></td><td><div class='cell-main'>Compliance</div></td><td><div class='cell-main'>Europe</div></td><td><div class='cell-main'>Obligation owner review</div></td><td><div class='cell-main'>Reg Compliance</div></td><td><span class='date-text'>14 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>30 Apr</span></td><td><span class='date-text'>30 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_TP_073</span></td><td><div class='control-name'>Supplier exit plan evidence</div></td><td><div class='cell-main'>Third Party Mgmt</div></td><td><div class='cell-main'>Ops</div></td><td><div class='cell-main'>Exit plan evidence</div></td><td><div class='cell-main'>Third Party</div></td><td><span class='date-text'>12 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>21 Mar</span></td><td><span class='date-text'>12 Apr</span></td><td><span class='date-text'>12 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_MD_039</span></td><td><div class='control-name'>Model validation issue closure</div></td><td><div class='cell-main'>Model Risk</div></td><td><div class='cell-main'>RS &amp; AM</div></td><td><div class='cell-main'>Finding closure</div></td><td><div class='cell-main'>Model</div></td><td><span class='date-text'>18 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>02 May</span></td><td><span class='date-text'>10 May</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_RP_118</span></td><td><div class='control-name'>Manual reporting adjustment log</div></td><td><div class='cell-main'>Finance Risk</div></td><td><div class='cell-main'>Finance</div></td><td><div class='cell-main'>Manual reporting adjustment</div></td><td><div class='cell-main'>Reporting</div></td><td><span class='date-text'>20 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>28 Mar</span></td><td><span class='date-text'>20 Apr</span></td><td><span class='date-text'>20 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_PS_027</span></td><td><div class='control-name'>Key person dependency review</div></td><td><div class='cell-main'>People Risk</div></td><td><div class='cell-main'>People</div></td><td><div class='cell-main'>Role dependency assessment</div></td><td><div class='cell-main'>People &amp; Safety</div></td><td><span class='date-text'>19 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>08 May</span></td><td><span class='date-text'>08 May</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_GW_064</span></td><td><div class='control-name'>Disclosure substantiation pack</div></td><td><div class='cell-main'>Climate Risk</div></td><td><div class='cell-main'>Risk</div></td><td><div class='cell-main'>Disclosure substantiation</div></td><td><div class='cell-main'>Greenwashing</div></td><td><span class='date-text'>22 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>29 Mar</span></td><td><span class='date-text'>22 Apr</span></td><td><span class='date-text'>29 Apr</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_IR_033</span></td><td><div class='control-name'>Interest rate basis review</div></td><td><div class='cell-main'>Market Risk</div></td><td><div class='cell-main'>RS &amp; AM</div></td><td><div class='cell-main'>Basis risk watch item</div></td><td><div class='cell-main'>Interest Rate</div></td><td><span class='date-text'>24 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>31 Mar</span></td><td><span class='date-text'>24 Apr</span></td><td><span class='date-text'>24 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_IC_109</span></td><td><div class='control-name'>Illiquid credit valuation review</div></td><td><div class='cell-main'>Credit Risk</div></td><td><div class='cell-main'>RS &amp; AM</div></td><td><div class='cell-main'>Valuation lag</div></td><td><div class='cell-main'>Illiquid Credit</div></td><td><span class='date-text'>18 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>01 May</span></td><td><span class='date-text'>15 May</span></td><td><span class='metric-num'>2</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_EX_051</span></td><td><div class='control-name'>Expense allocation model review</div></td><td><div class='cell-main'>Finance Risk</div></td><td><div class='cell-main'>SunLife</div></td><td><div class='cell-main'>Expense strain model</div></td><td><div class='cell-main'>Expense</div></td><td><span class='date-text'>19 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>27 Mar</span></td><td><span class='date-text'>19 Apr</span></td><td><span class='date-text'>19 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr><tr><td><span class='code-text'>KCT_DA_129</span></td><td><div class='control-name'>Data ownership attestation</div></td><td><div class='cell-main'>Data Governance</div></td><td><div class='cell-main'>Customer</div></td><td><div class='cell-main'>Ownership gaps</div></td><td><div class='cell-main'>Data Management</div></td><td><span class='date-text'>21 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill none'>Not tested</span></td><td><span class='date-text'>Planned</span></td><td><span class='date-text'>05 May</span></td><td><span class='date-text'>05 May</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>0</span></td></tr><tr><td><span class='code-text'>KCT_SA_203</span></td><td><div class='control-name'>Sales disclosure sampling</div></td><td><div class='cell-main'>Distribution Risk</div></td><td><div class='cell-main'>P&amp;S</div></td><td><div class='cell-main'>Disclosure controls</div></td><td><div class='cell-main'>Sales &amp; Dist.</div></td><td><span class='date-text'>26 Mar</span></td><td><span class='pill partial'>Partial</span></td><td><span class='pill partial'>Partial</span></td><td><span class='date-text'>31 Mar</span></td><td><span class='date-text'>26 Apr</span></td><td><span class='date-text'>26 Apr</span></td><td><span class='metric-num'>0</span></td><td><span class='metric-num'>1</span></td><td><span class='metric-num'>1</span></td></tr></tbody></table></div></div><div class='footnote'><span><b>Date control:</b> first scheduled date is retained from initial plan; current scheduled date shows later system change.</span><span>Each visible value is its own field for Power BI table visuals.</span></div></section></main><footer class='footer'><div class='footer-left'><span>P7 Controls</span><span class='current'>P8 Control Detail</span><span>P9 Loss</span><span>P10 Inc</span><span>P11 Emerging</span></div><div class='footer-right'><span>Source: Decision Focus + PowerApp</span><span>Refresh: 31 Mar 2026</span><span>Design v1.3.2 - Exec v0.3</span></div></footer></div></body></html>"></iframe>
 
     <iframe id="frame-p5" class="inactive slide-frame" data-key="p5" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
@@ -5747,7 +6018,7 @@
   .leg-item { display: flex; align-items: center; gap: 4px; }
   .leg-line { width: 14px; height: 2px; }
   .leg-line.actual { background: var(--sl-heritage-blue); }
-  .leg-line.forecast { background: repeating-linear-gradient(90deg, var(--sl-vibrant-blue) 0, var(--sl-vibrant-blue) 4px, transparent 4px, transparent 7px); height: 2px; }
+  .leg-line.last12 { background: #8294ae; height: 2px; }
   .leg-line.trigger { background: repeating-linear-gradient(90deg, var(--sl-dark-yellow) 0, var(--sl-dark-yellow) 4px, transparent 4px, transparent 7px); height: 2px; }
   .leg-line.breach { background: repeating-linear-gradient(90deg, var(--sl-core-coral) 0, var(--sl-core-coral) 4px, transparent 4px, transparent 7px); height: 2px; }
   .hero-chart { flex: 1; min-height: 0; }
@@ -5934,21 +6205,21 @@
         <div class=&quot;kpi-delta flat&quot;>→ Q1 only</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Forecast Year-End Loss</div>
-        <div class=&quot;kpi-value&quot;>£67.2m</div>
-        <div class=&quot;kpi-delta down&quot;>▲ vs Q4 forecast</div>
+        <div class=&quot;kpi-label&quot;>Rolling 12m Gross Loss</div>
+        <div class=&quot;kpi-value&quot;>£42.6m</div>
+        <div class=&quot;kpi-delta down&quot;>▲ £4.1m vs prior 12m</div>
       </div>
     </div>
 
     <section class=&quot;hero&quot;>
       <div class=&quot;hero-head&quot;>
         <div>
-          <div class=&quot;hero-title&quot;>Cumulative YTD Operational Loss vs Appetite</div>
-          <div class=&quot;hero-sub&quot;>Actual cumulative · forecast year-end · &amp;pound;25m trigger and &amp;pound;40m breach reference lines</div>
+          <div class=&quot;hero-title&quot;>Operational Loss Trend - Current YTD vs Last 12 Months</div>
+          <div class=&quot;hero-sub&quot;>Fixed monthly view with current cumulative points, last-12-month actual overlay and appetite reference lines</div>
         </div>
         <div class=&quot;hero-legend&quot;>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-line actual&quot;></div>Actual</div>
-          <div class=&quot;leg-item&quot;><div class=&quot;leg-line forecast&quot;></div>Forecast</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-line actual&quot;></div>Current YTD</div>
+          <div class=&quot;leg-item&quot;><div class=&quot;leg-line last12&quot;></div>Last 12m actual</div>
           <div class=&quot;leg-item&quot;><div class=&quot;leg-line trigger&quot;></div>&amp;pound;25m trigger</div>
           <div class=&quot;leg-item&quot;><div class=&quot;leg-line breach&quot;></div>&amp;pound;40m breach</div>
         </div>
@@ -5957,49 +6228,62 @@
       <div class=&quot;hero-chart&quot;>
         <svg viewBox=&quot;0 0 760 205&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;>
           <g stroke=&quot;rgba(10, 47, 115, 0.08)&quot; stroke-width=&quot;1&quot;>
-            <line x1=&quot;70&quot; y1=&quot;18&quot;  x2=&quot;718&quot; y2=&quot;18&quot;/>
-            <line x1=&quot;70&quot; y1=&quot;56.5&quot; x2=&quot;718&quot; y2=&quot;56.5&quot;/>
-            <line x1=&quot;70&quot; y1=&quot;95&quot;  x2=&quot;718&quot; y2=&quot;95&quot;/>
-            <line x1=&quot;70&quot; y1=&quot;133.5&quot; x2=&quot;718&quot; y2=&quot;133.5&quot;/>
-            <line x1=&quot;70&quot; y1=&quot;172&quot; x2=&quot;718&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;70&quot; y1=&quot;18&quot;  x2=&quot;720&quot; y2=&quot;18&quot;/>
+            <line x1=&quot;70&quot; y1=&quot;56.5&quot; x2=&quot;720&quot; y2=&quot;56.5&quot;/>
+            <line x1=&quot;70&quot; y1=&quot;95&quot;  x2=&quot;720&quot; y2=&quot;95&quot;/>
+            <line x1=&quot;70&quot; y1=&quot;133.5&quot; x2=&quot;720&quot; y2=&quot;133.5&quot;/>
+            <line x1=&quot;70&quot; y1=&quot;172&quot; x2=&quot;720&quot; y2=&quot;172&quot;/>
             <line x1=&quot;70&quot; y1=&quot;18&quot;  x2=&quot;70&quot;  y2=&quot;172&quot;/>
           </g>
 
-          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.3&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
-            <text x=&quot;62&quot; y=&quot;175&quot;>£0m</text>
-            <text x=&quot;62&quot; y=&quot;136.5&quot;>£20m</text>
-            <text x=&quot;62&quot; y=&quot;98&quot;>£40m</text>
-            <text x=&quot;62&quot; y=&quot;59.5&quot;>£60m</text>
-            <text x=&quot;62&quot; y=&quot;21&quot;>£80m</text>
+          <g stroke=&quot;rgba(10, 47, 115, 0.045)&quot; stroke-width=&quot;1&quot;>
+            <line x1=&quot;92&quot; y1=&quot;18&quot; x2=&quot;92&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;148&quot; y1=&quot;18&quot; x2=&quot;148&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;204&quot; y1=&quot;18&quot; x2=&quot;204&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;260&quot; y1=&quot;18&quot; x2=&quot;260&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;316&quot; y1=&quot;18&quot; x2=&quot;316&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;372&quot; y1=&quot;18&quot; x2=&quot;372&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;428&quot; y1=&quot;18&quot; x2=&quot;428&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;484&quot; y1=&quot;18&quot; x2=&quot;484&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;540&quot; y1=&quot;18&quot; x2=&quot;540&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;596&quot; y1=&quot;18&quot; x2=&quot;596&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;652&quot; y1=&quot;18&quot; x2=&quot;652&quot; y2=&quot;172&quot;/>
+            <line x1=&quot;708&quot; y1=&quot;18&quot; x2=&quot;708&quot; y2=&quot;172&quot;/>
           </g>
 
-          <line x1=&quot;70&quot; y1=&quot;95&quot; x2=&quot;718&quot; y2=&quot;95&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
-          <rect x=&quot;624&quot; y=&quot;82&quot; width=&quot;91&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
-          <text x=&quot;711&quot; y=&quot;92&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#CA3F4C&quot; text-anchor=&quot;end&quot;>£40m breach</text>
+          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.3&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;end&quot;>
+            <text x=&quot;62&quot; y=&quot;175&quot;>&amp;pound;0m</text>
+            <text x=&quot;62&quot; y=&quot;136.5&quot;>&amp;pound;15m</text>
+            <text x=&quot;62&quot; y=&quot;98&quot;>&amp;pound;30m</text>
+            <text x=&quot;62&quot; y=&quot;59.5&quot;>&amp;pound;45m</text>
+            <text x=&quot;62&quot; y=&quot;21&quot;>&amp;pound;60m</text>
+          </g>
 
-          <line x1=&quot;70&quot; y1=&quot;124&quot; x2=&quot;718&quot; y2=&quot;124&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
-          <rect x=&quot;620&quot; y=&quot;111&quot; width=&quot;95&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
-          <text x=&quot;711&quot; y=&quot;121&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot; text-anchor=&quot;end&quot;>£25m trigger</text>
+          <line x1=&quot;70&quot; y1=&quot;69.3&quot; x2=&quot;720&quot; y2=&quot;69.3&quot; stroke=&quot;#CA3F4C&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
+          <rect x=&quot;626&quot; y=&quot;56&quot; width=&quot;91&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
+          <text x=&quot;713&quot; y=&quot;66&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#CA3F4C&quot; text-anchor=&quot;end&quot;>&amp;pound;40m breach</text>
 
-          <polyline points=&quot;112,161 166,150 220,140&quot; stroke=&quot;#0A2F73&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>
-          <circle cx=&quot;112&quot; cy=&quot;161&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
-          <circle cx=&quot;166&quot; cy=&quot;150&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
-          <circle cx=&quot;220&quot; cy=&quot;140&quot; r=&quot;4.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.7&quot;/>
+          <line x1=&quot;70&quot; y1=&quot;107.8&quot; x2=&quot;720&quot; y2=&quot;107.8&quot; stroke=&quot;#DE4721&quot; stroke-width=&quot;1.15&quot; stroke-dasharray=&quot;5 4&quot; opacity=&quot;0.82&quot;/>
+          <rect x=&quot;622&quot; y=&quot;95&quot; width=&quot;95&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/>
+          <text x=&quot;713&quot; y=&quot;105&quot; font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.6&quot; font-weight=&quot;700&quot; fill=&quot;#DE4721&quot; text-anchor=&quot;end&quot;>&amp;pound;25m trigger</text>
 
-          <polyline points=&quot;220,140 706,43&quot; stroke=&quot;#2140CE&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;6 5&quot; fill=&quot;none&quot;/>
-          <circle cx=&quot;706&quot; cy=&quot;43&quot; r=&quot;3.6&quot; fill=&quot;#2140CE&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+          <polyline points=&quot;92,164 148,157.6 204,147.9 260,140.7 316,137.1 372,123 428,116.3 484,103.2 540,95.3 596,84.2 652,75.8 708,62.7&quot; stroke=&quot;#8294ae&quot; stroke-width=&quot;2.1&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>
+          <g fill=&quot;#fff&quot; stroke=&quot;#8294ae&quot; stroke-width=&quot;1.4&quot;>
+            <circle cx=&quot;92&quot; cy=&quot;164&quot; r=&quot;2.6&quot;/><circle cx=&quot;148&quot; cy=&quot;157.6&quot; r=&quot;2.6&quot;/><circle cx=&quot;204&quot; cy=&quot;147.9&quot; r=&quot;2.6&quot;/><circle cx=&quot;260&quot; cy=&quot;140.7&quot; r=&quot;2.6&quot;/><circle cx=&quot;316&quot; cy=&quot;137.1&quot; r=&quot;2.6&quot;/><circle cx=&quot;372&quot; cy=&quot;123&quot; r=&quot;2.6&quot;/><circle cx=&quot;428&quot; cy=&quot;116.3&quot; r=&quot;2.6&quot;/><circle cx=&quot;484&quot; cy=&quot;103.2&quot; r=&quot;2.6&quot;/><circle cx=&quot;540&quot; cy=&quot;95.3&quot; r=&quot;2.6&quot;/><circle cx=&quot;596&quot; cy=&quot;84.2&quot; r=&quot;2.6&quot;/><circle cx=&quot;652&quot; cy=&quot;75.8&quot; r=&quot;2.6&quot;/><circle cx=&quot;708&quot; cy=&quot;62.7&quot; r=&quot;3.1&quot;/>
+          </g>
 
-          <rect x=&quot;236&quot; y=&quot;128&quot; width=&quot;72&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
-          <text x=&quot;242&quot; y=&quot;139&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>£16.8m Q1</text>
-          <rect x=&quot;608&quot; y=&quot;31&quot; width=&quot;101&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
-          <text x=&quot;704&quot; y=&quot;42&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#2140CE&quot; font-weight=&quot;700&quot; text-anchor=&quot;end&quot;>£67.2m forecast</text>
+          <polyline points=&quot;92,157.1 148,142.7 204,128.9&quot; stroke=&quot;#0A2F73&quot; stroke-width=&quot;2.8&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>
+          <circle cx=&quot;92&quot; cy=&quot;157.1&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
+          <circle cx=&quot;148&quot; cy=&quot;142.7&quot; r=&quot;3.4&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.4&quot;/>
+          <circle cx=&quot;204&quot; cy=&quot;128.9&quot; r=&quot;4.5&quot; fill=&quot;#0A2F73&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.7&quot;/>
 
-          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;8.2&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
-            <text x=&quot;112&quot; y=&quot;194&quot;>Jan</text>
-            <text x=&quot;220&quot; y=&quot;194&quot;>Mar</text>
-            <text x=&quot;382&quot; y=&quot;194&quot;>Jun</text>
-            <text x=&quot;544&quot; y=&quot;194&quot;>Sep</text>
-            <text x=&quot;706&quot; y=&quot;194&quot;>Dec</text>
+          <rect x=&quot;216&quot; y=&quot;117&quot; width=&quot;72&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
+          <text x=&quot;222&quot; y=&quot;128&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#0A2F73&quot; font-weight=&quot;700&quot;>&amp;pound;16.8m Q1</text>
+          <rect x=&quot;593&quot; y=&quot;45&quot; width=&quot;116&quot; height=&quot;15&quot; rx=&quot;3&quot; fill=&quot;#fff&quot; opacity=&quot;0.94&quot;/>
+          <text x=&quot;704&quot; y=&quot;56&quot; font-family=&quot;Aptos, 'Segoe UI', Arial, sans-serif&quot; font-size=&quot;8.8&quot; fill=&quot;#5d6d88&quot; font-weight=&quot;700&quot; text-anchor=&quot;end&quot;>&amp;pound;42.6m rolling 12m</text>
+
+          <g font-family=&quot;Aptos Mono, Cascadia Mono, Consolas, monospace&quot; font-size=&quot;7.4&quot; fill=&quot;#8294ae&quot; text-anchor=&quot;middle&quot;>
+            <text x=&quot;92&quot; y=&quot;194&quot;>Jan</text><text x=&quot;148&quot; y=&quot;194&quot;>Feb</text><text x=&quot;204&quot; y=&quot;194&quot;>Mar</text><text x=&quot;260&quot; y=&quot;194&quot;>Apr</text><text x=&quot;316&quot; y=&quot;194&quot;>May</text><text x=&quot;372&quot; y=&quot;194&quot;>Jun</text><text x=&quot;428&quot; y=&quot;194&quot;>Jul</text><text x=&quot;484&quot; y=&quot;194&quot;>Aug</text><text x=&quot;540&quot; y=&quot;194&quot;>Sep</text><text x=&quot;596&quot; y=&quot;194&quot;>Oct</text><text x=&quot;652&quot; y=&quot;194&quot;>Nov</text><text x=&quot;708&quot; y=&quot;194&quot;>Dec</text>
           </g>
         </svg>
       </div>
@@ -6013,7 +6297,7 @@
           <div class=&quot;cro-date&quot;>31 Mar 2026</div>
         </div>
         <p class=&quot;cro-text&quot;>
-          Operational losses are <b>&pound;16.8m YTD</b>, using 67% of the &pound;25m trigger. Q1 remains below trigger, but the simple year-end forecast rises above the <b>&pound;40m hard appetite</b> if the current run-rate persists. Board focus is on the largest loss events, controllable drivers, near-miss read-across and whether Q2 remediation is sufficient to reduce the forecast trajectory.
+          Operational losses are <b>&pound;16.8m YTD</b>, using 67% of the &pound;25m trigger. The fixed monthly view compares current YTD to the last 12 months, avoiding false confidence from straight-line projections after isolated high-severity months. Board focus is on the largest loss events, controllable drivers, near-miss read-across and whether Q2 remediation is sufficient to keep the trend below appetite.
         </p>
       </div>
 
@@ -6449,6 +6733,24 @@
   }
   .snapshot-title { font-size: 12.2px; font-weight: 600; color: var(--ink); }
   .snapshot-sub { font-size: 9.2px; color: var(--muted); }
+  .filter-radio { position: absolute; opacity: 0; pointer-events: none; }
+  .ranking-toggle {
+    display: inline-flex; gap: 3px; padding: 3px;
+    border: 1px solid #c9d4e5; border-radius: 6px; background: #f3f6fb;
+  }
+  .ranking-toggle label {
+    min-width: 88px; height: 22px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 7.8px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+  }
+  #incident-loss:checked ~ .snapshot-head label[for=&quot;incident-loss&quot;],
+  #incident-customers:checked ~ .snapshot-head label[for=&quot;incident-customers&quot;] {
+    background: var(--sl-heritage-blue); color: #fff;
+  }
+  .incident-view { display: none; flex: 1; min-height: 0; }
+  #incident-loss:checked ~ .loss-view,
+  #incident-customers:checked ~ .customers-view { display: block; }
   .incident-table {
     display: grid;
     grid-template-columns: 28px minmax(0, 1fr) 74px 58px 76px 82px;
@@ -6488,6 +6790,10 @@
     color: var(--ink-2); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 8.9px;
   }
   .incident-table .loss-cell { color: var(--sl-dark-coral); font-weight: 700; justify-content: flex-end; }
+  .incident-table .customers-cell {
+    color: var(--ink); font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.9px; font-weight: 700; justify-content: flex-end;
+  }
   .incident-table .sev-cell { font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 8.9px; font-weight: 700; }
   .incident-table .sev-cell.sev1 { color: var(--sl-core-coral); }
   .incident-table .sev-cell.sev2 { color: var(--sl-dark-yellow); }
@@ -6564,9 +6870,9 @@
     min-width: 0;
   }
   .analysis-grid .heatmap-block { padding: 9px 12px 8px; }
-  .analysis-grid .hm-row { grid-template-columns: 86px 1fr 1fr 1fr 1fr 36px; }
+  .analysis-grid .hm-row { grid-template-columns: 122px 1fr 1fr 1fr 1fr 34px; }
   .analysis-grid .hm-cell { padding: 4px; font-size: 10px; }
-  .analysis-grid .hm-row .hm-org { font-size: 9.6px; }
+  .analysis-grid .hm-row .hm-org { font-size: 8.8px; line-height: 1.15; }
   .analysis-grid .hm-total { font-size: 10px; padding-right: 2px; }
   .analysis-grid .heatmap-title { font-size: 11.4px; }
   .analysis-grid .heatmap-sub { font-size: 8.8px; }
@@ -6724,58 +7030,111 @@
 
     <!-- Top incident snapshot -->
     <section class=&quot;incident-snapshot&quot;>
+      <input class=&quot;filter-radio&quot; type=&quot;radio&quot; id=&quot;incident-loss&quot; name=&quot;incident-ranking&quot; checked>
+      <input class=&quot;filter-radio&quot; type=&quot;radio&quot; id=&quot;incident-customers&quot; name=&quot;incident-ranking&quot;>
       <div class=&quot;snapshot-head&quot;>
         <div>
-          <div class=&quot;snapshot-title&quot;>Top Incidents by Actual Loss</div>
-          <div class=&quot;snapshot-sub&quot;>Selected Q1 incidents ranked by linked operational loss and regulatory severity</div>
+          <div class=&quot;snapshot-title&quot;>Top Incidents</div>
+          <div class=&quot;snapshot-sub&quot;>Default ranking is by actual loss; switch to customer exposure for service/customer impact view</div>
+        </div>
+        <div class=&quot;ranking-toggle&quot;>
+          <label for=&quot;incident-loss&quot;>Actual loss</label>
+          <label for=&quot;incident-customers&quot;>Customers</label>
         </div>
       </div>
 
-      <div class=&quot;incident-table&quot;>
-        <div class=&quot;head&quot;>#</div>
-        <div class=&quot;head&quot;>Incident</div>
-        <div class=&quot;head&quot;>Date</div>
-        <div class=&quot;head&quot;>Severity</div>
-        <div class=&quot;head&quot;>Actual loss</div>
-        <div class=&quot;head&quot;>Reg. status</div>
+      <div class=&quot;incident-view loss-view&quot;>
+        <div class=&quot;incident-table&quot;>
+          <div class=&quot;head&quot;>#</div>
+          <div class=&quot;head&quot;>Incident</div>
+          <div class=&quot;head&quot;>Date</div>
+          <div class=&quot;head&quot;>Severity</div>
+          <div class=&quot;head&quot;>Actual loss</div>
+          <div class=&quot;head&quot;>Reg. status</div>
 
-        <div class=&quot;rank-cell&quot;>1</div>
-        <div class=&quot;incident-cell&quot;><b>EVT-1101</b><span>AML screening outage - 48hr monitoring gap</span></div>
-        <div class=&quot;date-cell&quot;>22 Feb 2026</div>
-        <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
-        <div class=&quot;loss-cell&quot;>£4.62m</div>
-        <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
+          <div class=&quot;rank-cell&quot;>1</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1101</b><span>AML screening outage - 48hr monitoring gap</span></div>
+          <div class=&quot;date-cell&quot;>22 Feb 2026</div>
+          <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
+          <div class=&quot;loss-cell&quot;>&pound;4.62m</div>
+          <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
 
-        <div class=&quot;rank-cell&quot;>2</div>
-        <div class=&quot;incident-cell&quot;><b>EVT-1089</b><span>Data breach - 12,400 customer records via API flaw</span></div>
-        <div class=&quot;date-cell&quot;>03 Jan 2026</div>
-        <div class=&quot;sev-cell sev1&quot;>Sev 1</div>
-        <div class=&quot;loss-cell&quot;>£2.15m</div>
-        <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
+          <div class=&quot;rank-cell&quot;>2</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1089</b><span>Data breach - 12,400 customer records via API flaw</span></div>
+          <div class=&quot;date-cell&quot;>03 Jan 2026</div>
+          <div class=&quot;sev-cell sev1&quot;>Sev 1</div>
+          <div class=&quot;loss-cell&quot;>&pound;2.15m</div>
+          <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
 
-        <div class=&quot;rank-cell&quot;>3</div>
-        <div class=&quot;incident-cell&quot;><b>EVT-1114</b><span>Incorrect capital calculation in quarterly return</span></div>
-        <div class=&quot;date-cell&quot;>28 Feb 2026</div>
-        <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
-        <div class=&quot;loss-cell&quot;>£1.18m</div>
-        <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
+          <div class=&quot;rank-cell&quot;>3</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1114</b><span>Incorrect capital calculation in quarterly return</span></div>
+          <div class=&quot;date-cell&quot;>28 Feb 2026</div>
+          <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
+          <div class=&quot;loss-cell&quot;>&pound;1.18m</div>
+          <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
 
-        <div class=&quot;rank-cell&quot;>4</div>
-        <div class=&quot;incident-cell&quot;><b>EVT-1123</b><span>Outsourced call centre - recordings without consent</span></div>
-        <div class=&quot;date-cell&quot;>10 Mar 2026</div>
-        <div class=&quot;sev-cell sev3&quot;>Sev 3</div>
-        <div class=&quot;loss-cell&quot;>£0.88m</div>
-        <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
+          <div class=&quot;rank-cell&quot;>4</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1123</b><span>Outsourced call centre - recordings without consent</span></div>
+          <div class=&quot;date-cell&quot;>10 Mar 2026</div>
+          <div class=&quot;sev-cell sev3&quot;>Sev 3</div>
+          <div class=&quot;loss-cell&quot;>&pound;0.88m</div>
+          <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
 
-        <div class=&quot;rank-cell&quot;>5</div>
-        <div class=&quot;incident-cell&quot;><b>EVT-1129</b><span>Customer portal credential stuffing event</span></div>
-        <div class=&quot;date-cell&quot;>12 Jan 2026</div>
-        <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
-        <div class=&quot;loss-cell&quot;>£0.46m</div>
-        <div><span class=&quot;status-pill assessed&quot;>No notify</span></div>
+          <div class=&quot;rank-cell&quot;>5</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1129</b><span>Customer portal credential stuffing event</span></div>
+          <div class=&quot;date-cell&quot;>12 Jan 2026</div>
+          <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
+          <div class=&quot;loss-cell&quot;>&pound;0.46m</div>
+          <div><span class=&quot;status-pill assessed&quot;>No notify</span></div>
+        </div>
+      </div>
+
+      <div class=&quot;incident-view customers-view&quot;>
+        <div class=&quot;incident-table&quot;>
+          <div class=&quot;head&quot;>#</div>
+          <div class=&quot;head&quot;>Incident</div>
+          <div class=&quot;head&quot;>Date</div>
+          <div class=&quot;head&quot;>Severity</div>
+          <div class=&quot;head&quot;>Customers</div>
+          <div class=&quot;head&quot;>Reg. status</div>
+
+          <div class=&quot;rank-cell&quot;>1</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1089</b><span>Data breach - customer records via API flaw</span></div>
+          <div class=&quot;date-cell&quot;>03 Jan 2026</div>
+          <div class=&quot;sev-cell sev1&quot;>Sev 1</div>
+          <div class=&quot;customers-cell&quot;>12,400</div>
+          <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
+
+          <div class=&quot;rank-cell&quot;>2</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1123</b><span>Outsourced call centre - consent issue</span></div>
+          <div class=&quot;date-cell&quot;>10 Mar 2026</div>
+          <div class=&quot;sev-cell sev3&quot;>Sev 3</div>
+          <div class=&quot;customers-cell&quot;>8,200</div>
+          <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
+
+          <div class=&quot;rank-cell&quot;>3</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1129</b><span>Customer portal credential stuffing event</span></div>
+          <div class=&quot;date-cell&quot;>12 Jan 2026</div>
+          <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
+          <div class=&quot;customers-cell&quot;>2,100</div>
+          <div><span class=&quot;status-pill assessed&quot;>No notify</span></div>
+
+          <div class=&quot;rank-cell&quot;>4</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1042</b><span>FX mis-pricing - retail platform</span></div>
+          <div class=&quot;date-cell&quot;>14 Jan 2026</div>
+          <div class=&quot;sev-cell sev1&quot;>Sev 1</div>
+          <div class=&quot;customers-cell&quot;>940</div>
+          <div><span class=&quot;status-pill notified&quot;>Notified</span></div>
+
+          <div class=&quot;rank-cell&quot;>5</div>
+          <div class=&quot;incident-cell&quot;><b>EVT-1101</b><span>AML screening outage - monitoring gap</span></div>
+          <div class=&quot;date-cell&quot;>22 Feb 2026</div>
+          <div class=&quot;sev-cell sev2&quot;>Sev 2</div>
+          <div class=&quot;customers-cell&quot;>180</div>
+          <div><span class=&quot;status-pill pending&quot;>Pending</span></div>
+        </div>
       </div>
     </section>
-
     <aside class=&quot;commentary-panel&quot;>
       <div class=&quot;commentary-head&quot;>
         <div class=&quot;commentary-title&quot;>Top 3 Assigned Commentary</div>
@@ -6817,12 +7176,12 @@
     </aside>
 
     <section class=&quot;analysis-grid&quot;>
-    <!-- Heatmap: Mgmt Org × Sev -->
+    <!-- Heatmap: Customer outcome category by severity -->
     <div class=&quot;heatmap-block&quot;>
       <div class=&quot;heatmap-head&quot;>
         <div>
-          <div class=&quot;heatmap-title&quot;>Management Org &amp;times; Severity</div>
-          <div class=&quot;heatmap-sub&quot;>Incident concentration by accountable management organisation &amp;middot; Sev 1 highest, Sev 4 lowest</div>
+          <div class=&quot;heatmap-title&quot;>Customer Outcome &amp;times; Severity</div>
+          <div class=&quot;heatmap-sub&quot;>A = actual customer loss; B = potential customer loss; C = service impact / inconvenience; D = no customer loss</div>
         </div>
       </div>
 
@@ -6836,56 +7195,39 @@
           <div class=&quot;hm-total&quot;>Total</div>
         </div>
         <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Retail Banking</div>
+          <div class=&quot;hm-org&quot;>A - actual loss</div>
           <div class=&quot;hm-cell s1&quot;>1</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell s3&quot;>1</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>2</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Tech &amp;amp; Change</div>
-          <div class=&quot;hm-cell s1&quot;>1</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>1</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Group Operations</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-cell s2&quot;>1</div>
-          <div class=&quot;hm-cell s3&quot;>1</div>
+          <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-total&quot;>2</div>
         </div>
         <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Commercial Banking</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
+          <div class=&quot;hm-org&quot;>B - potential loss</div>
+          <div class=&quot;hm-cell s1&quot;>1</div>
           <div class=&quot;hm-cell s2&quot;>2</div>
           <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>2</div>
+          <div class=&quot;hm-total&quot;>3</div>
         </div>
         <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Insurance</div>
+          <div class=&quot;hm-org&quot;>C - service impact</div>
+          <div class=&quot;hm-cell zero&quot;>0</div>
+          <div class=&quot;hm-cell s2&quot;>2</div>
+          <div class=&quot;hm-cell s3&quot;>1</div>
+          <div class=&quot;hm-cell zero&quot;>0</div>
+          <div class=&quot;hm-total&quot;>3</div>
+        </div>
+        <div class=&quot;hm-row&quot;>
+          <div class=&quot;hm-org&quot;>D - no customer loss</div>
           <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-cell zero&quot;>0</div>
           <div class=&quot;hm-cell s3&quot;>1</div>
-          <div class=&quot;hm-cell s4&quot;>1</div>
-          <div class=&quot;hm-total&quot;>2</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>Wealth Mgmt</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell s2&quot;>2</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>2</div>
+          <div class=&quot;hm-cell s4&quot;>2</div>
+          <div class=&quot;hm-total&quot;>3</div>
         </div>
       </div>
     </div>
-
     <div class=&quot;remediation-block&quot;>
       <div class=&quot;remediation-title&quot;>Sev 1 / Sev 2 Remediation Register</div>
 
@@ -7104,8 +7446,7 @@
     background: #fff; border: 1px solid var(--hairline);
     border-top: 3px solid var(--navy); border-radius: 6px;
     padding: 8px 10px;
-    display: grid; grid-template-rows: auto 1fr auto; gap: 4px;
-    min-height: 78px;
+    display: grid; grid-template-rows: auto 1fr; gap: 3px; min-height: 62px;
   }
   .kpi.kpi-green  { border-top-color: var(--green); }
   .kpi.kpi-amber  { border-top-color: #DE4721; }
@@ -7264,10 +7605,48 @@
   .right-col {
     grid-column: 2; grid-row: 2;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
     gap: 12px;
     min-height: 0;
   }
+
+  .commentary-block {
+    background: var(--panel-soft); border: 1px solid var(--hairline); border-radius: 8px;
+    padding: 10px 12px 12px;
+    display: flex; flex-direction: column; gap: 9px;
+    min-height: 0;
+  }
+  .em-commentary-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding-bottom: 7px; border-bottom: 1px solid var(--hairline-soft);
+  }
+  .em-commentary-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  }
+  .em-commentary-pill {
+    font-size: 8.3px; font-weight: 700; letter-spacing: 0.04em; color: var(--sl-core-teal);
+    background: var(--green-bg); border-radius: 3px; padding: 2px 7px; text-transform: uppercase;
+  }
+  .em-comment-card {
+    background: var(--sl-white); border: 1px solid var(--hairline); border-left: 3px solid var(--sl-heritage-yellow);
+    border-radius: 6px; padding: 10px 11px; display: flex; flex-direction: column; gap: 5px;
+  }
+  .em-comment-card.red { border-left-color: var(--sl-core-coral); }
+  .em-comment-card.blue { border-left-color: var(--sl-vibrant-blue); }
+  .em-comment-card.green { border-left-color: var(--sl-core-teal); }
+  .em-comment-card.summary { min-height: 140px; }
+  .em-comment-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-width: 0; }
+  .em-comment-name { font-size: 11.5px; font-weight: 700; color: var(--ink); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .em-comment-date { font-size: 9px; color: var(--muted); white-space: nowrap; font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; }
+  .em-comment-owner { font-size: 8.8px; color: var(--muted); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .em-comment-badge {
+    display: inline-flex; align-items: center; font-size: 8px; font-weight: 700;
+    text-transform: uppercase; border-radius: 3px; padding: 2px 5px; margin-left: 4px;
+    background: var(--red-bg); color: var(--sl-core-coral);
+  }
+  .em-comment-badge.watch { background: var(--amber-bg); color: var(--sl-dark-yellow); }
+  .em-comment-text { font-size: 10.6px; line-height: 1.42; color: var(--ink-2); margin: 0; }
+  .em-comment-text b { color: var(--ink); font-weight: 700; }
 
   .cro-block {
     background: #fff; border: 1px solid var(--hairline);
@@ -7424,32 +7803,26 @@
       <div class=&quot;kpi&quot;>
         <div class=&quot;kpi-label&quot;>Emerging Risks Tracked</div>
         <div class=&quot;kpi-value&quot;>8</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>0-12m Horizon</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>1-2y Horizon</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>2-3y Horizon</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>3-5y Horizon</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Board Watch</div>
         <div class=&quot;kpi-value&quot;>2</div>
-        <div class=&quot;kpi-delta flat&quot;>&rarr; No change</div>
       </div>
     </div>
 
@@ -7557,66 +7930,25 @@
       </div>
     </section>
 
-    <!-- Right column -->
+    <!-- Right column: commentary -->
     <aside class=&quot;right-col&quot;>
-
-      <div class=&quot;cro-block item-1&quot;>
-        <div class=&quot;cro-header&quot;>
-          <div class=&quot;cro-author&quot;>CTO / CISO</div>
-          <div class=&quot;cro-date&quot;>31 Mar 2026</div>
-        </div>
-        <p class=&quot;cro-text&quot;>
-          Portfolio is small enough to review as a <b>time-to-impact radar</b>. AI / GenAI and Systemic Cyber sit inside the 0-12m ring, while the remaining risks are deliberately spaced across 2, 3 and 5 year horizons for monitoring and challenge.
-        </p>
-      </div>
-
-      <div class=&quot;watchlist-block&quot;>
-        <div class=&quot;watchlist-head&quot;>
-          <div class=&quot;title&quot;>Top 3 proximity watch</div>
-          <div class=&quot;sub&quot;>Full register → Appx D</div>
+      <section class=&quot;commentary-block&quot;>
+        <div class=&quot;em-commentary-head&quot;>
+          <div class=&quot;em-commentary-title&quot;>Emerging risk commentary</div>
+          <div class=&quot;em-commentary-pill&quot;>Summary</div>
         </div>
 
-        <div class=&quot;watch-item&quot;>
-          <div class=&quot;watch-rank high&quot;>1</div>
-          <div class=&quot;watch-body&quot;>
-            <div class=&quot;watch-title&quot;>AI / GenAI Model Risk</div>
-            <div class=&quot;watch-meta&quot;>
-              <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
-              <span class=&quot;watch-pill fast&quot;>Fast</span>
-              <span class=&quot;watch-pill horizon&quot;>1 year</span>
-            </div>
-            <p class=&quot;watch-why&quot;>Customer-facing use cases live <b>without approved guardrails</b>. Governance framework Q2.</p>
+        <div class=&quot;em-comment-card summary&quot;>
+          <div class=&quot;em-comment-top&quot;>
+            <div class=&quot;em-comment-name&quot;>Executive summary <span class=&quot;em-comment-badge watch&quot;>Board watch</span></div>
+            <div class=&quot;em-comment-date&quot;>31 Mar 2026</div>
           </div>
+          <div class=&quot;em-comment-owner&quot;>Risk Strategy / Emerging Risk Forum</div>
+          <p class=&quot;em-comment-text&quot;>
+            The emerging risk portfolio remains deliberately small, with <b>8 tracked risks</b> across the 0-12m, 1-2y, 2-3y and 3-5y horizons. <b>AI / GenAI model risk</b> and <b>systemic cyber dependency</b> remain the near-term Board watch items. The Board focus is whether these risks are moving closer to current risk management activity, what trigger would escalate them into the core risk profile, and whether ownership, governance and response plans are clear enough ahead of Q2.
+          </p>
         </div>
-
-        <div class=&quot;watch-item&quot;>
-          <div class=&quot;watch-rank high&quot;>2</div>
-          <div class=&quot;watch-body&quot;>
-            <div class=&quot;watch-title&quot;>Systemic Cyber Event</div>
-            <div class=&quot;watch-meta&quot;>
-              <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
-              <span class=&quot;watch-pill fast&quot;>Fast</span>
-              <span class=&quot;watch-pill horizon&quot;>1 year</span>
-            </div>
-            <p class=&quot;watch-why&quot;>Sector-wide incidents involving <b>shared infrastructure / cloud dependency</b>.</p>
-          </div>
-        </div>
-
-        <div class=&quot;watch-item&quot;>
-          <div class=&quot;watch-rank watch&quot;>3</div>
-          <div class=&quot;watch-body&quot;>
-            <div class=&quot;watch-title&quot;>Geopolitical Fragmentation</div>
-            <div class=&quot;watch-meta&quot;>
-              <span class=&quot;watch-pill rising&quot;>↗ Rising</span>
-              <span class=&quot;watch-pill medium&quot;>Medium</span>
-              <span class=&quot;watch-pill horizon&quot;>2 years</span>
-            </div>
-            <p class=&quot;watch-why&quot;><b>Sanctions, tariffs, trade restrictions</b> expanding across key corridors.</p>
-          </div>
-        </div>
-
-      </div>
-
+      </section>
     </aside>
 
   </div>
@@ -8041,7 +8373,7 @@ const SLIDES = [
   { key: "p3nf", num: 5, title: "RCSA: Non-Financial Risk Summary", purpose: "Non-financial L2 risk summary across 26 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
   { key: "p3nfdetail", num: 6, title: "RCSA: Non-Financial Risk Detail", purpose: "Non-financial L2 risk detail showing final RAG, action plan status, last RCSA date and assigned L2 commentary; L3 rows sit in the appendix." },
   { key: "p4", num: 7, title: "Control Environment", purpose: "Material and key control focus. Compares Control Assessment to Control Test results, with supporting controls moved to appendix read-across." },
-  { key: "p4detail", num: 8, title: "Control Detail", purpose: "Material and key control exception table showing ineffective and partially effective controls, linked risks, retest status, issues, incidents and actions." },
+  { key: "p4detail", num: 8, title: "Control Detail", purpose: "Material and key control testing register with material/key filter, aligned RCSA and test outcomes, first/current scheduled dates, action plans, non-effective tests and due-date revisions." },
   { key: "p5", num: 9, title: "Losses & Near Misses", purpose: "Cumulative YTD operational losses vs appetite trigger and breach threshold, plus largest loss events." },
   { key: "p6", num: 10, title: "Incidents & Breaches", purpose: "Material incident and breach trajectory with root-cause and ageing views." },
   { key: "p7", num: 11, title: "Emerging Risks", purpose: "Forward-looking risk radar and watchlist requiring Board awareness." },
@@ -8058,12 +8390,27 @@ let currentIdx = 0;
 const frames = document.querySelectorAll('.slide-frame');
 const thumbs = document.querySelectorAll('.thumb');
 const progress = document.getElementById('progress');
+const topbarQuarter = document.getElementById('topbar-quarter');
 const prevBtn = document.getElementById('nav-prev');
 const nextBtn = document.getElementById('nav-next');
 const stage = document.querySelector('.stage');
 const slideFrameWrap = document.querySelector('.slide-frame-wrap');
 const slideBaseDpr = Number(sessionStorage.getItem('crr-slide-base-dpr')) || window.devicePixelRatio || 1;
 sessionStorage.setItem('crr-slide-base-dpr', String(Math.min(slideBaseDpr, window.devicePixelRatio || slideBaseDpr)));
+
+const QUARTERS = {
+  'q1-2026': { label: 'Q1 2026', prior: 'Q4 2025', refresh: '31 Mar 2026' },
+  'q4-2025': { label: 'Q4 2025', prior: 'Q3 2025', refresh: '31 Dec 2025' },
+  'q3-2025': { label: 'Q3 2025', prior: 'Q2 2025', refresh: '30 Sep 2025' },
+  'q2-2025': { label: 'Q2 2025', prior: 'Q1 2025', refresh: '30 Jun 2025' },
+  'q1-2025': { label: 'Q1 2025', prior: 'Q4 2024', refresh: '31 Mar 2025' }
+};
+let currentQuarterKey = sessionStorage.getItem('crr-report-quarter') || 'q1-2026';
+if (!QUARTERS[currentQuarterKey]) currentQuarterKey = 'q1-2026';
+
+frames.forEach(frame => {
+  frame.dataset.baseSrcdoc = frame.getAttribute('srcdoc') || '';
+});
 
 let slideFrameScale = slideFrameWrap.querySelector('.slide-frame-scale');
 if (!slideFrameScale) {
@@ -8098,6 +8445,115 @@ if (window.visualViewport) {
 if ('ResizeObserver' in window) {
   new ResizeObserver(fitSlideFrame).observe(stage);
 }
+
+function quarteriseSrcdoc(srcdoc, quarter) {
+  const preset = QUARTERS[quarter] || QUARTERS['q1-2026'];
+  return srcdoc
+    .replaceAll('Q4 2025', '__CRR_PRIOR_QUARTER__')
+    .replaceAll('Q1 2026', '__CRR_CURRENT_QUARTER__')
+    .replaceAll('31 Mar 2026', '__CRR_REFRESH_DATE__')
+    .replaceAll('__CRR_CURRENT_QUARTER__', preset.label)
+    .replaceAll('__CRR_PRIOR_QUARTER__', preset.prior)
+    .replaceAll('__CRR_REFRESH_DATE__', preset.refresh);
+}
+
+function quarterOptionsHtml(selectedQuarter) {
+  return Object.entries(QUARTERS).map(([key, preset]) =>
+    `<option value="${key}"${key === selectedQuarter ? ' selected' : ''}>${preset.label}</option>`
+  ).join('');
+}
+
+function slideQuarterControlHtml(selectedQuarter) {
+  return `<div class="slide-quarter-filter"><label>Quarter</label><select aria-label="Report quarter" onchange="parent.setReportQuarter(this.value)">${quarterOptionsHtml(selectedQuarter)}</select></div>`;
+}
+
+function injectQuarterControl(srcdoc, selectedQuarter) {
+  const quarterCss = `
+  .slide-quarter-filter {
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 0;
+    flex: 0 0 auto;
+    padding: 3px 7px;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.10);
+    border-radius: 4px;
+    color: #fff;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .slide-quarter-filter label {
+    font-size: 7.8px;
+    line-height: 1;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(255,255,255,0.68);
+  }
+  .slide-quarter-filter select {
+    height: 19px;
+    min-width: 86px;
+    border: 1px solid rgba(255,255,255,0.32);
+    border-radius: 3px;
+    background: #fff;
+    color: #0A2F73;
+    font-family: Aptos, 'Segoe UI', Arial, sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0 19px 0 6px;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .slide-quarter-filter select:focus { outline: 2px solid #FFBB00; outline-offset: 1px; }
+  .section .slide-quarter-filter,
+  .section-head .slide-quarter-filter { margin-left: auto; }
+  .slide-quarter-filter + .page-marker { margin-left: 8px; }
+  `;
+  const control = slideQuarterControlHtml(selectedQuarter);
+  let next = srcdoc.replace('</style>', `${quarterCss}</style>`);
+
+  if (next.includes('<div class="header-right">')) {
+    return next.replace('<div class="header-right">', `<div class="header-right">${control}`);
+  }
+  if (next.includes("<div class='header-right'>")) {
+    return next.replace("<div class='header-right'>", `<div class='header-right'>${control}`);
+  }
+  if (next.includes('<div class="page-marker">')) {
+    return next.replace('<div class="page-marker">', `${control}<div class="page-marker">`);
+  }
+  if (next.includes("<div class='page-marker'>")) {
+    return next.replace("<div class='page-marker'>", `${control}<div class='page-marker'>`);
+  }
+  return next;
+}
+
+function renderQuarterSrcdoc(srcdoc, quarter) {
+  return injectQuarterControl(quarteriseSrcdoc(srcdoc, quarter), quarter);
+}
+
+function applyQuarter(quarter) {
+  const preset = QUARTERS[quarter] || QUARTERS['q1-2026'];
+  currentQuarterKey = QUARTERS[quarter] ? quarter : 'q1-2026';
+  sessionStorage.setItem('crr-report-quarter', currentQuarterKey);
+  topbarQuarter.textContent = preset.label;
+  document.title = `CRR Board PPT - ${preset.label}`;
+
+  frames.forEach(frame => {
+    const nextSrcdoc = renderQuarterSrcdoc(frame.dataset.baseSrcdoc || '', currentQuarterKey);
+    if (frame.getAttribute('srcdoc') !== nextSrcdoc) {
+      frame.setAttribute('srcdoc', nextSrcdoc);
+    }
+  });
+}
+
+window.setReportQuarter = (quarter) => {
+  applyQuarter(quarter);
+  showSlide(currentIdx);
+};
 
 function showSlide(idx) {
   if (idx < 0 || idx >= SLIDES.length) return;
@@ -8138,7 +8594,7 @@ thumbs.forEach((t, i) => {
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
 
   if (e.key === 'ArrowLeft') { showSlide(currentIdx - 1); e.preventDefault(); }
   else if (e.key === 'ArrowRight') { showSlide(currentIdx + 1); e.preventDefault(); }
@@ -8154,8 +8610,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 fitSlideFrame();
+applyQuarter(currentQuarterKey);
 showSlide(0);
 </script>
 
 </body>
 </html>
+

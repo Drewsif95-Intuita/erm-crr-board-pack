@@ -2,7 +2,7 @@
 
 Static interactive CRR executive board pack prepared for Azure Static Web Apps.
 
-The deployed app is the standalone `CRR_Exec_Pack_v3_interactive.html` prototype copied to `index.html` and served by Vite. The report design remains self-contained: eight fixed 1280 x 720 iframe slides, Standard Life branding, top navigation, thumbnail tray, intro overlay, page info panel, and keyboard shortcuts are preserved from the source HTML.
+The deployed app is the standalone `CRR_Exec_Pack_v3_interactive.html` prototype copied to `index.html` and served by Vite. The report design remains self-contained: 20 fixed 1280 x 720 iframe frames, Standard Life branding, top navigation, responsive slide scaling, embedded quarter controls, thumbnail tray, and keyboard shortcuts are preserved from the source HTML.
 
 ## Local Run
 
@@ -27,6 +27,8 @@ The production build is written to `dist/`. Azure Static Web Apps deploys that b
 ## Key Files
 
 - `index.html` - source-of-truth interactive report prototype.
+- `public/slides/` - extracted risk-appetite slide frames loaded by the main prototype.
+- `public/powerapp/hosted-commentary-app.html` - embedded commentary manager mock-up used on the final frame.
 - `package.json` - Vite scripts for local run, build, and preview.
 - `vite.config.js` - builds the app to `dist/`.
 - `public/staticwebapp.config.json` - Azure Static Web Apps navigation fallback.
@@ -37,11 +39,10 @@ There is no React `src/` app for this conversion because the supplied prototype 
 
 ## Navigation
 
-- Left and right arrows move between slides.
-- Number keys `1` to `8` jump directly to a page.
-- `I` toggles the page info panel.
-- `Esc` closes the page info panel.
-- The thumbnail tray switches pages.
+- Left and right arrows, or the on-screen arrow buttons, move between frames.
+- Number keys `1` to `9` jump to the first nine frames; `0` jumps to the tenth frame.
+- The thumbnail tray switches across all 20 frames.
+- Embedded quarter selectors switch the report between Q1 2025 and Q1 2026 presets.
 
 ## Deployment
 

@@ -1,56 +1,16 @@
 # Commentary Manager — Power Apps Formula Pack
 
-**Version 1.0** · Standard Life · Intuita Consulting · May 2026
+**Version 2.0** · Standard Life · Intuita Consulting · June 2026
 
-Companion to the *Power Apps Build Guide*. Every Power Fx formula from the build guide, extracted verbatim and grouped by screen so you can keep this open in one window and copy straight into Power Apps Studio. Section numbers map to the build guide for cross-reference.
+Companion to the *Power Apps Build Guide (Step-by-Step v2)*. Every Power Fx and DAX formula from the guide, extracted verbatim and grouped by screen, so you can keep this open in one window and copy straight into Power Apps Studio. Section names match the build guide.
 
-**How to use:** find the control by its name (e.g. `btnSubmit.OnSelect`), copy the fenced block, paste into the matching property in Studio. Formulas are exactly as documented in the build guide — no paraphrasing.
-
-**Naming conventions used throughout:**
-
-| Prefix | Control type |
-|---|---|
-| `scr` | Screen |
-| `cmp` | Component |
-| `gal` | Gallery |
-| `btn` | Button |
-| `lbl` | Label |
-| `txt` | Text input |
-| `cbo` | Combobox / dropdown |
-| `dte` | Date picker |
-| `tgl` | Toggle |
-| `ctn` | Container |
-| `col` | Collection (in-memory) |
-| `var` | Global variable (Set) |
+**This version** reflects the rebuilt navigation (per-tab formulas) and the corrected OnStart period-options block (the `Distinct()` fix).
 
 ---
 
-## Contents
+## 3. App OnStart and global variables
 
-1. [App OnStart](#app-onstart)
-2. [Identity & Access Denied](#2-identity--access-denied)
-3. [Shell Components](#shell-components)
-4. [Home](#home)
-5. [Edit Commentary](#edit-commentary)
-6. [Edit Commentary — Read-only](#edit-commentary-read-only)
-7. [Approval Queue](#approval-queue)
-8. [Approval Detail](#approval-detail)
-9. [Control Centre](#control-centre)
-10. [Modals](#modals)
-11. [Cross-cutting Patterns](#cross-cutting-patterns)
-12. [Power BI Binding (DAX)](#power-bi-binding-dax)
-
----
-
-## 1. App OnStart
-
-*Build guide: 3. App OnStart and global variables*  ·  *Controls live on: `App`*
-
-### `App.OnStart`
-
-Runs once on app launch. Identity, role detection, data collections, dirty-state vars, routing.
-
-<sub>3.2 OnStart formula</sub>
+### `3.3 The OnStart formula`
 
 ```powerfx
 // === Identity resolution ===
@@ -83,7 +43,8 @@ ClearCollect(colReports, Filter(Reports, Active = true));
 Set(varActiveReport, First(colReports));
 
 // === Period dropdown options ===
-// Combine distinct historical periods with computed future periods
+// Build the list of distinct historical periods already in the data.
+// NOTE: Distinct() names its output column "Result" (not PeriodKey).
 ClearCollect(colHistoricalPeriods,
     Distinct(
         Filter(ERM_Commentary, ReportCode = varActiveReport.ReportCode),
@@ -104,10 +65,17 @@ ClearCollect(colFuturePeriods,
     {Result: (varCurrentYear + 1) & "-Q1"}
 );
 
-// Combine and dedupe; default to current quarter
-ClearCollect(colPeriodOptions,
-    Distinct(colHistoricalPeriods, Result),
-    colFuturePeriods.Result
+// Combine historical + future periods, dedupe, default to current quarter
+// colHistoricalPeriods is ALREADY distinct, with a column named "Result".
+// Do NOT wrap it in Distinct() again. Append future periods only if not
+// already present, to avoid a duplicate of the current quarter.
+ClearCollect(colPeriodOptions, colHistoricalPeriods);
+ForAll(
+    colFuturePeriods,
+    If(
+        !(Result in colPeriodOptions.Result),
+        Collect(colPeriodOptions, {Result: Result})
+    )
 );
 Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter);
 
@@ -161,15 +129,10 @@ Navigate(scrHome, ScreenTransition.None);
 
 ---
 
-## 2. Identity & Access Denied
-
-*Build guide: 4. Identity screen and access denied*  ·  *Controls live on: `scrAccessDenied`*
+## 4. Identity screen and access denied
 
 ### `lblAccessDetail.Text`
-
-Access-denied explanation line.
-
-<sub>4.1 scrAccessDenied</sub>
+<sub>4.2 Add the controls</sub>
 
 ```powerfx
 "You're signed in as " & varUserEmail & " but you're not yet a member of any
@@ -177,28 +140,25 @@ of the Commentary Manager access groups. This usually means your access hasn't b
 provisioned yet. If you were recently added to a group, sign out and back in to refresh."
 ```
 
-### `btnAccessRetry.OnSelect`
-
-Re-run role detection after the user is added to a group.
-
-<sub>4.1 scrAccessDenied</sub>
+### `lblAccessContact.Text`
+<sub>4.2 Add the controls</sub>
 
 ```powerfx
-Refresh(Reports);
-// Re-run OnStart's role detection
-Set(varIsGatekeeper, varUserEmail in colGatekeepers.Email);
-Set(varIsReviewer, varUserEmail in colReviewers.Email);
-If(varIsGatekeeper || varIsReviewer,
-    Navigate(scrHome),
-    Notify("Still no access detected.", NotificationType.Warning)
-)
+"Contact " & varActiveReport.OwnerEmail & " if you should have access."
 ```
 
-### `App.OnStart (routing tail)`
+### `btnAccessRetry.OnSelect`
+<sub>4.2 Add the controls</sub>
 
-Append to OnStart: route lockout users to Access Denied.
+```powerfx
+If(
+    !varIsGatekeeper && !varIsReviewer && IsEmpty(colMyItems),
+    Navigate(scrAccessDenied, ScreenTransition.None),
+    Navigate(scrHome, ScreenTransition.None)
+);
+```
 
-<sub>4.2 When to route to Access Denied</sub>
+### `4.3 Route to Access Denied`
 
 ```powerfx
 If(
@@ -210,15 +170,18 @@ If(
 
 ---
 
-## 3. Shell Components
+## 5. The shell — top bar, navigation, footer
 
-*Build guide: 5. Shell — header, navigation, footer*  ·  *Controls live on: `cmpTopBar / cmpTabNav / cmpFooterStrip`*
+### `lblReportContext.Text`
+<sub>5.2 Top context bar</sub>
+
+```powerfx
+"CRR Board Pack   ·   cycle " & varSelectedPeriod &
+"   ·   publish due " & Text(varActiveReport.PackDueDate, "dd mmmm")
+```
 
 ### `btnRoleCTA.Text`
-
-Role-aware CTA label in the top context bar.
-
-<sub>5.2 Build cmpTopBar as a component</sub>
+<sub>5.2 Top context bar</sub>
 
 ```powerfx
 If(varIsGatekeeper, "→ Plan cycle",
@@ -227,10 +190,7 @@ If(varIsGatekeeper, "→ Plan cycle",
 ```
 
 ### `btnRoleCTA.OnSelect`
-
-Role-aware CTA action — opens the right screen per role.
-
-<sub>5.2 Build cmpTopBar as a component</sub>
+<sub>5.2 Top context bar</sub>
 
 ```powerfx
 If(varIsGatekeeper,
@@ -252,11 +212,30 @@ If(varIsGatekeeper,
 )
 ```
 
+### `btnTabHome.OnSelect`
+<sub>5.3 Tab navigation — the nav bar</sub>
+
+```powerfx
+If(varDirtyEditCommentary || varDirtyControlCentre,
+    Set(varPendingNav, "scrHome");
+    Set(varShowDiscardConfirm, true),
+    Navigate(scrHome, ScreenTransition.None)
+)
+```
+
+### `btnTabMyItems.OnSelect`
+<sub>5.3 Tab navigation — the nav bar</sub>
+
+```powerfx
+If(varDirtyEditCommentary || varDirtyControlCentre,
+    Set(varPendingNav, "scrMyItems");
+    Set(varShowDiscardConfirm, true),
+    Navigate(scrMyItems, ScreenTransition.None)
+)
+```
+
 ### `btnTabApprovals.OnSelect`
-
-Tab nav with dirty-state guard. Same pattern for every tab.
-
-<sub>5.3 Build cmpTabNav as a component</sub>
+<sub>5.3 Tab navigation — the nav bar</sub>
 
 ```powerfx
 If(varDirtyEditCommentary || varDirtyControlCentre,
@@ -266,17 +245,38 @@ If(varDirtyEditCommentary || varDirtyControlCentre,
 )
 ```
 
+### `btnTabControl.OnSelect`
+<sub>5.3 Tab navigation — the nav bar</sub>
+
+```powerfx
+If(varDirtyEditCommentary || varDirtyControlCentre,
+    Set(varPendingNav, "scrControlCentre");
+    Set(varShowDiscardConfirm, true),
+    Navigate(scrControlCentre, ScreenTransition.None)
+)
+```
+
 ---
 
-## 4. Home
+## 6. Screen 1 — Home (scrHome)
 
-*Build guide: 6. Screen 1 — Home (scrHome)*  ·  *Controls live on: `scrHome`*
+### `lblHomeCaption.Text`
+<sub>6.B Header strip</sub>
 
-### `scrHome.OnVisible`
+```powerfx
+varUserFullName & "   ·   " & varActiveReport.ReportCode & "   ·   " &
+varSelectedPeriod & "   ·   pack due to CRO " &
+Text(varActiveReport.PackDueDate, "dd mmmm")
+```
 
-Refresh the user's items/queue/cycle collections on navigation.
+### `lblTileMyItemsCount.Text`
+<sub>6.C Role tiles (top-right of header)</sub>
 
-<sub>6.4 OnVisible behaviour</sub>
+```powerfx
+CountRows(colMyItems) & " assigned"
+```
+
+### `6.D OnVisible — refresh data`
 
 ```powerfx
 ClearCollect(colMyItems,
@@ -286,7 +286,6 @@ ClearCollect(colMyItems,
         !(Status.Value in ["Approved", "Final", "Archived", "Not Required"])
     )
 );
-
 If(varIsReviewer,
     ClearCollect(colMyReviewQueue,
         Filter(ERM_Commentary,
@@ -296,7 +295,6 @@ If(varIsReviewer,
         )
     )
 );
-
 If(varIsGatekeeper,
     ClearCollect(colCycleItems,
         Filter(ERM_Commentary,
@@ -307,17 +305,95 @@ If(varIsGatekeeper,
 );
 ```
 
+### `6.E Overdue and Due This Week galleries`
+
+```powerfx
+Sort(Filter(colMyItems, DueDate < Today()), DueDate, Ascending)
+```
+
+### `6.E Overdue and Due This Week galleries`
+
+```powerfx
+Sort(
+    Filter(colMyItems, DueDate >= Today(), Status.Value <> "Rejected"),
+    DueDate, Ascending
+)
+```
+
+### `lblCardMeta.Text`
+<sub>6.F The item card template (inside each gallery)</sub>
+
+```powerfx
+"Page " & ThisItem.PageCode & " · " & ThisItem.PageName &
+" · assigned by " & ThisItem.AssignedBy
+```
+
+### `lblCardDue.Text`
+<sub>6.F The item card template (inside each gallery)</sub>
+
+```powerfx
+Text(ThisItem.DueDate, "dd mmm") &
+If(ThisItem.DueDate < Today(),
+   " — " & RoundDown(Today() - ThisItem.DueDate, 0) & " days overdue", "")
+```
+
+### `lnkCardOpen.OnSelect`
+<sub>6.F The item card template (inside each gallery)</sub>
+
+```powerfx
+Set(varSidePanelItem, ThisItem);
+Navigate(scrEditCommentary, ScreenTransition.None)
+```
+
 ---
 
-## 5. Edit Commentary
+## 7. Screen 2 — My Items (scrMyItems)
 
-*Build guide: 8. Screen 3 — Edit Commentary (scrEditCommentary)*  ·  *Controls live on: `scrEditCommentary`*
+### `galActionNeeded`
+<sub>7.C The three list sections</sub>
 
-### `scrEditCommentary.OnVisible`
+```powerfx
+Sort(Filter(colMyItems, DueDate < Today() || Status.Value = "Rejected"), DueDate, Ascending)
+```
 
-Re-read the selected item from SharePoint; reset dirty flag.
+### `galInProgress`
+<sub>7.C The three list sections</sub>
 
-<sub>8.5 OnVisible behaviour</sub>
+```powerfx
+Sort(Filter(colMyItems, Status.Value in ["Assigned","Draft"], DueDate >= Today()), DueDate, Ascending)
+```
+
+### `7.C The three list sections`
+
+```powerfx
+Sort(Filter(colMyItems, Status.Value in ["Approved","Final"]), Modified, Descending)
+```
+
+---
+
+## 8. Screen 3 — Edit Commentary (scrEditCommentary)
+
+### `lblEditMeta.Text`
+<sub>8.C Title block</sub>
+
+```powerfx
+varSidePanelItem.ReportCode & "   ·   Page " & varSidePanelItem.PageCode &
+" " & varSidePanelItem.PageName & "   ·   " & varSidePanelItem.PeriodKey
+```
+
+### `txtCommentary.DisplayMode`
+<sub>8.D The commentary editor</sub>
+
+```powerfx
+If(
+    varSidePanelItem.Status.Value in ["Assigned", "Draft", "Rejected"]
+    && varSidePanelItem.AssignedContributorEmail = varUserEmail,
+    DisplayMode.Edit,
+    DisplayMode.View
+)
+```
+
+### `8.D The commentary editor`
 
 ```powerfx
 If(!IsBlank(varSidePanelItem),
@@ -329,11 +405,16 @@ If(!IsBlank(varSidePanelItem),
 Set(varDirtyEditCommentary, false);
 ```
 
-### `btnSaveDraft.OnSelect`
+### `8.E OnVisible`
 
-Patch CommentaryText + set status Draft.
+```powerfx
+If(!IsBlank(varSidePanelItem),
+    Set(varSidePanelItem, LookUp(ERM_Commentary, ID = varSidePanelItem.ID))
+);
+Set(varDirtyEditCommentary, false);
+```
 
-<sub>8.6 Save Draft button</sub>
+### `8.F Save Draft button`
 
 ```powerfx
 Patch(ERM_Commentary,
@@ -351,11 +432,13 @@ Set(varDirtyEditCommentary, false);
 Notify("Draft saved.", NotificationType.Success);
 ```
 
-### `btnSubmit.OnSelect`
+### `8.G Submit button`
 
-Validate length, patch status Submitted, notify reviewer.
+```powerfx
+If(varSidePanelItem.Status.Value = "Rejected", "Resubmit →", "Submit →")
+```
 
-<sub>8.7 Submit button</sub>
+### `8.G Submit button`
 
 ```powerfx
 If(Len(txtCommentary.Text) < 50,
@@ -378,27 +461,11 @@ If(Len(txtCommentary.Text) < 50,
 )
 ```
 
-### `btnSubmit.Text`
-
-Submit vs Resubmit label.
-
-<sub>8.7 Submit button</sub>
-
-```powerfx
-If(varSidePanelItem.Status.Value = "Rejected", "Resubmit →", "Submit →")
-```
-
 ---
 
-## 6. Edit Commentary — Read-only
+## 9. Screen 3b — Edit Commentary (read-only state)
 
-*Build guide: 9. Screen 3b — Edit Commentary (Approved/Read-only)*  ·  *Controls live on: `scrEditCommentary`*
-
-### `ctnApprovedBanner message`
-
-Green banner text for Approved / Final states.
-
-<sub>9.2 Status banner replacements</sub>
+### `9.A Green status banner`
 
 ```powerfx
 If(varSidePanelItem.Status.Value = "Approved",
@@ -409,15 +476,9 @@ If(varSidePanelItem.Status.Value = "Approved",
 
 ---
 
-## 7. Approval Queue
+## 10. Screen 4 — Approval Queue (scrApprovalQueue)
 
-*Build guide: 10. Screen 4 — Approval Queue (scrApprovalQueue)*  ·  *Controls live on: `scrApprovalQueue`*
-
-### `galApprovalQueue.Items`
-
-Reviewer's submitted-item queue with filter chips.
-
-<sub>10.3 Main gallery: galApprovalQueue</sub>
+### `10.C Main gallery — galApprovalQueue`
 
 ```powerfx
 SortByColumns(
@@ -439,15 +500,9 @@ SortByColumns(
 
 ---
 
-## 8. Approval Detail
+## 11. Screen 5 — Approval Detail (scrApprovalDetail)
 
-*Build guide: 11. Screen 5 — Approval Detail (scrApprovalDetail)*  ·  *Controls live on: `scrApprovalDetail`*
-
-### `btnApprove.OnSelect`
-
-Approve, set ApprovedDate, advance to next in queue.
-
-<sub>11.2 Approve button</sub>
+### `11.C Approve button`
 
 ```powerfx
 Patch(ERM_Commentary,
@@ -472,10 +527,7 @@ If(CountRows(colMyReviewQueue) > 0,
 ```
 
 ### `btnReject.OnSelect`
-
-Reveal the reject-comment textarea.
-
-<sub>11.3 Reject button</sub>
+<sub>11.D Reject flow</sub>
 
 ```powerfx
 Set(varRejectMode, true);
@@ -483,10 +535,7 @@ SetFocus(txtRejectReason)
 ```
 
 ### `btnSubmitRejection.OnSelect`
-
-Validate comment, patch Rejected, append RejectionHistory.
-
-<sub>11.3 Reject button</sub>
+<sub>11.D Reject flow</sub>
 
 ```powerfx
 If(Len(txtRejectReason.Text) < 20,
@@ -523,15 +572,9 @@ If(Len(txtRejectReason.Text) < 20,
 
 ---
 
-## 9. Control Centre
+## 12. Screen 6 — Control Centre (scrControlCentre)
 
-*Build guide: 12. Screen 6 — Control Centre (scrControlCentre)*  ·  *Controls live on: `scrControlCentre`*
-
-### `cboPeriodSelector.OnChange`
-
-Re-load cycle + my-items collections for the chosen period.
-
-<sub>12.2 Period selector and Plan/Sign Off buttons</sub>
+### `12.B Header — period selector, Plan, Sign Off`
 
 ```powerfx
 Set(varSelectedPeriod, cboPeriodSelector.Selected.Result);
@@ -556,21 +599,13 @@ Set(varSidePanelItem, Blank());
 Set(varDirtyControlCentre, false);
 ```
 
-### `btnPlanCycle.OnSelect`
-
-Open the Plan Cycle modal.
-
-<sub>12.2 Period selector and Plan/Sign Off buttons</sub>
+### `12.B Header — period selector, Plan, Sign Off`
 
 ```powerfx
 Set(varShowPlanCycle, true)
 ```
 
-### `galCycleItems.Items`
-
-Control Centre grid — chained filters + search.
-
-<sub>12.4 The main grid: galCycleItems</sub>
+### `12.D The main grid — galCycleItems`
 
 ```powerfx
 SortByColumns(
@@ -602,11 +637,7 @@ SortByColumns(
 )
 ```
 
-### `Side panel history timeline`
-
-Read-only lifecycle timeline for the selected item.
-
-<sub>12.6 The side panel (right column)</sub>
+### `12.E The side panel`
 
 ```powerfx
 "• Assigned " & Text(varSidePanelItem.AssignedDate, "dd MMM") &
@@ -626,10 +657,7 @@ If(!IsBlank(varSidePanelItem.ApprovedDate),
 ```
 
 ### `btnSendNudge.OnSelect`
-
-Call Send Nudge flow; show success/cool-down toast.
-
-<sub>12.7 Side panel actions</sub>
+<sub>12.F Side panel actions</sub>
 
 ```powerfx
 Set(varNudgeResult,
@@ -644,10 +672,7 @@ Set(varSidePanelItem, LookUp(ERM_Commentary, ID = varSidePanelItem.ID))
 ```
 
 ### `btnNotRequired.OnSelect`
-
-Mark item Not Required; refresh cycle.
-
-<sub>12.7 Side panel actions</sub>
+<sub>12.F Side panel actions</sub>
 
 ```powerfx
 Patch(ERM_Commentary,
@@ -666,10 +691,7 @@ Notify("Item marked Not Required.", NotificationType.Info)
 ```
 
 ### `btnDiscard.OnSelect`
-
-Reset side-panel edit controls; clear dirty flag.
-
-<sub>12.7 Side panel actions</sub>
+<sub>12.F Side panel actions</sub>
 
 ```powerfx
 // Reset all edit controls to their defaults
@@ -679,10 +701,7 @@ Set(varDirtyControlCentre, false)
 ```
 
 ### `btnSaveChanges.OnSelect`
-
-Patch assignment fields incl. Person columns.
-
-<sub>12.7 Side panel actions</sub>
+<sub>12.F Side panel actions</sub>
 
 ```powerfx
 Patch(ERM_Commentary,
@@ -720,15 +739,10 @@ Notify("Changes saved.", NotificationType.Success)
 
 ---
 
-## 10. Modals
+## 13. Modals — Add Item, Plan Cycle, Sign Off
 
-*Build guide: 13. Modals — Add Item, Plan Cycle, Sign Off*  ·  *Controls live on: `Add Item / Plan Cycle / Sign Off`*
-
-### `txtAddItemNumber.Text`
-
-Smart next-available item number for the chosen page.
-
-<sub>13.2 Modal 1 — Add Commentary Item</sub>
+### `txtAddItemNumber.Text (smart next-available)`
+<sub>13.B Modal 1 — Add Commentary Item</sub>
 
 ```powerfx
 Max(
@@ -740,10 +754,7 @@ Max(
 ```
 
 ### `btnConfirmAddItem.OnSelect`
-
-Create one-off ERM_Commentary row; optionally add to catalogue.
-
-<sub>13.2 Modal 1 — Add Commentary Item</sub>
+<sub>13.B Modal 1 — Add Commentary Item</sub>
 
 ```powerfx
 If(IsBlank(cboAddPage.Selected) || IsBlank(txtAddSectionName.Text),
@@ -811,11 +822,8 @@ If(IsBlank(cboAddPage.Selected) || IsBlank(txtAddSectionName.Text),
 )
 ```
 
-### `Plan modal — Pages seeded`
-
-Preview tile: distinct pages in the catalogue.
-
-<sub>13.3 Modal 2 — Plan Commentary Cycle</sub>
+### `Plan Cycle modal with preview tiles.`
+<sub>13.C Modal 2 — Plan Commentary Cycle</sub>
 
 ```powerfx
 CountRows(
@@ -830,11 +838,8 @@ CountRows(
 )
 ```
 
-### `Plan modal — Slots created`
-
-Preview tile: total catalogue slots to seed.
-
-<sub>13.3 Modal 2 — Plan Commentary Cycle</sub>
+### `Plan Cycle modal with preview tiles.`
+<sub>13.C Modal 2 — Plan Commentary Cycle</sub>
 
 ```powerfx
 CountRows(
@@ -846,11 +851,8 @@ CountRows(
 )
 ```
 
-### `Plan modal — Pre-assigned`
-
-Preview tile: count rolled forward from previous cycle.
-
-<sub>13.3 Modal 2 — Plan Commentary Cycle</sub>
+### `Plan Cycle modal with preview tiles.`
+<sub>13.C Modal 2 — Plan Commentary Cycle</sub>
 
 ```powerfx
 If(chkRollForward.Value,
@@ -870,10 +872,7 @@ If(chkRollForward.Value,
 ```
 
 ### `btnConfirmPlanCycle.OnSelect`
-
-Pre-flight duplicate check, call Plan Cycle flow.
-
-<sub>13.3 Modal 2 — Plan Commentary Cycle</sub>
+<sub>13.C Modal 2 — Plan Commentary Cycle</sub>
 
 ```powerfx
 // Pre-flight check: doesn't already exist?
@@ -908,11 +907,8 @@ If(CountRows(Filter(ERM_Commentary,
 )
 ```
 
-### `btnConfirmSignOff.DisplayMode`
-
-Type-to-confirm guard ('sign off').
-
-<sub>13.4 Modal 3 — Sign Off Cycle</sub>
+### `btnConfirmSignOff.DisplayMode (type-to-confirm)`
+<sub>13.D Modal 3 — Sign Off Cycle</sub>
 
 ```powerfx
 If(Lower(Trim(txtSignOffConfirm.Text)) = "sign off",
@@ -922,10 +918,7 @@ If(Lower(Trim(txtSignOffConfirm.Text)) = "sign off",
 ```
 
 ### `btnConfirmSignOff.OnSelect`
-
-Call Sign Off Cycle flow; handle success/failure.
-
-<sub>13.4 Modal 3 — Sign Off Cycle</sub>
+<sub>13.D Modal 3 — Sign Off Cycle</sub>
 
 ```powerfx
 Set(varSignOffResult,
@@ -950,15 +943,9 @@ If(varSignOffResult.success,
 
 ---
 
-## 11. Cross-cutting Patterns
+## 14. Cross-cutting patterns
 
-*Build guide: 14. Cross-cutting patterns*  ·  *Controls live on: `all screens`*
-
-### `Tab nav dirty-state guard`
-
-Generic guard pattern applied to every nav control.
-
-<sub>14.1 Dirty-state handling</sub>
+### `14.1 Dirty-state handling and the discard-confirm modal`
 
 ```powerfx
 If(varDirtyEditCommentary || varDirtyControlCentre,
@@ -968,11 +955,7 @@ If(varDirtyEditCommentary || varDirtyControlCentre,
 )
 ```
 
-### `Status pill — Fill colour`
-
-Switch() mapping status to background colour.
-
-<sub>14.2 Status pill colour</sub>
+### `14.1 Dirty-state handling and the discard-confirm modal`
 
 ```powerfx
 Switch(varItem.Status.Value,
@@ -989,11 +972,24 @@ Switch(varItem.Status.Value,
 )
 ```
 
-### `Status pill — text colour`
+### `14.2 Status pill colour`
 
-Switch() mapping status to label colour.
+```powerfx
+Switch(varItem.Status.Value,
+    "Not Started", RGBA(236,239,244,1),
+    "Assigned",    RGBA(227,242,253,1),
+    "Draft",       RGBA(255,248,225,1),
+    "Submitted",   RGBA(255,248,225,1),
+    "Rejected",    RGBA(255,235,238,1),
+    "Approved",    RGBA(232,245,233,1),
+    "Final",       RGBA(46,125,50,1),
+    "Not Required",RGBA(244,246,250,1),
+    "Archived",    RGBA(229,231,235,1),
+    RGBA(244,246,250,1)
+)
+```
 
-<sub>14.2 Status pill colour</sub>
+### `14.2 Status pill colour`
 
 ```powerfx
 Switch(varItem.Status.Value,
@@ -1010,16 +1006,10 @@ Switch(varItem.Status.Value,
 )
 ```
 
-### `Role detection (v2)`
-
-Replace hardcoded role collections with a flow lookup.
-
-<sub>14.4 Role detection in v2</sub>
+### `14.4 Role detection in v2`
 
 ```powerfx
-Set(varRoles,
-    GetUserRoles.Run(varUserEmail)
-);
+Set(varRoles, GetUserRoles.Run(varUserEmail));
 Set(varIsGatekeeper, "Gatekeeper" in varRoles.roles);
 Set(varIsReviewer, "Reviewer" in varRoles.roles);
 Set(varIsAdmin, "Admin" in varRoles.roles)
@@ -1027,60 +1017,40 @@ Set(varIsAdmin, "Admin" in varRoles.roles)
 
 ---
 
-## 12. Power BI Binding (DAX)
+## 15. Power BI binding measure
 
-*Build guide: 15. Power BI binding measure*  ·  *Controls live on: `Power BI dataset`*
-
-### `Power BI — status filter`
-
-Dataset filter: Final only (recommended).
-
-<sub>15.2 The status filter</sub>
+### `15.1 Data source and status filter`
 
 ```dax
-FILTER(
-    'ERM_Commentary',
-    'ERM_Commentary'[Status] = "Final"
-)
+FILTER('ERM_Commentary', 'ERM_Commentary'[Status] = "Final")
 ```
 
-### `Power BI — commentary lookup`
-
-LOOKUPVALUE on the composite RowKey.
-
-<sub>15.3 The commentary lookup measure</sub>
+### `15.2 The commentary lookup measure`
 
 ```dax
 Commentary =
 LOOKUPVALUE(
     'ERM_Commentary'[CommentaryText],
-
     'ERM_Commentary'[RowKey],
     [ReportCode] & "|" & [PageCode] & "|" & [CommentaryKey] & "|" &
     [PeriodKey] & "|" & [OrgUnitCode]
 )
 ```
 
-### `Power BI — fallback text`
-
-Display placeholder when commentary not yet signed off.
-
-<sub>15.4 Fallback text</sub>
+### `15.3 Fallback text`
 
 ```dax
 Commentary_Display =
-COALESCE(
-    [Commentary],
-    "[Commentary pending sign-off]"
-)
+COALESCE([Commentary], "[Commentary pending sign-off]")
 ```
 
 ---
 
-## Notes
+## Common gotchas
 
-- **Person-column patches** (in `btnSaveChanges.OnSelect`, `btnConfirmAddItem.OnSelect`) require the `@odata.type` + `Claims` shape exactly as shown. If a Person field silently fails to save, check this first.
-- **`Refresh()` after every Patch** keeps the in-memory collections in sync with SharePoint. Acceptable at CRR's ~130-rows-per-year scale; revisit at 10× volume.
-- **Flow calls** (`Plan_Cycle.Run`, `Sign_Off_Cycle.Run`, `Send_Nudge.Run`) must be added as data sources before these formulas will resolve. See build guide §2.3.
-- **Role collections** (`colAdmins`, `colGatekeepers`, `colReviewers`) are hardcoded in v1 OnStart. Swap to the flow-based lookup in §14.4 (Role detection v2) when membership grows.
-- The `like` operator with leading wildcards in `galCycleItems.Items` is non-delegable — fine for ~130 rows, replace with `StartsWith()` if the list grows past ~500 rows.
+- **`Distinct()` renames your column to `Result`.** Never wrap an already-distinct collection in `Distinct()` again, and reference its column as `Result`, not the original name. (This caused the OnStart error in v1.)
+- **Person-column patches** need the exact `@odata.type` + `Claims` shape. If an assignment won't stick, check this first.
+- **Nav must call `Navigate()` from a screen, not a component** — components are sandboxed. The nav bar is built on the template screen for this reason.
+- **`Refresh()` after every Patch** keeps collections in sync. Fine at ~130 rows.
+- **Flows must be added as data sources** before `Plan_Cycle.Run` / `Sign_Off_Cycle.Run` / `Send_Nudge.Run` resolve.
+- **`like` with leading wildcards is non-delegable** — fine for ~130 rows; swap to `StartsWith()` past ~500.

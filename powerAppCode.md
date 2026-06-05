@@ -514,11 +514,18 @@ Patch(ERM_Commentary,
     }
 );
 Refresh(ERM_Commentary);
-Set(varSidePanelItem, Blank());
+ClearCollect(colMyReviewQueue,
+    Filter(ERM_Commentary,
+        ReviewerEmail = varUserEmail,
+        Status.Value = "Submitted",
+        PeriodKey = varSelectedPeriod
+    )
+);
+Set(varSidePanelItem, First(Filter(ERM_Commentary, false)));
 Notify("Approved. Will be visible in Power BI when the cycle is signed off.",
        NotificationType.Success);
 
-// Move to next in queue
+// Move to next in queue (now reading a fresh collection)
 If(CountRows(colMyReviewQueue) > 0,
     Set(varSidePanelItem, First(colMyReviewQueue));
     Navigate(scrApprovalDetail),
@@ -551,17 +558,24 @@ If(Len(txtRejectReason.Text) < 20,
                 Coalesce(varSidePanelItem.RejectionHistory, ""),
                 If(IsBlank(varSidePanelItem.RejectionHistory), "", Char(10)),
                 "[", Text(Now(), "yyyy-MM-dd HH:mm"), "] ",
-                User().FullName, ": ", txtRejectReason.Text
+                varUserFullName, ": ", txtRejectReason.Text
             ),
             SubmittedDate: Blank()
         }
     );
     Refresh(ERM_Commentary);
+    ClearCollect(colMyReviewQueue,
+        Filter(ERM_Commentary,
+            ReviewerEmail = varUserEmail,
+            Status.Value = "Submitted",
+            PeriodKey = varSelectedPeriod
+        )
+    );
     Reset(txtRejectReason);
     Set(varRejectMode, false);
     Notify("Rejected. Contributor has been notified.", NotificationType.Info);
 
-    // Move to next
+    // Move to next (fresh collection)
     If(CountRows(colMyReviewQueue) > 0,
         Set(varSidePanelItem, First(colMyReviewQueue));
         Navigate(scrApprovalDetail),

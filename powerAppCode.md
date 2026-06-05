@@ -675,13 +675,17 @@ If(!IsBlank(varSidePanelItem.ApprovedDate),
 
 ```powerfx
 Set(varNudgeResult,
-    Send_Nudge.Run(varSidePanelItem.ID, varUserEmail)
+    SendNudge.Run(
+        varSidePanelItem.ID,
+        "Reminder: your commentary for " & varSidePanelItem.SectionName &
+        " (" & varSidePanelItem.PeriodKey & ") is due " &
+        Text(varSidePanelItem.DueDate, "dd MMM yyyy") & "."
+    )
 );
 If(varNudgeResult.success,
     Notify(varNudgeResult.message, NotificationType.Success),
     Notify(varNudgeResult.message, NotificationType.Warning)
 );
-// Refresh just this row
 Set(varSidePanelItem, LookUp(ERM_Commentary, ID = varSidePanelItem.ID))
 ```
 

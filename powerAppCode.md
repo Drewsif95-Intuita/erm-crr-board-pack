@@ -771,6 +771,29 @@ Max(
 ) + 1 & " (next available)"
 ```
 
+### `Create cycle`
+```powerfx
+With(
+    {
+        yr: Value(First(Split(cboPlanPeriod.Selected.Result, "-")).Result),
+        q: Value(Last(Split(cboPlanPeriod.Selected.Result, "Q")).Result)
+    },
+    Set(varPlanResult,
+        ERMPlanCycle.Run(
+            varActiveReport.ReportCode,
+            cboPlanPeriod.Selected.Result,
+            Text(Date(yr, (q-1)*3 + 1, 1), "yyyy-MM-dd"),
+            Text(EOMonth(Date(yr, (q-1)*3 + 1, 1), 2), "yyyy-MM-dd"),
+            Text(varActiveReport.PackDueDate, "yyyy-MM-dd")
+        )
+    )
+);
+If(varPlanResult.success,
+    Notify(varPlanResult.message, NotificationType.Success),
+    Notify(varPlanResult.message, NotificationType.Warning)
+)
+```
+
 ### `btnConfirmAddItem.OnSelect`
 <sub>13.B Modal 1 — Add Commentary Item</sub>
 

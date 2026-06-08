@@ -1251,6 +1251,756 @@
     font-style: italic;
   }
 
+  /* ---------- Executive summary option C: refined card grid ---------- */
+  .slide-body.exec-grid-page {
+    position: relative;
+    padding: 8px 16px 6px;
+    grid-template-columns: 252px minmax(0, 1fr);
+    grid-template-rows: 48px minmax(0, 1fr) 158px;
+    gap: 8px 14px;
+    min-height: 0;
+    background: #f3f6fa;
+    overflow: hidden;
+  }
+  .exec-grid-page .kpi-strip {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    gap: 12px;
+  }
+  .exec-grid-page .kpi {
+    min-height: 48px;
+    grid-template-rows: auto auto;
+    gap: 2px;
+    padding: 6px 12px;
+    border-radius: 7px;
+  }
+  .exec-grid-page .kpi-label {
+    color: var(--muted);
+    font-size: 8.4px;
+  }
+  .exec-grid-page .kpi-value {
+    font-size: 23px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .exec-grid-page .right-col {
+    display: contents;
+  }
+  .exec-readout {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 12px 14px 10px;
+    gap: 8px;
+    overflow: hidden;
+  }
+  .exec-readout .commentary-head {
+    display: block;
+    border-bottom: 0;
+    padding: 0;
+  }
+  .exec-readout .commentary-head .curated {
+    display: inline-flex;
+    margin-bottom: 8px;
+    background: #edf3fb;
+    color: var(--navy);
+  }
+  .exec-readout .commentary-head .curated::before { display: none; }
+  .exec-readout .commentary-head .title {
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .exec-readout .comm-card {
+    border: 0;
+    padding: 0;
+    gap: 8px;
+  }
+  .exec-readout .comm-topline {
+    display: none;
+  }
+  .exec-readout .comm-owner {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1.22;
+  }
+  .exec-readout .comm-body {
+    font-size: 11px;
+    line-height: 1.42;
+  }
+  .exec-heli-panel {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 10px 14px;
+    gap: 7px;
+  }
+  .exec-heli-panel .panel-head {
+    padding: 0 0 5px;
+    border-bottom: 0;
+    align-items: center;
+  }
+  .exec-heli-panel .panel-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .exec-heli-panel .panel-sub {
+    margin-left: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .exec-heli-panel .universe-legend {
+    font-size: 10px;
+    gap: 12px;
+  }
+  .exec-heli-panel .legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+  }
+  .exec-heli-panel .legend-dot.red {
+    background: #CA3F4C;
+    border-color: #CA3F4C;
+  }
+  .exec-heli-panel .legend-dot.amber {
+    background: #D99A20;
+    border-color: #D99A20;
+  }
+  .exec-heli-panel .legend-dot.green {
+    background: #2f9578;
+    border-color: #2f9578;
+  }
+  .exec-heli-panel .heli-grid {
+    gap: 10px;
+  }
+  .exec-heli-panel .heli-group {
+    position: relative;
+    border: 1px solid var(--hairline);
+    border-top: 3px solid #CA3F4C;
+    border-radius: 7px;
+    background: #fff;
+    padding: 0;
+  }
+  .exec-heli-panel .heli-group:nth-child(8) { order: 1; }
+  .exec-heli-panel .heli-group:nth-child(7) { order: 2; }
+  .exec-heli-panel .heli-group:nth-child(3) { order: 3; }
+  .exec-heli-panel .heli-group:nth-child(4) { order: 4; }
+  .exec-heli-panel .heli-group:nth-child(6) { order: 5; }
+  .exec-heli-panel .heli-group:nth-child(5) { order: 6; }
+  .exec-heli-panel .heli-group:nth-child(1) { order: 7; }
+  .exec-heli-panel .heli-group:nth-child(2) {
+    order: 8;
+    border-top-color: #D99A20;
+  }
+  .exec-heli-panel .heli-head {
+    position: relative;
+    min-height: 28px;
+    border-radius: 0;
+    justify-content: flex-start;
+    text-align: left;
+    color: #fff;
+    padding: 0 28px 0 12px;
+    font-size: 11.4px;
+    line-height: 1.05;
+  }
+  .exec-heli-panel .heli-head br { display: none; }
+  .exec-heli-panel .heli-head::after {
+    content: &quot;\25B2&quot;;
+    position: absolute;
+    right: 12px;
+    top: 6px;
+    color: #f2a9af;
+    font-size: 11px;
+  }
+  .exec-heli-panel .heli-group:nth-child(4) .heli-head::after {
+    content: &quot;\25AA&quot;;
+    color: #9fb0c8;
+  }
+  .exec-heli-panel .heli-group:nth-child(2) .heli-head::after,
+  .exec-heli-panel .heli-group:nth-child(5) .heli-head::after,
+  .exec-heli-panel .heli-group:nth-child(6) .heli-head::after {
+    content: &quot;\25BC&quot;;
+    color: #86d6bd;
+  }
+  .exec-heli-panel .heli-group::after {
+    position: absolute;
+    top: 42px;
+    right: 12px;
+    color: #9d1827;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+  .exec-heli-panel .heli-group:nth-child(1)::after { content: &quot;1R  0A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(2)::after { content: &quot;0R  1A&quot;; color: #9f6500; }
+  .exec-heli-panel .heli-group:nth-child(3)::after { content: &quot;2R  0A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(4)::after { content: &quot;1R  2A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(5)::after { content: &quot;1R  1A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(6)::after { content: &quot;1R  2A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(7)::after { content: &quot;3R  2A&quot;; }
+  .exec-heli-panel .heli-group:nth-child(8)::after { content: &quot;4R  5A&quot;; }
+  .exec-heli-panel .heli-group .heli-stack {
+    width: calc(100% - 70px);
+    margin: 10px 58px 6px 12px;
+    border: 0;
+  }
+  .exec-heli-panel .heli-tiles,
+  .exec-heli-panel .heli-group.exception-heavy .heli-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 4px;
+    padding: 0 12px 8px;
+    align-content: flex-start;
+    grid-template-columns: none;
+    grid-auto-rows: auto;
+  }
+  .exec-heli-panel .heli-tile,
+  .exec-heli-panel .heli-group.exception-heavy .heli-tile {
+    flex: 0 1 auto;
+    min-height: 18px;
+    max-width: 100%;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 8.8px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .exec-heli-panel .heli-tile b {
+    display: none;
+  }
+  .exec-heli-panel .heli-tile.more {
+    background: var(--green-bg);
+    border-color: #95d5c8;
+    color: var(--green);
+  }
+  .exec-heli-panel .heli-tile.more.amber {
+    background: var(--amber-bg);
+    border-color: #f0c96d;
+    color: #9f6500;
+  }
+  .heli-card-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .heli-card {
+    min-width: 0;
+    min-height: 0;
+    border: 1px solid var(--hairline);
+    border-top: 3px solid #CA3F4C;
+    border-radius: 7px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .heli-card.status-amber { border-top-color: #D99A20; }
+  .heli-card-head {
+    min-height: 31px;
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .heli-card-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .heli-trend {
+    font-size: 11px;
+    font-weight: 900;
+    color: #f2a9af;
+  }
+  .heli-trend.good { color: #86d6bd; }
+  .heli-trend.flat { color: #9fb0c8; }
+  .heli-card-body {
+    padding: 10px 12px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-height: 0;
+    flex: 1;
+  }
+  .heli-card-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .exec-heli-panel .heli-stack {
+    height: 8px;
+    margin: 0;
+  }
+  .heli-counts {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .heli-counts .r { color: #9d1827; }
+  .heli-counts .a { color: #9f6500; }
+  .heli-counts .g { color: var(--green); }
+  .risk-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 5px;
+    align-content: flex-start;
+    min-height: 0;
+  }
+  .risk-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px;
+    max-width: 100%;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 9.4px;
+    font-weight: 700;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .risk-chip.red {
+    background: var(--red-bg);
+    border: 1px solid #efa0a8;
+    color: #9d1827;
+  }
+  .risk-chip.red.flagged {
+    border-style: dashed;
+    outline: 1px dashed rgba(202,63,76,0.45);
+    outline-offset: 2px;
+  }
+  .risk-chip.amber {
+    background: var(--amber-bg);
+    border: 1px solid #f0c96d;
+    color: #9f6500;
+  }
+  .risk-chip.green,
+  .risk-chip.more {
+    background: var(--green-bg);
+    border: 1px dashed #95d5c8;
+    color: var(--green);
+  }
+  .risk-chip.more.amber {
+    background: var(--amber-bg);
+    border-color: #f0c96d;
+    color: #9f6500;
+  }
+  .exec-control-snapshot {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    padding: 9px 14px 10px;
+    gap: 6px;
+    overflow: hidden;
+  }
+  .exec-control-snapshot .panel-head {
+    padding: 0;
+    border-bottom: 0;
+    align-items: center;
+  }
+  .exec-control-snapshot .panel-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .exec-control-snapshot .control-snapshot-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .exec-control-snapshot .control-summary-card {
+    border-top: 0;
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+  .exec-control-snapshot .control-card-label {
+    color: var(--muted);
+    font-size: 9.5px;
+  }
+  .exec-control-snapshot .control-mix {
+    height: 18px;
+    margin: 5px 0 6px;
+  }
+  .exec-control-snapshot .control-kpi-row {
+    gap: 5px;
+  }
+  .exec-control-snapshot .control-kpi-tile {
+    padding: 5px 8px 6px;
+    background: #fff;
+  }
+  .exec-control-snapshot .control-kpi-label {
+    font-size: 6.6px;
+  }
+  .exec-control-snapshot .control-kpi-value {
+    margin-top: 3px;
+    font-size: 15px;
+  }
+  .exec-control-snapshot .control-kpi-note {
+    margin-top: 2px;
+    font-size: 7.1px;
+  }
+
+  /* ---------- Executive summary view toggle + option A rows ---------- */
+  .exec-view-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .exec-view-toggle {
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 4px 3px 8px;
+    border: 1px dashed rgba(255,255,255,0.72);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.15);
+  }
+  .exec-view-toggle::before {
+    content: &quot;TEMP VIEW SWITCH&quot;;
+    color: rgba(255,255,255,0.78);
+    font-size: 7.2px;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+    margin-right: 3px;
+  }
+  .exec-view-toggle label {
+    height: 22px;
+    min-width: 64px;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.72);
+    font-size: 8.8px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  #exec-view-grid:checked ~ .slide-header .exec-view-toggle .grid-label,
+  #exec-view-rows:checked ~ .slide-header .exec-view-toggle .rows-label {
+    background: var(--sl-white);
+    color: var(--navy);
+  }
+  #exec-view-grid:checked ~ .slide-body .exec-rows-view {
+    display: none;
+  }
+  #exec-view-rows:checked ~ .slide-body.exec-grid-page {
+    display: block;
+  }
+  #exec-view-rows:checked ~ .slide-body.exec-grid-page > .kpi-strip,
+  #exec-view-rows:checked ~ .slide-body.exec-grid-page > .exec-readout,
+  #exec-view-rows:checked ~ .slide-body.exec-grid-page > .right-col {
+    display: none;
+  }
+  #exec-view-rows:checked ~ .slide-body .exec-rows-view {
+    display: grid;
+  }
+  .exec-rows-view {
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: 288px minmax(0, 1fr);
+    grid-template-rows: 178px minmax(0, 1fr) 84px;
+    gap: 10px 14px;
+  }
+  .rows-card {
+    min-width: 0;
+    min-height: 0;
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .rows-posture {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 12px 14px 10px;
+  }
+  .rows-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .rows-card-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+  .rows-status-pill {
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid #f0c96d;
+    background: var(--amber-bg);
+    color: #9f6500;
+    padding: 0 10px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .rows-metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 12px;
+  }
+  .rows-metric {
+    min-height: 36px;
+    border-left: 3px solid var(--red);
+    padding-left: 9px;
+  }
+  .rows-metric.amber { border-left-color: #D99A20; }
+  .rows-metric.navy { border-left-color: var(--navy); }
+  .rows-metric strong {
+    display: block;
+    color: var(--ink);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 0.95;
+  }
+  .rows-metric span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .rows-posture-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 1px solid var(--hairline-soft);
+  }
+  .rows-foot-label {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rows-foot-value {
+    margin-top: 2px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .rows-foot-value.alert { color: #7A003C; }
+  .rows-readout {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rows-readout .curated {
+    display: inline-flex;
+    align-self: flex-start;
+    border-radius: 4px;
+    background: #edf3fb;
+    color: var(--navy);
+    padding: 3px 7px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rows-readout h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  .rows-readout .comm-owner {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.22;
+  }
+  .rows-readout p {
+    margin: 4px 0 0;
+    color: var(--ink-2);
+    font-size: 11px;
+    line-height: 1.42;
+  }
+  .rows-readout b { color: var(--ink); }
+  .rows-control-mini {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 8px 12px;
+  }
+  .rows-control-title {
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .rows-mini-bar {
+    height: 14px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #e4ebf4;
+  }
+  .rows-mini-bar + .rows-mini-bar { margin-top: 6px; }
+  .rows-mini-bar span {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+  }
+  .rows-mini-bar .effective { background: var(--green); }
+  .rows-mini-bar .partial { background: #DE4721; }
+  .rows-mini-bar .ineffective { background: #7A003C; }
+  .rows-panel {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rows-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .rows-panel-title {
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .rows-panel-sub {
+    margin-left: 6px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .rows-list {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .severity-row {
+    min-height: 0;
+    border: 1px solid var(--hairline);
+    border-left: 4px solid var(--red);
+    border-radius: 7px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 38px 174px minmax(0, 1fr) 106px;
+    gap: 10px;
+    align-items: center;
+    padding: 7px 12px 7px 10px;
+    overflow: hidden;
+  }
+  .severity-row.amber-left {
+    border-left-color: #D99A20;
+  }
+  .severity-rank {
+    color: var(--muted-2);
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .severity-name {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.08;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .severity-trend {
+    margin-top: 3px;
+    font-size: 9.5px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .severity-trend.bad { color: #b72e3b; }
+  .severity-trend.good { color: var(--green); }
+  .severity-trend.flat { color: var(--muted); }
+  .severity-main {
+    min-width: 0;
+  }
+  .severity-detail {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .severity-counts {
+    flex: 0 0 auto;
+    display: inline-flex;
+    gap: 5px;
+  }
+  .sev-count {
+    min-width: 34px;
+    height: 22px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .sev-count.red { background: var(--red-bg); color: #9d1827; border-color: #efa0a8; }
+  .sev-count.amber { background: var(--amber-bg); color: #9f6500; border-color: #f0c96d; }
+  .sev-count.green { background: var(--green-bg); color: var(--green); border-color: #95d5c8; }
+  .severity-chips {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+  .rows-panel .risk-chip {
+    min-height: 20px;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+  .severity-bar {
+    width: 106px;
+    height: 8px;
+    display: flex;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #e4ebf4;
+    justify-self: end;
+  }
+  .severity-bar span { height: 100%; }
+  .severity-bar .red { background: var(--red); }
+  .severity-bar .amber { background: #D99A20; }
+  .severity-bar .green { background: var(--green); }
+
   /* ---------- FOOTER ---------- */
   .slide-footer {
     background: var(--navy-deep);
@@ -1296,6 +2046,8 @@
 
 <!-- ================ SLIDE ================ -->
 <div class=&quot;slide&quot;>
+  <input class=&quot;exec-view-radio&quot; type=&quot;radio&quot; id=&quot;exec-view-grid&quot; name=&quot;exec-view&quot; checked/>
+  <input class=&quot;exec-view-radio&quot; type=&quot;radio&quot; id=&quot;exec-view-rows&quot; name=&quot;exec-view&quot;/>
 
   <!-- ========== BRAND STRIP ========== -->
   <div class=&quot;brand-strip&quot;>
@@ -1316,56 +2068,48 @@
     <div class=&quot;header-left&quot;>
       <div class=&quot;header-title&quot;>Executive Summary</div>
       <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Cross-theme synthesis</div>
+      <div class=&quot;exec-view-toggle&quot; aria-label=&quot;Executive summary view&quot;>
+        <label class=&quot;grid-label&quot; for=&quot;exec-view-grid&quot;>Option 1</label>
+        <label class=&quot;rows-label&quot; for=&quot;exec-view-rows&quot;>Option 2</label>
+      </div>
     </div>
     <div class=&quot;header-right&quot;>
-      <div class=&quot;breadcrumb&quot; aria-label=&quot;page marker&quot;>
-        <div class=&quot;crumb active&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-        <div class=&quot;crumb&quot;></div>
-      </div>
-      <div class=&quot;divider&quot;></div>
       <div class=&quot;page-marker&quot;>P1 / 18</div>
     </div>
   </header>
 
   <!-- ========== BODY ========== -->
-  <div class=&quot;slide-body&quot;>
+  <div class=&quot;slide-body exec-grid-page&quot;>
 
     <!-- ===== KPI STRIP ===== -->
     <div class=&quot;kpi-strip&quot;>
-      <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Red / Amber Appetite</div>
-        <div class=&quot;kpi-value&quot;>18%</div>
-      </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>RCSA Red L2 Risks</div>
         <div class=&quot;kpi-value&quot;>13</div>
+      </div>
+      <div class=&quot;kpi kpi-red&quot;>
+        <div class=&quot;kpi-label&quot;>Appetite Breaches</div>
+        <div class=&quot;kpi-value&quot;>7</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Overdue Assessments</div>
         <div class=&quot;kpi-value&quot;>4</div>
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
-        <div class=&quot;kpi-label&quot;>Loss YTD vs &pound;25m Trigger</div>
+        <div class=&quot;kpi-label&quot;>Loss YTD vs &pound;25m</div>
         <div class=&quot;kpi-value&quot;>67%</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Material Controls Ineffective</div>
+        <div class=&quot;kpi-label&quot;>Material Ctrl Ineff.</div>
         <div class=&quot;kpi-value&quot;>9%</div>
       </div>
     </div>
 
     <!-- ===== LEFT: EXECUTIVE SUMMARY COMMENTARY ===== -->
-    <section class=&quot;attention-panel top3-commentary&quot;>
+    <section class=&quot;attention-panel top3-commentary exec-readout&quot;>
       <div class=&quot;commentary-head&quot;>
-        <div class=&quot;title&quot;>Executive summary commentary</div>
-        <div class=&quot;curated&quot;>Summary</div>
+        <div class=&quot;curated&quot;>Board focus</div>
+        <div class=&quot;title&quot;>Committee-level readout</div>
       </div>
 
       <div class=&quot;exec-commentary-list&quot;>
@@ -1377,7 +2121,7 @@
           </div>
           <div class=&quot;comm-owner&quot;>Risk Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
           <p class=&quot;comm-body&quot;>
-            Overall risk posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, four overdue assessments, losses at <b>&pound;16.8m YTD</b> and <b>9%</b> material controls ineffective. The Board should focus on whether the Cyber &amp;amp; IT appetite breach, RCSA red-risk concentration, rolling loss trend and material/key control response are on credible Q2 recovery paths, with named owners and action dates visible in the supporting pages.
+            Overall posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. The Board should focus on whether the Cyber &amp;amp; IT appetite breach, RCSA red-risk concentration in <b>Operational</b> and <b>Customer</b>, the rolling loss trend and material/key control response are on credible Q2 recovery paths.
           </p>
         </div>
 
@@ -1389,10 +2133,10 @@
     <!-- ===== RIGHT COLUMN ===== -->
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;top-risk-panel risk-universe-panel&quot;>
+      <div class=&quot;top-risk-panel risk-universe-panel exec-heli-panel&quot;>
         <div class=&quot;panel-head&quot;>
           <div>
-            <div class=&quot;panel-title&quot;>RCSA Helicopter View</div>
+            <span class=&quot;panel-title&quot;>RCSA Helicopter View</span><span class=&quot;panel-sub&quot;>ordered by severity</span>
           </div>
           <div class=&quot;universe-legend&quot;>
             <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot red&quot;></i>Red</span>
@@ -1421,7 +2165,7 @@
           </div>
 
           <div class=&quot;heli-group&quot;>
-            <div class=&quot;heli-head&quot;>Liquidity &amp;<br/>Funding</div>
+            <div class=&quot;heli-head&quot;>Liquidity &amp; Funding</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:100%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
               <div class=&quot;heli-tile red flagged&quot;><span>Funding</span><b>R</b></div>
@@ -1441,7 +2185,7 @@
           </div>
 
           <div class=&quot;heli-group&quot;>
-            <div class=&quot;heli-head&quot;>Credit &amp;<br/>Counterparty</div>
+            <div class=&quot;heli-head&quot;>Credit &amp; Counterparty</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:34%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
               <div class=&quot;heli-tile red flagged&quot;><span>Investment Cpty</span><b>R</b></div>
@@ -1465,11 +2209,10 @@
             <div class=&quot;heli-head&quot;>Customer</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:38%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Data Prot</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Data Protection</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>AI</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Sales</span><b>R</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Post-Sales</span><b>A</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Data Mgmt</span><b>A</b></div>
+              <div class=&quot;heli-tile more amber&quot;><span>+2 amber</span></div>
               <div class=&quot;heli-tile more&quot;><span>+3 green</span></div>
             </div>
           </div>
@@ -1478,22 +2221,18 @@
             <div class=&quot;heli-head&quot;>Operational</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:42%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Info Sec</span><b>R</b></div>
-              <div class=&quot;heli-tile red flagged&quot;><span>Op Res</span><b>R</b></div>
-              <div class=&quot;heli-tile red&quot;><span>Reg Comp</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Info Security</span><b>R</b></div>
+              <div class=&quot;heli-tile red flagged&quot;><span>Op Resilience</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Reg Compliance</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Technology</span><b>R</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Third Party</span><b>A</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Model</span><b>A</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Reporting</span><b>A</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>Tax</span><b>A</b></div>
-              <div class=&quot;heli-tile amber&quot;><span>People</span><b>A</b></div>
+              <div class=&quot;heli-tile more amber&quot;><span>+5 amber</span></div>
               <div class=&quot;heli-tile more&quot;><span>+3 green</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class=&quot;control-snapshot&quot;>
+      <div class=&quot;control-snapshot exec-control-snapshot&quot;>
         <div class=&quot;panel-head&quot; style=&quot;border-bottom: 1px solid var(--hairline-soft); padding-bottom: 6px;&quot;>
           <div class=&quot;panel-title&quot;>Control Snapshot</div>
           <div class=&quot;control-status-legend&quot;>
@@ -1551,6 +2290,148 @@
       </div>
 
     </aside>
+
+    <!-- ===== OPTION A: SEVERITY-RANKED ROWS ===== -->
+    <div class=&quot;exec-rows-view&quot; aria-label=&quot;Executive summary severity-ranked rows view&quot;>
+      <section class=&quot;rows-card rows-posture&quot;>
+        <div class=&quot;rows-head&quot;>
+          <div class=&quot;rows-card-label&quot;>Risk posture</div>
+          <div class=&quot;rows-status-pill&quot;>Amber &#9650;</div>
+        </div>
+        <div class=&quot;rows-metric-grid&quot;>
+          <div class=&quot;rows-metric&quot;><strong>13</strong><span>Red L2 risks</span></div>
+          <div class=&quot;rows-metric amber&quot;><strong>13</strong><span>Amber L2 risks</span></div>
+          <div class=&quot;rows-metric&quot;><strong>7</strong><span>Appetite breaches</span></div>
+          <div class=&quot;rows-metric navy&quot;><strong>4</strong><span>Overdue assessments</span></div>
+        </div>
+        <div class=&quot;rows-posture-foot&quot;>
+          <div>
+            <div class=&quot;rows-foot-label&quot;>Loss YTD vs &pound;25m</div>
+            <div class=&quot;rows-foot-value&quot;>&pound;16.8m &middot; 67%</div>
+          </div>
+          <div>
+            <div class=&quot;rows-foot-label&quot;>Material Ctrl Ineff.</div>
+            <div class=&quot;rows-foot-value alert&quot;>9%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class=&quot;rows-card rows-readout&quot;>
+        <div class=&quot;curated&quot;>Board focus</div>
+        <h2>Committee-level readout</h2>
+        <div class=&quot;comm-owner&quot;>Risk Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
+        <p>
+          Overall posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. Focus discussion on Cyber &amp;amp; IT, red-risk concentration in <b>Operational</b> and <b>Customer</b>, and Q2 recovery paths.
+        </p>
+      </section>
+
+      <section class=&quot;rows-card rows-control-mini&quot;>
+        <div class=&quot;rows-control-title&quot;>Control Snapshot</div>
+        <div class=&quot;rows-mini-bar&quot; aria-label=&quot;Material controls status mix&quot;>
+          <span class=&quot;effective&quot; style=&quot;width:71%&quot;>71%</span>
+          <span class=&quot;partial&quot; style=&quot;width:20%&quot;>20%</span>
+          <span class=&quot;ineffective&quot; style=&quot;width:9%&quot;>9%</span>
+        </div>
+        <div class=&quot;rows-mini-bar&quot; aria-label=&quot;Key controls status mix&quot;>
+          <span class=&quot;effective&quot; style=&quot;width:80%&quot;>80%</span>
+          <span class=&quot;partial&quot; style=&quot;width:19%&quot;>19%</span>
+          <span class=&quot;ineffective&quot; style=&quot;width:1%&quot;></span>
+        </div>
+      </section>
+
+      <section class=&quot;rows-card rows-panel&quot;>
+        <div class=&quot;rows-panel-head&quot;>
+          <div><span class=&quot;rows-panel-title&quot;>RCSA Helicopter View</span><span class=&quot;rows-panel-sub&quot;>L1 themes ranked by severity &middot; worst first</span></div>
+          <div class=&quot;universe-legend&quot;>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot red&quot;></i>Red</span>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot amber&quot;></i>Amber</span>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot green&quot;></i>Green</span>
+          </div>
+        </div>
+
+        <div class=&quot;rows-list&quot;>
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>01</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Operational</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>4 R</span><span class=&quot;sev-count amber&quot;>5 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Info Security</span><span class=&quot;risk-chip red&quot;>Op Resilience</span><span class=&quot;risk-chip red&quot;>Reg Compliance</span><span class=&quot;risk-chip red&quot;>Technology</span><span class=&quot;risk-chip more amber&quot;>+5 amber</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:42%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>02</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Customer</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>3 R</span><span class=&quot;sev-count amber&quot;>2 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Data Protection</span><span class=&quot;risk-chip red&quot;>AI</span><span class=&quot;risk-chip red&quot;>Sales</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:38%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>03</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Liquidity &amp; Funding</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>2 R</span><span class=&quot;sev-count amber&quot;>0 A</span><span class=&quot;sev-count green&quot;>0 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Funding</span><span class=&quot;risk-chip red&quot;>Liquidity</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:100%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>04</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Market</div><div class=&quot;severity-trend flat&quot;>&#9642; Stable</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>2 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Spread</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:17%&quot;></span><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>05</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Insurance</div><div class=&quot;severity-trend good&quot;>&#9660; Improving</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>2 A</span><span class=&quot;sev-count green&quot;>2 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Mortality</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:20%&quot;></span><span class=&quot;amber&quot; style=&quot;width:40%&quot;></span><span class=&quot;green&quot; style=&quot;width:40%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>06</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Credit &amp; Counterparty</div><div class=&quot;severity-trend good&quot;>&#9660; Improving</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>1 A</span><span class=&quot;sev-count green&quot;>1 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Investment Cpty</span><span class=&quot;risk-chip more amber&quot;>+1 amber</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:34%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row&quot;>
+            <div class=&quot;severity-rank&quot;>07</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Strategic</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>0 A</span><span class=&quot;sev-count green&quot;>2 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Reputation</span><span class=&quot;risk-chip more&quot;>+2 green</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div>
+          </article>
+
+          <article class=&quot;severity-row amber-left&quot;>
+            <div class=&quot;severity-rank&quot;>08</div>
+            <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Climate</div><div class=&quot;severity-trend good&quot;>&#9660; Improving</div></div>
+            <div class=&quot;severity-detail&quot;>
+              <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>0 R</span><span class=&quot;sev-count amber&quot;>1 A</span><span class=&quot;sev-count green&quot;>2 G</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber&quot;>Greenwashing</span><span class=&quot;risk-chip more&quot;>+2 green</span></div>
+            </div>
+            <div class=&quot;severity-bar&quot;><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div>
+          </article>
+        </div>
+      </section>
+    </div>
 
   </div>
 
@@ -1754,8 +2635,8 @@
   .reg-head,
   .reg-row {
     display: grid;
-    grid-template-columns: 20px 56px minmax(124px, 0.82fr) 36px 36px 36px 36px 24px 54px minmax(180px, 1fr);
-    column-gap: 7px;
+    grid-template-columns: 20px 50px minmax(112px, 0.74fr) 31px 31px 31px 31px 22px 48px 38px 42px minmax(120px, 0.78fr);
+    column-gap: 5px;
     row-gap: 0;
     align-items: center;
   }
@@ -1985,6 +2866,15 @@
   .drive-count {
     display: none;
   }
+  .risk-count-cell {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8.3px;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .risk-count-cell.red-risk { color: var(--sl-core-coral); }
   .risk-note {
     margin-top: 7px;
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -2283,7 +3173,7 @@
       <div class='hero-head'>
         <div>
           <div class='hero-title'>Financial L2 Risk Position - prior vs current</div>
-          <div class='hero-sub'>Data columns show the raw worst-L3 roll-up; Prior and Current columns include any expert overlay; driving RAG shows the share of L3 risks at the current data-derived RAG.</div>
+          <div class='hero-sub'>Data columns show the raw worst-L3 roll-up; Prior and Current columns include any expert overlay; count columns show total and red L3 risk context.</div>
         </div>
         <div class='hero-tools'>
           <div class='hero-date'>Q4 2025 -> Q1 2026</div>
@@ -2310,84 +3200,86 @@
           <div>Current</div>
           <div>Move</div>
           <div>% Driving RAG</div>
+          <div># Risks</div>
+          <div># Red Risks</div>
           <div>Worst L3 risks</div>
         </div>
 
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>1</div><div class='reg-l1'>Market</div>
           <div class='reg-risk'><div class='reg-name'>Spread</div><div class='reg-meta'>2 red L3 risks</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 2 / 7 L3 risks at the current data RAG (29%)'><span class='drive-pct'>29%</span><span class='drive-count'>2 / 7</span></div><div class='driver-cell'>Spread stress &amp; liquidity premium &amp; Credit spread widening</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 2 / 7 L3 risks at the current data RAG (29%)'><span class='drive-pct'>29%</span><span class='drive-count'>2 / 7</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>7</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Spread stress &amp; liquidity premium &amp; Credit spread widening</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>2</div><div class='reg-l1'>Credit &amp; Cpty</div>
           <div class='reg-risk'><div class='reg-name'>Investment Counterparty Default &amp; Downgrade</div><div class='reg-meta'>Worst L3 forces L2 red</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='driver-cell'>Default watchlist deterioration &amp; Downgrade concentration</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>1</div><div class='driver-cell'>Default watchlist deterioration &amp; Downgrade concentration</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>3</div><div class='reg-l1'>Liquidity</div>
           <div class='reg-risk'><div class='reg-name'>Liquidity</div><div class='reg-meta'>Expert overlay applied at L2</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini red final-overlay' title='Current final: expert overlay Amber -&gt; Red'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='driver-cell'>Liquidity stress buffer</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini red final-overlay' title='Current final: expert overlay Amber -&gt; Red'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Liquidity stress buffer</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>4</div><div class='reg-l1'>Insurance</div>
           <div class='reg-risk'><div class='reg-name'>Mortality</div><div class='reg-meta'>Persisting red L3 assumption risk</div></div>
-          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 5 L3 risks at the current data RAG (40%)'><span class='drive-pct'>40%</span><span class='drive-count'>2 / 5</span></div><div class='driver-cell'>Mortality assumption drift</div>
+          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 5 L3 risks at the current data RAG (40%)'><span class='drive-pct'>40%</span><span class='drive-count'>2 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Mortality assumption drift</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>5</div><div class='reg-l1'>Liquidity</div>
           <div class='reg-risk'><div class='reg-name'>Funding</div><div class='reg-meta'>Overdue assessment</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='driver-cell'>Wholesale funding concentration</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>1</div><div class='driver-cell'>Wholesale funding concentration</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>6</div><div class='reg-l1'>Market</div>
           <div class='reg-risk'><div class='reg-name'>Equity</div><div class='reg-meta'>New amber</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='driver-cell'>Equity volatility spike</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>6</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Equity volatility spike</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>7</div><div class='reg-l1'>Market</div>
           <div class='reg-risk'><div class='reg-name'>Inflation</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='driver-cell'>Inflation basis risk</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Inflation basis risk</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>8</div><div class='reg-l1'>Market</div>
           <div class='reg-risk'><div class='reg-name'>Interest Rate</div><div class='reg-meta'>Expert overlay applied at L2</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini amber final-overlay' title='Current final: expert overlay Green -&gt; Amber'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 7 L3 risks at the current data RAG (14%)'><span class='drive-pct'>14%</span><span class='drive-count'>1 / 7</span></div><div class='driver-cell'>Basis risk watch item</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini amber final-overlay' title='Current final: expert overlay Green -&gt; Amber'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 7 L3 risks at the current data RAG (14%)'><span class='drive-pct'>14%</span><span class='drive-count'>1 / 7</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>7</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Basis risk watch item</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>9</div><div class='reg-l1'>Credit &amp; Cpty</div>
           <div class='reg-risk'><div class='reg-name'>Illiquid Credit</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='driver-cell'>Valuation lag and exit depth</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Valuation lag and exit depth</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>10</div><div class='reg-l1'>Insurance</div>
           <div class='reg-risk'><div class='reg-name'>Expense</div><div class='reg-meta'>Overdue assessment</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='driver-cell'>Expense strain model</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>▲</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Expense strain model</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>11</div><div class='reg-l1'>Insurance</div>
           <div class='reg-risk'><div class='reg-name'>Longevity</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='driver-cell'>Reserve sensitivity</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>6</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Reserve sensitivity</div>
         </div>
         <div class='reg-row rag-green'>
-          <div class='reg-rank green'>12</div><div class='reg-l1'>Market</div><div class='reg-risk'><div class='reg-name'>Currency</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='driver-cell'>FX exposure hedged</div>
+          <div class='reg-rank green'>12</div><div class='reg-l1'>Market</div><div class='reg-risk'><div class='reg-name'>Currency</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>FX exposure hedged</div>
         </div>
         <div class='reg-row rag-green'>
-          <div class='reg-rank green'>13</div><div class='reg-l1'>Market</div><div class='reg-risk'><div class='reg-name'>Property</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Valuation movement controlled</div>
+          <div class='reg-rank green'>13</div><div class='reg-l1'>Market</div><div class='reg-risk'><div class='reg-name'>Property</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Valuation movement controlled</div>
         </div>
         <div class='reg-row rag-green'>
-          <div class='reg-rank green'>14</div><div class='reg-l1'>Credit &amp; Cpty</div><div class='reg-risk'><div class='reg-name'>Reinsurance Counterparty</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 3 L3 risks at the current data RAG (100%)'><span class='drive-pct'>100%</span><span class='drive-count'>3 / 3</span></div><div class='driver-cell'>Counterparty ratings stable</div>
+          <div class='reg-rank green'>14</div><div class='reg-l1'>Credit &amp; Cpty</div><div class='reg-risk'><div class='reg-name'>Reinsurance Counterparty</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 3 L3 risks at the current data RAG (100%)'><span class='drive-pct'>100%</span><span class='drive-count'>3 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Counterparty ratings stable</div>
         </div>
         <div class='reg-row rag-green'>
-          <div class='reg-rank green'>15</div><div class='reg-l1'>Insurance</div><div class='reg-risk'><div class='reg-name'>Morbidity</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='driver-cell'>Claims assumption stable</div>
+          <div class='reg-rank green'>15</div><div class='reg-l1'>Insurance</div><div class='reg-risk'><div class='reg-name'>Morbidity</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Claims assumption stable</div>
         </div>
         <div class='reg-row rag-green'>
-          <div class='reg-rank green'>16</div><div class='reg-l1'>Insurance</div><div class='reg-risk'><div class='reg-name'>Persistency</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Persistency trend stable</div>
+          <div class='reg-rank green'>16</div><div class='reg-l1'>Insurance</div><div class='reg-risk'><div class='reg-name'>Persistency</div><div class='reg-meta'>Within appetite</div></div><div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Persistency trend stable</div>
         </div>
 
         <div class='risk-note'>
           <span class='green-hidden-copy'><b>5 green financial L2 risks hidden by default:</b> Currency, Property, Reinsurance Counterparty, Morbidity and Persistency.</span>
           <span class='green-shown-copy'><b>Green risks shown.</b> Default review still prioritises red and amber exceptions.</span>
-          <span>Driving RAG = L3s at current data RAG / total.</span>
+          <span>Counts expose total L3 risks and red L3 risks behind the worst-case L2 aggregation.</span>
         </div>
       </div>
 
@@ -2669,7 +3561,7 @@
   .reg-head,
   .reg-row {
     display: grid;
-    grid-template-columns: 20px 56px minmax(122px, 0.86fr) 36px 36px 36px 36px 24px 54px minmax(178px, 1.05fr);
+    grid-template-columns: 20px 50px minmax(112px, 0.74fr) 31px 31px 31px 31px 22px 48px 38px 42px minmax(120px, 0.78fr);
     column-gap: 5px;
     row-gap: 0;
     align-items: center;
@@ -2745,8 +3637,8 @@
   /* Non-financial page carries more visible exceptions, so keep the register compact. */
   .reg-head,
   .reg-row {
-    grid-template-columns: 18px 54px minmax(124px, 0.9fr) 34px 34px 34px 34px 24px 52px minmax(190px, 1.18fr);
-    column-gap: 6px;
+    grid-template-columns: 18px 48px minmax(104px, 0.76fr) 30px 30px 30px 30px 22px 46px 34px 38px minmax(136px, 0.95fr);
+    column-gap: 4px;
     row-gap: 0;
   }
   .reg-row { padding: 1px 0; font-size: 8.6px; }
@@ -2920,6 +3812,15 @@
   .drive-count {
     display: none;
   }
+  .risk-count-cell {
+    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .risk-count-cell.red-risk { color: var(--sl-core-coral); }
   .risk-note {
     margin-top: 7px;
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -3241,7 +4142,7 @@
       <div class='hero-head'>
         <div>
           <div class='hero-title'>Non-Financial L2 Risk Position - prior vs current</div>
-          <div class='hero-sub'>Data columns show the raw worst-L3 roll-up; Prior and Current columns include any expert overlay; driving RAG shows the share of L3 risks at the current data-derived RAG.</div>
+          <div class='hero-sub'>Data columns show the raw worst-L3 roll-up; Prior and Current columns include any expert overlay; count columns show total and red L3 risk context.</div>
         </div>
         <div class='hero-tools'>
           <div class='hero-date'>Q4 2025 -> Q1 2026</div>
@@ -3268,143 +4169,145 @@
           <div>Current</div>
           <div>Move</div>
           <div>% Driving RAG</div>
+          <div># Risks</div>
+          <div># Red Risks</div>
           <div>Worst L3 risks</div>
         </div>
 
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>1</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Information Security & Cyber</div><div class='reg-meta'>Worst L3 forces L2 red</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 3 / 9 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>3 / 9</span></div><div class='driver-cell'>Cyber attack / data breach</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 3 / 9 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>3 / 9</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>9</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>3</div><div class='driver-cell'>Cyber attack / data breach</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>2</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Operational Resilience</div><div class='reg-meta'>Overdue assessment</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 8 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>2 / 8</span></div><div class='driver-cell'>Critical service outage</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 8 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>2 / 8</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>8</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Critical service outage</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>3</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Regulatory Compliance</div><div class='reg-meta'>Worst L3 forces L2 red</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 7 L3 risks at the current data RAG (29%)'><span class='drive-pct'>29%</span><span class='drive-count'>2 / 7</span></div><div class='driver-cell'>Regulatory change management</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 7 L3 risks at the current data RAG (29%)'><span class='drive-pct'>29%</span><span class='drive-count'>2 / 7</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>7</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Regulatory change management</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>4</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Data Protection</div><div class='reg-meta'>Stable red</div></div>
-          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 6 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>2 / 6</span></div><div class='driver-cell'>Retention / breach response</div>
+          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 6 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>2 / 6</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>6</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Retention / breach response</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>5</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Artificial Intelligence</div><div class='reg-meta'>Expert overlay applied at L2</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini red final-overlay' title='Current final: expert overlay Amber -&gt; Red'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='driver-cell'>GenAI model governance</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini red final-overlay' title='Current final: expert overlay Amber -&gt; Red'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 5 L3 risks at the current data RAG (20%)'><span class='drive-pct'>20%</span><span class='drive-count'>1 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>GenAI model governance</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>6</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Technology</div><div class='reg-meta'>Overdue assessment</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 6 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>2 / 6</span></div><div class='driver-cell'>Change failure / release control</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 2 / 6 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>2 / 6</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>6</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Change failure / release control</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>7</div><div class='reg-l1'>Strategic</div>
           <div class='reg-risk'><div class='reg-name'>Reputation</div><div class='reg-meta'>Worst L3 forces L2 red</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='driver-cell'>External conduct exposure</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 4 L3 risks at the current data RAG (25%)'><span class='drive-pct'>25%</span><span class='drive-count'>1 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>1</div><div class='driver-cell'>External conduct exposure</div>
         </div>
         <div class='reg-row rag-red'>
           <div class='reg-rank red'>8</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Sales & Distribution</div><div class='reg-meta'>Stable red</div></div>
-          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 5 L3 risks at the current data RAG (40%)'><span class='drive-pct'>40%</span><span class='drive-count'>2 / 5</span></div><div class='driver-cell'>Advice / disclosure controls</div>
+          <div><span class='rag-mini red' title='Prior data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Prior final: data accepted'>Red</span></div><div><span class='rag-mini red' title='Current data-derived: worst L3 roll-up'>Red</span></div><div><span class='rag-mini red' title='Current final: data accepted'>Red</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 5 L3 risks at the current data RAG (40%)'><span class='drive-pct'>40%</span><span class='drive-count'>2 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>2</div><div class='driver-cell'>Advice / disclosure controls</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>9</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Post-Sales Administration & Claims</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='driver-cell'>Claims servicing backlog</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Claims servicing backlog</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>10</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Third Party</div><div class='reg-meta'>New amber</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='driver-cell'>Supplier resilience concentration</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 6 L3 risks at the current data RAG (17%)'><span class='drive-pct'>17%</span><span class='drive-count'>1 / 6</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>6</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Supplier resilience concentration</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>11</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Model</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='driver-cell'>Model validation delay</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 3 L3 risks at the current data RAG (33%)'><span class='drive-pct'>33%</span><span class='drive-count'>1 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Model validation delay</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>12</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Reporting</div><div class='reg-meta'>New amber</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='driver-cell'>Manual reporting adjustment</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>2</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Manual reporting adjustment</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>13</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Tax Compliance</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='driver-cell'>Tax control evidence gap</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>2</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Tax control evidence gap</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>14</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>People & Safety</div><div class='reg-meta'>New amber</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='driver-cell'>Key person dependency</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>2</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Key person dependency</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>15</div><div class='reg-l1'>Climate</div>
           <div class='reg-risk'><div class='reg-name'>Greenwashing</div><div class='reg-meta'>Stable amber</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 1 L3 risks at the current data RAG (100%)'><span class='drive-pct'>100%</span><span class='drive-count'>1 / 1</span></div><div class='driver-cell'>Disclosure substantiation</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 1 / 1 L3 risks at the current data RAG (100%)'><span class='drive-pct'>100%</span><span class='drive-count'>1 / 1</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>1</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Disclosure substantiation</div>
         </div>
         <div class='reg-row rag-amber'>
           <div class='reg-rank amber'>16</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Data & Information Management</div><div class='reg-meta'>New amber</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='driver-cell'>Data ownership gaps</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini amber' title='Current data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Current final: data accepted'>Amber</span></div><div class='reg-arrow up'>&#9650;</div><div class='drive-cell' title='Driving RAG: 1 / 2 L3 risks at the current data RAG (50%)'><span class='drive-pct'>50%</span><span class='drive-count'>1 / 2</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>2</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Data ownership gaps</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>17</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Legal</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='driver-cell'>Legal obligations stable</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Legal obligations stable</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>18</div><div class='reg-l1'>Strategic</div>
           <div class='reg-risk'><div class='reg-name'>Strategy Execution</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Plan delivery controls</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Plan delivery controls</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>19</div><div class='reg-l1'>Strategic</div>
           <div class='reg-risk'><div class='reg-name'>Strategy Selection</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Strategy challenge process</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Strategy challenge process</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>20</div><div class='reg-l1'>Climate</div>
           <div class='reg-risk'><div class='reg-name'>Physical</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 3 L3 risks at the current data RAG (67%)'><span class='drive-pct'>67%</span><span class='drive-count'>2 / 3</span></div><div class='driver-cell'>Physical risk scenario</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 2 / 3 L3 risks at the current data RAG (67%)'><span class='drive-pct'>67%</span><span class='drive-count'>2 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Physical risk scenario</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>21</div><div class='reg-l1'>Climate</div>
           <div class='reg-risk'><div class='reg-name'>Transition</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow down'>&#9660;</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Transition plan evidence</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow down'>&#9660;</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Transition plan evidence</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>22</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Proposition Design & Pricing</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='driver-cell'>Pricing governance stable</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Pricing governance stable</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>23</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Change Management</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Customer change controls</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Customer change controls</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>24</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Financial Crime</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow down'>&#9660;</div><div class='drive-cell' title='Driving RAG: 2 / 3 L3 risks at the current data RAG (67%)'><span class='drive-pct'>67%</span><span class='drive-count'>2 / 3</span></div><div class='driver-cell'>SAR escalation trend reduced</div>
+          <div><span class='rag-mini amber' title='Prior data-derived: worst L3 roll-up'>Amber</span></div><div><span class='rag-mini amber' title='Prior final: data accepted'>Amber</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow down'>&#9660;</div><div class='drive-cell' title='Driving RAG: 2 / 3 L3 risks at the current data RAG (67%)'><span class='drive-pct'>67%</span><span class='drive-count'>2 / 3</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>3</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>SAR escalation trend reduced</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>25</div><div class='reg-l1'>Operational</div>
           <div class='reg-risk'><div class='reg-name'>Transaction Processing & Execution</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='driver-cell'>Processing controls stable</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 3 / 4 L3 risks at the current data RAG (75%)'><span class='drive-pct'>75%</span><span class='drive-count'>3 / 4</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>4</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Processing controls stable</div>
         </div>
         <div class='reg-row rag-green'>
           <div class='reg-rank green'>26</div><div class='reg-l1'>Customer</div>
           <div class='reg-risk'><div class='reg-name'>Customer Outcomes</div><div class='reg-meta'>Within appetite</div></div>
-          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='driver-cell'>Outcome testing stable</div>
+          <div><span class='rag-mini green' title='Prior data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Prior final: data accepted'>Green</span></div><div><span class='rag-mini green' title='Current data-derived: worst L3 roll-up'>Green</span></div><div><span class='rag-mini green' title='Current final: no overlay'>Green</span></div><div class='reg-arrow flat'>-</div><div class='drive-cell' title='Driving RAG: 4 / 5 L3 risks at the current data RAG (80%)'><span class='drive-pct'>80%</span><span class='drive-count'>4 / 5</span></div><div class='risk-count-cell' title='Total L3 risks in this L2'>5</div><div class='risk-count-cell red-risk' title='Current red L3 risks in this L2'>0</div><div class='driver-cell'>Outcome testing stable</div>
         </div>
         <div class='risk-note'>
           <span class='green-hidden-copy'><b>10 green non-financial L2 risks hidden by default.</b> Toggle to view lower-priority green rows.</span>
           <span class='green-shown-copy'><b>Green risks shown.</b> Default review still prioritises red and amber exceptions.</span>
-          <span>Driving RAG = L3s at current data RAG / total.</span>
+          <span>Counts expose total L3 risks and red L3 risks behind the worst-case L2 aggregation.</span>
         </div>
       </div>
 

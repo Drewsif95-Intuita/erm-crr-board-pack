@@ -2,7 +2,7 @@
 
 Static interactive CRR executive board pack prepared for Azure Static Web Apps.
 
-The deployed app is the standalone `CRR_Exec_Pack_v3_interactive.html` prototype copied to `index.html` and served by Vite. The report design remains self-contained: 20 fixed 1280 x 720 iframe frames, Standard Life branding, top navigation, responsive slide scaling, embedded quarter controls, thumbnail tray, and keyboard shortcuts are preserved from the source HTML.
+The deployed app is the standalone `CRR_Exec_Pack_v3_interactive.html` prototype copied to `index.html` and served by Vite. The report design remains self-contained: 20 fixed 1280 x 720 iframe frames, Standard Life branding, top navigation, responsive slide scaling, thumbnail tray, and keyboard shortcuts are preserved from the source HTML.
 
 ## Local Run
 
@@ -42,7 +42,6 @@ There is no React `src/` app for this conversion because the supplied prototype 
 - Left and right arrows, or the on-screen arrow buttons, move between frames.
 - Number keys `1` to `9` jump to the first nine frames; `0` jumps to the tenth frame.
 - The thumbnail tray switches across all 20 frames.
-- Embedded quarter selectors switch the report between Q1 2025 and Q1 2026 presets.
 
 ## Deployment
 

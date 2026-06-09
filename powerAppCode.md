@@ -35,7 +35,7 @@ Set(varIsContributor, true);
 ClearCollect(colReports, Filter(Reports, Active = true));
 Set(varActiveReport, First(colReports));
 
-// === Period dropdown options ===
+// === Historical periods (kept for the existing period combobox until Step 3) ===
 ClearCollect(colHistoricalPeriods,
     Distinct(
         Filter(ERM_Commentary, ReportCode = varActiveReport.ReportCode),
@@ -43,35 +43,34 @@ ClearCollect(colHistoricalPeriods,
     )
 );
 
-// === Period generation — cadence-aware (Quarterly | Monthly) ===
+// === Period generation — build BOTH sets (option 2: cadence chosen at runtime) ===
 Set(varCurrentYear, Year(Today()));
 
-If(varActiveReport.Cadence.Value = "Monthly",
-
-    // --- Monthly: next 4 months as YYYY-M0n ---
-    ClearCollect(colFuturePeriods,
-        ForAll(Sequence(4, 0),
-            { Result:
-                Text(Year(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, Months))) &
-                "-M" & Text(Month(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, Months)), "00")
-            }
-        )
-    );
-    Set(varSelectedPeriod,
-        Text(Year(Today())) & "-M" & Text(Month(Today()), "00")),
-
-    // --- Quarterly: original logic ---
-    Set(varCurrentQuarter, RoundUp(Month(Today()) / 3, 0));
-    ClearCollect(colFuturePeriods,
-        {Result: varCurrentYear & "-Q" & varCurrentQuarter},
-        {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 1)},
-        {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 2)},
-        {Result: (varCurrentYear + 1) & "-Q1"}
-    );
-    Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter)
+// Quarterly set
+Set(varCurrentQuarter, RoundUp(Month(Today()) / 3, 0));
+ClearCollect(colQuarterPeriods,
+    {Result: varCurrentYear & "-Q" & varCurrentQuarter},
+    {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 1)},
+    {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 2)},
+    {Result: (varCurrentYear + 1) & "-Q1"}
 );
 
-ClearCollect(colTmpPeriods, colHistoricalPeriods, colFuturePeriods);
+// Monthly set
+ClearCollect(colMonthPeriods,
+    ForAll(Sequence(4, 0),
+        { Result:
+            Text(Year(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, TimeUnit.Months))) &
+            "-M" & Text(Month(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, TimeUnit.Months)), "00")
+        }
+    )
+);
+
+// Default cadence + default selected period (Quarterly to start)
+Set(varSelectedCadence, "Quarterly");
+Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter);
+
+// === Legacy period options (kept for existing combobox until Step 3 repoints it) ===
+ClearCollect(colTmpPeriods, colHistoricalPeriods, colQuarterPeriods);
 ClearCollect(colPeriodOptions, Distinct(colTmpPeriods, ThisRecord.Result));
 
 // === User's items (My Items collection) ===

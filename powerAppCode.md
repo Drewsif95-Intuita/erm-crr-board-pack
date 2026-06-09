@@ -604,6 +604,32 @@ Set(varSidePanelItem, Blank());
 Set(varDirtyControlCentre, false);
 ```
 
+``` TableFilterPeriod
+Set(varSelectedPeriod, cboViewPeriod.Selected.Value);
+Refresh(ERM_Commentary);
+ClearCollect(colCycleItems,
+    Filter(ERM_Commentary,
+        ReportCode = varActiveReport.ReportCode,
+        PeriodKey = varSelectedPeriod
+    )
+);
+ClearCollect(colMyItems,
+    Filter(ERM_Commentary,
+        AssignedContributorEmail = varUserEmail,
+        PeriodKey = varSelectedPeriod
+    )
+);
+If(varIsReviewer,
+    ClearCollect(colMyReviewQueue,
+        Filter(ERM_Commentary,
+            ReviewerEmail = varUserEmail,
+            Status.Value = "Submitted",
+            PeriodKey = varSelectedPeriod
+        )
+    )
+)
+```
+
 ### `12.B Header — period selector, Plan, Sign Off`
 
 ```powerfx

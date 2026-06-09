@@ -907,35 +907,32 @@ If(chkRollForward.Value,
 <sub>13.C Modal 2 — Plan Commentary Cycle</sub>
 
 ```powerfx
-// Pre-flight check: doesn't already exist?
-If(CountRows(Filter(ERM_Commentary,
-        ReportCode = varActiveReport.ReportCode,
-        PeriodKey = cboPlanPeriod.Selected.Result)) > 0,
-
-    Notify("Cycle for " & cboPlanPeriod.Selected.Result &
-           " already exists. Use Control Centre to manage it.",
-           NotificationType.Error),
-
-    // Call the Plan Cycle flow
-    Set(varPlanResult,
-        Plan_Cycle.Run(
-            varActiveReport.ReportCode,
-            cboPlanPeriod.Selected.Result,
-            chkRollForward.Value,
-            varUserEmail,
-            Text(txtPlanPackDue.SelectedDate, "yyyy-MM-dd")
+With(
+    {
+        yr: Value(First(Split(cboPlanPeriod.Selected.Result, "-")).Result),
+        isMonthly: varSelectedCadence = "Monthly"
+    },
+    With(
+        {
+            startDate: If(isMonthly,
+                Date(yr, Value(Last(Split(cboPlanPeriod.Selected.Result, "M")).Result), 1),
+                Date(yr, (Value(Last(Split(cboPlanPeriod.Selected.Result, "Q")).Result) - 1) * 3 + 1, 1))
+        },
+        Set(varPlanResult,
+            ERMPlanCycle.Run(
+                varActiveReport.ReportCode,
+                cboPlanPeriod.Selected.Result,
+                Text(startDate, "yyyy-mm-dd"),
+                Text(If(isMonthly, EOMonth(startDate, 0), EOMonth(startDate, 2)), "yyyy-mm-dd"),
+                Text(If(isMonthly, EOMonth(startDate, 0), EOMonth(startDate, 2)) + 30, "yyyy-mm-dd"),
+                varSelectedCadence
+            )
         )
-    );
-
-    Refresh(ERM_Commentary);
-    Set(varSelectedPeriod, cboPlanPeriod.Selected.Result);
-    ClearCollect(colCycleItems, Filter(ERM_Commentary,
-        ReportCode = varActiveReport.ReportCode, PeriodKey = varSelectedPeriod));
-
-    Set(varShowPlanCycle, false);
-    Notify(varPlanResult.slotsCreated & " slots created. " &
-           varPlanResult.preAssigned & " pre-assigned.",
-           NotificationType.Success)
+    )
+);
+If(varPlanResult.success,
+    Notify(varPlanResult.message, NotificationType.Success),
+    Notify(varPlanResult.message, NotificationType.Warning)
 )
 ```
 

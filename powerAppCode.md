@@ -931,6 +931,15 @@ With(
     )
 );
 If(varPlanResult.success,
+    // point the app at the period we just planned, then refresh the grid
+    Set(varSelectedPeriod, cboPlanPeriod.Selected.Value);
+    Refresh(ERM_Commentary);
+    ClearCollect(colCycleItems,
+        Filter(ERM_Commentary,
+            ReportCode = varActiveReport.ReportCode,
+            PeriodKey = varSelectedPeriod
+        )
+    );
     Notify(varPlanResult.message, NotificationType.Success),
     Notify(varPlanResult.message, NotificationType.Warning)
 )

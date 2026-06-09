@@ -603,8 +603,8 @@ ClearCollect(colMyItems,
 Set(varSidePanelItem, Blank());
 Set(varDirtyControlCentre, false);
 ```
-
-``` TableFilterPeriod
+### TableFilterPeriod
+``` powerfx
 Set(varSelectedPeriod, cboViewPeriod.Selected.Value);
 Refresh(ERM_Commentary);
 ClearCollect(colCycleItems,

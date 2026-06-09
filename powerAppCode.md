@@ -14,39 +14,28 @@ Companion to the *Power Apps Build Guide (Step-by-Step v2)*. Every Power Fx and 
 
 ```powerfx
 // === Identity resolution ===
-//Set(varUserEmail, Lower(User().Email));
-//Set(varUserFullName, User().FullName);
 Set(varCurrentUser, Office365Users.MyProfileV2());
 Set(varUserEmail, Lower(varCurrentUser.mail));
 Set(varUserFullName, varCurrentUser.displayName);
 
 // === Role detection ===
-// Query Office 365 Groups (or AAD via a separate flow) to determine which
-// ERM-* groups the user belongs to. For v1, we simplify by maintaining
-// role config in three small collections seeded from a Reports row.
-// Real production would use Office365Groups.ListGroupMembers() per role group.
-
 ClearCollect(colAdmins, {Email: "drew_butchart@standardlife.com"});
 ClearCollect(colGatekeepers,
-    {Email: "drew_butchart@standardlife.com"},
     {Email: "drew_butchart@standardlife.com"}
 );
 ClearCollect(colReviewers,
     {Email: "drew_butchart@standardlife.com"}
-    // ... reviewer list maintained here in v1; v2 moves to AAD group lookup
 );
-
 Set(varIsAdmin, varUserEmail in colAdmins.Email);
 Set(varIsGatekeeper, varUserEmail in colGatekeepers.Email || varIsAdmin);
 Set(varIsReviewer, varUserEmail in colReviewers.Email || varIsAdmin);
-Set(varIsContributor, true); // Everyone can potentially be a contributor
+Set(varIsContributor, true);
 
 // === Reports data ===
 ClearCollect(colReports, Filter(Reports, Active = true));
 Set(varActiveReport, First(colReports));
 
 // === Period dropdown options ===
-// Combine distinct historical periods with computed future periods
 ClearCollect(colHistoricalPeriods,
     Distinct(
         Filter(ERM_Commentary, ReportCode = varActiveReport.ReportCode),
@@ -54,23 +43,36 @@ ClearCollect(colHistoricalPeriods,
     )
 );
 
-// Quarterly cadence: compute next 4 quarters from today
+// === Period generation — cadence-aware (Quarterly | Monthly) ===
 Set(varCurrentYear, Year(Today()));
-Set(varCurrentQuarter,
-    RoundUp(Month(Today()) / 3, 0)
-);
 
-ClearCollect(colFuturePeriods,
-    {Result: varCurrentYear & "-Q" & varCurrentQuarter},
-    {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 1)},
-    {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 2)},
-    {Result: (varCurrentYear + 1) & "-Q1"}
+If(varActiveReport.Cadence.Value = "Monthly",
+
+    // --- Monthly: next 4 months as YYYY-M0n ---
+    ClearCollect(colFuturePeriods,
+        ForAll(Sequence(4, 0),
+            { Result:
+                Text(Year(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, Months))) &
+                "-M" & Text(Month(DateAdd(Date(Year(Today()), Month(Today()), 1), Value, Months)), "00")
+            }
+        )
+    );
+    Set(varSelectedPeriod,
+        Text(Year(Today())) & "-M" & Text(Month(Today()), "00")),
+
+    // --- Quarterly: original logic ---
+    Set(varCurrentQuarter, RoundUp(Month(Today()) / 3, 0));
+    ClearCollect(colFuturePeriods,
+        {Result: varCurrentYear & "-Q" & varCurrentQuarter},
+        {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 1)},
+        {Result: varCurrentYear & "-Q" & (varCurrentQuarter + 2)},
+        {Result: (varCurrentYear + 1) & "-Q1"}
+    );
+    Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter)
 );
 
 ClearCollect(colTmpPeriods, colHistoricalPeriods, colFuturePeriods);
-ClearCollect(colPeriodOptions, Distinct(colTmpPeriods, ThisRecord.Result);
-
-Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter);
+ClearCollect(colPeriodOptions, Distinct(colTmpPeriods, ThisRecord.Result));
 
 // === User's items (My Items collection) ===
 ClearCollect(colMyItems,
@@ -107,7 +109,7 @@ If(varIsGatekeeper,
 // === Dirty-state tracking ===
 Set(varDirtyEditCommentary, false);
 Set(varDirtyControlCentre, false);
-Set(varSidePanelItem, First(Filter(ERM_Commentary, false))); // Currently selected item in Control Centre
+Set(varSidePanelItem, First(Filter(ERM_Commentary, false)));
 
 // === Modal visibility flags ===
 Set(varShowAddItem, false);
@@ -115,7 +117,6 @@ Set(varShowPlanCycle, false);
 Set(varShowSignOff, false);
 Set(varShowDiscardConfirm, false);
 Set(varPendingNav, First(Filter(ERM_Commentary, false)))
-);
 ```
 
 ---

@@ -14,8 +14,11 @@ Companion to the *Power Apps Build Guide (Step-by-Step v2)*. Every Power Fx and 
 
 ```powerfx
 // === Identity resolution ===
-Set(varUserEmail, Lower(User().Email));
-Set(varUserFullName, User().FullName);
+//Set(varUserEmail, Lower(User().Email));
+//Set(varUserFullName, User().FullName);
+Set(varCurrentUser, Office365Users.MyProfileV2());
+Set(varUserEmail, Lower(varCurrentUser.mail));
+Set(varUserFullName, varCurrentUser.displayName);
 
 // === Role detection ===
 // Query Office 365 Groups (or AAD via a separate flow) to determine which
@@ -23,13 +26,13 @@ Set(varUserFullName, User().FullName);
 // role config in three small collections seeded from a Reports row.
 // Real production would use Office365Groups.ListGroupMembers() per role group.
 
-ClearCollect(colAdmins, {Email: "doug.admin@standardlife.co.uk"});
+ClearCollect(colAdmins, {Email: "drew_butchart@standardlife.com"});
 ClearCollect(colGatekeepers,
-    {Email: "sarah.mitchell@standardlife.co.uk"},
-    {Email: "alex.harper@standardlife.co.uk"}
+    {Email: "drew_butchart@standardlife.com"},
+    {Email: "drew_butchart@standardlife.com"}
 );
 ClearCollect(colReviewers,
-    {Email: "james.perry@standardlife.co.uk"}
+    {Email: "drew_butchart@standardlife.com"}
     // ... reviewer list maintained here in v1; v2 moves to AAD group lookup
 );
 
@@ -43,8 +46,7 @@ ClearCollect(colReports, Filter(Reports, Active = true));
 Set(varActiveReport, First(colReports));
 
 // === Period dropdown options ===
-// Build the list of distinct historical periods already in the data.
-// NOTE: Distinct() names its output column "Result" (not PeriodKey).
+// Combine distinct historical periods with computed future periods
 ClearCollect(colHistoricalPeriods,
     Distinct(
         Filter(ERM_Commentary, ReportCode = varActiveReport.ReportCode),
@@ -65,18 +67,9 @@ ClearCollect(colFuturePeriods,
     {Result: (varCurrentYear + 1) & "-Q1"}
 );
 
-// Combine historical + future periods, dedupe, default to current quarter
-// colHistoricalPeriods is ALREADY distinct, with a column named "Result".
-// Do NOT wrap it in Distinct() again. Append future periods only if not
-// already present, to avoid a duplicate of the current quarter.
-ClearCollect(colPeriodOptions, colHistoricalPeriods);
-ForAll(
-    colFuturePeriods,
-    If(
-        !(Result in colPeriodOptions.Result),
-        Collect(colPeriodOptions, {Result: Result})
-    )
-);
+ClearCollect(colTmpPeriods, colHistoricalPeriods, colFuturePeriods);
+ClearCollect(colPeriodOptions, Distinct(colTmpPeriods, ThisRecord.Result);
+
 Set(varSelectedPeriod, varCurrentYear & "-Q" & varCurrentQuarter);
 
 // === User's items (My Items collection) ===
@@ -114,17 +107,15 @@ If(varIsGatekeeper,
 // === Dirty-state tracking ===
 Set(varDirtyEditCommentary, false);
 Set(varDirtyControlCentre, false);
-Set(varSidePanelItem, Blank()); // Currently selected item in Control Centre
+Set(varSidePanelItem, First(Filter(ERM_Commentary, false))); // Currently selected item in Control Centre
 
 // === Modal visibility flags ===
 Set(varShowAddItem, false);
 Set(varShowPlanCycle, false);
 Set(varShowSignOff, false);
 Set(varShowDiscardConfirm, false);
-Set(varPendingNav, Blank());
-
-// === Navigate to role-appropriate landing screen ===
-Navigate(scrHome, ScreenTransition.None);
+Set(varPendingNav, First(Filter(ERM_Commentary, false)))
+);
 ```
 
 ---

@@ -28,7 +28,7 @@
     --bg:          #16224a;
 
     --green: var(--sl-core-teal);
-    --tray-height: 48px;
+    --tray-height: 38px;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -42,7 +42,7 @@
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
-    padding-bottom: var(--tray-height, 64px);
+    padding-bottom: var(--tray-height, 38px);
   }
 
   /* TOP BAR */
@@ -216,19 +216,19 @@
   .tray {
     position: fixed;
     left: 0; right: 0; bottom: 0;
-    height: var(--tray-height, 64px);
+    height: var(--tray-height, 38px);
     z-index: 20;
     background: var(--navy-deep);
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 5px 12px 6px;
-    display: flex; align-items: center; gap: 5px;
+    padding: 3px 10px 4px;
+    display: flex; align-items: center; gap: 4px;
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
     scrollbar-gutter: stable;
     -webkit-overflow-scrolling: touch;
   }
-  .tray::-webkit-scrollbar { height: 6px; }
+  .tray::-webkit-scrollbar { height: 4px; }
   .tray::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
   .tray::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.22);
@@ -236,16 +236,16 @@
   }
   .tray::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.34); }
   .thumb {
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    padding: 4px 6px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+    padding: 2px 5px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.10);
     border-radius: 4px;
     cursor: pointer;
-    flex: 0 0 88px;
-    width: 88px;
-    min-width: 88px;
-    height: 34px;
+    flex: 0 0 82px;
+    width: 82px;
+    min-width: 82px;
+    height: 27px;
     transition: all 0.12s;
   }
   .thumb:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.20); }
@@ -254,43 +254,45 @@
     border-color: var(--sl-heritage-yellow);
   }
   .thumb .t-num {
-    font-size: 7.8px; font-weight: 700; color: rgba(255,255,255,0.55);
+    font-size: 6.7px; line-height: 1; font-weight: 700; color: rgba(255,255,255,0.55);
     letter-spacing: 0.12em; text-transform: uppercase;
   }
   .thumb.active .t-num { color: var(--sl-heritage-yellow); }
   .thumb .t-name {
-    font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.88);
-    white-space: nowrap; max-width: 74px; overflow: hidden; text-overflow: ellipsis; text-align: center;
+    font-size: 7.6px; line-height: 1.05; font-weight: 600; color: rgba(255,255,255,0.88);
+    white-space: nowrap; max-width: 70px; overflow: hidden; text-overflow: ellipsis; text-align: center;
   }
   .thumb.active .t-name { color: #fff; font-weight: 700; }
 
-  .tray .spacer { flex: 0 0 8px; min-width: 8px; }
+  .tray .spacer { flex: 0 0 5px; min-width: 5px; }
   .tray .hint {
-    font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.02em;
+    font-size: 8px; color: rgba(255,255,255,0.45); letter-spacing: 0.02em;
     display: flex; align-items: center; gap: 5px;
     white-space: nowrap;
     flex: 0 0 auto;
-    padding: 0 10px 0 4px;
+    padding: 0 8px 0 3px;
   }
   .tray .hint .kbd {
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
-    font-size: 9.5px;
+    font-size: 7.5px;
     background: rgba(255,255,255,0.08);
     color: rgba(255,255,255,0.75);
-    padding: 1px 5px; border-radius: 2px;
+    padding: 1px 4px; border-radius: 2px;
     border: 1px solid rgba(255,255,255,0.10);
   }
 
   @media (max-width: 980px) {
     .topbar .doc-name .sub { display: none; }
+    .tray .hint { display: none; }
   }
 
   @media (max-width: 720px) {
-    :root { --tray-height: 50px; }
+    :root { --tray-height: 36px; }
     .topbar { padding: 6px 12px; gap: 10px; }
     .quarter-filter label { display: none; }
     .quarter-filter select { min-width: 94px; }
-    .thumb { flex-basis: 84px; width: 84px; min-width: 84px; }
+    .thumb { flex-basis: 76px; width: 76px; min-width: 76px; }
+    .thumb .t-name { max-width: 64px; font-size: 7.2px; }
   }
 
 </style>

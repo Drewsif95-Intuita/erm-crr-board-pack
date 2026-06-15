@@ -180,6 +180,49 @@
     overflow: hidden;
     background: #fff;
   }
+  .slide-period-overlay {
+    position: absolute;
+    top: 52px;
+    right: 32px;
+    z-index: 6;
+    pointer-events: auto;
+  }
+  .slide-period-control {
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px 4px 10px;
+    border: 1px solid rgba(255,255,255,0.30);
+    border-radius: 5px;
+    background: rgba(10,47,115,0.92);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(3,15,42,0.18);
+  }
+  .slide-period-control span {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.70);
+  }
+  .slide-period-control select {
+    height: 22px;
+    min-width: 108px;
+    border: 0;
+    border-radius: 3px;
+    background: #fff;
+    color: var(--sl-heritage-blue);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 0 24px 0 8px;
+    cursor: pointer;
+  }
+  .slide-period-control select:focus {
+    outline: 2px solid var(--sl-heritage-yellow);
+    outline-offset: 1px;
+  }
   .slide-frame-wrap iframe {
     position: absolute; inset: 0;
     width: 1280px; height: 720px;
@@ -314,6 +357,16 @@
     </div>
   </div>
   <div class="topbar-controls">
+    <label class="quarter-filter" for="report-quarter-select">
+      <span>Quarter</span>
+      <select id="report-quarter-select" aria-label="Report quarter">
+        <option value="q1-2026" selected>Q1 2026</option>
+        <option value="q4-2025">Q4 2025</option>
+        <option value="q3-2025">Q3 2025</option>
+        <option value="q2-2025">Q2 2025</option>
+        <option value="q1-2025">Q1 2025</option>
+      </select>
+    </label>
     <div class="progress-chip" id="progress">P1 / 20</div>
   </div>
 </div>
@@ -1257,8 +1310,8 @@
   .slide-body.exec-grid-page {
     position: relative;
     padding: 8px 16px 6px;
-    grid-template-columns: 252px minmax(0, 1fr);
-    grid-template-rows: 48px minmax(0, 1fr) 158px;
+    grid-template-columns: 270px minmax(0, 1fr);
+    grid-template-rows: 48px minmax(0, 1fr);
     gap: 8px 14px;
     min-height: 0;
     background: #f3f6fa;
@@ -1267,6 +1320,7 @@
   .exec-grid-page .kpi-strip {
     grid-column: 1 / -1;
     grid-row: 1;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 12px;
   }
   .exec-grid-page .kpi {
@@ -1284,6 +1338,12 @@
     font-size: 23px;
     font-weight: 700;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .exec-grid-page .kpi-value.compact {
+    font-size: 18px;
   }
   .exec-grid-page .right-col {
     display: contents;
@@ -1293,6 +1353,7 @@
     grid-row: 2;
     padding: 12px 14px 10px;
     gap: 8px;
+    border-left: 3px solid var(--sl-heritage-yellow);
     overflow: hidden;
   }
   .exec-readout .commentary-head {
@@ -1309,9 +1370,17 @@
   .exec-readout .commentary-head .curated::before { display: none; }
   .exec-readout .commentary-head .title {
     color: var(--ink);
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.08;
     letter-spacing: -0.01em;
     text-transform: none;
+  }
+  .exec-readout .summary-kicker {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.2;
   }
   .exec-readout .comm-card {
     border: 0;
@@ -1329,13 +1398,15 @@
   }
   .exec-readout .comm-body {
     font-size: 11px;
-    line-height: 1.42;
+    line-height: 1.47;
   }
   .exec-heli-panel {
     grid-column: 2;
     grid-row: 2;
     padding: 10px 14px;
     gap: 7px;
+    min-height: 0;
+    overflow: hidden;
   }
   .exec-heli-panel .panel-head {
     padding: 0 0 5px;
@@ -1600,9 +1671,318 @@
     border-color: #f0c96d;
     color: #9f6500;
   }
+  .exec-heli-panel.appetite-unified {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) 104px;
+    gap: 7px;
+    padding: 10px 12px 11px;
+  }
+  .exec-grid-page .legacy-exec-heli {
+    display: none !important;
+  }
+  .exec-heli-panel.appetite-unified .panel-head {
+    border-bottom: 1px solid var(--hairline-soft);
+    padding-bottom: 6px;
+  }
+  .exec-heli-panel.appetite-unified .universe-legend {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 9px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .legend-label {
+    font-size: 7px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted-2);
+  }
+  .legend-divider {
+    width: 1px;
+    height: 13px;
+    background: var(--hairline);
+    margin: 0 1px;
+  }
+  .appetite-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: -1px;
+  }
+  .appetite-dot.breached { background: #CA3F4C; }
+  .appetite-dot.triggered { background: #D99A20; }
+  .appetite-dot.inrange { background: #2f9578; }
+  .exec-profile-grid {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .exec-profile-card {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-top: 3px solid #CA3F4C;
+    border-radius: 7px;
+    background: #fff;
+    display: grid;
+    grid-template-rows: 29px minmax(0, 1fr);
+  }
+  .exec-profile-card.status-amber { border-top-color: #D99A20; }
+  .exec-profile-card.status-green { border-top-color: #2f9578; }
+  .profile-card-head {
+    min-width: 0;
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .profile-card-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11.5px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .profile-trend {
+    font-size: 11px;
+    font-weight: 900;
+    color: #f2a9af;
+  }
+  .profile-trend.good { color: #86d6bd; }
+  .profile-trend.flat { color: #aebcce; }
+  .profile-card-body {
+    min-height: 0;
+    padding: 8px 10px 8px;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 6px;
+  }
+  .profile-main-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .profile-stack,
+  .appetite-bar,
+  .pending-bar {
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #edf2f8;
+    display: flex;
+  }
+  .profile-stack .red,
+  .appetite-bar .breached { background: #CA3F4C; }
+  .profile-stack .amber,
+  .appetite-bar .triggered { background: #D99A20; }
+  .profile-stack .green,
+  .appetite-bar .inrange { background: #2f9578; }
+  .rcsa-counts {
+    display: inline-flex;
+    gap: 5px;
+    font-size: 9.7px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+  .rcsa-counts .r { color: #9d1827; }
+  .rcsa-counts .a { color: #9f6500; }
+  .profile-chip-row {
+    min-height: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-content: flex-start;
+  }
+  .profile-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 17px;
+    max-width: 100%;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: 800;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+  .profile-chip.red { color: #9d1827; background: var(--red-bg); border: 1px solid #efa0a8; }
+  .profile-chip.red.flagged { border-style: dashed; outline: 1px dashed rgba(202,63,76,0.34); outline-offset: 1px; }
+  .profile-chip.amber { color: #9f6500; background: var(--amber-bg); border: 1px solid #f0c96d; }
+  .profile-chip.green { color: var(--green); background: var(--green-bg); border: 1px dashed #95d5c8; }
+  .profile-section {
+    min-width: 0;
+    border-top: 1px dashed #d7e0ec;
+    padding-top: 5px;
+    display: grid;
+    gap: 4px;
+  }
+  .profile-section-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 7.4px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .profile-section-title .section-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid #8395ad;
+    background: #fff;
+  }
+  .profile-section-title .section-dot.core { background: var(--navy); border-color: var(--navy); }
+  .profile-section-title .section-dot.cross { background: var(--green); border-color: var(--green); border-radius: 2px; transform: rotate(45deg); }
+  .profile-section-meta {
+    min-width: 0;
+    color: #41536e;
+    font-size: 8px;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .profile-pref-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .pref-mini {
+    display: inline-flex;
+    align-items: center;
+    min-height: 16px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid #b8c6dc;
+    background: #fff;
+    color: var(--navy);
+    font-size: 7.2px;
+    font-weight: 900;
+  }
+  .cross-mini {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    color: var(--green);
+    font-size: 7.2px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+  .cross-mini::before {
+    content: &quot;&quot;;
+    width: 6px;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--green);
+    transform: rotate(45deg);
+  }
+  .pending-bar {
+    background: repeating-linear-gradient(45deg, #eef2f7 0 7px, #f8fafc 7px 14px);
+  }
+  .exec-cross-band {
+    min-height: 0;
+    border: 1px solid rgba(0,107,92,0.65);
+    border-radius: 7px;
+    background: #f7fcfa;
+    padding: 6px 10px 7px;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 5px;
+  }
+  .exec-cross-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .exec-cross-title {
+    color: var(--green);
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+  .exec-cross-sub {
+    color: #4d746c;
+    font-size: 8px;
+  }
+  .exec-cross-grid {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .exec-cross-card {
+    min-width: 0;
+    border: 1px solid #d5e3e1;
+    border-radius: 6px;
+    background: #fff;
+    padding: 6px 9px;
+    display: grid;
+    gap: 3px;
+  }
+  .exec-cross-name {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--ink);
+  }
+  .exec-cross-name::before {
+    content: &quot;&quot;;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--green);
+    transform: rotate(45deg);
+  }
+  .exec-cross-note {
+    color: #516078;
+    font-size: 7.1px;
+    line-height: 1.18;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .exec-cross-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .exec-cross-tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 13px;
+    border: 1px solid #a9d8cd;
+    border-radius: 4px;
+    background: var(--green-bg);
+    color: var(--green);
+    padding: 1px 5px;
+    font-size: 6.8px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
   .exec-control-snapshot {
     grid-column: 1 / -1;
     grid-row: 3;
+    display: none !important;
     padding: 9px 14px 10px;
     gap: 6px;
     overflow: hidden;
@@ -1657,7 +2037,9 @@
   .exec-view-radio {
     position: absolute;
     opacity: 0;
-    pointer-events: none;
+    width: 1px;
+    height: 1px;
+    margin: 0;
   }
   .exec-view-toggle {
     height: 30px;
@@ -1814,6 +2196,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    border-left: 3px solid var(--sl-heritage-yellow);
   }
   .rows-readout .curated {
     display: inline-flex;
@@ -1832,6 +2215,12 @@
     color: var(--ink);
     font-size: 14px;
     line-height: 1.1;
+  }
+  .rows-readout .rows-summary-kicker {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.18;
   }
   .rows-readout .comm-owner {
     color: var(--muted);
@@ -2069,10 +2458,10 @@
   <header class=&quot;slide-header&quot;>
     <div class=&quot;header-left&quot;>
       <div class=&quot;header-title&quot;>Executive Summary</div>
-      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; Cross-theme synthesis</div>
+      <div class=&quot;header-sub&quot;>Board Risk Committee &amp;middot; RCSA &amp;amp; appetite in one view</div>
       <div class=&quot;exec-view-toggle&quot; aria-label=&quot;Executive summary view&quot;>
-        <label class=&quot;grid-label&quot; for=&quot;exec-view-grid&quot;>Option 1</label>
-        <label class=&quot;rows-label&quot; for=&quot;exec-view-rows&quot;>Option 2</label>
+        <label class=&quot;grid-label&quot; for=&quot;exec-view-grid&quot; onclick=&quot;document.getElementById('exec-view-grid').checked=true&quot;>Option 1</label>
+        <label class=&quot;rows-label&quot; for=&quot;exec-view-rows&quot; onclick=&quot;document.getElementById('exec-view-rows').checked=true&quot;>Option 2</label>
       </div>
     </div>
     <div class=&quot;header-right&quot;>
@@ -2089,6 +2478,10 @@
         <div class=&quot;kpi-label&quot;>RCSA Red L2 Risks</div>
         <div class=&quot;kpi-value&quot;>13</div>
       </div>
+      <div class=&quot;kpi kpi-amber&quot;>
+        <div class=&quot;kpi-label&quot;>Amber L2 Risks</div>
+        <div class=&quot;kpi-value&quot;>13</div>
+      </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Appetite Breaches</div>
         <div class=&quot;kpi-value&quot;>7</div>
@@ -2099,7 +2492,7 @@
       </div>
       <div class=&quot;kpi kpi-amber&quot;>
         <div class=&quot;kpi-label&quot;>Loss YTD vs &pound;25m</div>
-        <div class=&quot;kpi-value&quot;>67%</div>
+        <div class=&quot;kpi-value compact&quot;>&pound;16.8m &middot; 67%</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Material Ctrl Ineff.</div>
@@ -2135,7 +2528,124 @@
     <!-- ===== RIGHT COLUMN ===== -->
     <aside class=&quot;right-col&quot;>
 
-      <div class=&quot;top-risk-panel risk-universe-panel exec-heli-panel&quot;>
+      <div class=&quot;top-risk-panel risk-universe-panel exec-heli-panel appetite-unified&quot;>
+        <div class=&quot;panel-head&quot;>
+          <div>
+            <span class=&quot;panel-title&quot;>RCSA Helicopter View</span><span class=&quot;panel-sub&quot;>ordered by severity &middot; appetite shown per theme</span>
+          </div>
+          <div class=&quot;universe-legend&quot;>
+            <span class=&quot;legend-label&quot;>RCSA</span>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot red&quot;></i>Red</span>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot amber&quot;></i>Amber</span>
+            <span class=&quot;legend-chip&quot;><i class=&quot;legend-dot green&quot;></i>Green</span>
+            <span class=&quot;legend-divider&quot;></span>
+            <span class=&quot;legend-label&quot;>Appetite</span>
+            <span><i class=&quot;appetite-dot breached&quot;></i>Breached</span>
+            <span><i class=&quot;appetite-dot triggered&quot;></i>Triggered</span>
+            <span><i class=&quot;appetite-dot inrange&quot;></i>In-range</span>
+          </div>
+        </div>
+
+        <div class=&quot;exec-profile-grid&quot;>
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Operational</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:42%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>4R</span><span class=&quot;a&quot;>5A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Info Security</span><span class=&quot;profile-chip red flagged&quot;>Op Resilience</span><span class=&quot;profile-chip amber&quot;>Reg Compliance</span><span class=&quot;profile-chip amber&quot;>Technology</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Core appetite</div><div class=&quot;profile-section-meta&quot;>2 breached &middot; 1 triggered &middot; 1 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:50%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:25%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:25%&quot;></span></div></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional appetite</div><div class=&quot;profile-section-meta&quot;>6 L2 statements &middot; limits pending where needed</div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Customer</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:38%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>3R</span><span class=&quot;a&quot;>2A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Data Protection</span><span class=&quot;profile-chip red&quot;>AI</span><span class=&quot;profile-chip red&quot;>Sales</span><span class=&quot;profile-chip amber&quot;>+2 amber</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Core appetite</div><div class=&quot;profile-section-meta&quot;>2 breached &middot; 2 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:34%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:33%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:33%&quot;></span></div></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional appetite</div><div class=&quot;profile-section-meta&quot;>3 L2 statements &middot; proposition, disclosure and service</div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Liquidity &amp; Funding</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:100%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>2R</span><span class=&quot;a&quot;>0A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Funding</span><span class=&quot;profile-chip red&quot;>Liquidity</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Core appetite</div><div class=&quot;profile-section-meta&quot;>1 metric &middot; not scored</div><div class=&quot;pending-bar&quot;></div></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional appetite</div><div class=&quot;profile-section-meta&quot;>Funding and liquidity statements pending metric limits</div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Market</span><span class=&quot;profile-trend flat&quot;>-</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:17%&quot;></span><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>2A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Spread</span><span class=&quot;profile-chip amber&quot;>Equity</span><span class=&quot;profile-chip amber&quot;>Inflation</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot cross&quot;></span>Additional appetite</div><div class=&quot;cross-mini&quot;>Capital cascade</div><div class=&quot;profile-pref-row&quot;><span class=&quot;pref-mini&quot;>Minimise</span><span class=&quot;pref-mini&quot;>Prefer</span><span class=&quot;pref-mini&quot;>Accept</span></div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 3 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:40%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:60%&quot;></span></div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Insurance</span><span class=&quot;profile-trend good&quot;>&#9660;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:20%&quot;></span><span class=&quot;amber&quot; style=&quot;width:40%&quot;></span><span class=&quot;green&quot; style=&quot;width:40%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>2A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Mortality</span><span class=&quot;profile-chip amber&quot;>Longevity</span><span class=&quot;profile-chip amber&quot;>Persistency</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot cross&quot;></span>Additional appetite</div><div class=&quot;cross-mini&quot;>Capital cascade</div><div class=&quot;profile-pref-row&quot;><span class=&quot;pref-mini&quot;>Prefer</span><span class=&quot;pref-mini&quot;>Accept</span><span class=&quot;pref-mini&quot;>Minimise</span></div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 4 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Credit &amp; Counterparty</span><span class=&quot;profile-trend good&quot;>&#9660;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:34%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>1A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Investment Cpty</span><span class=&quot;profile-chip amber&quot;>Illiquid Credit</span><span class=&quot;profile-chip green&quot;>+1 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot cross&quot;></span>Additional appetite</div><div class=&quot;cross-mini&quot;>Capital cascade</div><div class=&quot;profile-pref-row&quot;><span class=&quot;pref-mini&quot;>Prefer</span><span class=&quot;pref-mini&quot;>Accept</span></div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-red&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Strategic</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>0A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Reputation</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional appetite</div><div class=&quot;profile-section-meta&quot;>3 L2 statements &middot; strategic execution and selection</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-meta&quot;>Core appetite not yet mapped</div><div class=&quot;pending-bar&quot;></div></div>
+            </div>
+          </article>
+
+          <article class=&quot;exec-profile-card status-amber&quot;>
+            <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Climate</span><span class=&quot;profile-trend good&quot;>&#9660;</span></div>
+            <div class=&quot;profile-card-body&quot;>
+              <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>0R</span><span class=&quot;a&quot;>1A</span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber&quot;>Greenwashing</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional appetite</div><div class=&quot;profile-pref-row&quot;><span class=&quot;pref-mini&quot;>Accept</span><span class=&quot;pref-mini&quot;>Minimise</span></div><div class=&quot;profile-section-meta&quot;>4 L2 statements &middot; metrics Q3 26</div><div class=&quot;pending-bar&quot;></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class=&quot;exec-cross-band&quot;>
+          <div class=&quot;exec-cross-head&quot;><div class=&quot;exec-cross-title&quot;>Core risk appetite &middot; cross-cutting</div><div class=&quot;exec-cross-sub&quot;>group-level constraints that span multiple L1 areas</div></div>
+          <div class=&quot;exec-cross-grid&quot;>
+            <div class=&quot;exec-cross-card&quot;>
+              <div class=&quot;exec-cross-name&quot;>Capital</div>
+              <div class=&quot;exec-cross-note&quot;>Solvency capital cascade sets quantitative limits for L2s where direct monitoring is not yet granular.</div>
+              <div class=&quot;exec-cross-tags&quot;><span>Market</span><span>Credit</span><span>Insurance</span></div>
+              <div class=&quot;profile-section-meta&quot;>1 breached &middot; 2 triggered &middot; 1 in-range</div>
+              <div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:25%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:50%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:25%&quot;></span></div>
+            </div>
+            <div class=&quot;exec-cross-card&quot;>
+              <div class=&quot;exec-cross-name&quot;>Dividend</div>
+              <div class=&quot;exec-cross-note&quot;>Group dividend appetite remains an overarching planning constraint; quarterly scoring basis is pending.</div>
+              <div class=&quot;exec-cross-tags&quot;><span>All L1 risk areas</span></div>
+              <div class=&quot;profile-section-meta&quot;>Not scored</div>
+              <div class=&quot;pending-bar&quot;></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class=&quot;top-risk-panel risk-universe-panel exec-heli-panel legacy-exec-heli&quot;>
         <div class=&quot;panel-head&quot;>
           <div>
             <span class=&quot;panel-title&quot;>RCSA Helicopter View</span><span class=&quot;panel-sub&quot;>ordered by severity</span>
@@ -2320,10 +2830,11 @@
 
       <section class=&quot;rows-card rows-readout&quot;>
         <div class=&quot;curated&quot;>Board focus</div>
-        <h2>Committee-level readout</h2>
+        <h2>Executive summary commentary</h2>
+        <div class=&quot;rows-summary-kicker&quot;>Committee-level readout</div>
         <div class=&quot;comm-owner&quot;>Risk Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
         <p>
-          Overall posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. Focus discussion on Cyber &amp;amp; IT, red-risk concentration in <b>Operational</b> and <b>Customer</b>, and Q2 recovery paths.
+          Overall posture has moved to <b>Amber</b>, driven by red/amber appetite pressure, <b>13 red L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. The Board should focus on whether the Cyber &amp;amp; IT appetite breach, RCSA red-risk concentration in <b>Operational</b> and <b>Customer</b>, the rolling loss trend and material/key control response are on credible Q2 recovery paths.
         </p>
       </section>
 
@@ -2453,6 +2964,8 @@
     <iframe id="frame-p2" class="inactive slide-frame" data-key="p2" src="./slides/risk-appetite.html"></iframe>
     <iframe id="frame-p2commentary" class="inactive slide-frame" data-key="p2commentary" src="./slides/risk-appetite-commentary.html"></iframe>
     <iframe id="frame-p2appendix" class="inactive slide-frame" data-key="p2appendix" src="./slides/risk-appetite-appendix.html"></iframe>
+    <iframe id="frame-p2proximity" class="inactive slide-frame" data-key="p2proximity" src="./slides/risk-appetite-proximity-appendix.html"></iframe>
+    <iframe id="frame-p2profile" class="inactive slide-frame" data-key="p2profile" src="./slides/risk-appetite-profile-appendix.html"></iframe>
         <iframe id="frame-p3" class="inactive slide-frame" data-key="p3" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
 <head>
@@ -4451,36 +4964,36 @@
 </body>
 </html>
 "></iframe>
-    <iframe id="frame-p3detail" class="inactive slide-frame" data-key="p3detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:12px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:7px}.kpi{min-height:46px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:6px 10px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:8.8px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:22px;font-weight:600;margin-top:3px}.delta{height:15px;margin-top:2px;padding:1px 6px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:8px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:515px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel{display:flex;flex-direction:column;min-height:0}.panel-head,.commentary-head{padding:6px 10px 5px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:13px}.panel-sub,.commentary-sub{font-size:8.4px;color:var(--muted);margin-top:1px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:var(--redbg);border-color:transparent;color:var(--red)}.pill.amber{background:var(--amberbg);border-color:transparent;color:var(--amber)}.table-wrap{padding:0 6px 3px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}.table-wrap::-webkit-scrollbar{width:6px}.table-wrap::-webkit-scrollbar-track{background:#f2f5fa}.table-wrap::-webkit-scrollbar-thumb{background:#c2cede;border-radius:999px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:6.5px;text-transform:uppercase;letter-spacing:.08em;color:#8294ae;text-align:left;border-bottom:1px solid #dfe6f1;padding:3px 4px;font-weight:700;position:sticky;top:0;background:#fff;z-index:2}.driver-table td{border-bottom:1px solid rgba(10,47,115,.07);padding:1px 4px;height:22px;vertical-align:middle;color:#1f3458}.driver-table th:nth-child(n+5),.driver-table td:nth-child(n+5){text-align:center}.num{width:16px;height:16px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.2px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.l1-risk{font-size:8px;font-weight:700;color:#405374;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.3px;font-weight:700;color:#0A2F73;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.2px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.action{display:inline-flex;min-width:38px;height:15px;border-radius:3px;align-items:center;justify-content:center;font-size:6.6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid transparent;line-height:1;padding:0 3px}.rag{width:34px;min-width:34px;padding:0;border-radius:3px;font-size:0;line-height:0;color:transparent;overflow:hidden;border:1px solid rgba(10,47,115,.12)}.rag.green{background-color:#8FCB53;background-image:radial-gradient(circle,rgba(0,107,92,.24) 1px,transparent 1.45px);background-size:6px 6px}.rag.amber{background-color:#EEE45A;background-image:repeating-linear-gradient(90deg,rgba(159,144,0,.28) 0 1px,transparent 1px 5px);border-color:rgba(159,144,0,.26)}.rag.red{background-color:#E95145;background-image:repeating-linear-gradient(45deg,rgba(143,0,16,.26) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(135deg,rgba(143,0,16,.18) 0 1.5px,transparent 1.5px 5px);border-color:rgba(143,0,16,.24)}.rag.final-overlay{outline:1.5px solid var(--blue);outline-offset:1px;box-shadow:0 0 0 1px rgba(255,255,255,.65)}.move{display:inline-flex;align-items:center;justify-content:center;width:16px;height:15px;color:#27436f;font-size:9px;font-weight:800;line-height:1}.move.up,.move.flat,.move.down{background:transparent;color:#27436f}.action.yes{background:#dff3ee;color:#006b5d}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:42px;height:15px;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap;font-size:8px}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Financial Risk Detail</h1><div class='sub'>L2 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P4 / 18</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Financial L2 Risks</div><div class='value'>16</div></div><div class='kpi red'><div class='label'>Red L2</div><div class='value'>5</div></div><div class='kpi amber'><div class='label'>Amber L2</div><div class='value'>6</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>9</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Financial L2 Risk Detail</div><div class='panel-sub'>Commentary is assigned at L2 risk level; red/amber L2 rows are shown, green L2s are hidden by default, and full L3 rows sit in the RCSA appendix.</div></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:22px'><col style='width:108px'><col style='width:76px'><col style='width:154px'><col style='width:46px'><col style='width:38px'><col style='width:48px'><col style='width:48px'><col style='width:34px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L1 Risk</th><th>Worst L3 risks</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium &amp; Credit spread widening</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>14 Mar</span></td><td class='ia'>6 / 9</td></tr>
-<tr><td><span class='num'>2</span></td><td><div class='risk'>Investment Counterparty</div></td><td><div class='l1-risk'>Credit &amp; Counterparty</div></td><td><div class='driver'>Default watchlist deterioration &amp; Downgrade concentration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>22 Mar</span></td><td class='ia'>4 / 7</td></tr>
-<tr><td><span class='num'>3</span></td><td><div class='risk'>Liquidity</div></td><td><div class='l1-risk'>Liquidity &amp; Funding</div></td><td><div class='driver'>Liquidity stress buffer</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>2 / 3</td></tr>
-<tr><td><span class='num'>4</span></td><td><div class='risk'>Mortality</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Mortality assumption drift</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>19 Feb</span></td><td class='ia'>1 / 4</td></tr>
-<tr><td><span class='num'>5</span></td><td><div class='risk'>Funding</div></td><td><div class='l1-risk'>Liquidity &amp; Funding</div></td><td><div class='driver'>Wholesale funding concentration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>05 Jan</span></td><td class='ia'>2 / 2</td></tr>
-<tr><td><span class='num'>6</span></td><td><div class='risk'>Equity</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Equity volatility spike</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>1 / 2</td></tr>
-<tr><td><span class='num'>7</span></td><td><div class='risk'>Inflation</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Inflation basis risk</div></td><td><span class='rag green'>Green</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action no'>No</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>1 / 1</td></tr>
-<tr><td><span class='num'>8</span></td><td><div class='risk'>Interest Rate</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Basis risk watch item</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>0 / 2</td></tr>
-<tr><td><span class='num'>9</span></td><td><div class='risk'>Illiquid Credit</div></td><td><div class='l1-risk'>Credit &amp; Counterparty</div></td><td><div class='driver'>Valuation lag and exit depth</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action no'>No</span></td><td><span class='date'>18 Mar</span></td><td class='ia'>2 / 1</td></tr>
-<tr><td><span class='num'>10</span></td><td><div class='risk'>Expense</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Expense strain model</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>09 Jan</span></td><td class='ia'>1 / 3</td></tr>
-<tr><td><span class='num'>11</span></td><td><div class='risk'>Longevity</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Reserve sensitivity</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>21 Mar</span></td><td class='ia'>0 / 1</td></tr></tbody></table></div></div><aside class='commentary-panel'><div class='commentary-head'><div><div class='commentary-title'>Top 3 assigned commentary</div><div class='commentary-sub'>Commentary is assigned to L2 risks; L3 detail is supporting context in the appendix.</div></div><span class='assigned'>3 slots</span></div><div class='comm-card gold'><div class='comm-top'><strong>Spread</strong><span class='badge'>Breach</span></div><div class='owner-line'>Market Risk Lead - 14 Mar 2026</div><p>Spread remains a red L2 risk, with <b>spread stress &amp; liquidity premium</b> and <b>credit spread widening</b> as the supporting L3 evidence. Commentary should explain the market movement, hedge response, client impact and confidence in Q2 mitigation.</p></div>
+    <iframe id="frame-p3detail" class="inactive slide-frame" data-key="p3detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:12px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:7px}.kpi{min-height:46px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:6px 10px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:8.8px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:22px;font-weight:600;margin-top:3px}.delta{height:15px;margin-top:2px;padding:1px 6px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:8px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:515px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel{display:flex;flex-direction:column;min-height:0}.panel-head,.commentary-head{padding:6px 10px 5px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:13px}.panel-sub,.commentary-sub{font-size:8.4px;color:var(--muted);margin-top:1px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:var(--redbg);border-color:transparent;color:var(--red)}.pill.amber{background:var(--amberbg);border-color:transparent;color:var(--amber)}.table-wrap{padding:0 6px 3px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}.table-wrap::-webkit-scrollbar{width:6px}.table-wrap::-webkit-scrollbar-track{background:#f2f5fa}.table-wrap::-webkit-scrollbar-thumb{background:#c2cede;border-radius:999px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:6.5px;text-transform:uppercase;letter-spacing:.08em;color:#8294ae;text-align:left;border-bottom:1px solid #dfe6f1;padding:3px 4px;font-weight:700;position:sticky;top:0;background:#fff;z-index:2}.driver-table td{border-bottom:1px solid rgba(10,47,115,.07);padding:1px 4px;height:22px;vertical-align:middle;color:#1f3458}.driver-table th:nth-child(n+5),.driver-table td:nth-child(n+5){text-align:center}.num{width:16px;height:16px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.2px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.l1-risk{font-size:8px;font-weight:700;color:#405374;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.3px;font-weight:700;color:#0A2F73;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.2px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.action{display:inline-flex;min-width:38px;height:15px;border-radius:3px;align-items:center;justify-content:center;font-size:6.6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid transparent;line-height:1;padding:0 3px}.rag{width:34px;min-width:34px;padding:0;border-radius:3px;font-size:0;line-height:0;color:transparent;overflow:hidden;border:1px solid rgba(10,47,115,.12)}.rag.green{background-color:#8FCB53;background-image:radial-gradient(circle,rgba(0,107,92,.24) 1px,transparent 1.45px);background-size:6px 6px}.rag.amber{background-color:#EEE45A;background-image:repeating-linear-gradient(90deg,rgba(159,144,0,.28) 0 1px,transparent 1px 5px);border-color:rgba(159,144,0,.26)}.rag.red{background-color:#E95145;background-image:repeating-linear-gradient(45deg,rgba(143,0,16,.26) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(135deg,rgba(143,0,16,.18) 0 1.5px,transparent 1.5px 5px);border-color:rgba(143,0,16,.24)}.rag.final-overlay{outline:1.5px solid var(--blue);outline-offset:1px;box-shadow:0 0 0 1px rgba(255,255,255,.65)}.move{display:inline-flex;align-items:center;justify-content:center;width:16px;height:15px;color:#27436f;font-size:9px;font-weight:800;line-height:1}.move.up,.move.flat,.move.down{background:transparent;color:#27436f}.action.yes{background:#dff3ee;color:#006b5d}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:42px;height:15px;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#153b73}.issue,.actions{text-align:center;font-weight:700;color:#112e64;white-space:nowrap;font-size:8px}.actions{color:#27436f}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Financial Risk Detail</h1><div class='sub'>L2 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P4 / 18</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Financial L2 Risks</div><div class='value'>16</div></div><div class='kpi red'><div class='label'>Red L2</div><div class='value'>5</div></div><div class='kpi amber'><div class='label'>Amber L2</div><div class='value'>6</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>9</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Financial L2 Risk Detail</div><div class='panel-sub'>Commentary is assigned at L2 risk level; red/amber L2 rows are shown, green L2s are hidden by default, and full L3 rows sit in the RCSA appendix.</div></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:22px'><col style='width:100px'><col style='width:72px'><col style='width:138px'><col style='width:44px'><col style='width:34px'><col style='width:42px'><col style='width:42px'><col style='width:32px'><col style='width:32px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L1 Risk</th><th>Worst L3 risks</th><th>Overall</th><th>QoQ</th><th>Plan</th><th>Last RCSA</th><th>Issues</th><th>Actions</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Spread</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Spread stress &amp; liquidity premium &amp; Credit spread widening</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>14 Mar</span></td><td class='issue'>6</td><td class='actions'>9</td></tr>
+<tr><td><span class='num'>2</span></td><td><div class='risk'>Investment Counterparty</div></td><td><div class='l1-risk'>Credit &amp; Counterparty</div></td><td><div class='driver'>Default watchlist deterioration &amp; Downgrade concentration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>22 Mar</span></td><td class='issue'>4</td><td class='actions'>7</td></tr>
+<tr><td><span class='num'>3</span></td><td><div class='risk'>Liquidity</div></td><td><div class='l1-risk'>Liquidity &amp; Funding</div></td><td><div class='driver'>Liquidity stress buffer</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='issue'>2</td><td class='actions'>3</td></tr>
+<tr><td><span class='num'>4</span></td><td><div class='risk'>Mortality</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Mortality assumption drift</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>19 Feb</span></td><td class='issue'>1</td><td class='actions'>4</td></tr>
+<tr><td><span class='num'>5</span></td><td><div class='risk'>Funding</div></td><td><div class='l1-risk'>Liquidity &amp; Funding</div></td><td><div class='driver'>Wholesale funding concentration</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>05 Jan</span></td><td class='issue'>2</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>6</span></td><td><div class='risk'>Equity</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Equity volatility spike</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='issue'>1</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>7</span></td><td><div class='risk'>Inflation</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Inflation basis risk</div></td><td><span class='rag green'>Green</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action no'>No</span></td><td><span class='date'>28 Mar</span></td><td class='issue'>1</td><td class='actions'>1</td></tr>
+<tr><td><span class='num'>8</span></td><td><div class='risk'>Interest Rate</div></td><td><div class='l1-risk'>Market</div></td><td><div class='driver'>Basis risk watch item</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='issue'>0</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>9</span></td><td><div class='risk'>Illiquid Credit</div></td><td><div class='l1-risk'>Credit &amp; Counterparty</div></td><td><div class='driver'>Valuation lag and exit depth</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action no'>No</span></td><td><span class='date'>18 Mar</span></td><td class='issue'>2</td><td class='actions'>1</td></tr>
+<tr><td><span class='num'>10</span></td><td><div class='risk'>Expense</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Expense strain model</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>09 Jan</span></td><td class='issue'>1</td><td class='actions'>3</td></tr>
+<tr><td><span class='num'>11</span></td><td><div class='risk'>Longevity</div></td><td><div class='l1-risk'>Insurance</div></td><td><div class='driver'>Reserve sensitivity</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>21 Mar</span></td><td class='issue'>0</td><td class='actions'>1</td></tr></tbody></table></div></div><aside class='commentary-panel'><div class='commentary-head'><div><div class='commentary-title'>Top 3 assigned commentary</div><div class='commentary-sub'>Commentary is assigned to L2 risks; L3 detail is supporting context in the appendix.</div></div><span class='assigned'>3 slots</span></div><div class='comm-card gold'><div class='comm-top'><strong>Spread</strong><span class='badge'>Breach</span></div><div class='owner-line'>Market Risk Lead - 14 Mar 2026</div><p>Spread remains a red L2 risk, with <b>spread stress &amp; liquidity premium</b> and <b>credit spread widening</b> as the supporting L3 evidence. Commentary should explain the market movement, hedge response, client impact and confidence in Q2 mitigation.</p></div>
 <div class='comm-card red'><div class='comm-top'><strong>Investment Counterparty</strong><span class='badge'>Worsened</span></div><div class='owner-line'>Credit Risk Lead - 22 Mar 2026</div><p>Investment Counterparty remains a red L2 risk, with default watchlist deterioration and downgrade concentration as supporting evidence. Owner commentary should cover exposure, exit criteria, watchlist governance and any dependency on external ratings.</p></div>
 <div class='comm-card blue'><div class='comm-top'><strong>Liquidity</strong><span class='badge'>Accepted</span></div><div class='owner-line'>Treasury / Liquidity Lead - 31 Mar 2026</div><p>Current data rolls the L2 to <b>Red</b>, with one accepted L3 risk providing context only. Commentary should explain why the accepted exposure is tolerable, the buffer evidence and what would trigger escalation.</p></div><div class='spill-note'><b>Spillover:</b> Further red financial L2 commentary can use the spillover appendix; full L3 rows sit in the RCSA appendix.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
 
-    <iframe id="frame-p3nfdetail" class="inactive slide-frame" data-key="p3nfdetail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Non-Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:12px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:7px}.kpi{min-height:46px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:6px 10px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:8.8px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:22px;font-weight:600;margin-top:3px}.delta{height:15px;margin-top:2px;padding:1px 6px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:8px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:515px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel{display:flex;flex-direction:column;min-height:0}.panel-head,.commentary-head{padding:6px 10px 5px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:13px}.panel-sub,.commentary-sub{font-size:8.4px;color:var(--muted);margin-top:1px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:var(--redbg);border-color:transparent;color:var(--red)}.pill.amber{background:var(--amberbg);border-color:transparent;color:var(--amber)}.table-wrap{padding:0 6px 3px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}.table-wrap::-webkit-scrollbar{width:6px}.table-wrap::-webkit-scrollbar-track{background:#f2f5fa}.table-wrap::-webkit-scrollbar-thumb{background:#c2cede;border-radius:999px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:6.5px;text-transform:uppercase;letter-spacing:.08em;color:#8294ae;text-align:left;border-bottom:1px solid #dfe6f1;padding:3px 4px;font-weight:700;position:sticky;top:0;background:#fff;z-index:2}.driver-table td{border-bottom:1px solid rgba(10,47,115,.07);padding:1px 4px;height:22px;vertical-align:middle;color:#1f3458}.driver-table th:nth-child(n+5),.driver-table td:nth-child(n+5){text-align:center}.num{width:16px;height:16px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.2px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.l1-risk{font-size:8px;font-weight:700;color:#405374;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.3px;font-weight:700;color:#0A2F73;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.2px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.action{display:inline-flex;min-width:38px;height:15px;border-radius:3px;align-items:center;justify-content:center;font-size:6.6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid transparent;line-height:1;padding:0 3px}.rag{width:34px;min-width:34px;padding:0;border-radius:3px;font-size:0;line-height:0;color:transparent;overflow:hidden;border:1px solid rgba(10,47,115,.12)}.rag.green{background-color:#8FCB53;background-image:radial-gradient(circle,rgba(0,107,92,.24) 1px,transparent 1.45px);background-size:6px 6px}.rag.amber{background-color:#EEE45A;background-image:repeating-linear-gradient(90deg,rgba(159,144,0,.28) 0 1px,transparent 1px 5px);border-color:rgba(159,144,0,.26)}.rag.red{background-color:#E95145;background-image:repeating-linear-gradient(45deg,rgba(143,0,16,.26) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(135deg,rgba(143,0,16,.18) 0 1.5px,transparent 1.5px 5px);border-color:rgba(143,0,16,.24)}.rag.final-overlay{outline:1.5px solid var(--blue);outline-offset:1px;box-shadow:0 0 0 1px rgba(255,255,255,.65)}.move{display:inline-flex;align-items:center;justify-content:center;width:16px;height:15px;color:#27436f;font-size:9px;font-weight:800;line-height:1}.move.up,.move.flat,.move.down{background:transparent;color:#27436f}.action.yes{background:#dff3ee;color:#006b5d}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:42px;height:15px;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#153b73}.ia{text-align:center;font-weight:700;color:#112e64;white-space:nowrap;font-size:8px}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Non-Financial Risk Detail</h1><div class='sub'>L2 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P6 / 18</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Non-Fin L2 Risks</div><div class='value'>26</div></div><div class='kpi red'><div class='label'>Red L2</div><div class='value'>8</div></div><div class='kpi amber'><div class='label'>Amber L2</div><div class='value'>8</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>16</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Non-Financial L2 Risk Detail</div><div class='panel-sub'>Commentary is assigned at L2 risk level; red/amber L2 rows are shown, green L2s are hidden by default, and full L3 rows sit in the RCSA appendix.</div></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:22px'><col style='width:108px'><col style='width:76px'><col style='width:154px'><col style='width:46px'><col style='width:38px'><col style='width:48px'><col style='width:48px'><col style='width:34px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L1 Risk</th><th>Worst L3 risks</th><th>Overall</th><th>QoQ</th><th>Action</th><th>Last RCSA</th><th>I/A</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Information Security &amp; Cyber</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Cyber attack / data breach</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>6 / 9</td></tr>
-<tr><td><span class='num'>2</span></td><td><div class='risk'>Operational Resilience</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Critical service outage</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>5 / 8</td></tr>
-<tr><td><span class='num'>3</span></td><td><div class='risk'>Regulatory Compliance</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Regulatory change management</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='ia'>4 / 7</td></tr>
-<tr><td><span class='num'>4</span></td><td><div class='risk'>Data Protection</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Retention / breach response</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>25 Mar</span></td><td class='ia'>4 / 6</td></tr>
-<tr><td><span class='num'>5</span></td><td><div class='risk'>Artificial Intelligence</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>GenAI model governance</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>20 Mar</span></td><td class='ia'>3 / 5</td></tr>
-<tr><td><span class='num'>6</span></td><td><div class='risk'>Technology</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Change failure / release control</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>05 Jan</span></td><td class='ia'>3 / 6</td></tr>
-<tr><td><span class='num'>7</span></td><td><div class='risk'>Reputation</div></td><td><div class='l1-risk'>Strategic</div></td><td><div class='driver'>External conduct exposure</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>18 Mar</span></td><td class='ia'>2 / 4</td></tr>
-<tr><td><span class='num'>8</span></td><td><div class='risk'>Sales &amp; Distribution</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Advice / disclosure controls</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>19 Mar</span></td><td class='ia'>2 / 5</td></tr>
-<tr><td><span class='num'>9</span></td><td><div class='risk'>Post-Sales Admin &amp; Claims</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Claims servicing backlog</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>22 Mar</span></td><td class='ia'>2 / 3</td></tr>
-<tr><td><span class='num'>10</span></td><td><div class='risk'>Third Party</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Supplier resilience concentration</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>27 Mar</span></td><td class='ia'>1 / 4</td></tr>
-<tr><td><span class='num'>11</span></td><td><div class='risk'>Model</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Model validation delay</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>21 Mar</span></td><td class='ia'>1 / 3</td></tr>
-<tr><td><span class='num'>12</span></td><td><div class='risk'>Reporting</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Manual reporting adjustment</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='ia'>1 / 2</td></tr>
-<tr><td><span class='num'>13</span></td><td><div class='risk'>Tax Compliance</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Tax control evidence gap</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>16 Mar</span></td><td class='ia'>1 / 2</td></tr>
-<tr><td><span class='num'>14</span></td><td><div class='risk'>People &amp; Safety</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Key person dependency</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>15 Mar</span></td><td class='ia'>0 / 2</td></tr>
-<tr><td><span class='num'>15</span></td><td><div class='risk'>Greenwashing</div></td><td><div class='l1-risk'>Climate</div></td><td><div class='driver'>Disclosure substantiation</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>24 Mar</span></td><td class='ia'>0 / 1</td></tr>
-<tr><td><span class='num'>16</span></td><td><div class='risk'>Data &amp; Information Management</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Data ownership gaps</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>29 Mar</span></td><td class='ia'>0 / 2</td></tr></tbody></table></div></div><aside class='commentary-panel'><div class='commentary-head'><div><div class='commentary-title'>Top 3 assigned commentary</div><div class='commentary-sub'>Commentary is assigned to L2 risks; L3 detail is supporting context in the appendix.</div></div><span class='assigned'>3 slots</span></div><div class='comm-card gold'><div class='comm-top'><strong>Information Security &amp; Cyber</strong><span class='badge'>Breach</span></div><div class='owner-line'>CISO / Head of IT Risk - 31 Mar 2026</div><p>Information Security &amp; Cyber remains a red L2 risk, with cyber attack / data breach as the supporting L3 evidence concentrated in RS &amp; AM and Europe. Commentary should explain root cause, affected control families, SOC uplift decision and expected remediation date.</p></div>
+    <iframe id="frame-p3nfdetail" class="inactive slide-frame" data-key="p3nfdetail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - RCSA Non-Financial Risk Detail</title><style>:root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde2e4;--amber:#DE4721;--amberbg:#fff4d1;--green:#006B5C;--greenbg:#e6f5f1;--violet:#4d5bd5}*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.18}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.brand{height:36px;padding:0 32px;border-bottom:1px solid rgba(10,47,115,.14);display:flex;align-items:center;justify-content:space-between;font-weight:700}.logo:after{content:'';display:inline-block;margin-left:10px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:18px solid var(--gold);transform:skewX(-15deg) translateY(3px)}.doc{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#56657e}.doc strong{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}.section{height:56px;background:#17377f;color:#fff;display:flex;align-items:center;padding:0 32px;border-bottom:3px solid var(--gold)}.section h1{font-size:23px;margin:0 18px 0 0;font-weight:700;letter-spacing:-.01em}.section .sub{font-size:12px;opacity:.88}.page-marker{margin-left:auto;font-size:13px;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:16px}.body{padding:12px 30px 0;height:596px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:7px}.kpi{min-height:46px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;background:#fff;padding:6px 10px}.kpi.red{border-top-color:var(--red)}.kpi.amber{border-top-color:var(--amber)}.kpi.green{border-top-color:#00a887}.kpi .label{font-size:8.8px;text-transform:uppercase;letter-spacing:.09em;color:#001b4c;font-weight:700}.kpi .value{font-size:22px;font-weight:600;margin-top:3px}.delta{height:15px;margin-top:2px;padding:1px 6px;border-radius:4px;border:1px solid #c6d3e4;background:#f2f6fb;font-size:8px;font-weight:600;color:#27436f;display:flex;align-items:center}.main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:12px;height:515px}.panel,.commentary-panel{border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden}.panel{display:flex;flex-direction:column;min-height:0}.panel-head,.commentary-head{padding:6px 10px 5px;border-bottom:1px solid #e8edf5;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.panel-title,.commentary-title{font-weight:700;font-size:13px}.panel-sub,.commentary-sub{font-size:8.4px;color:var(--muted);margin-top:1px}.filters{display:flex;gap:5px}.pill{border-radius:4px;background:#f2f6fb;border:1px solid #d5deeb;padding:3px 7px;font-size:9px;font-weight:700;color:#27436f}.pill.red{background:var(--redbg);border-color:transparent;color:var(--red)}.pill.amber{background:var(--amberbg);border-color:transparent;color:var(--amber)}.table-wrap{padding:0 6px 3px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}.table-wrap::-webkit-scrollbar{width:6px}.table-wrap::-webkit-scrollbar-track{background:#f2f5fa}.table-wrap::-webkit-scrollbar-thumb{background:#c2cede;border-radius:999px}.driver-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.driver-table th{font-size:6.5px;text-transform:uppercase;letter-spacing:.08em;color:#8294ae;text-align:left;border-bottom:1px solid #dfe6f1;padding:3px 4px;font-weight:700;position:sticky;top:0;background:#fff;z-index:2}.driver-table td{border-bottom:1px solid rgba(10,47,115,.07);padding:1px 4px;height:22px;vertical-align:middle;color:#1f3458}.driver-table th:nth-child(n+5),.driver-table td:nth-child(n+5){text-align:center}.num{width:16px;height:16px;border-radius:50%;background:var(--violet);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:8px;box-shadow:0 0 0 2px #fff}.risk{font-weight:700;font-size:9.2px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.l1-risk{font-size:8px;font-weight:700;color:#405374;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver{font-size:8.3px;font-weight:700;color:#0A2F73;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:8.2px;color:#304461;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rag,.action{display:inline-flex;min-width:38px;height:15px;border-radius:3px;align-items:center;justify-content:center;font-size:6.6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid transparent;line-height:1;padding:0 3px}.rag{width:34px;min-width:34px;padding:0;border-radius:3px;font-size:0;line-height:0;color:transparent;overflow:hidden;border:1px solid rgba(10,47,115,.12)}.rag.green{background-color:#8FCB53;background-image:radial-gradient(circle,rgba(0,107,92,.24) 1px,transparent 1.45px);background-size:6px 6px}.rag.amber{background-color:#EEE45A;background-image:repeating-linear-gradient(90deg,rgba(159,144,0,.28) 0 1px,transparent 1px 5px);border-color:rgba(159,144,0,.26)}.rag.red{background-color:#E95145;background-image:repeating-linear-gradient(45deg,rgba(143,0,16,.26) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(135deg,rgba(143,0,16,.18) 0 1.5px,transparent 1.5px 5px);border-color:rgba(143,0,16,.24)}.rag.final-overlay{outline:1.5px solid var(--blue);outline-offset:1px;box-shadow:0 0 0 1px rgba(255,255,255,.65)}.move{display:inline-flex;align-items:center;justify-content:center;width:16px;height:15px;color:#27436f;font-size:9px;font-weight:800;line-height:1}.move.up,.move.flat,.move.down{background:transparent;color:#27436f}.action.yes{background:#dff3ee;color:#006b5d}.action.no{background:#eef3f8;color:#52637b}.date{display:inline-flex;width:42px;height:15px;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#153b73}.issue,.actions{text-align:center;font-weight:700;color:#112e64;white-space:nowrap;font-size:8px}.actions{color:#27436f}.commentary-panel{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}.assigned{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#006b5d;background:#e6f5f1;border-radius:4px;padding:3px 7px;white-space:nowrap}.comm-card{border:1px solid #d8e0ec;border-left:3px solid var(--gold);border-radius:6px;background:#fff;padding:10px}.comm-card.red{border-left-color:var(--red)}.comm-card.blue{border-left-color:#2140CE}.comm-top{display:flex;align-items:center;gap:7px;min-width:0}.comm-top strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item{font-size:8px;font-weight:800;color:#8f6200;background:#fff4d1;border-radius:3px;padding:2px 5px;white-space:nowrap}.badge{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9d1827;background:#ffe7e9;border-radius:3px;padding:2px 5px;margin-left:auto}.owner-line{font-size:8px;color:#5c6d85;margin-top:4px}.comm-card p{font-size:10.2px;color:var(--ink2);line-height:1.35;margin:5px 0 0}.spill-note{border:1px dashed #cdd7e6;border-radius:5px;background:#f8fbff;color:#405374;font-size:9px;line-height:1.3;padding:7px 8px;margin-top:auto}.footer{height:32px;background:var(--deep);color:#c7d6ef;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:9px}.footer-left,.footer-right{display:flex;gap:12px}.footer .current{color:#fff;font-weight:800}.appendix-ref{color:#f6c63a}</style></head><body><div class='slide'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section'><h1>RCSA - Non-Financial Risk Detail</h1><div class='sub'>L2 risk detail, overall RAG, action status and assigned commentary</div><div class='page-marker'>P6 / 18</div></div><main class='body'><section class='kpis'><div class='kpi'><div class='label'>Non-Fin L2 Risks</div><div class='value'>26</div></div><div class='kpi red'><div class='label'>Red L2</div><div class='value'>8</div></div><div class='kpi amber'><div class='label'>Amber L2</div><div class='value'>8</div></div><div class='kpi green'><div class='label'>Action Plans Open</div><div class='value'>16</div></div></section><section class='main'><div class='panel'><div class='panel-head'><div><div class='panel-title'>Non-Financial L2 Risk Detail</div><div class='panel-sub'>Commentary is assigned at L2 risk level; red/amber L2 rows are shown, green L2s are hidden by default, and full L3 rows sit in the RCSA appendix.</div></div></div><div class='table-wrap'><table class='driver-table'><colgroup><col style='width:22px'><col style='width:100px'><col style='width:72px'><col style='width:138px'><col style='width:44px'><col style='width:34px'><col style='width:42px'><col style='width:42px'><col style='width:32px'><col style='width:32px'></colgroup><thead><tr><th>#</th><th>L2 Risk</th><th>L1 Risk</th><th>Worst L3 risks</th><th>Overall</th><th>QoQ</th><th>Plan</th><th>Last RCSA</th><th>Issues</th><th>Actions</th></tr></thead><tbody><tr><td><span class='num'>1</span></td><td><div class='risk'>Information Security &amp; Cyber</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Cyber attack / data breach</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='issue'>6</td><td class='actions'>9</td></tr>
+<tr><td><span class='num'>2</span></td><td><div class='risk'>Operational Resilience</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Critical service outage</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='issue'>5</td><td class='actions'>8</td></tr>
+<tr><td><span class='num'>3</span></td><td><div class='risk'>Regulatory Compliance</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Regulatory change management</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>28 Mar</span></td><td class='issue'>4</td><td class='actions'>7</td></tr>
+<tr><td><span class='num'>4</span></td><td><div class='risk'>Data Protection</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Retention / breach response</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>25 Mar</span></td><td class='issue'>4</td><td class='actions'>6</td></tr>
+<tr><td><span class='num'>5</span></td><td><div class='risk'>Artificial Intelligence</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>GenAI model governance</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>20 Mar</span></td><td class='issue'>3</td><td class='actions'>5</td></tr>
+<tr><td><span class='num'>6</span></td><td><div class='risk'>Technology</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Change failure / release control</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>05 Jan</span></td><td class='issue'>3</td><td class='actions'>6</td></tr>
+<tr><td><span class='num'>7</span></td><td><div class='risk'>Reputation</div></td><td><div class='l1-risk'>Strategic</div></td><td><div class='driver'>External conduct exposure</div></td><td><span class='rag red'>Red</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>18 Mar</span></td><td class='issue'>2</td><td class='actions'>4</td></tr>
+<tr><td><span class='num'>8</span></td><td><div class='risk'>Sales &amp; Distribution</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Advice / disclosure controls</div></td><td><span class='rag red'>Red</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>19 Mar</span></td><td class='issue'>2</td><td class='actions'>5</td></tr>
+<tr><td><span class='num'>9</span></td><td><div class='risk'>Post-Sales Admin &amp; Claims</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Claims servicing backlog</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>22 Mar</span></td><td class='issue'>2</td><td class='actions'>3</td></tr>
+<tr><td><span class='num'>10</span></td><td><div class='risk'>Third Party</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Supplier resilience concentration</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>27 Mar</span></td><td class='issue'>1</td><td class='actions'>4</td></tr>
+<tr><td><span class='num'>11</span></td><td><div class='risk'>Model</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Model validation delay</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>21 Mar</span></td><td class='issue'>1</td><td class='actions'>3</td></tr>
+<tr><td><span class='num'>12</span></td><td><div class='risk'>Reporting</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Manual reporting adjustment</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>31 Mar</span></td><td class='issue'>1</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>13</span></td><td><div class='risk'>Tax Compliance</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Tax control evidence gap</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move flat' title='QoQ unchanged'>-</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>16 Mar</span></td><td class='issue'>1</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>14</span></td><td><div class='risk'>People &amp; Safety</div></td><td><div class='l1-risk'>Operational</div></td><td><div class='driver'>Key person dependency</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>15 Mar</span></td><td class='issue'>0</td><td class='actions'>2</td></tr>
+<tr><td><span class='num'>15</span></td><td><div class='risk'>Greenwashing</div></td><td><div class='l1-risk'>Climate</div></td><td><div class='driver'>Disclosure substantiation</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move down' title='QoQ improved'>&#9660;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>24 Mar</span></td><td class='issue'>0</td><td class='actions'>1</td></tr>
+<tr><td><span class='num'>16</span></td><td><div class='risk'>Data &amp; Information Management</div></td><td><div class='l1-risk'>Customer</div></td><td><div class='driver'>Data ownership gaps</div></td><td><span class='rag amber'>Amber</span></td><td><span class='move up' title='QoQ worsened'>&#9650;</span></td><td><span class='action yes'>Yes</span></td><td><span class='date'>29 Mar</span></td><td class='issue'>0</td><td class='actions'>2</td></tr></tbody></table></div></div><aside class='commentary-panel'><div class='commentary-head'><div><div class='commentary-title'>Top 3 assigned commentary</div><div class='commentary-sub'>Commentary is assigned to L2 risks; L3 detail is supporting context in the appendix.</div></div><span class='assigned'>3 slots</span></div><div class='comm-card gold'><div class='comm-top'><strong>Information Security &amp; Cyber</strong><span class='badge'>Breach</span></div><div class='owner-line'>CISO / Head of IT Risk - 31 Mar 2026</div><p>Information Security &amp; Cyber remains a red L2 risk, with cyber attack / data breach as the supporting L3 evidence concentrated in RS &amp; AM and Europe. Commentary should explain root cause, affected control families, SOC uplift decision and expected remediation date.</p></div>
 <div class='comm-card red'><div class='comm-top'><strong>Operational Resilience</strong><span class='badge'>Overdue</span></div><div class='owner-line'>Head of Operational Resilience - 28 Mar 2026</div><p>Critical service outage remains <b>Red</b> with an overdue action. Commentary should cover customer impact, recovery testing, owner accountability and whether resilience tolerances remain credible.</p></div>
 <div class='comm-card blue'><div class='comm-top'><strong>Regulatory Compliance</strong><span class='badge'>Worsened</span></div><div class='owner-line'>Head of Compliance - 28 Mar 2026</div><p>Regulatory change management has worsened to <b>Red</b> across RS &amp; AM and SunLife. Commentary should explain the backlog, interim controls, accountable business function and Q2 remediation path.</p></div><div class='spill-note'><b>Spillover:</b> Further red non-financial L2 commentary can use the spillover appendix; full L3 rows sit in the RCSA appendix.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
 
@@ -4502,7 +5015,7 @@
 .period-ytd,.scope-all{display:none!important}#mat-period-ytd:checked~.body .period-q{display:none!important}#mat-period-ytd:checked~.body .period-ytd.inline:not(.scope-all){display:inline!important}#mat-period-ytd:checked~.body .period-ytd.block:not(.scope-all){display:block!important}#mat-period-ytd:checked~#mat-scope-all:checked~.body .period-ytd.scope-all.inline{display:inline!important}#mat-period-ytd:checked~#mat-scope-all:checked~.body .period-ytd.scope-all.block{display:block!important}
 #mat-view-l2:checked~.body label[for='mat-view-l2'],#mat-view-area:checked~.body label[for='mat-view-area']{background:var(--blue);color:#fff}#mat-view-l2:checked~.body .l2-view{display:block}#mat-view-area:checked~.body .area-view{display:block}
 #mat-scope-own:checked~.body label[for='mat-scope-own'],#mat-scope-all:checked~.body label[for='mat-scope-all']{background:var(--blue);color:#fff}#mat-scope-all:checked~.body .scope-own{display:none!important}#mat-scope-all:checked~.body .scope-all.inline:not(.period-ytd):not(.period-q){display:inline!important}#mat-scope-all:checked~.body .scope-all.block:not(.period-ytd):not(.period-q){display:block!important}#mat-period-q:checked~#mat-scope-all:checked~.body .period-q.scope-all.inline{display:inline!important}#mat-period-q:checked~#mat-scope-all:checked~.body .period-q.scope-all.block{display:block!important}#mat-period-ytd:checked~#mat-scope-all:checked~.body .period-ytd.scope-own.inline{display:none!important}#mat-period-ytd:checked~#mat-scope-all:checked~.body .period-ytd.scope-own.block{display:none!important}
-</style></head><body><div class='slide'><input class='period-radio' type='radio' id='mat-period-q' name='mat-period' checked><input class='period-radio' type='radio' id='mat-period-ytd' name='mat-period'><input class='view-radio' type='radio' id='mat-view-l2' name='mat-view' checked><input class='view-radio' type='radio' id='mat-view-area' name='mat-view'><input class='scope-radio' type='radio' id='mat-scope-own' name='mat-scope' checked><input class='scope-radio' type='radio' id='mat-scope-all' name='mat-scope'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Material Controls Environment</h1><div class='sub'>Board Risk Committee - material controls environment by L2 risk and business area</div><div class='period-toggle'><label for='mat-period-q'>Q</label><label for='mat-period-ytd'>YTD</label></div><div class='page-marker'>P7 / 18</div></div><main class='body'><section class='kpis'><div class='kpi '><div class='kpi-label'>Material Controls</div><div class='kpi-value'>34</div><div class='kpi-note'>Board focus population</div></div><div class='kpi red'><div class='kpi-label'>Ineffective</div><div class='kpi-value'>4</div><div class='kpi-note'>12% of material controls</div></div><div class='kpi amber'><div class='kpi-label'>Partially Effective</div><div class='kpi-value'>7</div><div class='kpi-note'>21% of material controls</div></div><div class='kpi green'><div class='kpi-label'>Exception Actions Linked</div><div class='kpi-value'>82%</div><div class='kpi-note'>Ineffective/partial with plan</div></div><div class='kpi burgundy'><div class='kpi-label'>Linked Key Controls</div><div class='kpi-value'>39</div><div class='kpi-note'>Mapped to material controls</div></div><div class='kpi amber'><div class='kpi-label'><span class='period-q'>Q1</span><span class='period-ytd inline'>YTD</span> Tests Complete</div><div class='kpi-value'><span class='period-q'>68%</span><span class='period-ytd inline'>66%</span></div><div class='kpi-note'><span class='period-q'>23 / 34 scheduled</span><span class='period-ytd inline'>41 / 62 scheduled</span></div></div></section><section class='main'><div class='left'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Material control RAG split</div><div class='panel-sub'>Basis: owning department or all impacted mappings; clusters group linked controls. <span class='count-note'>All impacted can double count</span></div></div><div class='panel-actions'><div class='view-toggle'><label for='mat-view-l2'>L2 risk</label><label for='mat-view-area'>Business area</label></div><div class='view-toggle scope-toggle'><label for='mat-scope-own'>Owning dept</label><label for='mat-scope-all'>All impacted</label></div></div></div><div class='split-view l2-view'><table class='split-table'><colgroup><col><col style='width:40px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:66px'><col style='width:54px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th>L2 risk</th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked key controls</th><th>Control clusters</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='risk'>Information Security &amp; Cyber</div></td><td><span class='scope-own'>6</span><span class='scope-all inline'>8</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>8</span><span class='scope-all inline'>12</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>7</span></td><td><span class='period-q scope-own sched'>4 / 6</span><span class='period-q scope-all inline sched'>5 / 8</span><span class='period-ytd inline scope-own sched'>8 / 12</span><span class='period-ytd inline scope-all sched'>11 / 16</span></td><td><span class='period-q scope-own test-type'>2R / 4N</span><span class='period-q scope-all inline test-type'>3R / 5N</span><span class='period-ytd inline scope-own test-type'>4R / 8N</span><span class='period-ytd inline scope-all test-type'>6R / 10N</span></td></tr><tr><td><div class='risk'>Operational Resilience</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>6</span><span class='scope-all inline'>10</span></td><td><span class='scope-own'>3</span><span class='scope-all inline'>6</span></td><td><span class='period-q scope-own sched'>3 / 5</span><span class='period-q scope-all inline sched'>4 / 7</span><span class='period-ytd inline scope-own sched'>6 / 10</span><span class='period-ytd inline scope-all sched'>9 / 14</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>3R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 8N</span><span class='period-ytd inline scope-all test-type'>5R / 9N</span></td></tr><tr><td><div class='risk'>Financial Crime</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='scope-own'>3</span><span class='scope-all inline'>4</span></td><td><span class='period-q scope-own sched'>3 / 4</span><span class='period-q scope-all inline sched'>4 / 5</span><span class='period-ytd inline scope-own sched'>5 / 8</span><span class='period-ytd inline scope-all sched'>7 / 10</span></td><td><span class='period-q scope-own test-type'>2R / 2N</span><span class='period-q scope-all inline test-type'>3R / 2N</span><span class='period-ytd inline scope-own test-type'>4R / 4N</span><span class='period-ytd inline scope-all test-type'>5R / 5N</span></td></tr><tr><td><div class='risk'>Sales &amp; Distribution</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>7</span><span class='scope-all inline'>9</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='period-q scope-own sched'>4 / 5</span><span class='period-q scope-all inline sched'>5 / 6</span><span class='period-ytd inline scope-own sched'>6 / 9</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>2R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 7N</span><span class='period-ytd inline scope-all test-type'>3R / 8N</span></td></tr><tr><td><div class='risk'>Third Party</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct amber'>50%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>7</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>4</span></td><td><span class='period-q scope-own sched'>2 / 4</span><span class='period-q scope-all inline sched'>4 / 6</span><span class='period-ytd inline scope-own sched'>5 / 8</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>2R / 2N</span><span class='period-q scope-all inline test-type'>3R / 3N</span><span class='period-ytd inline scope-own test-type'>4R / 4N</span><span class='period-ytd inline scope-all test-type'>5R / 6N</span></td></tr><tr><td><div class='risk'>Data Protection</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>6</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>3</span></td><td><span class='period-q scope-own sched'>3 / 4</span><span class='period-q scope-all inline sched'>4 / 5</span><span class='period-ytd inline scope-own sched'>5 / 7</span><span class='period-ytd inline scope-all sched'>7 / 9</span></td><td><span class='period-q scope-own test-type'>1R / 3N</span><span class='period-q scope-all inline test-type'>2R / 3N</span><span class='period-ytd inline scope-own test-type'>2R / 5N</span><span class='period-ytd inline scope-all test-type'>3R / 6N</span></td></tr><tr><td><div class='risk'>Spread</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>4</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>3</span></td><td><span class='scope-own'>1</span><span class='scope-all inline'>2</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>3 / 4</span><span class='period-ytd inline scope-own sched'>3 / 4</span><span class='period-ytd inline scope-all sched'>4 / 5</span></td><td><span class='period-q scope-own test-type'>0R / 3N</span><span class='period-q scope-all inline test-type'>1R / 3N</span><span class='period-ytd inline scope-own test-type'>1R / 3N</span><span class='period-ytd inline scope-all test-type'>1R / 4N</span></td></tr><tr><td><div class='risk'>Tax Compliance</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>5</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>3</span><span class='scope-all inline'>5</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>3</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>3 / 5</span><span class='period-ytd inline scope-own sched'>3 / 4</span><span class='period-ytd inline scope-all sched'>5 / 7</span></td><td><span class='period-q scope-own test-type'>1R / 2N</span><span class='period-q scope-all inline test-type'>2R / 3N</span><span class='period-ytd inline scope-own test-type'>2R / 2N</span><span class='period-ytd inline scope-all test-type'>3R / 4N</span></td></tr></tbody></table></div><div class='split-view area-view'><table class='split-table'><colgroup><col><col style='width:40px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:66px'><col style='width:54px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th><span class='scope-own'>Owning dept</span><span class='scope-all inline'>Impacted area</span></th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked key controls</th><th>Control clusters</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='risk'>Operations</div></td><td><span class='scope-own'>9</span><span class='scope-all inline'>14</span></td><td><span class='pct amber'>22%</span></td><td><span class='pct amber'>22%</span></td><td><span class='pct green'>80%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>11</span><span class='scope-all inline'>18</span></td><td><span class='scope-own'>6</span><span class='scope-all inline'>10</span></td><td><span class='period-q scope-own sched'>6 / 9</span><span class='period-q scope-all inline sched'>10 / 14</span><span class='period-ytd inline scope-own sched'>11 / 17</span><span class='period-ytd inline scope-all sched'>18 / 27</span></td><td><span class='period-q scope-own test-type'>3R / 6N</span><span class='period-q scope-all inline test-type'>5R / 9N</span><span class='period-ytd inline scope-own test-type'>6R / 11N</span><span class='period-ytd inline scope-all test-type'>10R / 17N</span></td></tr><tr><td><div class='risk'>Risk</div></td><td><span class='scope-own'>7</span><span class='scope-all inline'>10</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>8</span><span class='scope-all inline'>13</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>7</span></td><td><span class='period-q scope-own sched'>5 / 7</span><span class='period-q scope-all inline sched'>7 / 10</span><span class='period-ytd inline scope-own sched'>8 / 13</span><span class='period-ytd inline scope-all sched'>13 / 20</span></td><td><span class='period-q scope-own test-type'>3R / 4N</span><span class='period-q scope-all inline test-type'>5R / 5N</span><span class='period-ytd inline scope-own test-type'>6R / 7N</span><span class='period-ytd inline scope-all test-type'>9R / 11N</span></td></tr><tr><td><div class='risk'>Customer</div></td><td><span class='scope-own'>8</span><span class='scope-all inline'>11</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>38%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>9</span><span class='scope-all inline'>14</span></td><td><span class='scope-own'>5</span><span class='scope-all inline'>8</span></td><td><span class='period-q scope-own sched'>6 / 8</span><span class='period-q scope-all inline sched'>8 / 11</span><span class='period-ytd inline scope-own sched'>9 / 14</span><span class='period-ytd inline scope-all sched'>14 / 21</span></td><td><span class='period-q scope-own test-type'>2R / 6N</span><span class='period-q scope-all inline test-type'>4R / 7N</span><span class='period-ytd inline scope-own test-type'>4R / 10N</span><span class='period-ytd inline scope-all test-type'>7R / 14N</span></td></tr><tr><td><div class='risk'>Finance</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='scope-own'>3</span><span class='scope-all inline'>4</span></td><td><span class='period-q scope-own sched'>3 / 5</span><span class='period-q scope-all inline sched'>4 / 6</span><span class='period-ytd inline scope-own sched'>6 / 9</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>2R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 7N</span><span class='period-ytd inline scope-all test-type'>3R / 8N</span></td></tr><tr><td><div class='risk'>General Counsel</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>3</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct amber'>50%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>3</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>2 / 3</span><span class='period-ytd inline scope-own sched'>4 / 6</span><span class='period-ytd inline scope-all sched'>5 / 7</span></td><td><span class='period-q scope-own test-type'>1R / 2N</span><span class='period-q scope-all inline test-type'>1R / 2N</span><span class='period-ytd inline scope-own test-type'>2R / 4N</span><span class='period-ytd inline scope-all test-type'>3R / 4N</span></td></tr><tr><td><div class='risk'>Corporate Affairs &amp; Brand</div></td><td><span class='scope-own'>2</span><span class='scope-all inline'>2</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>2</span></td><td><span class='scope-own'>1</span><span class='scope-all inline'>1</span></td><td><span class='period-q scope-own sched'>1 / 2</span><span class='period-q scope-all inline sched'>1 / 2</span><span class='period-ytd inline scope-own sched'>3 / 3</span><span class='period-ytd inline scope-all sched'>3 / 3</span></td><td><span class='period-q scope-own test-type'>0R / 2N</span><span class='period-q scope-all inline test-type'>0R / 2N</span><span class='period-ytd inline scope-own test-type'>0R / 3N</span><span class='period-ytd inline scope-all test-type'>0R / 3N</span></td></tr></tbody></table></div></section><div class='lower-grid'><section class='panel coverage'><div class='panel-title'>Material test coverage</div><div class='panel-sub'><span class='period-q'>Q1 scheduled tests</span><span class='period-ytd inline'>YTD scheduled tests</span></div><div class='donut-wrap period-q block'><div class='donut-key done'><span class='dot green'></span><b>23</b></div><div class='donut-key open'><span class='dot'></span><b>8</b></div><div class='donut-key overdue'><span class='dot red'></span><b>3</b></div><div class='donut' style='--done:68%;--overdue:9%'><div class='donut-label'><strong>68%</strong><span>complete</span></div></div></div><div class='donut-wrap period-ytd block'><div class='donut-key done'><span class='dot green'></span><b>41</b></div><div class='donut-key open'><span class='dot'></span><b>17</b></div><div class='donut-key overdue'><span class='dot red'></span><b>4</b></div><div class='donut' style='--done:66%;--overdue:6%'><div class='donut-label'><strong>66%</strong><span>complete</span></div></div></div></section><section class='panel mix'><div class='panel-title'>Material outcome mix</div><div class='panel-sub'>Effective / partial / ineffective</div><div class='outcome-bars' aria-label='Material controls outcome bar chart'><div class='outcome-row'><div class='outcome-name'>Ineffective</div><div class='outcome-track'><div class='outcome-fill' style='width:12%'>4</div></div><div class='outcome-value'>12%</div></div><div class='outcome-row'><div class='outcome-name'>Partial</div><div class='outcome-track'><div class='outcome-fill' style='width:20%'>7</div></div><div class='outcome-value'>20%</div></div><div class='outcome-row'><div class='outcome-name'>Effective</div><div class='outcome-track'><div class='outcome-fill' style='width:68%'>23</div></div><div class='outcome-value'>68%</div></div></div></section></div></div><aside class='panel commentary'><div class='comment-head'><div class='comment-title'>Executive summary commentary</div><span class='summary'>Summary</span></div><div class='comm-card'><div class='comm-top'><strong>Material controls readout</strong><span class='badge'>Board focus</span></div><div class='owner'>Control Gatekeeper / Executive summary - 31 Mar 2026</div><p>Material controls remain the Board focus population: <b>34 controls</b>, with <b>4 ineffective</b>, <b>7 partially effective</b> and <b>39 linked key controls</b>. <span class='period-q'>For Q1, <b>23 of 34 scheduled tests</b> are complete and <b>3</b> are overdue.</span><span class='period-ytd inline'>Year to date, <b>41 of 62 scheduled tests</b> are complete and <b>4</b> are overdue.</span> Commentary should explain remediation owners, retest dates and whether linked key-control evidence restores confidence.</p></div><div class='comment-space'>Reserved commentary space for quarterly narrative, reviewer changes, additional risk-owner evidence, or longer Board readout text from the commentary workflow.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
+</style></head><body><div class='slide'><input class='period-radio' type='radio' id='mat-period-q' name='mat-period' checked><input class='period-radio' type='radio' id='mat-period-ytd' name='mat-period'><input class='view-radio' type='radio' id='mat-view-l2' name='mat-view' checked><input class='view-radio' type='radio' id='mat-view-area' name='mat-view'><input class='scope-radio' type='radio' id='mat-scope-own' name='mat-scope' checked><input class='scope-radio' type='radio' id='mat-scope-all' name='mat-scope'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Material Controls Environment</h1><div class='sub'>Board Risk Committee - material controls environment by L2 risk and business area</div><div class='period-toggle'><label for='mat-period-q'>Q</label><label for='mat-period-ytd'>YTD</label></div><div class='page-marker'>P7 / 18</div></div><main class='body'><section class='kpis'><div class='kpi '><div class='kpi-label'>Material Controls</div><div class='kpi-value'>34</div><div class='kpi-note'>Board focus population</div></div><div class='kpi red'><div class='kpi-label'>Ineffective</div><div class='kpi-value'>4</div><div class='kpi-note'>12% of material controls</div></div><div class='kpi amber'><div class='kpi-label'>Partially Effective</div><div class='kpi-value'>7</div><div class='kpi-note'>21% of material controls</div></div><div class='kpi green'><div class='kpi-label'>Exception Actions Linked</div><div class='kpi-value'>82%</div><div class='kpi-note'>Ineffective/partial with plan</div></div><div class='kpi burgundy'><div class='kpi-label'>Linked Key Controls</div><div class='kpi-value'>39</div><div class='kpi-note'>Mapped to material controls</div></div><div class='kpi amber'><div class='kpi-label'><span class='period-q'>Q1</span><span class='period-ytd inline'>YTD</span> Tests Complete</div><div class='kpi-value'><span class='period-q'>68%</span><span class='period-ytd inline'>66%</span></div><div class='kpi-note'><span class='period-q'>23 / 34 scheduled</span><span class='period-ytd inline'>41 / 62 scheduled</span></div></div></section><section class='main'><div class='left'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Material control RAG split</div><div class='panel-sub'>Basis: owning department or all impacted mappings. <span class='count-note'>All impacted can double count</span></div></div><div class='panel-actions'><div class='view-toggle'><label for='mat-view-l2'>L2 risk</label><label for='mat-view-area'>Business area</label></div><div class='view-toggle scope-toggle'><label for='mat-scope-own'>Owning dept</label><label for='mat-scope-all'>All impacted</label></div></div></div><div class='split-view l2-view'><table class='split-table'><colgroup><col><col style='width:40px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:78px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th>L2 risk</th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked key controls</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='risk'>Information Security &amp; Cyber</div></td><td><span class='scope-own'>6</span><span class='scope-all inline'>8</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>8</span><span class='scope-all inline'>12</span></td><td><span class='period-q scope-own sched'>4 / 6</span><span class='period-q scope-all inline sched'>5 / 8</span><span class='period-ytd inline scope-own sched'>8 / 12</span><span class='period-ytd inline scope-all sched'>11 / 16</span></td><td><span class='period-q scope-own test-type'>2R / 4N</span><span class='period-q scope-all inline test-type'>3R / 5N</span><span class='period-ytd inline scope-own test-type'>4R / 8N</span><span class='period-ytd inline scope-all test-type'>6R / 10N</span></td></tr><tr><td><div class='risk'>Operational Resilience</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>6</span><span class='scope-all inline'>10</span></td><td><span class='period-q scope-own sched'>3 / 5</span><span class='period-q scope-all inline sched'>4 / 7</span><span class='period-ytd inline scope-own sched'>6 / 10</span><span class='period-ytd inline scope-all sched'>9 / 14</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>3R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 8N</span><span class='period-ytd inline scope-all test-type'>5R / 9N</span></td></tr><tr><td><div class='risk'>Financial Crime</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='period-q scope-own sched'>3 / 4</span><span class='period-q scope-all inline sched'>4 / 5</span><span class='period-ytd inline scope-own sched'>5 / 8</span><span class='period-ytd inline scope-all sched'>7 / 10</span></td><td><span class='period-q scope-own test-type'>2R / 2N</span><span class='period-q scope-all inline test-type'>3R / 2N</span><span class='period-ytd inline scope-own test-type'>4R / 4N</span><span class='period-ytd inline scope-all test-type'>5R / 5N</span></td></tr><tr><td><div class='risk'>Sales &amp; Distribution</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>7</span><span class='scope-all inline'>9</span></td><td><span class='period-q scope-own sched'>4 / 5</span><span class='period-q scope-all inline sched'>5 / 6</span><span class='period-ytd inline scope-own sched'>6 / 9</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>2R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 7N</span><span class='period-ytd inline scope-all test-type'>3R / 8N</span></td></tr><tr><td><div class='risk'>Third Party</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct amber'>50%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>7</span></td><td><span class='period-q scope-own sched'>2 / 4</span><span class='period-q scope-all inline sched'>4 / 6</span><span class='period-ytd inline scope-own sched'>5 / 8</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>2R / 2N</span><span class='period-q scope-all inline test-type'>3R / 3N</span><span class='period-ytd inline scope-own test-type'>4R / 4N</span><span class='period-ytd inline scope-all test-type'>5R / 6N</span></td></tr><tr><td><div class='risk'>Data Protection</div></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>25%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>6</span></td><td><span class='period-q scope-own sched'>3 / 4</span><span class='period-q scope-all inline sched'>4 / 5</span><span class='period-ytd inline scope-own sched'>5 / 7</span><span class='period-ytd inline scope-all sched'>7 / 9</span></td><td><span class='period-q scope-own test-type'>1R / 3N</span><span class='period-q scope-all inline test-type'>2R / 3N</span><span class='period-ytd inline scope-own test-type'>2R / 5N</span><span class='period-ytd inline scope-all test-type'>3R / 6N</span></td></tr><tr><td><div class='risk'>Spread</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>4</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>3</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>3 / 4</span><span class='period-ytd inline scope-own sched'>3 / 4</span><span class='period-ytd inline scope-all sched'>4 / 5</span></td><td><span class='period-q scope-own test-type'>0R / 3N</span><span class='period-q scope-all inline test-type'>1R / 3N</span><span class='period-ytd inline scope-own test-type'>1R / 3N</span><span class='period-ytd inline scope-all test-type'>1R / 4N</span></td></tr><tr><td><div class='risk'>Tax Compliance</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>5</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>3</span><span class='scope-all inline'>5</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>3 / 5</span><span class='period-ytd inline scope-own sched'>3 / 4</span><span class='period-ytd inline scope-all sched'>5 / 7</span></td><td><span class='period-q scope-own test-type'>1R / 2N</span><span class='period-q scope-all inline test-type'>2R / 3N</span><span class='period-ytd inline scope-own test-type'>2R / 2N</span><span class='period-ytd inline scope-all test-type'>3R / 4N</span></td></tr></tbody></table></div><div class='split-view area-view'><table class='split-table'><colgroup><col><col style='width:40px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:78px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th><span class='scope-own'>Owning dept</span><span class='scope-all inline'>Impacted area</span></th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked key controls</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='risk'>Operations</div></td><td><span class='scope-own'>9</span><span class='scope-all inline'>14</span></td><td><span class='pct amber'>22%</span></td><td><span class='pct amber'>22%</span></td><td><span class='pct green'>80%</span></td><td><span class='rag red'>Red</span></td><td><span class='scope-own'>11</span><span class='scope-all inline'>18</span></td><td><span class='period-q scope-own sched'>6 / 9</span><span class='period-q scope-all inline sched'>10 / 14</span><span class='period-ytd inline scope-own sched'>11 / 17</span><span class='period-ytd inline scope-all sched'>18 / 27</span></td><td><span class='period-q scope-own test-type'>3R / 6N</span><span class='period-q scope-all inline test-type'>5R / 9N</span><span class='period-ytd inline scope-own test-type'>6R / 11N</span><span class='period-ytd inline scope-all test-type'>10R / 17N</span></td></tr><tr><td><div class='risk'>Risk</div></td><td><span class='scope-own'>7</span><span class='scope-all inline'>10</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>8</span><span class='scope-all inline'>13</span></td><td><span class='period-q scope-own sched'>5 / 7</span><span class='period-q scope-all inline sched'>7 / 10</span><span class='period-ytd inline scope-own sched'>8 / 13</span><span class='period-ytd inline scope-all sched'>13 / 20</span></td><td><span class='period-q scope-own test-type'>3R / 4N</span><span class='period-q scope-all inline test-type'>5R / 5N</span><span class='period-ytd inline scope-own test-type'>6R / 7N</span><span class='period-ytd inline scope-all test-type'>9R / 11N</span></td></tr><tr><td><div class='risk'>Customer</div></td><td><span class='scope-own'>8</span><span class='scope-all inline'>11</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>38%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>9</span><span class='scope-all inline'>14</span></td><td><span class='period-q scope-own sched'>6 / 8</span><span class='period-q scope-all inline sched'>8 / 11</span><span class='period-ytd inline scope-own sched'>9 / 14</span><span class='period-ytd inline scope-all sched'>14 / 21</span></td><td><span class='period-q scope-own test-type'>2R / 6N</span><span class='period-q scope-all inline test-type'>4R / 7N</span><span class='period-ytd inline scope-own test-type'>4R / 10N</span><span class='period-ytd inline scope-all test-type'>7R / 14N</span></td></tr><tr><td><div class='risk'>Finance</div></td><td><span class='scope-own'>5</span><span class='scope-all inline'>6</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct green'>100%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>5</span><span class='scope-all inline'>7</span></td><td><span class='period-q scope-own sched'>3 / 5</span><span class='period-q scope-all inline sched'>4 / 6</span><span class='period-ytd inline scope-own sched'>6 / 9</span><span class='period-ytd inline scope-all sched'>8 / 11</span></td><td><span class='period-q scope-own test-type'>1R / 4N</span><span class='period-q scope-all inline test-type'>2R / 4N</span><span class='period-ytd inline scope-own test-type'>2R / 7N</span><span class='period-ytd inline scope-all test-type'>3R / 8N</span></td></tr><tr><td><div class='risk'>General Counsel</div></td><td><span class='scope-own'>3</span><span class='scope-all inline'>3</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>33%</span></td><td><span class='pct amber'>50%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>4</span><span class='scope-all inline'>5</span></td><td><span class='period-q scope-own sched'>2 / 3</span><span class='period-q scope-all inline sched'>2 / 3</span><span class='period-ytd inline scope-own sched'>4 / 6</span><span class='period-ytd inline scope-all sched'>5 / 7</span></td><td><span class='period-q scope-own test-type'>1R / 2N</span><span class='period-q scope-all inline test-type'>1R / 2N</span><span class='period-ytd inline scope-own test-type'>2R / 4N</span><span class='period-ytd inline scope-all test-type'>3R / 4N</span></td></tr><tr><td><div class='risk'>Corporate Affairs &amp; Brand</div></td><td><span class='scope-own'>2</span><span class='scope-all inline'>2</span></td><td><span class='pct green'>0%</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>n/a</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>2</span><span class='scope-all inline'>2</span></td><td><span class='period-q scope-own sched'>1 / 2</span><span class='period-q scope-all inline sched'>1 / 2</span><span class='period-ytd inline scope-own sched'>3 / 3</span><span class='period-ytd inline scope-all sched'>3 / 3</span></td><td><span class='period-q scope-own test-type'>0R / 2N</span><span class='period-q scope-all inline test-type'>0R / 2N</span><span class='period-ytd inline scope-own test-type'>0R / 3N</span><span class='period-ytd inline scope-all test-type'>0R / 3N</span></td></tr></tbody></table></div></section><div class='lower-grid'><section class='panel coverage'><div class='panel-title'>Material test coverage</div><div class='panel-sub'><span class='period-q'>Q1 scheduled tests</span><span class='period-ytd inline'>YTD scheduled tests</span></div><div class='donut-wrap period-q block'><div class='donut-key done'><span class='dot green'></span><b>23</b></div><div class='donut-key open'><span class='dot'></span><b>8</b></div><div class='donut-key overdue'><span class='dot red'></span><b>3</b></div><div class='donut' style='--done:68%;--overdue:9%'><div class='donut-label'><strong>68%</strong><span>complete</span></div></div></div><div class='donut-wrap period-ytd block'><div class='donut-key done'><span class='dot green'></span><b>41</b></div><div class='donut-key open'><span class='dot'></span><b>17</b></div><div class='donut-key overdue'><span class='dot red'></span><b>4</b></div><div class='donut' style='--done:66%;--overdue:6%'><div class='donut-label'><strong>66%</strong><span>complete</span></div></div></div></section><section class='panel mix'><div class='panel-title'>Material outcome mix</div><div class='panel-sub'>Effective / partial / ineffective</div><div class='outcome-bars' aria-label='Material controls outcome bar chart'><div class='outcome-row'><div class='outcome-name'>Ineffective</div><div class='outcome-track'><div class='outcome-fill' style='width:12%'>4</div></div><div class='outcome-value'>12%</div></div><div class='outcome-row'><div class='outcome-name'>Partial</div><div class='outcome-track'><div class='outcome-fill' style='width:20%'>7</div></div><div class='outcome-value'>20%</div></div><div class='outcome-row'><div class='outcome-name'>Effective</div><div class='outcome-track'><div class='outcome-fill' style='width:68%'>23</div></div><div class='outcome-value'>68%</div></div></div></section></div></div><aside class='panel commentary'><div class='comment-head'><div class='comment-title'>Executive summary commentary</div><span class='summary'>Summary</span></div><div class='comm-card'><div class='comm-top'><strong>Material controls readout</strong><span class='badge'>Board focus</span></div><div class='owner'>Control Gatekeeper / Executive summary - 31 Mar 2026</div><p>Material controls remain the Board focus population: <b>34 controls</b>, with <b>4 ineffective</b>, <b>7 partially effective</b> and <b>39 linked key controls</b>. <span class='period-q'>For Q1, <b>23 of 34 scheduled tests</b> are complete and <b>3</b> are overdue.</span><span class='period-ytd inline'>Year to date, <b>41 of 62 scheduled tests</b> are complete and <b>4</b> are overdue.</span> Commentary should explain remediation owners, retest dates and whether linked key-control evidence restores confidence.</p></div><div class='comment-space'>Reserved commentary space for quarterly narrative, reviewer changes, additional risk-owner evidence, or longer Board readout text from the commentary workflow.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
             <iframe id="frame-p4detail" class="inactive slide-frame" data-key="p4detail" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Key Controls Environment</title><style>
 :root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde6e8;--amber:#DE4721;--amberbg:#fff2c2;--green:#006B5C;--greenbg:#e3f3ef;--track:#e6edf5}
 *{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#fff;color:var(--ink);font-family:Aptos,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.2}.slide{width:1280px;height:720px;display:grid;grid-template-rows:36px 56px 1fr 32px;background:#fff}.period-radio,.view-radio,.scope-radio{position:absolute;opacity:0;pointer-events:none}
@@ -4521,7 +5034,7 @@
 .period-ytd,.scope-all{display:none!important}#key-period-ytd:checked~.body .period-q{display:none!important}#key-period-ytd:checked~.body .period-ytd.inline:not(.scope-all){display:inline!important}#key-period-ytd:checked~.body .period-ytd.block:not(.scope-all){display:block!important}#key-period-ytd:checked~#key-scope-all:checked~.body .period-ytd.scope-all.inline{display:inline!important}#key-period-ytd:checked~#key-scope-all:checked~.body .period-ytd.scope-all.block{display:block!important}
 
 #key-scope-own:checked~.body label[for='key-scope-own'],#key-scope-all:checked~.body label[for='key-scope-all']{background:var(--blue);color:#fff}#key-scope-all:checked~.body .scope-own{display:none!important}#key-scope-all:checked~.body .scope-all.inline:not(.period-ytd):not(.period-q){display:inline!important}#key-scope-all:checked~.body .scope-all.block:not(.period-ytd):not(.period-q){display:block!important}#key-period-q:checked~#key-scope-all:checked~.body .period-q.scope-all.inline{display:inline!important}#key-period-q:checked~#key-scope-all:checked~.body .period-q.scope-all.block{display:block!important}#key-period-ytd:checked~#key-scope-all:checked~.body .period-ytd.scope-own.inline{display:none!important}#key-period-ytd:checked~#key-scope-all:checked~.body .period-ytd.scope-own.block{display:none!important}
-</style></head><body><div class='slide'><input class='period-radio' type='radio' id='key-period-q' name='key-period' checked><input class='period-radio' type='radio' id='key-period-ytd' name='key-period'><input class='scope-radio' type='radio' id='key-scope-own' name='key-scope' checked><input class='scope-radio' type='radio' id='key-scope-all' name='key-scope'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Key Controls Environment</h1><div class='sub'>Board Risk Committee - key controls environment by business area</div><div class='period-toggle'><label for='key-period-q'>Q</label><label for='key-period-ytd'>YTD</label></div><div class='page-marker'>P8 / 18</div></div><main class='body'><section class='kpis'><div class='kpi '><div class='kpi-label'>Key Controls</div><div class='kpi-value'>1,426</div><div class='kpi-note'>Primary prevention/detection</div></div><div class='kpi red'><div class='kpi-label'>Ineffective</div><div class='kpi-value'>18</div><div class='kpi-note'>1.3% of key controls</div></div><div class='kpi amber'><div class='kpi-label'>Partially Effective</div><div class='kpi-value'>263</div><div class='kpi-note'>18.4% of key controls</div></div><div class='kpi green'><div class='kpi-label'>Exception Actions Linked</div><div class='kpi-value'>71%</div><div class='kpi-note'>Ineffective/partial with plan</div></div><div class='kpi burgundy'><div class='kpi-label'>Linked Supporting Controls</div><div class='kpi-value'>620</div><div class='kpi-note'>Mapped below key controls</div></div><div class='kpi amber'><div class='kpi-label'><span class='period-q'>Q1</span><span class='period-ytd inline'>YTD</span> Tests Complete</div><div class='kpi-value'><span class='period-q'>69%</span><span class='period-ytd inline'>49%</span></div><div class='kpi-note'><span class='period-q'>318 / 460 scheduled</span><span class='period-ytd inline'>690 / 1,420 scheduled</span></div></div></section><section class='main'><div class='left'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Key controls by business area</div><div class='panel-sub'>Basis: owning department or all impacted mappings; clusters group linked controls. <span class='count-note'>All impacted can double count</span></div></div><div class='panel-actions'><div class='view-toggle scope-toggle'><label for='key-scope-own'>Owning dept</label><label for='key-scope-all'>All impacted</label></div></div></div><div class='business-wrap'><table class='business-table'><colgroup><col><col style='width:44px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:70px'><col style='width:54px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th><span class='scope-own'>Owning dept</span><span class='scope-all inline'>Impacted area</span></th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked supporting controls</th><th>Control clusters</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='area'>Operations</div></td><td><span class='scope-own'>390</span><span class='scope-all inline'>470</span></td><td><span class='pct amber'>2%</span></td><td><span class='pct amber'>21%</span></td><td><span class='pct amber'>72%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>165</span><span class='scope-all inline'>224</span></td><td><span class='scope-own'>91</span><span class='scope-all inline'>123</span></td><td><span class='period-q scope-own sched'>91 / 132</span><span class='period-q scope-all inline sched'>112 / 164</span><span class='period-ytd inline scope-own sched'>205 / 415</span><span class='period-ytd inline scope-all sched'>247 / 504</span></td><td><span class='period-q scope-own test-type'>38R / 94N</span><span class='period-q scope-all inline test-type'>49R / 115N</span><span class='period-ytd inline scope-own test-type'>96R / 319N</span><span class='period-ytd inline scope-all test-type'>122R / 382N</span></td></tr><tr><td><div class='area'>Risk</div></td><td><span class='scope-own'>255</span><span class='scope-all inline'>310</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>17%</span></td><td><span class='pct green'>76%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>105</span><span class='scope-all inline'>142</span></td><td><span class='scope-own'>58</span><span class='scope-all inline'>78</span></td><td><span class='period-q scope-own sched'>57 / 80</span><span class='period-q scope-all inline sched'>70 / 99</span><span class='period-ytd inline scope-own sched'>118 / 248</span><span class='period-ytd inline scope-all sched'>145 / 305</span></td><td><span class='period-q scope-own test-type'>22R / 58N</span><span class='period-q scope-all inline test-type'>29R / 70N</span><span class='period-ytd inline scope-own test-type'>58R / 190N</span><span class='period-ytd inline scope-all test-type'>74R / 231N</span></td></tr><tr><td><div class='area'>Customer</div></td><td><span class='scope-own'>286</span><span class='scope-all inline'>335</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct amber'>70%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>130</span><span class='scope-all inline'>168</span></td><td><span class='scope-own'>72</span><span class='scope-all inline'>92</span></td><td><span class='period-q scope-own sched'>72 / 100</span><span class='period-q scope-all inline sched'>86 / 120</span><span class='period-ytd inline scope-own sched'>153 / 310</span><span class='period-ytd inline scope-all sched'>181 / 365</span></td><td><span class='period-q scope-own test-type'>24R / 76N</span><span class='period-q scope-all inline test-type'>31R / 89N</span><span class='period-ytd inline scope-own test-type'>71R / 239N</span><span class='period-ytd inline scope-all test-type'>90R / 275N</span></td></tr><tr><td><div class='area'>Finance</div></td><td><span class='scope-own'>218</span><span class='scope-all inline'>245</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>15%</span></td><td><span class='pct green'>82%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>90</span><span class='scope-all inline'>116</span></td><td><span class='scope-own'>50</span><span class='scope-all inline'>64</span></td><td><span class='period-q scope-own sched'>48 / 68</span><span class='period-q scope-all inline sched'>55 / 78</span><span class='period-ytd inline scope-own sched'>104 / 220</span><span class='period-ytd inline scope-all sched'>119 / 248</span></td><td><span class='period-q scope-own test-type'>18R / 50N</span><span class='period-q scope-all inline test-type'>23R / 55N</span><span class='period-ytd inline scope-own test-type'>52R / 168N</span><span class='period-ytd inline scope-all test-type'>62R / 186N</span></td></tr><tr><td><div class='area'>People Function</div></td><td><span class='scope-own'>94</span><span class='scope-all inline'>110</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>11%</span></td><td><span class='pct amber'>73%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>40</span><span class='scope-all inline'>50</span></td><td><span class='scope-own'>22</span><span class='scope-all inline'>28</span></td><td><span class='period-q scope-own sched'>19 / 27</span><span class='period-q scope-all inline sched'>23 / 33</span><span class='period-ytd inline scope-own sched'>42 / 91</span><span class='period-ytd inline scope-all sched'>49 / 106</span></td><td><span class='period-q scope-own test-type'>8R / 19N</span><span class='period-q scope-all inline test-type'>10R / 23N</span><span class='period-ytd inline scope-own test-type'>20R / 71N</span><span class='period-ytd inline scope-all test-type'>24R / 82N</span></td></tr><tr><td><div class='area'>Corporate Affairs &amp; Brand</div></td><td><span class='scope-own'>68</span><span class='scope-all inline'>82</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>18%</span></td><td><span class='pct green'>75%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>28</span><span class='scope-all inline'>36</span></td><td><span class='scope-own'>15</span><span class='scope-all inline'>20</span></td><td><span class='period-q scope-own sched'>11 / 18</span><span class='period-q scope-all inline sched'>14 / 22</span><span class='period-ytd inline scope-own sched'>29 / 65</span><span class='period-ytd inline scope-all sched'>36 / 78</span></td><td><span class='period-q scope-own test-type'>4R / 14N</span><span class='period-q scope-all inline test-type'>6R / 16N</span><span class='period-ytd inline scope-own test-type'>12R / 53N</span><span class='period-ytd inline scope-all test-type'>16R / 62N</span></td></tr><tr><td><div class='area'>Internal Audit</div></td><td><span class='scope-own'>37</span><span class='scope-all inline'>40</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct green'>80%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>17</span><span class='scope-all inline'>20</span></td><td><span class='scope-own'>9</span><span class='scope-all inline'>11</span></td><td><span class='period-q scope-own sched'>7 / 10</span><span class='period-q scope-all inline sched'>8 / 11</span><span class='period-ytd inline scope-own sched'>15 / 31</span><span class='period-ytd inline scope-all sched'>17 / 34</span></td><td><span class='period-q scope-own test-type'>3R / 7N</span><span class='period-q scope-all inline test-type'>4R / 7N</span><span class='period-ytd inline scope-own test-type'>8R / 23N</span><span class='period-ytd inline scope-all test-type'>9R / 25N</span></td></tr><tr><td><div class='area'>General Counsel</div></td><td><span class='scope-own'>78</span><span class='scope-all inline'>83</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>27%</span></td><td><span class='pct amber'>64%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>45</span><span class='scope-all inline'>52</span></td><td><span class='scope-own'>25</span><span class='scope-all inline'>29</span></td><td><span class='period-q scope-own sched'>13 / 25</span><span class='period-q scope-all inline sched'>15 / 27</span><span class='period-ytd inline scope-own sched'>24 / 40</span><span class='period-ytd inline scope-all sched'>27 / 45</span></td><td><span class='period-q scope-own test-type'>7R / 18N</span><span class='period-q scope-all inline test-type'>8R / 19N</span><span class='period-ytd inline scope-own test-type'>14R / 26N</span><span class='period-ytd inline scope-all test-type'>16R / 29N</span></td></tr></tbody></table></div></section><div class='lower-grid'><section class='panel coverage'><div class='panel-title'>Key test coverage</div><div class='panel-sub'><span class='period-q'>Q1 scheduled tests</span><span class='period-ytd inline'>YTD scheduled tests</span></div><div class='donut-wrap period-q block'><div class='donut-key done'><span class='dot green'></span><b>318</b></div><div class='donut-key open'><span class='dot'></span><b>113</b></div><div class='donut-key overdue'><span class='dot red'></span><b>29</b></div><div class='donut' style='--done:69%;--overdue:6%'><div class='donut-label'><strong>69%</strong><span>complete</span></div></div></div><div class='donut-wrap period-ytd block'><div class='donut-key done'><span class='dot green'></span><b>690</b></div><div class='donut-key open'><span class='dot'></span><b>634</b></div><div class='donut-key overdue'><span class='dot red'></span><b>96</b></div><div class='donut' style='--done:49%;--overdue:7%'><div class='donut-label'><strong>49%</strong><span>complete</span></div></div></div></section><section class='panel mix'><div class='panel-title'>Key control outcome mix</div><div class='panel-sub'>Effective / partial / ineffective</div><div class='outcome-bars' aria-label='Key controls outcome bar chart'><div class='outcome-row'><div class='outcome-name'>Ineffective</div><div class='outcome-track'><div class='outcome-fill' style='width:1.3%'></div></div><div class='outcome-value'>1% / 18</div></div><div class='outcome-row'><div class='outcome-name'>Partial</div><div class='outcome-track'><div class='outcome-fill' style='width:18.4%'>263</div></div><div class='outcome-value'>18%</div></div><div class='outcome-row'><div class='outcome-name'>Effective</div><div class='outcome-track'><div class='outcome-fill' style='width:80.3%'>1,145</div></div><div class='outcome-value'>80%</div></div></div></section></div></div><aside class='panel commentary'><div class='comment-head'><div class='comment-title'>Executive summary commentary</div><span class='summary'>Summary</span></div><div class='comm-card'><div class='comm-top'><strong>Key controls readout</strong><span class='badge'>Monitor</span></div><div class='owner'>Control Gatekeeper / Executive summary - 31 Mar 2026</div><p>The key-control population is much larger, with <b>1,426 key controls</b> and <b>620 linked supporting controls</b>. <span class='period-q'>For Q1, <b>318 of 460 scheduled tests</b> are complete and <b>29</b> are overdue.</span><span class='period-ytd inline'>Year to date, <b>690 of 1,420 scheduled tests</b> are complete and <b>96</b> are overdue.</span> Commentary should focus on business-area concentrations, partial key controls that weaken material-control confidence and where supporting evidence is needed before retest.</p></div><div class='comment-space'>Reserved commentary space for a longer key-control narrative, including business-area ownership, remediation confidence, supporting-control evidence and movement from prior quarter.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
+</style></head><body><div class='slide'><input class='period-radio' type='radio' id='key-period-q' name='key-period' checked><input class='period-radio' type='radio' id='key-period-ytd' name='key-period'><input class='scope-radio' type='radio' id='key-scope-own' name='key-scope' checked><input class='scope-radio' type='radio' id='key-scope-all' name='key-scope'><div class='brand'><div class='logo'>Standard Life</div><div class='doc'>Board Risk Reporting<br><strong>Consolidated Risk Report - Q1 2026</strong></div></div><div class='section-head'><h1>Key Controls Environment</h1><div class='sub'>Board Risk Committee - key controls environment by business area</div><div class='period-toggle'><label for='key-period-q'>Q</label><label for='key-period-ytd'>YTD</label></div><div class='page-marker'>P8 / 18</div></div><main class='body'><section class='kpis'><div class='kpi '><div class='kpi-label'>Key Controls</div><div class='kpi-value'>1,426</div><div class='kpi-note'>Primary prevention/detection</div></div><div class='kpi red'><div class='kpi-label'>Ineffective</div><div class='kpi-value'>18</div><div class='kpi-note'>1.3% of key controls</div></div><div class='kpi amber'><div class='kpi-label'>Partially Effective</div><div class='kpi-value'>263</div><div class='kpi-note'>18.4% of key controls</div></div><div class='kpi green'><div class='kpi-label'>Exception Actions Linked</div><div class='kpi-value'>71%</div><div class='kpi-note'>Ineffective/partial with plan</div></div><div class='kpi burgundy'><div class='kpi-label'>Linked Supporting Controls</div><div class='kpi-value'>620</div><div class='kpi-note'>Mapped below key controls</div></div><div class='kpi amber'><div class='kpi-label'><span class='period-q'>Q1</span><span class='period-ytd inline'>YTD</span> Tests Complete</div><div class='kpi-value'><span class='period-q'>69%</span><span class='period-ytd inline'>49%</span></div><div class='kpi-note'><span class='period-q'>318 / 460 scheduled</span><span class='period-ytd inline'>690 / 1,420 scheduled</span></div></div></section><section class='main'><div class='left'><section class='panel'><div class='panel-head'><div><div class='panel-title'>Key controls by business area</div><div class='panel-sub'>Basis: owning department or all impacted mappings. <span class='count-note'>All impacted can double count</span></div></div><div class='panel-actions'><div class='view-toggle scope-toggle'><label for='key-scope-own'>Owning dept</label><label for='key-scope-all'>All impacted</label></div></div></div><div class='business-wrap'><table class='business-table'><colgroup><col><col style='width:44px'><col style='width:52px'><col style='width:52px'><col style='width:60px'><col style='width:48px'><col style='width:84px'><col style='width:64px'><col style='width:52px'></colgroup><thead><tr><th><span class='scope-own'>Owning dept</span><span class='scope-all inline'>Impacted area</span></th><th>Ctrl</th><th>% ineff.</th><th>% partial</th><th>Action</th><th>RAG</th><th>Linked supporting controls</th><th>Done / sched.</th><th>Rerun / new</th></tr></thead><tbody><tr><td><div class='area'>Operations</div></td><td><span class='scope-own'>390</span><span class='scope-all inline'>470</span></td><td><span class='pct amber'>2%</span></td><td><span class='pct amber'>21%</span></td><td><span class='pct amber'>72%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>165</span><span class='scope-all inline'>224</span></td><td><span class='period-q scope-own sched'>91 / 132</span><span class='period-q scope-all inline sched'>112 / 164</span><span class='period-ytd inline scope-own sched'>205 / 415</span><span class='period-ytd inline scope-all sched'>247 / 504</span></td><td><span class='period-q scope-own test-type'>38R / 94N</span><span class='period-q scope-all inline test-type'>49R / 115N</span><span class='period-ytd inline scope-own test-type'>96R / 319N</span><span class='period-ytd inline scope-all test-type'>122R / 382N</span></td></tr><tr><td><div class='area'>Risk</div></td><td><span class='scope-own'>255</span><span class='scope-all inline'>310</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>17%</span></td><td><span class='pct green'>76%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>105</span><span class='scope-all inline'>142</span></td><td><span class='period-q scope-own sched'>57 / 80</span><span class='period-q scope-all inline sched'>70 / 99</span><span class='period-ytd inline scope-own sched'>118 / 248</span><span class='period-ytd inline scope-all sched'>145 / 305</span></td><td><span class='period-q scope-own test-type'>22R / 58N</span><span class='period-q scope-all inline test-type'>29R / 70N</span><span class='period-ytd inline scope-own test-type'>58R / 190N</span><span class='period-ytd inline scope-all test-type'>74R / 231N</span></td></tr><tr><td><div class='area'>Customer</div></td><td><span class='scope-own'>286</span><span class='scope-all inline'>335</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>20%</span></td><td><span class='pct amber'>70%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>130</span><span class='scope-all inline'>168</span></td><td><span class='period-q scope-own sched'>72 / 100</span><span class='period-q scope-all inline sched'>86 / 120</span><span class='period-ytd inline scope-own sched'>153 / 310</span><span class='period-ytd inline scope-all sched'>181 / 365</span></td><td><span class='period-q scope-own test-type'>24R / 76N</span><span class='period-q scope-all inline test-type'>31R / 89N</span><span class='period-ytd inline scope-own test-type'>71R / 239N</span><span class='period-ytd inline scope-all test-type'>90R / 275N</span></td></tr><tr><td><div class='area'>Finance</div></td><td><span class='scope-own'>218</span><span class='scope-all inline'>245</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>15%</span></td><td><span class='pct green'>82%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>90</span><span class='scope-all inline'>116</span></td><td><span class='period-q scope-own sched'>48 / 68</span><span class='period-q scope-all inline sched'>55 / 78</span><span class='period-ytd inline scope-own sched'>104 / 220</span><span class='period-ytd inline scope-all sched'>119 / 248</span></td><td><span class='period-q scope-own test-type'>18R / 50N</span><span class='period-q scope-all inline test-type'>23R / 55N</span><span class='period-ytd inline scope-own test-type'>52R / 168N</span><span class='period-ytd inline scope-all test-type'>62R / 186N</span></td></tr><tr><td><div class='area'>People Function</div></td><td><span class='scope-own'>94</span><span class='scope-all inline'>110</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>11%</span></td><td><span class='pct amber'>73%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>40</span><span class='scope-all inline'>50</span></td><td><span class='period-q scope-own sched'>19 / 27</span><span class='period-q scope-all inline sched'>23 / 33</span><span class='period-ytd inline scope-own sched'>42 / 91</span><span class='period-ytd inline scope-all sched'>49 / 106</span></td><td><span class='period-q scope-own test-type'>8R / 19N</span><span class='period-q scope-all inline test-type'>10R / 23N</span><span class='period-ytd inline scope-own test-type'>20R / 71N</span><span class='period-ytd inline scope-all test-type'>24R / 82N</span></td></tr><tr><td><div class='area'>Corporate Affairs &amp; Brand</div></td><td><span class='scope-own'>68</span><span class='scope-all inline'>82</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>18%</span></td><td><span class='pct green'>75%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>28</span><span class='scope-all inline'>36</span></td><td><span class='period-q scope-own sched'>11 / 18</span><span class='period-q scope-all inline sched'>14 / 22</span><span class='period-ytd inline scope-own sched'>29 / 65</span><span class='period-ytd inline scope-all sched'>36 / 78</span></td><td><span class='period-q scope-own test-type'>4R / 14N</span><span class='period-q scope-all inline test-type'>6R / 16N</span><span class='period-ytd inline scope-own test-type'>12R / 53N</span><span class='period-ytd inline scope-all test-type'>16R / 62N</span></td></tr><tr><td><div class='area'>Internal Audit</div></td><td><span class='scope-own'>37</span><span class='scope-all inline'>40</span></td><td><span class='pct green'>0%</span></td><td><span class='pct amber'>14%</span></td><td><span class='pct green'>80%</span></td><td><span class='rag green'>Green</span></td><td><span class='scope-own'>17</span><span class='scope-all inline'>20</span></td><td><span class='period-q scope-own sched'>7 / 10</span><span class='period-q scope-all inline sched'>8 / 11</span><span class='period-ytd inline scope-own sched'>15 / 31</span><span class='period-ytd inline scope-all sched'>17 / 34</span></td><td><span class='period-q scope-own test-type'>3R / 7N</span><span class='period-q scope-all inline test-type'>4R / 7N</span><span class='period-ytd inline scope-own test-type'>8R / 23N</span><span class='period-ytd inline scope-all test-type'>9R / 25N</span></td></tr><tr><td><div class='area'>General Counsel</div></td><td><span class='scope-own'>78</span><span class='scope-all inline'>83</span></td><td><span class='pct amber'>1%</span></td><td><span class='pct amber'>27%</span></td><td><span class='pct amber'>64%</span></td><td><span class='rag amber'>Amber</span></td><td><span class='scope-own'>45</span><span class='scope-all inline'>52</span></td><td><span class='period-q scope-own sched'>13 / 25</span><span class='period-q scope-all inline sched'>15 / 27</span><span class='period-ytd inline scope-own sched'>24 / 40</span><span class='period-ytd inline scope-all sched'>27 / 45</span></td><td><span class='period-q scope-own test-type'>7R / 18N</span><span class='period-q scope-all inline test-type'>8R / 19N</span><span class='period-ytd inline scope-own test-type'>14R / 26N</span><span class='period-ytd inline scope-all test-type'>16R / 29N</span></td></tr></tbody></table></div></section><div class='lower-grid'><section class='panel coverage'><div class='panel-title'>Key test coverage</div><div class='panel-sub'><span class='period-q'>Q1 scheduled tests</span><span class='period-ytd inline'>YTD scheduled tests</span></div><div class='donut-wrap period-q block'><div class='donut-key done'><span class='dot green'></span><b>318</b></div><div class='donut-key open'><span class='dot'></span><b>113</b></div><div class='donut-key overdue'><span class='dot red'></span><b>29</b></div><div class='donut' style='--done:69%;--overdue:6%'><div class='donut-label'><strong>69%</strong><span>complete</span></div></div></div><div class='donut-wrap period-ytd block'><div class='donut-key done'><span class='dot green'></span><b>690</b></div><div class='donut-key open'><span class='dot'></span><b>634</b></div><div class='donut-key overdue'><span class='dot red'></span><b>96</b></div><div class='donut' style='--done:49%;--overdue:7%'><div class='donut-label'><strong>49%</strong><span>complete</span></div></div></div></section><section class='panel mix'><div class='panel-title'>Key control outcome mix</div><div class='panel-sub'>Effective / partial / ineffective</div><div class='outcome-bars' aria-label='Key controls outcome bar chart'><div class='outcome-row'><div class='outcome-name'>Ineffective</div><div class='outcome-track'><div class='outcome-fill' style='width:1.3%'></div></div><div class='outcome-value'>1% / 18</div></div><div class='outcome-row'><div class='outcome-name'>Partial</div><div class='outcome-track'><div class='outcome-fill' style='width:18.4%'>263</div></div><div class='outcome-value'>18%</div></div><div class='outcome-row'><div class='outcome-name'>Effective</div><div class='outcome-track'><div class='outcome-fill' style='width:80.3%'>1,145</div></div><div class='outcome-value'>80%</div></div></div></section></div></div><aside class='panel commentary'><div class='comment-head'><div class='comment-title'>Executive summary commentary</div><span class='summary'>Summary</span></div><div class='comm-card'><div class='comm-top'><strong>Key controls readout</strong><span class='badge'>Monitor</span></div><div class='owner'>Control Gatekeeper / Executive summary - 31 Mar 2026</div><p>The key-control population is much larger, with <b>1,426 key controls</b> and <b>620 linked supporting controls</b>. <span class='period-q'>For Q1, <b>318 of 460 scheduled tests</b> are complete and <b>29</b> are overdue.</span><span class='period-ytd inline'>Year to date, <b>690 of 1,420 scheduled tests</b> are complete and <b>96</b> are overdue.</span> Commentary should focus on business-area concentrations, partial key controls that weaken material-control confidence and where supporting evidence is needed before retest.</p></div><div class='comment-space'>Reserved commentary space for a longer key-control narrative, including business-area ownership, remediation confidence, supporting-control evidence and movement from prior quarter.</div></aside></section></main><footer class='footer'><div class='footer-left'></div><div class='footer-right'><span>Refresh: 31 Mar 2026</span></div></footer></div></body></html>"></iframe>
 
     <iframe id="frame-p4register" class="inactive slide-frame" data-key="p4register" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'/><meta name='viewport' content='width=1280'/><title>CRR Board PPT - Material Control Register</title><style>
 :root{--blue:#0A2F73;--deep:#07235a;--gold:#FFBB00;--ink:#0A2F73;--ink2:#1f3458;--muted:#5b6b83;--line:#d8e0ec;--soft:#f7f9fc;--red:#CA3F4C;--redbg:#fde6e8;--amber:#DE4721;--amberbg:#fff2c2;--green:#006B5C;--greenbg:#e3f3ef;--track:#e6edf5}
@@ -6885,7 +7398,15 @@
   </div>
   <div class="thumb" data-key="p2appendix" data-index="2c">
     <div class="t-num">P2c</div>
-    <div class="t-name">RA Appendix</div>
+    <div class="t-name">RA Detail Appx</div>
+  </div>
+  <div class="thumb" data-key="p2proximity" data-index="2d">
+    <div class="t-num">P2d</div>
+    <div class="t-name">RA Proximity</div>
+  </div>
+  <div class="thumb" data-key="p2profile" data-index="2e">
+    <div class="t-num">P2e</div>
+    <div class="t-name">RA Profile Appx</div>
   </div>
   <div class="thumb" data-key="p3" data-index="3">
     <div class="t-num">P3</div>
@@ -6961,9 +7482,11 @@
 <script>
 const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary", purpose: "Committee-level synthesis of the consolidated risk position, top risks, and assigned commentary." },
-  { key: "p2", num: 2, title: "Risk Appetite", purpose: "Core risk appetite scorecard across Dividend, Liquidity, Capital, Customer and Operational metrics, with full appetite statements visible for presentation export." },
+  { key: "p2", num: 2, title: "Risk Appetite", purpose: "Visual risk-area appetite view showing worst status by area and supporting metric pills." },
   { key: "p2commentary", num: "2b", title: "Risk Appetite Commentary", purpose: "Assigned appetite commentary and action narrative, with the Risk Appetite BAN strip repeated for context." },
-  { key: "p2appendix", num: "2c", title: "Risk Appetite Appendix", purpose: "Appendix view preserving risk appetite proximity, status mix and commentary queue visuals for future reporting reuse." },
+  { key: "p2appendix", num: "2c", title: "Risk Appetite Detail Appendix", purpose: "Detailed appetite scorecard preserving metric statements, thresholds, prior/current values and movement." },
+  { key: "p2proximity", num: "2d", title: "Risk Appetite Proximity Appendix", purpose: "Visual proximity view showing appetite trigger and limit zones, current position and status mix by appetite area." },
+  { key: "p2profile", num: "2e", title: "Risk Appetite Profile Appendix", purpose: "Appendix view preserving the combined RCSA helicopter and risk appetite coverage profile by L1." },
   { key: "p3", num: 3, title: "RCSA: Financial Risk Summary", purpose: "Financial L2 risk summary across 16 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
   { key: "p3detail", num: 4, title: "RCSA: Financial Risk Detail", purpose: "Financial L2 risk detail showing final RAG, action plan status, last RCSA date and assigned L2 commentary; L3 rows sit in the appendix." },
   { key: "p3nf", num: 5, title: "RCSA: Non-Financial Risk Summary", purpose: "Non-financial L2 risk summary across 26 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
@@ -6988,6 +7511,7 @@ const frames = document.querySelectorAll('.slide-frame');
 const thumbs = document.querySelectorAll('.thumb');
 const progress = document.getElementById('progress');
 const topbarQuarter = document.getElementById('topbar-quarter');
+const topbarQuarterSelect = document.getElementById('report-quarter-select');
 const prevBtn = document.getElementById('nav-prev');
 const nextBtn = document.getElementById('nav-next');
 const stage = document.querySelector('.stage');
@@ -7022,7 +7546,20 @@ if (!slideFrameScale) {
   slideFrameWrap.appendChild(slideFrameScale);
 }
 
+const slidePeriodOverlay = document.createElement('label');
+slidePeriodOverlay.className = 'slide-period-overlay slide-period-control';
+slidePeriodOverlay.setAttribute('for', 'slide-report-quarter-select');
+slidePeriodOverlay.innerHTML = `
+  <span>Period</span>
+  <select id="slide-report-quarter-select" aria-label="Slide reporting period">
+    ${Object.entries(QUARTERS).map(([key, quarter]) => `<option value="${key}">${quarter.label}</option>`).join('')}
+  </select>
+`;
+slideFrameScale.appendChild(slidePeriodOverlay);
+const slideQuarterSelect = slidePeriodOverlay.querySelector('select');
+
 function fitSlideFrame() {
+  if (!stage || !slideFrameWrap || !slideFrameScale) return;
   const style = window.getComputedStyle(stage);
   const horizontalPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
   const verticalPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
@@ -7044,8 +7581,12 @@ window.addEventListener('orientationchange', fitSlideFrame);
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', fitSlideFrame);
 }
-if ('ResizeObserver' in window) {
-  new ResizeObserver(fitSlideFrame).observe(stage);
+if ('ResizeObserver' in window && stage instanceof Node) {
+  try {
+    new ResizeObserver(fitSlideFrame).observe(stage);
+  } catch (error) {
+    window.addEventListener('load', fitSlideFrame, { once: true });
+  }
 }
 
 function quarteriseSrcdoc(srcdoc, quarter) {
@@ -7089,8 +7630,38 @@ function removeInnerSlideChrome(srcdoc) {
   return srcdoc.replace('</head>', `${chromeCss}</head>`);
 }
 
+const CONTROL_SUMMARY_BAN_OVERRIDES = [
+  {
+    marker: 'CRR Board PPT - Material Controls Environment',
+    tiles: [
+      "<div class='kpi '><div class='kpi-label'>Material Controls</div><div class='kpi-value'>34</div><div class='kpi-note'>Board focus population</div></div>",
+      "<div class='kpi burgundy'><div class='kpi-label'>Linked Key Controls</div><div class='kpi-value'>39</div><div class='kpi-note'>Mapped to material controls</div></div>"
+    ]
+  },
+  {
+    marker: 'CRR Board PPT - Key Controls Environment',
+    tiles: [
+      "<div class='kpi '><div class='kpi-label'>Key Controls</div><div class='kpi-value'>1,426</div><div class='kpi-note'>Primary prevention/detection</div></div>",
+      "<div class='kpi burgundy'><div class='kpi-label'>Linked Supporting Controls</div><div class='kpi-value'>620</div><div class='kpi-note'>Mapped below key controls</div></div>"
+    ]
+  }
+];
+
+function removeControlSummaryBans(srcdoc) {
+  return CONTROL_SUMMARY_BAN_OVERRIDES.reduce((nextSrcdoc, override) => {
+    if (!nextSrcdoc.includes(override.marker)) return nextSrcdoc;
+
+    return override.tiles.reduce((updatedSrcdoc, tile) => {
+      return updatedSrcdoc.replace(tile, '');
+    }, nextSrcdoc.replace(
+      '.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}',
+      '.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}'
+    ));
+  }, srcdoc);
+}
+
 function renderQuarterSrcdoc(srcdoc, quarter) {
-  return removeInnerSlideChrome(quarteriseSrcdoc(srcdoc, quarter));
+  return removeInnerSlideChrome(removeControlSummaryBans(quarteriseSrcdoc(srcdoc, quarter)));
 }
 
 function applyQuarter(quarter) {
@@ -7098,6 +7669,8 @@ function applyQuarter(quarter) {
   currentQuarterKey = QUARTERS[quarter] ? quarter : 'q1-2026';
   sessionStorage.setItem('crr-report-quarter', currentQuarterKey);
   topbarQuarter.textContent = preset.label;
+  if (topbarQuarterSelect) topbarQuarterSelect.value = currentQuarterKey;
+  if (slideQuarterSelect) slideQuarterSelect.value = currentQuarterKey;
   document.title = `CRR Board PPT - ${preset.label}`;
 
   frames.forEach(frame => {
@@ -7114,6 +7687,7 @@ function applyQuarter(quarter) {
       frame.setAttribute('srcdoc', nextSrcdoc);
     }
   });
+
 }
 
 window.setReportQuarter = (quarter) => {
@@ -7158,6 +7732,20 @@ nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
 thumbs.forEach((t, i) => {
   t.addEventListener('click', () => showSlide(i));
 });
+
+if (topbarQuarterSelect) {
+  topbarQuarterSelect.addEventListener('change', (event) => {
+    applyQuarter(event.target.value);
+    showSlide(currentIdx);
+  });
+}
+
+if (slideQuarterSelect) {
+  slideQuarterSelect.addEventListener('change', (event) => {
+    applyQuarter(event.target.value);
+    showSlide(currentIdx);
+  });
+}
 
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;

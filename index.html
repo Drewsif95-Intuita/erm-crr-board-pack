@@ -6183,7 +6183,30 @@
     min-width: 0;
   }
   .analysis-grid .heatmap-block { padding: 9px 12px 8px; }
-  .analysis-grid .hm-row { grid-template-columns: 122px 1fr 1fr 1fr 1fr 34px; }
+  .analysis-grid .hm-row {
+    grid-template-columns: 138px repeat(4, minmax(42px, 1fr)) 42px;
+  }
+  .analysis-grid .hm-row.head {
+    min-height: 24px;
+    align-items: center;
+  }
+  .analysis-grid .hm-row.head .hm-cell,
+  .analysis-grid .hm-row.head .hm-total {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .analysis-grid .hm-row.head .hm-cell {
+    justify-content: center;
+    text-align: center;
+  }
+  .analysis-grid .hm-row.head .hm-total {
+    justify-content: flex-end;
+    text-align: right;
+    padding-right: 4px;
+  }
   .analysis-grid .hm-cell { padding: 4px; font-size: 10px; }
   .analysis-grid .hm-row .hm-org { font-size: 8.8px; line-height: 1.15; }
   .analysis-grid .hm-total { font-size: 10px; padding-right: 2px; }

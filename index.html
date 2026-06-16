@@ -5996,27 +5996,32 @@
     border-radius: 3px;
     font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace; font-size: 11px; font-weight: 600;
   }
-  .hm-row .hm-cell.zero { color: var(--muted-2); background: transparent; }
-  .hm-row .hm-cell.s1 {
+  .hm-row .hm-cell.zero,
+  .hm-matrix .hm-cell.zero { color: var(--muted-2); background: transparent; }
+  .hm-row .hm-cell.s1,
+  .hm-matrix .hm-cell.s1 {
     background:
       repeating-linear-gradient(45deg, rgba(255,255,255,0.30) 0 1px, transparent 1px 6px),
       repeating-linear-gradient(-45deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 6px),
       var(--sl-core-coral);
     color: var(--sl-white);
   }
-  .hm-row .hm-cell.s2 {
+  .hm-row .hm-cell.s2,
+  .hm-matrix .hm-cell.s2 {
     background:
       repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 2px, transparent 2px 7px),
       var(--sl-vibrant-coral);
     color: var(--sl-white);
   }
-  .hm-row .hm-cell.s3 {
+  .hm-row .hm-cell.s3,
+  .hm-matrix .hm-cell.s3 {
     background:
       repeating-linear-gradient(90deg, rgba(10,47,115,0.16) 0 1px, transparent 1px 6px),
       var(--sl-heritage-yellow);
     color: var(--sl-heritage-blue);
   }
-  .hm-row .hm-cell.s4 {
+  .hm-row .hm-cell.s4,
+  .hm-matrix .hm-cell.s4 {
     background:
       radial-gradient(circle at 2px 2px, rgba(0,107,92,0.24) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
       var(--sl-light-teal);
@@ -6183,32 +6188,48 @@
     min-width: 0;
   }
   .analysis-grid .heatmap-block { padding: 9px 12px 8px; }
-  .analysis-grid .hm-row {
-    grid-template-columns: 138px repeat(4, minmax(42px, 1fr)) 42px;
+  .analysis-grid .heatmap-table {
+    display: block;
+    flex: 1;
+    min-height: 0;
   }
-  .analysis-grid .hm-row.head {
-    min-height: 24px;
-    align-items: center;
+  .analysis-grid .hm-matrix {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 4px;
   }
-  .analysis-grid .hm-row.head .hm-cell,
-  .analysis-grid .hm-row.head .hm-total {
-    display: flex;
-    align-items: center;
+  .analysis-grid .hm-matrix th {
     height: 22px;
-    white-space: nowrap;
+    padding: 0 4px 5px;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--muted);
+    font-size: 8.5px;
+    font-weight: 600;
     line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
   }
-  .analysis-grid .hm-row.head .hm-cell {
-    justify-content: center;
+  .analysis-grid .hm-matrix th:first-child { text-align: left; }
+  .analysis-grid .hm-matrix th:last-child { text-align: right; padding-right: 4px; }
+  .analysis-grid .hm-matrix td {
+    height: 22px;
+    vertical-align: middle;
+  }
+  .analysis-grid .hm-matrix .hm-cell {
+    padding: 4px;
+    font-size: 10px;
     text-align: center;
   }
-  .analysis-grid .hm-row.head .hm-total {
-    justify-content: flex-end;
-    text-align: right;
-    padding-right: 4px;
+  .analysis-grid .hm-row .hm-org,
+  .analysis-grid .hm-matrix .hm-org {
+    font-size: 8.8px;
+    line-height: 1.15;
+    font-weight: 600;
+    color: var(--ink-2);
   }
-  .analysis-grid .hm-cell { padding: 4px; font-size: 10px; }
-  .analysis-grid .hm-row .hm-org { font-size: 8.8px; line-height: 1.15; }
   .analysis-grid .hm-total { font-size: 10px; padding-right: 2px; }
   .analysis-grid .heatmap-title { font-size: 11.4px; }
   .analysis-grid .heatmap-sub { font-size: 8.8px; }
@@ -6522,46 +6543,60 @@
       </div>
 
       <div class=&quot;heatmap-table&quot;>
-        <div class=&quot;hm-row head&quot;>
-          <div></div>
-          <div class=&quot;hm-cell&quot;>Sev 1</div>
-          <div class=&quot;hm-cell&quot;>Sev 2</div>
-          <div class=&quot;hm-cell&quot;>Sev 3</div>
-          <div class=&quot;hm-cell&quot;>Sev 4</div>
-          <div class=&quot;hm-total&quot;>Total</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>A - actual loss</div>
-          <div class=&quot;hm-cell s1&quot;>1</div>
-          <div class=&quot;hm-cell s2&quot;>1</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>2</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>B - potential loss</div>
-          <div class=&quot;hm-cell s1&quot;>1</div>
-          <div class=&quot;hm-cell s2&quot;>2</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>3</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>C - service impact</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell s2&quot;>2</div>
-          <div class=&quot;hm-cell s3&quot;>1</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-total&quot;>3</div>
-        </div>
-        <div class=&quot;hm-row&quot;>
-          <div class=&quot;hm-org&quot;>D - no customer loss</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell zero&quot;>0</div>
-          <div class=&quot;hm-cell s3&quot;>1</div>
-          <div class=&quot;hm-cell s4&quot;>2</div>
-          <div class=&quot;hm-total&quot;>3</div>
-        </div>
+        <table class=&quot;hm-matrix&quot; aria-label=&quot;Customer outcome by severity&quot;>
+          <colgroup>
+            <col style=&quot;width:138px&quot;>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col style=&quot;width:42px&quot;>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope=&quot;col&quot;></th>
+              <th scope=&quot;col&quot;>Sev 1</th>
+              <th scope=&quot;col&quot;>Sev 2</th>
+              <th scope=&quot;col&quot;>Sev 3</th>
+              <th scope=&quot;col&quot;>Sev 4</th>
+              <th scope=&quot;col&quot;>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=&quot;hm-org&quot;>A - actual loss</td>
+              <td class=&quot;hm-cell s1&quot;>1</td>
+              <td class=&quot;hm-cell s2&quot;>1</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-total&quot;>2</td>
+            </tr>
+            <tr>
+              <td class=&quot;hm-org&quot;>B - potential loss</td>
+              <td class=&quot;hm-cell s1&quot;>1</td>
+              <td class=&quot;hm-cell s2&quot;>2</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-total&quot;>3</td>
+            </tr>
+            <tr>
+              <td class=&quot;hm-org&quot;>C - service impact</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-cell s2&quot;>2</td>
+              <td class=&quot;hm-cell s3&quot;>1</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-total&quot;>3</td>
+            </tr>
+            <tr>
+              <td class=&quot;hm-org&quot;>D - no customer loss</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-cell zero&quot;>0</td>
+              <td class=&quot;hm-cell s3&quot;>1</td>
+              <td class=&quot;hm-cell s4&quot;>2</td>
+              <td class=&quot;hm-total&quot;>3</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class=&quot;remediation-block&quot;>

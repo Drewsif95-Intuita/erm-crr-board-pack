@@ -1,12 +1,12 @@
 window.additionalRiskAppetiteData = {
   rcsaProfiles: [
-    { area: "Operational", red: 4, amber: 5, green: 3, trend: "worse", drivers: ["Info Security", "Op Resilience", "Reg Compliance", "Technology"], more: "+5 amber" },
-    { area: "Customer", red: 3, amber: 2, green: 3, trend: "worse", drivers: ["Data Protection", "AI", "Sales"], more: "+2 amber" },
-    { area: "Liquidity & Funding", appetiteArea: "Liquidity", red: 2, amber: 0, green: 0, trend: "worse", drivers: ["Funding", "Liquidity"], more: "" },
-    { area: "Market", red: 1, amber: 2, green: 3, trend: "stable", drivers: ["Spread", "Equity", "Inflation"], more: "+3 green" },
-    { area: "Insurance", red: 1, amber: 2, green: 2, trend: "better", drivers: ["Mortality", "Longevity", "Persistency"], more: "+2 green" },
-    { area: "Credit & Counterparty", appetiteArea: "Credit", red: 1, amber: 1, green: 1, trend: "better", drivers: ["Investment Cpty", "Illiquid Credit"], more: "+1 green" },
-    { area: "Strategic", red: 1, amber: 0, green: 2, trend: "worse", drivers: ["Reputation"], more: "+2 green" },
+    { area: "Operational", red: 2, amber: 7, green: 3, trend: "worse", drivers: ["Info Security", "Op Resilience", "Reg Compliance", "Technology"], more: "+7 amber" },
+    { area: "Customer", red: 1, amber: 4, green: 3, trend: "worse", drivers: ["Data Protection", "AI", "Sales"], more: "+4 amber" },
+    { area: "Liquidity & Funding", appetiteArea: "Liquidity", red: 1, amber: 1, green: 0, trend: "worse", drivers: ["Funding", "Liquidity"], more: "+1 amber" },
+    { area: "Market", red: 0, amber: 3, green: 3, trend: "stable", drivers: ["Spread", "Equity", "Inflation"], more: "+3 green" },
+    { area: "Insurance", red: 0, amber: 3, green: 2, trend: "better", drivers: ["Mortality", "Longevity", "Persistency"], more: "+2 green" },
+    { area: "Credit & Counterparty", appetiteArea: "Credit", red: 0, amber: 2, green: 1, trend: "better", drivers: ["Investment Cpty", "Illiquid Credit"], more: "+1 green" },
+    { area: "Strategic", red: 1, amber: 1, green: 2, trend: "worse", drivers: ["Reputation"], more: "+2 green" },
     { area: "Climate", red: 0, amber: 1, green: 2, trend: "better", drivers: ["Greenwashing"], more: "+2 green" }
   ],
   crossCuttingAppetite: [
@@ -53,7 +53,7 @@ window.additionalRiskAppetiteData = {
     { id: "ADD-CUS-01", riskArea: "Customer", l2Risk: "Proposition Design & Pricing", preference: "Minimise", metricName: "Proposition design appetite", status: "trigger", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise proposition design and pricing risk that can create poor customer outcomes." },
     { id: "ADD-CUS-02", riskArea: "Customer", l2Risk: "Pre-Sales Disclosure & Distribution", preference: "Minimise", metricName: "Pre-sales disclosure appetite", status: "green", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise disclosure and distribution failures affecting customer understanding and decisions." },
     { id: "ADD-CUS-03", riskArea: "Customer", l2Risk: "Post-Sales Service", preference: "Minimise", metricName: "Post-sales service appetite", status: "green", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise service failures that create material customer harm or poor outcomes." },
-    { id: "ADD-OP-01", riskArea: "Operational", l2Risk: "Information Security & Cyber", preference: "Minimise", metricName: "Cyber incident appetite", status: "limit", coverage: "Additional L2 appetite", triggerLabel: ">=5 P1", limitLabel: ">=6 P1", dataConfidence: "indicative", appetiteStatement: "Minimise cyber incidents and security control failure beyond approved tolerance." },
+    { id: "ADD-OP-01", riskArea: "Operational", l2Risk: "Information Security & Cyber", preference: "Minimise", metricName: "Cyber incident appetite", status: "trigger", coverage: "Additional L2 appetite", triggerLabel: ">=5 P1", limitLabel: ">=6 P1", dataConfidence: "indicative", appetiteStatement: "Minimise cyber incidents and security control failure beyond approved tolerance." },
     { id: "ADD-OP-02", riskArea: "Operational", l2Risk: "Operational Resilience", preference: "Minimise", metricName: "Important business service tolerance", status: "trigger", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise important business service disruption and resilience tolerance breaches." },
     { id: "ADD-OP-03", riskArea: "Operational", l2Risk: "Regulatory Compliance", preference: "Minimise", metricName: "Regulatory compliance appetite", status: "trigger", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise regulatory compliance failures and repeat findings." },
     { id: "ADD-OP-04", riskArea: "Operational", l2Risk: "Technology", preference: "Minimise", metricName: "Technology service appetite", status: "trigger", coverage: "Additional L2 appetite", triggerLabel: "1 Amber", limitLabel: "1 Red", dataConfidence: "indicative", appetiteStatement: "Minimise technology failures affecting critical services, data integrity or customer operations." },

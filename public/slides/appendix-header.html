@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1280"/>
+<title>CRR Board PPT - Appendix</title>
+<style>
+:root {
+  --blue: #0A2F73;
+  --deep: #07235a;
+  --gold: #FFBB00;
+  --ink: #0A2F73;
+  --muted: #5b6b83;
+  --line: #d8e0ec;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: #fff;
+  color: var(--ink);
+  font-family: Aptos, "Segoe UI", Arial, sans-serif;
+}
+.slide {
+  width: 1280px;
+  height: 720px;
+  display: grid;
+  grid-template-rows: 36px 1fr 32px;
+  background: #fff;
+}
+.brand {
+  height: 36px;
+  padding: 0 32px;
+  border-top: 4px solid #13214f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--blue);
+}
+.logo::after {
+  content: "";
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 18px solid var(--gold);
+  transform: rotate(8deg);
+  margin-left: 16px;
+  vertical-align: -3px;
+}
+.doc {
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 8px;
+  color: #66728a;
+  line-height: 1.05;
+}
+.doc strong {
+  display: block;
+  color: var(--blue);
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.body {
+  position: relative;
+  padding: 76px 88px 64px;
+  background: linear-gradient(180deg, #fff 0, #f7f9fc 100%);
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 54px;
+  align-items: center;
+}
+.body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 88px;
+  background: var(--blue);
+}
+.body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 85px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0 12%, #2140CE 12% 100%);
+}
+.hero, .panel { position: relative; z-index: 1; }
+.eyebrow {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.title {
+  font-size: 58px;
+  line-height: .95;
+  font-weight: 850;
+  letter-spacing: -.035em;
+  color: var(--ink);
+  margin-bottom: 70px;
+}
+.subtitle {
+  font-size: 19px;
+  line-height: 1.35;
+  color: #263d64;
+  max-width: 680px;
+}
+.subtitle b { color: var(--ink); }
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px 26px;
+  box-shadow: 0 16px 36px rgba(10,47,115,.10);
+}
+.panel-title {
+  font-size: 16px;
+  font-weight: 850;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.list { display: grid; gap: 12px; }
+.item {
+  border-left: 3px solid var(--gold);
+  padding: 4px 0 4px 12px;
+}
+.item b {
+  display: block;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.item span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.foot {
+  height: 32px;
+  background: var(--deep);
+  color: #d9e4f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-size: 9px;
+}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="brand">
+    <div class="logo">Standard Life</div>
+    <div class="doc">Board Risk Reporting<strong>Consolidated Risk Report - Q1 2026</strong></div>
+  </div>
+  <main class="body">
+    <section class="hero">
+      <div class="eyebrow">Reference Section</div>
+      <div class="title">Appendix</div>
+      <p class="subtitle"><b>Detailed supporting pages</b> follow this divider. Main report pages retain the Board-facing summary, visual views and commentary.</p>
+    </section>
+    <aside class="panel">
+      <div class="panel-title">Appendix contents</div>
+      <div class="list">
+        <div class="item"><b>Risk Appetite detail</b><span>Full metric statements, thresholds, prior/current values and movement.</span></div>
+        <div class="item"><b>Risk Appetite proximity</b><span>Trigger/limit zone visuals and metric proximity context.</span></div>
+        <div class="item"><b>RCSA L3 reference</b><span>Underlying L3 rows and business-function context.</span></div>
+        <div class="item"><b>Commentary spillover</b><span>Assigned financial and non-financial commentary overflow.</span></div>
+      </div>
+    </aside>
+  </main>
+  <footer class="foot"><div></div><div>Refresh: 31 Mar 2026</div></footer>
+</div>
+</body>
+</html>

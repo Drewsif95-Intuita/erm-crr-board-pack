@@ -45,102 +45,30 @@
     padding-bottom: var(--tray-height, 38px);
   }
 
-  /* TOP BAR */
-  .topbar {
-    background: var(--navy-deep); color: #fff;
-    padding: 6px 20px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .topbar .brand-block {
-    display: flex; align-items: center; gap: 12px;
-    min-width: 0;
-  }
-  .topbar .wordmark svg { height: 17px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.92; }
-  .topbar .doc-name {
-    font-size: 12px; font-weight: 700; letter-spacing: -0.005em;
-    display: flex; align-items: center; gap: 10px;
-    min-width: 0;
-    white-space: nowrap;
-  }
-  .topbar .doc-name .v {
-    display: inline-block; font-size: 8px; font-weight: 700;
-    background: var(--sl-core-teal); color: #fff; padding: 2px 6px; border-radius: 3px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .topbar .doc-name .sub {
-    font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 400;
-    letter-spacing: 0.02em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .topbar-controls { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
-  .quarter-filter {
-    height: 30px;
-    display: inline-flex;
+  .prototype-banner {
+    min-height: 24px;
+    display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 4px 8px;
-    border: 1px solid rgba(255,255,255,0.16);
-    background: rgba(255,255,255,0.08);
-    border-radius: 4px;
-    color: rgba(255,255,255,0.88);
-  }
-  .quarter-filter label {
-    font-size: 8.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: rgba(255,255,255,0.62);
-  }
-  .quarter-filter select {
-    height: 22px;
-    min-width: 102px;
-    border: 1px solid rgba(255,255,255,0.24);
-    border-radius: 3px;
-    background: #fff;
+    justify-content: center;
+    gap: 10px;
+    padding: 4px 20px;
+    background: var(--sl-heritage-yellow);
     color: var(--sl-heritage-blue);
-    font-family: inherit;
-    font-size: 11px;
+    border-bottom: 1px solid rgba(10,47,115,0.22);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .prototype-banner strong {
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+  }
+  .prototype-banner span {
+    font-size: 9px;
     font-weight: 700;
-    padding: 0 24px 0 7px;
-    cursor: pointer;
-  }
-  .quarter-filter select:focus {
-    outline: 2px solid var(--sl-heritage-yellow);
-    outline-offset: 1px;
-  }
-  .tb-btn {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.14);
-    color: rgba(255,255,255,0.85);
-    font-family: inherit;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.12s;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .tb-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.24); color: #fff; }
-  .tb-btn.active { background: var(--sl-heritage-yellow); color: var(--sl-heritage-blue); border-color: var(--sl-heritage-yellow); }
-  .tb-btn .kbd {
-    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
-    font-size: 9.5px;
-    background: rgba(0,0,0,0.22);
-    padding: 1px 5px; border-radius: 2px;
-    margin-left: 2px;
-  }
-  .tb-btn.active .kbd { background: rgba(10,31,79,0.2); }
-
-  .progress-chip {
-    font-family: 'Aptos Mono', 'Cascadia Mono', Consolas, monospace;
-    font-size: 10px; font-weight: 600;
-    color: #fff;
-    background: rgba(255,255,255,0.10);
-    padding: 4px 9px; border-radius: 3px;
+    letter-spacing: 0.06em;
+    opacity: 0.82;
   }
 
   /* STAGE */
@@ -325,15 +253,11 @@
   }
 
   @media (max-width: 980px) {
-    .topbar .doc-name .sub { display: none; }
     .tray .hint { display: none; }
   }
 
   @media (max-width: 720px) {
     :root { --tray-height: 36px; }
-    .topbar { padding: 6px 12px; gap: 10px; }
-    .quarter-filter label { display: none; }
-    .quarter-filter select { min-width: 94px; }
     .thumb { flex-basis: 76px; width: 76px; min-width: 76px; }
     .thumb .t-name { max-width: 64px; font-size: 7.2px; }
   }
@@ -342,33 +266,9 @@
 </head>
 <body>
 
-<div class="topbar">
-  <div class="brand-block">
-    <div class="wordmark">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80">
-        <text x="0" y="58" font-family="Aptos, 'Segoe UI', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1.5" fill="#0A2F73">Standard Life</text>
-        <polygon points="318,8 348,2 332,46" fill="#FFBB00"/>
-      </svg>
-    </div>
-    <div class="doc-name">
-      <span>CRR Exec Pack</span>
-      <span class="v">v3 &middot; full pack</span>
-      <span class="sub">Board Risk Committee &middot; <span id="topbar-quarter">Q1 2026</span> &middot; 22 pages</span>
-    </div>
-  </div>
-  <div class="topbar-controls">
-    <label class="quarter-filter" for="report-quarter-select">
-      <span>Quarter</span>
-      <select id="report-quarter-select" aria-label="Report quarter">
-        <option value="q1-2026" selected>Q1 2026</option>
-        <option value="q4-2025">Q4 2025</option>
-        <option value="q3-2025">Q3 2025</option>
-        <option value="q2-2025">Q2 2025</option>
-        <option value="q1-2025">Q1 2025</option>
-      </select>
-    </label>
-    <div class="progress-chip" id="progress">P1 / 22</div>
-  </div>
+<div class="prototype-banner" role="status" aria-label="Prototype version banner">
+  <strong>Prototype</strong>
+  <span>Indicative mock data for design review</span>
 </div>
 
 <div class="stage" id="stage">
@@ -1116,10 +1016,6 @@
   .heli-tile.amber { background: #fff4d1; border-color: #f0c96d; color: #8f4a00; }
   .heli-tile.green { background: #e6f5f1; border-color: #95d5c8; color: #006b5d; }
   .heli-tile.more { background: #eef3f8; border-color: #cbd7e6; color: #405374; border-style: dashed; }
-  .heli-tile.flagged {
-    outline: 1px dashed #CA3F4C;
-    outline-offset: 1px;
-  }
   .heli-note {
     margin-top: 1px;
     display: flex;
@@ -1411,7 +1307,7 @@
     min-height: 26px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 8px;
     padding: 6px 8px;
     border-bottom: 1px solid var(--hairline-soft);
@@ -1423,17 +1319,6 @@
     font-size: 9.7px;
     font-weight: 900;
     line-height: 1.05;
-  }
-  .action-table-badge {
-    flex: 0 0 auto;
-    border-radius: 3px;
-    background: var(--red-bg);
-    color: var(--red);
-    padding: 2px 5px;
-    font-size: 6.8px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: .08em;
   }
   .exec-actions {
     width: 100%;
@@ -1460,10 +1345,10 @@
     vertical-align: top;
   }
   .exec-actions tr:last-child td { border-bottom: 0; }
-  .exec-actions col:nth-child(1) { width: 41%; }
-  .exec-actions col:nth-child(2) { width: 18%; }
-  .exec-actions col:nth-child(3) { width: 15%; }
-  .exec-actions col:nth-child(4) { width: 26%; }
+  .exec-actions col:nth-child(1) { width: 43%; }
+  .exec-actions col:nth-child(2) { width: 24%; }
+  .exec-actions col:nth-child(3) { width: 13%; }
+  .exec-actions col:nth-child(4) { width: 20%; }
   .action-risk {
     display: inline-flex;
     max-width: 100%;
@@ -1498,30 +1383,20 @@
     padding-right: 6px;
   }
   .action-status {
-    display: inline-flex;
-    min-width: 42px;
-    justify-content: center;
-    border-radius: 3px;
-    padding: 2px 4px;
+    display: inline;
     font-size: 6.7px;
     font-weight: 900;
     line-height: 1;
     white-space: nowrap;
   }
   .action-status.on {
-    background: var(--green-bg);
     color: var(--green);
-    border: 1px solid #95d5c8;
   }
   .action-status.risk {
-    background: var(--amber-bg);
     color: #9f6500;
-    border: 1px solid #f0c96d;
   }
   .action-status.late {
-    background: var(--red-bg);
     color: var(--red);
-    border: 1px solid #efa0a8;
   }
   .exec-heli-panel {
     grid-column: 2;
@@ -1773,11 +1648,6 @@
     border: 1px solid #efa0a8;
     color: #9d1827;
   }
-  .risk-chip.red.flagged {
-    border-style: dashed;
-    outline: 1px dashed rgba(202,63,76,0.45);
-    outline-offset: 2px;
-  }
   .risk-chip.amber {
     background: var(--amber-bg);
     border: 1px solid #f0c96d;
@@ -1838,6 +1708,7 @@
   }
   .appetite-dot.breached { background: #CA3F4C; }
   .appetite-dot.triggered { background: #D99A20; }
+  .appetite-dot.watch { background: #FFBB00; }
   .appetite-dot.inrange { background: #2f9578; }
   .exec-profile-grid {
     min-height: 0;
@@ -1911,6 +1782,7 @@
   .appetite-bar .breached { background: #CA3F4C; }
   .profile-stack .amber,
   .appetite-bar .triggered { background: #D99A20; }
+  .appetite-bar .watch { background: #FFBB00; }
   .profile-stack .green,
   .appetite-bar .inrange { background: #2f9578; }
   .rcsa-counts {
@@ -1942,9 +1814,22 @@
     white-space: nowrap;
   }
   .profile-chip.red { color: #9d1827; background: var(--red-bg); border: 1px solid #efa0a8; }
-  .profile-chip.red.flagged { border-style: dashed; outline: 1px dashed rgba(202,63,76,0.34); outline-offset: 1px; }
   .profile-chip.amber { color: #9f6500; background: var(--amber-bg); border: 1px solid #f0c96d; }
   .profile-chip.green { color: var(--green); background: var(--green-bg); border: 1px dashed #95d5c8; }
+  .appetite-unified .profile-chip {
+    min-height: 0;
+    padding: 0;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+  }
+  .exec-rows-view .risk-chip {
+    min-height: 0;
+    padding: 0;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+  }
   .profile-section {
     min-width: 0;
     border-top: 1px dashed #d7e0ec;
@@ -2606,8 +2491,8 @@
         <div class=&quot;kpi-value&quot;>22</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
-        <div class=&quot;kpi-label&quot;>Appetite Breaches</div>
-        <div class=&quot;kpi-value&quot;>7</div>
+        <div class=&quot;kpi-label&quot;>Appetite Breach</div>
+        <div class=&quot;kpi-value&quot;>1</div>
       </div>
       <div class=&quot;kpi kpi-red&quot;>
         <div class=&quot;kpi-label&quot;>Overdue Assessments</div>
@@ -2639,12 +2524,11 @@
           </div>
           <div class=&quot;comm-owner&quot;>Risk Gatekeeper / Executive summary &middot; 31 Mar 2026</div>
           <p class=&quot;comm-body&quot;>
-            Overall posture has moved to <b>Amber</b>, driven by amber appetite pressure, <b>5 red</b> and <b>22 amber L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. The Board should focus on whether the Cyber &amp;amp; IT appetite trigger, amber-risk concentration in <b>Operational</b> and <b>Customer</b>, the rolling loss trend and material/key control response are on credible Q2 recovery paths.
+            Overall posture has moved to <b>Amber</b>, driven by amber appetite pressure with <b>1 formal appetite breach</b>, <b>5 red</b> and <b>22 amber L2 RCSA risks</b>, <b>4 overdue assessments</b>, losses at <b>&pound;16.8m YTD</b> and <b>9% material controls ineffective</b>. The Board should focus on whether the Cyber &amp;amp; IT appetite triggers, the single Customer appetite breach, amber-risk concentration in <b>Operational</b> and <b>Customer</b>, the rolling loss trend and material/key control response are on credible Q2 recovery paths.
           </p>
           <div class=&quot;exec-action-table-wrap&quot;>
             <div class=&quot;action-table-head&quot;>
-              <div class=&quot;action-table-title&quot;>Top 5 RCSA actions</div>
-              <span class=&quot;action-table-badge&quot;>Red / Amber RCSA</span>
+              <div class=&quot;action-table-title&quot;>Top 5 Actions</div>
             </div>
             <table class=&quot;exec-actions&quot; aria-label=&quot;Top 5 linked remediation actions sorted by due date&quot;>
               <colgroup><col/><col/><col/><col/></colgroup>
@@ -2652,31 +2536,31 @@
               <tbody>
                 <tr>
                   <td><span class=&quot;action-risk&quot;>Funding</span><span class=&quot;action-text&quot;>Approve contingency funding ladder and trigger playbook.</span></td>
-                  <td class=&quot;action-owner&quot;>Treasury</td>
+                  <td class=&quot;action-owner&quot;>Hannah Patel</td>
                   <td class=&quot;action-date&quot;>30 Apr</td>
                   <td><span class=&quot;action-status on&quot;>On track</span></td>
                 </tr>
                 <tr>
                   <td><span class=&quot;action-risk&quot;>Op Resilience</span><span class=&quot;action-text&quot;>Evidence critical-service fix and retest route to green.</span></td>
-                  <td class=&quot;action-owner&quot;>Ops Risk</td>
+                  <td class=&quot;action-owner&quot;>James Walker</td>
                   <td class=&quot;action-date&quot;>15 May</td>
                   <td><span class=&quot;action-status risk&quot;>At risk</span></td>
                 </tr>
                 <tr>
                   <td><span class=&quot;action-risk&quot;>Data Protection</span><span class=&quot;action-text&quot;>Close retention controls and breach-response evidence pack.</span></td>
-                  <td class=&quot;action-owner&quot;>DPO</td>
+                  <td class=&quot;action-owner&quot;>Priya Shah</td>
                   <td class=&quot;action-date&quot;>31 May</td>
                   <td><span class=&quot;action-status risk&quot;>At risk</span></td>
                 </tr>
                 <tr>
                   <td><span class=&quot;action-risk&quot;>Mortality</span><span class=&quot;action-text&quot;>Complete assumption review and management action sign-off.</span></td>
-                  <td class=&quot;action-owner&quot;>Ins Risk</td>
+                  <td class=&quot;action-owner&quot;>Sarah Collins</td>
                   <td class=&quot;action-date&quot;>30 Jun</td>
                   <td><span class=&quot;action-status on&quot;>On track</span></td>
                 </tr>
                 <tr>
                   <td><span class=&quot;action-risk&quot;>Investment Cpty</span><span class=&quot;action-text&quot;>Refresh downgrade watchlist limits and exposure action plan.</span></td>
-                  <td class=&quot;action-owner&quot;>Credit</td>
+                  <td class=&quot;action-owner&quot;>Mark Evans</td>
                   <td class=&quot;action-date&quot;>15 Jul</td>
                   <td><span class=&quot;action-status on&quot;>On track</span></td>
                 </tr>
@@ -2696,7 +2580,7 @@
       <div class=&quot;top-risk-panel risk-universe-panel exec-heli-panel appetite-unified&quot;>
         <div class=&quot;panel-head&quot;>
           <div>
-            <span class=&quot;panel-title&quot;>RCSA Helicopter View</span><span class=&quot;panel-sub&quot;>ordered by severity &middot; appetite shown per theme</span>
+            <span class=&quot;panel-title&quot;>RCSA Helicopter View</span><span class=&quot;panel-sub&quot;>ordered by severity &middot; risk appetite shown beneath each theme</span>
           </div>
           <div class=&quot;universe-legend&quot;>
             <span class=&quot;legend-label&quot;>RCSA</span>
@@ -2707,6 +2591,7 @@
             <span class=&quot;legend-label&quot;>Appetite</span>
             <span><i class=&quot;appetite-dot breached&quot;></i>Breached</span>
             <span><i class=&quot;appetite-dot triggered&quot;></i>Triggered</span>
+            <span><i class=&quot;appetite-dot watch&quot;></i>Watch</span>
             <span><i class=&quot;appetite-dot inrange&quot;></i>In-range</span>
           </div>
         </div>
@@ -2716,8 +2601,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Operational</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:17%&quot;></span><span class=&quot;amber&quot; style=&quot;width:58%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>2R</span><span class=&quot;a&quot;>7A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Info Security</span><span class=&quot;profile-chip amber flagged&quot;>Op Resilience</span><span class=&quot;profile-chip amber&quot;>Reg Compliance</span><span class=&quot;profile-chip amber&quot;>Technology</span><span class=&quot;profile-chip amber&quot;>+4 amber</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Core metrics</div><div class=&quot;profile-section-meta&quot;>2 breached &middot; 1 triggered &middot; 1 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:50%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:25%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:25%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red&quot;>Info Security</span><span class=&quot;profile-chip amber&quot;>Op Resilience</span><span class=&quot;profile-chip amber&quot;>Reg Compliance</span><span class=&quot;profile-chip amber&quot;>Technology</span><span class=&quot;profile-chip amber&quot;>+4 amber</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Risk appetite - core</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 2 watch</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:50%&quot;></span><span class=&quot;watch&quot; style=&quot;width:50%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2725,8 +2610,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Customer</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:13%&quot;></span><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>4A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Data Protection</span><span class=&quot;profile-chip amber&quot;>AI</span><span class=&quot;profile-chip amber&quot;>Sales</span><span class=&quot;profile-chip amber&quot;>+2 amber</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Core metrics</div><div class=&quot;profile-section-meta&quot;>2 breached &middot; 2 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:34%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:33%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:33%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red&quot;>Data Protection</span><span class=&quot;profile-chip amber&quot;>AI</span><span class=&quot;profile-chip amber&quot;>Sales</span><span class=&quot;profile-chip amber&quot;>+2 amber</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot core&quot;></span>Risk appetite - core</div><div class=&quot;profile-section-meta&quot;>1 breached &middot; 2 triggered &middot; 1 watch</div><div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:17%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:33%&quot;></span><span class=&quot;watch&quot; style=&quot;width:17%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:33%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2734,8 +2619,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Liquidity &amp; Funding</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:50%&quot;></span><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>1A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Funding</span><span class=&quot;profile-chip amber&quot;>Liquidity</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>2 metrics &middot; not scored</div><div class=&quot;pending-bar&quot;></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red&quot;>Funding</span><span class=&quot;profile-chip amber&quot;>Liquidity</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>2 metrics &middot; not scored</div><div class=&quot;pending-bar&quot;></div></div>
             </div>
           </article>
 
@@ -2743,8 +2628,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Market</span><span class=&quot;profile-trend flat&quot;>-</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>0R</span><span class=&quot;a&quot;>3A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber flagged&quot;>Spread</span><span class=&quot;profile-chip amber&quot;>Equity</span><span class=&quot;profile-chip amber&quot;>Inflation</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 3 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:40%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:60%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber&quot;>Spread</span><span class=&quot;profile-chip amber&quot;>Equity</span><span class=&quot;profile-chip amber&quot;>Inflation</span><span class=&quot;profile-chip green&quot;>+3 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 3 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:40%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:60%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2752,8 +2637,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Insurance</span><span class=&quot;profile-trend good&quot;>&#9660;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;amber&quot; style=&quot;width:60%&quot;></span><span class=&quot;green&quot; style=&quot;width:40%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>0R</span><span class=&quot;a&quot;>3A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber flagged&quot;>Mortality</span><span class=&quot;profile-chip amber&quot;>Longevity</span><span class=&quot;profile-chip amber&quot;>Persistency</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 4 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber&quot;>Mortality</span><span class=&quot;profile-chip amber&quot;>Longevity</span><span class=&quot;profile-chip amber&quot;>Persistency</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 2 triggered &middot; 4 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2761,8 +2646,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Credit &amp; Counterparty</span><span class=&quot;profile-trend good&quot;>&#9660;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;amber&quot; style=&quot;width:67%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>0R</span><span class=&quot;a&quot;>2A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber flagged&quot;>Investment Cpty</span><span class=&quot;profile-chip amber&quot;>Illiquid Credit</span><span class=&quot;profile-chip green&quot;>+1 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber&quot;>Investment Cpty</span><span class=&quot;profile-chip amber&quot;>Illiquid Credit</span><span class=&quot;profile-chip green&quot;>+1 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2770,8 +2655,8 @@
             <div class=&quot;profile-card-head&quot;><span class=&quot;profile-card-title&quot;>Strategic</span><span class=&quot;profile-trend&quot;>&#9650;</span></div>
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;red&quot; style=&quot;width:25%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>1R</span><span class=&quot;a&quot;>1A</span></div></div>
-              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red flagged&quot;>Reputation</span><span class=&quot;profile-chip amber&quot;>+1 amber</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
+              <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip red&quot;>Reputation</span><span class=&quot;profile-chip amber&quot;>+1 amber</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 2 in-range</div><div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:34%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:66%&quot;></span></div></div>
             </div>
           </article>
 
@@ -2780,7 +2665,7 @@
             <div class=&quot;profile-card-body&quot;>
               <div class=&quot;profile-main-row&quot;><div class=&quot;profile-stack&quot;><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div><div class=&quot;rcsa-counts&quot;><span class=&quot;r&quot;>0R</span><span class=&quot;a&quot;>1A</span></div></div>
               <div class=&quot;profile-chip-row&quot;><span class=&quot;profile-chip amber&quot;>Greenwashing</span><span class=&quot;profile-chip green&quot;>+2 green</span></div>
-              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Additional metrics</div><div class=&quot;profile-section-meta&quot;>4 metrics &middot; not scored</div><div class=&quot;pending-bar&quot;></div></div>
+              <div class=&quot;profile-section&quot;><div class=&quot;profile-section-title&quot;><span class=&quot;section-dot&quot;></span>Risk appetite - additional</div><div class=&quot;profile-section-meta&quot;>4 metrics &middot; not scored</div><div class=&quot;pending-bar&quot;></div></div>
             </div>
           </article>
         </div>
@@ -2792,8 +2677,8 @@
               <div class=&quot;exec-cross-name&quot;>Capital</div>
               <div class=&quot;exec-cross-note&quot;>Solvency capital cascade sets quantitative limits for L2s where direct monitoring is not yet granular.</div>
               <div class=&quot;exec-cross-tags&quot;><span>Market</span><span>Credit</span><span>Insurance</span></div>
-              <div class=&quot;profile-section-meta&quot;>1 breached &middot; 2 triggered &middot; 1 in-range</div>
-              <div class=&quot;appetite-bar&quot;><span class=&quot;breached&quot; style=&quot;width:25%&quot;></span><span class=&quot;triggered&quot; style=&quot;width:50%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:25%&quot;></span></div>
+              <div class=&quot;profile-section-meta&quot;>0 breached &middot; 1 triggered &middot; 1 watch &middot; 2 in-range</div>
+              <div class=&quot;appetite-bar&quot;><span class=&quot;triggered&quot; style=&quot;width:25%&quot;></span><span class=&quot;watch&quot; style=&quot;width:25%&quot;></span><span class=&quot;inrange&quot; style=&quot;width:50%&quot;></span></div>
             </div>
             <div class=&quot;exec-cross-card&quot;>
               <div class=&quot;exec-cross-name&quot;>Dividend</div>
@@ -2823,7 +2708,7 @@
             <div class=&quot;heli-head&quot;>Strategic</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:67%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Reputation</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Reputation</span><b>R</b></div>
               <div class=&quot;heli-tile more&quot;><span>+2 green</span></div>
             </div>
           </div>
@@ -2841,7 +2726,7 @@
             <div class=&quot;heli-head&quot;>Liquidity &amp; Funding</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:100%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Funding</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Funding</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Liquidity</span><b>R</b></div>
             </div>
           </div>
@@ -2850,7 +2735,7 @@
             <div class=&quot;heli-head&quot;>Market</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:17%&quot;></span><span class=&quot;amber&quot; style=&quot;width:33%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Spread</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Spread</span><b>R</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Equity</span><b>A</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Inflation</span><b>A</b></div>
               <div class=&quot;heli-tile more&quot;><span>+3 green</span></div>
@@ -2861,7 +2746,7 @@
             <div class=&quot;heli-head&quot;>Credit &amp; Counterparty</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:34%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Investment Cpty</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Investment Cpty</span><b>R</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Illiquid Credit</span><b>A</b></div>
               <div class=&quot;heli-tile more&quot;><span>+1 green</span></div>
             </div>
@@ -2871,7 +2756,7 @@
             <div class=&quot;heli-head&quot;>Insurance</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:20%&quot;></span><span class=&quot;amber&quot; style=&quot;width:40%&quot;></span><span class=&quot;green&quot; style=&quot;width:40%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Mortality</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Mortality</span><b>R</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Longevity</span><b>A</b></div>
               <div class=&quot;heli-tile amber&quot;><span>Persistency</span><b>A</b></div>
               <div class=&quot;heli-tile more&quot;><span>+2 green</span></div>
@@ -2882,7 +2767,7 @@
             <div class=&quot;heli-head&quot;>Customer</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:38%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Data Protection</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Data Protection</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>AI</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Sales</span><b>R</b></div>
               <div class=&quot;heli-tile more amber&quot;><span>+2 amber</span></div>
@@ -2894,8 +2779,8 @@
             <div class=&quot;heli-head&quot;>Operational</div>
             <div class=&quot;heli-stack&quot;><span class=&quot;red&quot; style=&quot;width:33%&quot;></span><span class=&quot;amber&quot; style=&quot;width:42%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div>
             <div class=&quot;heli-tiles&quot;>
-              <div class=&quot;heli-tile red flagged&quot;><span>Info Security</span><b>R</b></div>
-              <div class=&quot;heli-tile red flagged&quot;><span>Op Resilience</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Info Security</span><b>R</b></div>
+              <div class=&quot;heli-tile red&quot;><span>Op Resilience</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Reg Compliance</span><b>R</b></div>
               <div class=&quot;heli-tile red&quot;><span>Technology</span><b>R</b></div>
               <div class=&quot;heli-tile more amber&quot;><span>+5 amber</span></div>
@@ -2974,7 +2859,7 @@
         <div class=&quot;rows-metric-grid&quot;>
           <div class=&quot;rows-metric&quot;><strong>5</strong><span>Red L2 risks</span></div>
           <div class=&quot;rows-metric amber&quot;><strong>22</strong><span>Amber L2 risks</span></div>
-          <div class=&quot;rows-metric&quot;><strong>7</strong><span>Appetite breaches</span></div>
+          <div class=&quot;rows-metric&quot;><strong>1</strong><span>Appetite breach</span></div>
           <div class=&quot;rows-metric navy&quot;><strong>4</strong><span>Overdue assessments</span></div>
         </div>
         <div class=&quot;rows-posture-foot&quot;>
@@ -3029,7 +2914,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Operational</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>2 R</span><span class=&quot;sev-count amber&quot;>7 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Info Security</span><span class=&quot;risk-chip amber flagged&quot;>Op Resilience</span><span class=&quot;risk-chip amber&quot;>Reg Compliance</span><span class=&quot;risk-chip amber&quot;>Technology</span><span class=&quot;risk-chip more amber&quot;>+4 amber</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red&quot;>Info Security</span><span class=&quot;risk-chip amber&quot;>Op Resilience</span><span class=&quot;risk-chip amber&quot;>Reg Compliance</span><span class=&quot;risk-chip amber&quot;>Technology</span><span class=&quot;risk-chip more amber&quot;>+4 amber</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:17%&quot;></span><span class=&quot;amber&quot; style=&quot;width:58%&quot;></span><span class=&quot;green&quot; style=&quot;width:25%&quot;></span></div>
           </article>
@@ -3039,7 +2924,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Customer</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>4 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Data Protection</span><span class=&quot;risk-chip amber&quot;>AI</span><span class=&quot;risk-chip amber&quot;>Sales</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red&quot;>Data Protection</span><span class=&quot;risk-chip amber&quot;>AI</span><span class=&quot;risk-chip amber&quot;>Sales</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:13%&quot;></span><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span><span class=&quot;green&quot; style=&quot;width:37%&quot;></span></div>
           </article>
@@ -3049,7 +2934,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Liquidity &amp; Funding</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>1 A</span><span class=&quot;sev-count green&quot;>0 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Funding</span><span class=&quot;risk-chip amber&quot;>Liquidity</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red&quot;>Funding</span><span class=&quot;risk-chip amber&quot;>Liquidity</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:50%&quot;></span><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span></div>
           </article>
@@ -3059,7 +2944,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Market</div><div class=&quot;severity-trend flat&quot;>&#9642; Stable</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>0 R</span><span class=&quot;sev-count amber&quot;>3 A</span><span class=&quot;sev-count green&quot;>3 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber flagged&quot;>Spread</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber&quot;>Spread</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;amber&quot; style=&quot;width:50%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div>
           </article>
@@ -3069,7 +2954,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Insurance</div><div class=&quot;severity-trend good&quot;>&#9660; Improving</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>0 R</span><span class=&quot;sev-count amber&quot;>3 A</span><span class=&quot;sev-count green&quot;>2 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber flagged&quot;>Mortality</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber&quot;>Mortality</span><span class=&quot;risk-chip more amber&quot;>+2 amber</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;amber&quot; style=&quot;width:60%&quot;></span><span class=&quot;green&quot; style=&quot;width:40%&quot;></span></div>
           </article>
@@ -3079,7 +2964,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Credit &amp; Counterparty</div><div class=&quot;severity-trend good&quot;>&#9660; Improving</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>0 R</span><span class=&quot;sev-count amber&quot;>2 A</span><span class=&quot;sev-count green&quot;>1 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber flagged&quot;>Investment Cpty</span><span class=&quot;risk-chip more amber&quot;>+1 amber</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip amber&quot;>Investment Cpty</span><span class=&quot;risk-chip more amber&quot;>+1 amber</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;amber&quot; style=&quot;width:67%&quot;></span><span class=&quot;green&quot; style=&quot;width:33%&quot;></span></div>
           </article>
@@ -3089,7 +2974,7 @@
             <div class=&quot;severity-main&quot;><div class=&quot;severity-name&quot;>Strategic</div><div class=&quot;severity-trend bad&quot;>&#9650; Worsening</div></div>
             <div class=&quot;severity-detail&quot;>
               <div class=&quot;severity-counts&quot;><span class=&quot;sev-count red&quot;>1 R</span><span class=&quot;sev-count amber&quot;>1 A</span><span class=&quot;sev-count green&quot;>2 G</span></div>
-              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red flagged&quot;>Reputation</span><span class=&quot;risk-chip more amber&quot;>+1 amber</span><span class=&quot;risk-chip more&quot;>+2 green</span></div>
+              <div class=&quot;severity-chips&quot;><span class=&quot;risk-chip red&quot;>Reputation</span><span class=&quot;risk-chip more amber&quot;>+1 amber</span><span class=&quot;risk-chip more&quot;>+2 green</span></div>
             </div>
             <div class=&quot;severity-bar&quot;><span class=&quot;red&quot; style=&quot;width:25%&quot;></span><span class=&quot;amber&quot; style=&quot;width:25%&quot;></span><span class=&quot;green&quot; style=&quot;width:50%&quot;></span></div>
           </article>
@@ -7729,9 +7614,6 @@ let currentIdx = 0;
 
 const frames = document.querySelectorAll('.slide-frame');
 const thumbs = document.querySelectorAll('.thumb');
-const progress = document.getElementById('progress');
-const topbarQuarter = document.getElementById('topbar-quarter');
-const topbarQuarterSelect = document.getElementById('report-quarter-select');
 const prevBtn = document.getElementById('nav-prev');
 const nextBtn = document.getElementById('nav-next');
 const stage = document.querySelector('.stage');
@@ -7888,8 +7770,6 @@ function applyQuarter(quarter) {
   const preset = QUARTERS[quarter] || QUARTERS['q1-2026'];
   currentQuarterKey = QUARTERS[quarter] ? quarter : 'q1-2026';
   sessionStorage.setItem('crr-report-quarter', currentQuarterKey);
-  topbarQuarter.textContent = preset.label;
-  if (topbarQuarterSelect) topbarQuarterSelect.value = currentQuarterKey;
   if (slideQuarterSelect) slideQuarterSelect.value = currentQuarterKey;
   document.title = `CRR Board PPT - ${preset.label}`;
 
@@ -7941,7 +7821,6 @@ function showSlide(idx) {
     activeThumb.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
   }
 
-  progress.textContent = `P${slide.num} / ${SLIDES.length}`;
   prevBtn.disabled = (idx === 0);
   nextBtn.disabled = (idx === SLIDES.length - 1);
 }
@@ -7952,13 +7831,6 @@ nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
 thumbs.forEach((t, i) => {
   t.addEventListener('click', () => showSlide(i));
 });
-
-if (topbarQuarterSelect) {
-  topbarQuarterSelect.addEventListener('change', (event) => {
-    applyQuarter(event.target.value);
-    showSlide(currentIdx);
-  });
-}
 
 if (slideQuarterSelect) {
   slideQuarterSelect.addEventListener('change', (event) => {

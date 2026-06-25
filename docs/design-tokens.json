@@ -1,0 +1,97 @@
+{
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "aspectRatio": "16:9"
+  },
+  "font": {
+    "body": "Aptos, Segoe UI, Arial, sans-serif",
+    "mono": "Aptos Mono, Cascadia Mono, Consolas, monospace"
+  },
+  "colors": {
+    "heritageBlue": "#0A2F73",
+    "sectionBlue": "#17377F",
+    "vibrantBlue": "#2140CE",
+    "deepNavy": "#07235A",
+    "outerNavy": "#16224A",
+    "heritageYellow": "#FFBB00",
+    "lightYellow": "#FFFFB9",
+    "coreTeal": "#006B5C",
+    "vibrantTeal": "#02BE98",
+    "lightTeal": "#9AE5D6",
+    "coreCoral": "#CA3F4C",
+    "vibrantCoral": "#FA6166",
+    "darkCoral": "#681A38",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "ink2": "#1F3458",
+    "muted": "#5B6B83",
+    "muted2": "#8294AE",
+    "line": "#D8E0EC",
+    "panelSoft": "#F7F9FC",
+    "noteSoft": "#F8FBFF"
+  },
+  "rag": {
+    "red": {
+      "foreground": "#CA3F4C",
+      "background": "#FDE2E4",
+      "alternateBackground": "#FDE6E8",
+      "border": "#F0A3AA"
+    },
+    "amber": {
+      "foreground": "#DE4721",
+      "background": "#FFF4D1",
+      "alternateBackground": "#FFF2C2",
+      "border": "#F0C96D"
+    },
+    "watch": {
+      "foreground": "#8F6200",
+      "background": "#FFF7D9",
+      "border": "#EFD273"
+    },
+    "green": {
+      "foreground": "#006B5C",
+      "background": "#E6F5F1",
+      "alternateBackground": "#E3F3EF",
+      "border": "#95D5C8"
+    },
+    "pending": {
+      "foreground": "#69778C",
+      "background": "#EEF2F7",
+      "border": "#D2DBE7"
+    }
+  },
+  "layout": {
+    "standardRows": {
+      "brandStrip": 36,
+      "header": 56,
+      "footer": 32
+    },
+    "riskAppetiteRows": {
+      "brandStrip": 36,
+      "header": 68,
+      "footer": 32
+    },
+    "bodyPadding": {
+      "x": [30, 40],
+      "y": [12, 18]
+    },
+    "commonGaps": [8, 10, 12, 14, 16],
+    "radius": {
+      "small": 3,
+      "chip": 4,
+      "card": 6,
+      "panel": 7,
+      "max": 8
+    }
+  },
+  "typography": {
+    "slideTitle": { "size": [22, 24], "weight": 700 },
+    "panelTitle": { "size": [13, 16], "weight": 700 },
+    "kpiValue": { "size": [21, 27], "weight": 600 },
+    "kpiLabel": { "size": [8, 9.2], "weight": 800, "case": "uppercase" },
+    "tableHeader": { "size": [6.5, 8], "weight": 800, "case": "uppercase" },
+    "tableBody": { "size": [8, 9.2], "weight": 600 },
+    "commentaryBody": { "size": [9, 10.6], "lineHeight": [1.35, 1.4] }
+  }
+}

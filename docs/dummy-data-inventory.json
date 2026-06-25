@@ -1,0 +1,540 @@
+{
+  "generatedDate": "2026-06-24",
+  "sourceType": "static prototype mock data",
+  "reportingPeriod": {
+    "defaultPeriod": "Q1 2026",
+    "refreshDate": "31 Mar 2026",
+    "periodControl": "visual only",
+    "availablePeriods": ["Q1 2026", "Q4 2025", "Q3 2025", "Q2 2025", "Q1 2025"]
+  },
+  "sourceFiles": [
+    {
+      "path": "index.html",
+      "contains": [
+        "report shell",
+        "executive summary",
+        "RCSA pages",
+        "controls pages",
+        "losses",
+        "incidents",
+        "emerging risks",
+        "regulatory risks"
+      ]
+    },
+    {
+      "path": "public/slides/risk-appetite.html",
+      "contains": ["risk appetite summary pages", "core appetite metrics"]
+    },
+    {
+      "path": "public/slides/risk-appetite-appendix.html",
+      "contains": ["risk appetite detail appendix", "duplicated core appetite metric logic"]
+    },
+    {
+      "path": "public/slides/risk-appetite-additional-data.js",
+      "contains": ["additional appetite rows", "cross-cutting appetite", "RCSA helicopter profiles"]
+    },
+    {
+      "path": "public/powerapp/hosted-commentary-app.html",
+      "contains": ["commentary workflow mock"]
+    }
+  ],
+  "executiveSummary": {
+    "headlineKpis": [
+      { "name": "RCSA Red L2 Risks", "value": 5 },
+      { "name": "Amber L2 Risks", "value": 22 },
+      { "name": "Appetite Breach", "value": 1 },
+      { "name": "Overdue Assessments", "value": 4 },
+      { "name": "Loss YTD vs GBP25m", "value": "GBP16.8m", "percentage": 67 },
+      { "name": "Material Ctrl Ineff.", "value": "9%" }
+    ],
+    "overallPosture": "Amber",
+    "boardFocusThemes": [
+      "Cyber and IT appetite triggers",
+      "single Customer appetite breach",
+      "Operational and Customer amber-risk concentration",
+      "rolling loss trend",
+      "material/key control response"
+    ],
+    "topActions": [
+      {
+        "risk": "Funding",
+        "action": "Approve contingency funding ladder and trigger playbook.",
+        "owner": "Hannah Patel",
+        "dueDate": "30 Apr",
+        "status": "On track"
+      },
+      {
+        "risk": "Op Resilience",
+        "action": "Evidence critical-service fix and retest route to green.",
+        "owner": "James Walker",
+        "dueDate": "15 May",
+        "status": "At risk"
+      },
+      {
+        "risk": "Data Protection",
+        "action": "Close retention controls and breach-response evidence pack.",
+        "owner": "Priya Shah",
+        "dueDate": "31 May",
+        "status": "At risk"
+      },
+      {
+        "risk": "Mortality",
+        "action": "Complete assumption review and management action sign-off.",
+        "owner": "Sarah Collins",
+        "dueDate": "30 Jun",
+        "status": "On track"
+      },
+      {
+        "risk": "Investment Cpty",
+        "action": "Refresh downgrade watchlist limits and exposure action plan.",
+        "owner": "Mark Evans",
+        "dueDate": "15 Jul",
+        "status": "On track"
+      }
+    ]
+  },
+  "rcsa": {
+    "hierarchyLevels": ["L1 risk area", "L2 risk", "L3 risk"],
+    "aggregationMethod": "worst-case L3 roll-up to L2",
+    "riskAcceptanceRule": "accepted L3 risks are context only and do not change aggregation",
+    "displayFields": [
+      "prior raw",
+      "prior final",
+      "current raw",
+      "current final",
+      "move",
+      "percentage driving RAG",
+      "issues",
+      "actions",
+      "number of risks",
+      "number of red risks",
+      "number of accepted risks",
+      "worst L3 risks"
+    ],
+    "financialExamples": [
+      {
+        "l2Risk": "Spread",
+        "riskCount": 7,
+        "redRiskCount": 2,
+        "acceptedRiskCount": 1,
+        "exampleDriver": "Spread stress, liquidity premium and credit spread widening"
+      },
+      {
+        "l2Risk": "Investment Counterparty",
+        "riskCount": 4,
+        "redRiskCount": 1,
+        "acceptedRiskCount": 0,
+        "exampleDriver": "Default watchlist deterioration and downgrade concentration"
+      },
+      {
+        "l2Risk": "Liquidity",
+        "riskCount": 5,
+        "redRiskCount": 1,
+        "acceptedRiskCount": 1,
+        "exampleDriver": "Liquidity stress buffer"
+      },
+      {
+        "l2Risk": "Mortality",
+        "riskCount": 5,
+        "redRiskCount": 2,
+        "acceptedRiskCount": 1,
+        "exampleDriver": "Mortality assumption drift"
+      },
+      {
+        "l2Risk": "Funding",
+        "riskCount": 3,
+        "redRiskCount": 1,
+        "acceptedRiskCount": 1,
+        "exampleDriver": "Wholesale funding concentration"
+      },
+      {
+        "l2Risk": "Equity",
+        "riskCount": 6,
+        "redRiskCount": 0,
+        "acceptedRiskCount": 0,
+        "exampleDriver": "Equity volatility spike"
+      }
+    ],
+    "detailKpis": {
+      "financial": {
+        "l2Risks": 16,
+        "redL2Risks": 5,
+        "amberL2Risks": 6,
+        "openActionPlans": 9
+      }
+    }
+  },
+  "riskAppetite": {
+    "statusVocabulary": {
+      "limit": "formal appetite limit breach",
+      "trigger": "amber trigger or appetite pressure",
+      "watch": "near trigger or deteriorating trend",
+      "green": "within appetite",
+      "grey": "pending, placeholder or not scored"
+    },
+    "coreMetrics": [
+      {
+        "id": "DIV-01",
+        "riskArea": "Dividend",
+        "metricName": "Dividend Risk Appetite",
+        "currentValue": "Placeholder",
+        "status": "grey",
+        "owner": "Finance / Capital Management",
+        "dataConfidence": "pending"
+      },
+      {
+        "id": "LIQ-01",
+        "riskArea": "Liquidity",
+        "metricName": "Liquidity Risk Appetite",
+        "currentValue": "Placeholder",
+        "status": "grey",
+        "owner": "Treasury",
+        "dataConfidence": "pending"
+      },
+      {
+        "id": "CAP-01",
+        "riskArea": "Capital",
+        "metricName": "Group SCRC",
+        "priorValue": 168,
+        "currentValue": 166,
+        "unit": "%",
+        "triggerLabel": "<160%",
+        "limitLabel": "<130%",
+        "status": "green",
+        "owner": "Capital Management"
+      },
+      {
+        "id": "CAP-02",
+        "riskArea": "Capital",
+        "metricName": "PLL SCRC",
+        "priorValue": 151,
+        "currentValue": 147,
+        "unit": "%",
+        "triggerLabel": "<145%",
+        "limitLabel": "<130%",
+        "status": "watch",
+        "owner": "Capital Management"
+      },
+      {
+        "id": "CAP-03",
+        "riskArea": "Capital",
+        "metricName": "RAL SCRC",
+        "priorValue": 138,
+        "currentValue": 133,
+        "unit": "%",
+        "triggerLabel": "<135%",
+        "limitLabel": "<120%",
+        "status": "trigger",
+        "owner": "Capital Management"
+      },
+      {
+        "id": "CAP-04",
+        "riskArea": "Capital",
+        "metricName": "PLCL SCRC",
+        "priorValue": 149,
+        "currentValue": 152,
+        "unit": "%",
+        "triggerLabel": "<145%",
+        "limitLabel": "<130%",
+        "status": "green",
+        "owner": "Capital Management"
+      },
+      {
+        "id": "CUS-01",
+        "riskArea": "Customer",
+        "metricName": "Consumer Duty Assessment Impact Rating",
+        "priorValue": "0 Amber / 0 Red",
+        "currentValue": "1 Amber / 0 Red",
+        "status": "trigger",
+        "owner": "Customer Outcomes"
+      },
+      {
+        "id": "CUS-02",
+        "riskArea": "Customer",
+        "metricName": "Systemic Product / Proposition Flaws",
+        "currentValue": "No exception",
+        "status": "green",
+        "owner": "Product Governance"
+      },
+      {
+        "id": "CUS-03",
+        "riskArea": "Customer",
+        "metricName": "Material Customer Detriment Incidents",
+        "currentValue": 1,
+        "status": "limit",
+        "owner": "Customer Operations"
+      },
+      {
+        "id": "CUS-04",
+        "riskArea": "Customer",
+        "metricName": "Essential Services Downtime",
+        "currentValue": 3.4,
+        "unit": "hrs",
+        "status": "watch",
+        "owner": "Service Resilience"
+      },
+      {
+        "id": "CUS-05",
+        "riskArea": "Customer",
+        "metricName": "Distribution and Advice Partner Failures",
+        "currentValue": 0,
+        "status": "green",
+        "owner": "Distribution Risk"
+      },
+      {
+        "id": "CUS-06",
+        "riskArea": "Customer",
+        "metricName": "Customer Risk RCSA Ratings",
+        "currentValue": "1 Amber / 0 Red",
+        "status": "trigger",
+        "owner": "Customer Risk"
+      },
+      {
+        "id": "OP-01",
+        "riskArea": "Operational",
+        "metricName": "Total Operational Loss Amount",
+        "currentValue": 16.8,
+        "unit": "GBP m",
+        "status": "watch",
+        "owner": "Operational Risk"
+      },
+      {
+        "id": "OP-02",
+        "riskArea": "Operational",
+        "metricName": "Operational Loss Near Misses",
+        "currentValue": 12.8,
+        "unit": "GBP m",
+        "status": "watch",
+        "owner": "Operational Risk"
+      },
+      {
+        "id": "OP-03",
+        "riskArea": "Operational",
+        "metricName": "Major / Critical Operational Risk Incidents",
+        "currentValue": 2,
+        "status": "trigger",
+        "owner": "Incident Management"
+      },
+      {
+        "id": "OP-04",
+        "riskArea": "Operational",
+        "metricName": "Operational Risks RCSA Ratings",
+        "currentValue": "1 Amber / 0 Red",
+        "status": "trigger",
+        "owner": "Operational Risk"
+      }
+    ],
+    "nonCoreExamples": [
+      {
+        "id": "NC-01",
+        "l1Risk": "Operational",
+        "l2Risk": "Information Security & Cyber",
+        "metricName": "P1 cyber incident appetite",
+        "currentValue": 6,
+        "status": "limit",
+        "isEscalated": true
+      },
+      {
+        "id": "NC-02",
+        "l1Risk": "Customer",
+        "l2Risk": "Data Protection",
+        "metricName": "Customer data breach watchlist",
+        "currentValue": 1,
+        "status": "trigger",
+        "isEscalated": true
+      },
+      {
+        "id": "NC-03",
+        "l1Risk": "Market",
+        "l2Risk": "Credit Spread",
+        "metricName": "Spread stress threshold",
+        "currentValue": "Amber",
+        "status": "watch",
+        "isEscalated": false
+      }
+    ],
+    "additionalCoverageCounts": {
+      "Market": 5,
+      "Credit": 3,
+      "Insurance": 6,
+      "Climate": 4,
+      "Liquidity": 2,
+      "Customer": 3,
+      "Operational": 6,
+      "Strategic": 3
+    },
+    "crossCutting": [
+      {
+        "id": "XCAP",
+        "name": "Capital",
+        "status": "trigger",
+        "scope": ["Market", "Credit & Counterparty", "Insurance"]
+      },
+      {
+        "id": "XDIV",
+        "name": "Dividend",
+        "status": "grey",
+        "scope": ["All L1 risk areas"]
+      }
+    ]
+  },
+  "helicopterView": [
+    {
+      "area": "Operational",
+      "red": 2,
+      "amber": 7,
+      "green": 3,
+      "trend": "worse",
+      "drivers": ["Info Security", "Op Resilience", "Reg Compliance", "Technology"]
+    },
+    {
+      "area": "Customer",
+      "red": 1,
+      "amber": 4,
+      "green": 3,
+      "trend": "worse",
+      "drivers": ["Data Protection", "AI", "Sales"]
+    },
+    {
+      "area": "Liquidity & Funding",
+      "red": 1,
+      "amber": 1,
+      "green": 0,
+      "trend": "worse",
+      "drivers": ["Funding", "Liquidity"]
+    },
+    {
+      "area": "Market",
+      "red": 0,
+      "amber": 3,
+      "green": 3,
+      "trend": "stable",
+      "drivers": ["Spread", "Equity", "Inflation"]
+    },
+    {
+      "area": "Insurance",
+      "red": 0,
+      "amber": 3,
+      "green": 2,
+      "trend": "better",
+      "drivers": ["Mortality", "Longevity", "Persistency"]
+    },
+    {
+      "area": "Credit & Counterparty",
+      "red": 0,
+      "amber": 2,
+      "green": 1,
+      "trend": "better",
+      "drivers": ["Investment Cpty", "Illiquid Credit"]
+    },
+    {
+      "area": "Strategic",
+      "red": 1,
+      "amber": 1,
+      "green": 2,
+      "trend": "worse",
+      "drivers": ["Reputation"]
+    },
+    {
+      "area": "Climate",
+      "red": 0,
+      "amber": 1,
+      "green": 2,
+      "trend": "better",
+      "drivers": ["Greenwashing"]
+    }
+  ],
+  "controls": {
+    "executiveSnapshot": {
+      "materialControls": {
+        "effectivePct": 71,
+        "partialPct": 20,
+        "ineffectivePct": 9,
+        "testsCompletePct": 47,
+        "testsComplete": 21,
+        "testsScheduled": 45
+      },
+      "keyControls": {
+        "effectivePct": 80,
+        "partialPct": 19,
+        "ineffectivePct": 1,
+        "testsCompletePct": 33,
+        "testsComplete": 27,
+        "testsScheduled": 81
+      }
+    },
+    "materialControlsEnvironment": {
+      "materialControls": 34,
+      "ineffective": 4,
+      "ineffectivePct": 12,
+      "partiallyEffective": 7,
+      "partiallyEffectivePct": 21,
+      "exceptionActionsLinkedPct": 82,
+      "linkedKeyControls": 39,
+      "q1TestsCompletePct": 68,
+      "q1TestsComplete": 23,
+      "q1TestsScheduled": 34
+    },
+    "keyControlsEnvironment": {
+      "keyControls": 1426,
+      "ineffective": 18,
+      "ineffectivePct": 1.3,
+      "partiallyEffective": 263,
+      "partiallyEffectivePct": 18.4,
+      "exceptionActionsLinkedPct": 71,
+      "linkedSupportingControls": 620,
+      "q1TestsCompletePct": 69,
+      "q1TestsComplete": 318,
+      "q1TestsScheduled": 460,
+      "ytdTestsCompletePct": 49,
+      "ytdTestsComplete": 690,
+      "ytdTestsScheduled": 1420,
+      "q1OverdueTests": 29,
+      "ytdOverdueTests": 96
+    }
+  },
+  "incidents": {
+    "totalIncidentsQ1": 11,
+    "totalSev1Sev2": 7,
+    "regulatoryNotifiableEvents": 4,
+    "views": [
+      "top incidents",
+      "customer outcome by severity matrix",
+      "severity 1 / severity 2 remediation register",
+      "top assigned commentary cards"
+    ]
+  },
+  "commentaryWorkflow": {
+    "assigned": 22,
+    "inDraft": 7,
+    "approved": 9,
+    "overdue": 4,
+    "exampleRows": [
+      { "item": "Cyber and IT Risk appetite commentary", "page": "P2", "status": "Rejected" },
+      { "item": "Spread - liquidity premium widened", "page": "P4", "status": "Draft" },
+      { "item": "Operational Resilience red L2", "page": "P6", "status": "Review" },
+      { "item": "Material controls ineffective", "page": "P7", "status": "Approved" },
+      { "item": "Data breach remediation status", "page": "P10", "status": "Overdue" }
+    ]
+  },
+  "semanticModelTargets": [
+    "DimPeriod",
+    "DimRiskHierarchy",
+    "FactRCSAAssessment",
+    "FactRiskAcceptance",
+    "FactRiskAppetiteMetric",
+    "FactControlAssessment",
+    "BridgeRiskControl",
+    "FactLossEvent",
+    "FactIncident",
+    "FactAction",
+    "FactCommentaryWorkflow"
+  ],
+  "knownCaveats": [
+    "Risk appetite core metrics are duplicated between summary and appendix pages.",
+    "Most pages embed dummy rows directly in index.html rather than a shared data module.",
+    "The period dropdown is visual only and does not filter data.",
+    "Some embedded records have display labels but not durable IDs.",
+    "Risk acceptance is context only and does not change RCSA aggregation."
+  ]
+}

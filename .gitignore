@@ -8,3 +8,20 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 *.log
+
+# Local review/export artifacts
+screenshots/
+test-results/
+reference/
+*.zip
+*.patch
+
+# Old local experiments and imported handoff bundles that are not part of this app
+_review_*/
+*-handoff/
+erm-*/
+momentum_trend-scanner*/
+mti_scanner_app_complete/
+mti-scanner-*/
+sl-crr-board-prototype/
+.codex-export-tools/

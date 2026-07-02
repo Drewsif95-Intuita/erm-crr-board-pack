@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Executive Summary — Board Risk Committee</title>
+<script>
+  if (new URLSearchParams(window.location.search).get("embed") === "1") {
+    document.documentElement.classList.add("embedded-report-shell");
+  }
+</script>
+<style>
+  :root{
+    --navy:#1b2a63; --navy-2:#243a7a; --navy-deep:#14204d; --gold:#f5b81d;
+    --red:#c0334a; --red-soft:#fbe9ec;
+    --amber:#d99e2b; --amber-soft:#fbf2dc;
+    --green:#1a7a5e; --green-soft:#e3f1ec;
+    --grey:#aeb4c2; --grey-soft:#eef0f4;
+    --ink:#1b2a63; --body:#3a3f4d; --muted:#757b8a;
+    --bg:#eceef3; --card:#ffffff; --line:#e2e5ee; --line-soft:#eef0f5;
+    --radius:8px; --shadow:0 1px 2px rgba(20,32,77,.06),0 3px 10px rgba(20,32,77,.05);
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--font); color:var(--body); background:var(--bg); -webkit-font-smoothing:antialiased; font-size:11.5px; line-height:1.3; }
+  .page{ max-width:1280px; margin:0 auto; padding:0 0 10px; background:var(--bg); }
+
+  .proto-ribbon{ background:var(--gold); color:#3a2a05; text-align:center; font-size:9.5px; font-weight:800; letter-spacing:.4px; padding:3px 0; }
+  .proto-ribbon .sub{ font-weight:600; opacity:.85; margin-left:7px; }
+  .embedded-report-shell .proto-ribbon{ display:none; }
+
+  .brandbar{ background:#fff; padding:4px 20px; display:flex; align-items:center; gap:7px; border-bottom:1px solid var(--line); }
+  .brandbar .logo{ font-weight:700; color:var(--navy); font-size:12px; }
+  .brandbar .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
+
+  header.hero{ background:var(--navy); color:#fff; padding:8px 20px; border-bottom:3px solid var(--gold); display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .hero-left h1{ margin:0; font-size:17px; font-weight:700; line-height:1.15; }
+  .hero-left .sub{ color:#c3cbe6; font-size:10px; font-weight:400; margin-top:1px; }
+  .hero-right{ margin-left:auto; display:flex; align-items:center; gap:6px; }
+  .hero-right label{ font-size:8px; letter-spacing:.6px; text-transform:uppercase; color:#8b96c2; font-weight:800; }
+  .hero-right select{ font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:5px; border:1px solid #3b4a8c; background:#22306b; color:#fff; }
+
+  /* KPI strip — 6 tiles, narrower each simply by virtue of one more column */
+  .kpi-strip{ display:grid; grid-template-columns:repeat(6,1fr); gap:7px; padding:8px 20px 0; }
+  .kpi{ background:var(--card); border-radius:6px; padding:6px 9px; box-shadow:var(--shadow); border-top:3px solid var(--navy); min-height:44px; }
+  .kpi.is-red{ border-top-color:var(--red); }
+  .kpi.is-amber{ border-top-color:var(--amber); }
+  .kpi .k-lbl{ font-size:7.5px; letter-spacing:.3px; text-transform:uppercase; color:var(--muted); font-weight:700; }
+  .kpi .k-val{ font-size:16.5px; font-weight:800; color:var(--ink); line-height:1.15; margin-top:2px; }
+  .kpi .k-val small{ font-size:9px; font-weight:600; color:var(--muted); }
+  .kpi.is-red .k-val{ color:var(--red); }
+  .kpi.is-amber .k-val{ color:#a8761a; }
+
+  /* Board Focus — proper panel, more real estate, fixed label column + flowing text */
+  .panel.focus{ margin:8px 20px 0; border-radius:8px; background:#fff7e8; border:1.5px solid var(--amber); }
+  .focus-inner{ display:grid; grid-template-columns:190px 1fr; gap:18px; padding:13px 18px; align-items:start; }
+  .focus-left .p-eyebrow{ font-size:9px; letter-spacing:.8px; text-transform:uppercase; color:#a8761a; font-weight:800; }
+  .focus-heading{ font-size:16px; font-weight:800; color:var(--ink); margin-top:3px; line-height:1.25; }
+  .focus-meta{ font-size:9px; color:#8a7845; margin-top:3px; }
+  .focus-text p{ font-size:11.5px; color:#5b4a1f; line-height:1.55; }
+  .focus-text p + p{ margin-top:7px; }
+  .focus-text b{ color:var(--ink); }
+  .focus-text .pill-amber{ color:#a8761a; font-weight:800; }
+
+  /* Main content: independent left/right stacks so RCSA can use more height. */
+  .content-grid{ display:grid; grid-template-columns:1.35fr 1fr; gap:10px; padding:9px 20px 0; align-items:stretch; }
+  .left-stack,
+  .right-stack{ min-height:0; display:flex; flex-direction:column; gap:10px; }
+  .left-stack .panel.controls,
+  .right-stack .panel.actions{ flex:1; }
+
+  .panel{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); }
+  .panel .p-head{ padding:6px 11px 5px; border-bottom:1px solid var(--line-soft); }
+  .panel .p-eyebrow{ font-size:8px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); font-weight:800; }
+  .panel .p-title{ font-size:11.5px; font-weight:700; color:var(--ink); }
+  .panel .p-title .hint{ font-size:9px; color:var(--muted); font-weight:400; }
+
+  /* Appetite exceptions */
+  .panel.appetite-x{ display:flex; flex-direction:column; border:1.5px solid var(--red); }
+  .appetite-x .p-head{ background:#fdecef; border-bottom-color:#f4c7cf; }
+  .ax-body{ flex:1; padding:6px 10px 8px; }
+  .ax-group{ margin-bottom:6px; }
+  .ax-group:last-child{ margin-bottom:0; }
+  .ax-grouphead{ display:flex; align-items:baseline; gap:6px; font-size:9px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:var(--muted); margin:4px 0 3px; }
+  .ax-grouphead .stat{ font-weight:700; color:var(--ink); text-transform:none; letter-spacing:0; }
+  .ax-grouphead .stat .bad{ color:var(--red); }
+  .ax-grouphead .stat .caution{ color:#a8761a; }
+  .ax-row{ display:flex; align-items:center; gap:6px; border-left:3px solid; border-radius:4px; padding:3px 7px; font-size:10px; margin-bottom:3px; }
+  .ax-row.trigger{ border-left-color:var(--amber); background:#fdf8ec; }
+  .ax-row.breach{ border-left-color:#7a1030; background:var(--red); }
+  .ax-tag{ font-size:7.5px; font-weight:800; letter-spacing:.3px; text-transform:uppercase; padding:1px 5px; border-radius:3px; flex:0 0 auto; }
+  .ax-row.trigger .ax-tag{ background:var(--amber); color:#42330d; }
+  .ax-row.breach .ax-tag{ background:#fff; color:var(--red); }
+  .ax-name{ font-weight:700; color:var(--ink); flex:1; min-width:0; }
+  .ax-row.breach .ax-name{ color:#fff; }
+  .ax-meta{ font-size:9px; color:var(--muted); white-space:nowrap; }
+  .ax-row.breach .ax-meta{ color:#ffd9df; }
+  .ax-footnote{ font-size:9px; color:var(--muted); border-top:1px dashed var(--line); padding-top:5px; margin-top:4px; line-height:1.35; }
+
+  /* RCSA — top 5 worsening list */
+  .panel.rcsalist{ display:flex; flex-direction:column; }
+  .rc-list-head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+  .rc-list-head .viewall{ font-size:9px; color:var(--navy); font-weight:700; text-decoration:none; white-space:nowrap; }
+  .rc-list-note{ font-size:8.5px; color:var(--muted); margin-top:3px; }
+  .worsen-list{ flex:1; padding:7px 12px 9px; display:flex; flex-direction:column; justify-content:space-between; }
+  .worsen-row{ display:flex; align-items:center; gap:8px; padding:5px 0; border-bottom:1px solid var(--line-soft); }
+  .worsen-row:last-child{ border-bottom:none; }
+  .w-arrow{ font-size:12px; width:13px; text-align:center; flex:0 0 auto; }
+  .w-arrow.red{ color:var(--red); } .w-arrow.amber{ color:var(--amber); }
+  .w-body{ flex:1; min-width:0; }
+  .w-cat{ font-size:10.5px; font-weight:700; color:var(--ink); }
+  .w-delta{ font-size:8.5px; color:var(--muted); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .w-now{ display:flex; align-items:baseline; gap:5px; flex:0 0 auto; }
+  .w-now .prev{ font-size:8px; color:var(--muted); white-space:nowrap; }
+  .w-now .cur{ font-size:11px; font-weight:800; white-space:nowrap; }
+  .w-now .cur.red{ color:var(--red); } .w-now .cur.amber{ color:#a8761a; }
+
+  .panel.controls{ display:flex; flex-direction:column; }
+  .panel.controls .cs-body{ padding:10px; display:flex; flex-direction:column; flex:1; background:var(--bg); border-radius:0 0 var(--radius) var(--radius); }
+  .cs-card{ background:#fff; border-radius:7px; padding:8px 11px; box-shadow:0 1px 2px rgba(20,32,77,.06); }
+  .cs-card.cs-controls-card{ display:flex; flex-direction:column; justify-content:space-between; gap:10px; padding:16px 20px; flex:1; }
+  .cs-card-title{ font-size:13px; font-weight:700; color:var(--ink); margin-bottom:2px; }
+  .cs-card-title .hint{ font-size:9.5px; color:var(--muted); font-weight:400; }
+  .cs-block .cs-top{ display:flex; align-items:baseline; gap:6px; margin-bottom:5px; }
+  .cs-label{ font-size:10px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.3px; }
+  .cs-figs{ font-size:10.5px; color:var(--muted); margin-left:auto; }
+  .cs-figs b{ color:var(--ink); }
+  .cs-figs .bad{ color:var(--red); font-weight:700; }
+  .stack{ height:17px; border-radius:6px; overflow:hidden; display:flex; }
+  .stack span{ display:block; height:100%; }
+  .stack .eff{ background:var(--green); } .stack .part{ background:#c25a2b; } .stack .ineff{ background:#7a1d52; }
+
+  /* Tests overdue by area — separated from the bars above by a title + divider, not a colour block */
+  .cs-overdue{ margin-top:4px; padding-top:12px; border-top:1px solid var(--line-soft); flex:1; display:flex; flex-direction:column; }
+  .cs-overdue-head{ display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
+  .cs-overdue-head .stat{ font-size:10px; color:var(--muted); }
+  .cs-overdue-head .stat b{ color:var(--red); }
+  .overdue-legend{ display:flex; gap:14px; justify-content:flex-end; margin:4px 0 9px; }
+  .overdue-legend .litem{ display:flex; align-items:center; gap:5px; font-size:9px; color:var(--muted); }
+  .overdue-legend .dot{ width:8px; height:8px; border-radius:50%; flex:0 0 auto; }
+  .overdue-legend .dot.red{ background:var(--red); }
+  .overdue-legend .dot.amber{ background:var(--amber); }
+  .overdue-legend .dot.green{ background:var(--green); }
+  .area-rows{ flex:1; display:flex; flex-direction:column; justify-content:flex-start; gap:12px; }
+  .area-row{ display:flex; align-items:center; gap:10px; }
+  .area-name{ font-size:9.5px; color:var(--body); width:108px; flex:0 0 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .area-bar{ flex:1; height:11px; background:var(--grey-soft); border-radius:5px; overflow:hidden; display:flex; }
+  .area-seg{ height:100%; min-width:0; }
+  .area-seg.ontrack{ background:var(--green); }
+  .area-seg.amber{ background:var(--amber); }
+  .area-seg.red{ background:var(--red); }
+  .area-val{ display:flex; align-items:center; justify-content:flex-end; gap:5px; font-size:9.5px; font-weight:800; width:54px; text-align:right; flex:0 0 auto; white-space:nowrap; }
+  .area-val .red-count{ color:var(--red); }
+  .area-val .amber-count{ color:#a8761a; }
+
+  /* Worst incidents — its own white card */
+  .cs-inc-head{ margin-bottom:5px; }
+  .inc-row{ display:grid; grid-template-columns:1fr 38px 50px 58px; gap:7px; align-items:center; padding:3px 0; border-top:1px solid var(--line-soft); }
+  .inc-row:first-of-type{ border-top:none; }
+  .inc-name{ font-size:9.5px; color:var(--body); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .inc-sev{ font-size:8px; font-weight:800; padding:2px 5px; border-radius:3px; text-align:center; }
+  .inc-sev.sev1{ background:var(--red-soft); color:var(--red); }
+  .inc-sev.sev2{ background:var(--amber-soft); color:#a8761a; }
+  .inc-sev.sev3{ background:var(--grey-soft); color:var(--muted); }
+  .inc-loss{ font-size:9.5px; font-weight:700; color:var(--ink); text-align:right; white-space:nowrap; }
+  .inc-reg{ font-size:8px; font-weight:700; padding:2px 5px; border-radius:3px; text-align:center; white-space:nowrap; }
+  .inc-reg.notified{ background:var(--green-soft); color:var(--green); }
+  .inc-reg.pending{ background:var(--amber-soft); color:#a8761a; }
+  .inc-reg.nonotify{ background:var(--grey-soft); color:var(--muted); }
+
+  /* Actions — same tinted-body + white-card pattern as Controls, now holds actions AND incidents */
+  .panel.actions{ display:flex; flex-direction:column; }
+  .panel.actions .act-body{ padding:8px; display:flex; flex-direction:column; gap:8px; justify-content:flex-start; flex:1; background:var(--bg); border-radius:0 0 var(--radius) var(--radius); }
+  .act-rows{ padding-top:2px; }
+  .act-row{ display:grid; grid-template-columns:1fr 52px; gap:8px; align-items:center; padding:5px 0; border-top:1px solid var(--line-soft); }
+  .act-row:first-child{ border-top:none; padding-top:2px; }
+  .act-tag{ display:inline-block; font-size:7.5px; font-weight:800; padding:1px 5px; border-radius:3px; background:var(--red-soft); color:var(--red); margin-bottom:1px; }
+  .act-desc{ color:var(--body); font-size:9.5px; line-height:1.25; }
+  .act-foot{ color:var(--muted); font-size:8.5px; }
+  .act-status{ font-size:8px; font-weight:700; padding:2px 5px; border-radius:3px; text-align:center; white-space:nowrap; }
+  .act-status.ontrack{ background:var(--green-soft); color:var(--green); }
+  .act-status.atrisk{ background:var(--red-soft); color:var(--red); }
+
+  footer{ margin:9px 20px 0; padding:5px 14px; background:var(--navy-deep); border-radius:6px; color:#9aa6cf; font-size:9px; display:flex; }
+  footer .r{ margin-left:auto; }
+
+  .embedded-report-shell,
+  .embedded-report-shell body {
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+  }
+  .embedded-report-shell body{ font-size:10.2px; line-height:1.18; }
+  .embedded-report-shell .page{
+    width:1280px;
+    max-width:none;
+    height:720px;
+    padding:0;
+    overflow:hidden;
+    display:grid;
+    grid-template-rows:20px 48px 43px 103px 482px 24px;
+  }
+  .embedded-report-shell .brandbar{ height:20px; padding:3px 20px; }
+  .embedded-report-shell .brandbar .logo{ font-size:11px; }
+  .embedded-report-shell header.hero{ height:48px; padding:6px 20px; }
+  .embedded-report-shell .hero-left h1{ font-size:16px; }
+  .embedded-report-shell .hero-left .sub{ font-size:9px; }
+  .embedded-report-shell .hero-right select{ font-size:10px; padding:2px 8px; }
+  .embedded-report-shell .kpi-strip{ height:43px; padding:6px 20px 0; gap:7px; }
+  .embedded-report-shell .kpi{ min-height:36px; padding:4px 8px; border-radius:5px; }
+  .embedded-report-shell .kpi .k-lbl{ font-size:6.8px; }
+  .embedded-report-shell .kpi .k-val{ font-size:14.5px; margin-top:1px; }
+  .embedded-report-shell .kpi .k-val small{ font-size:7.5px; }
+  .embedded-report-shell .panel.focus{ margin:6px 20px 0; min-height:0; }
+  .embedded-report-shell .focus-inner{ grid-template-columns:190px 1fr; gap:12px; padding:9px 16px; }
+  .embedded-report-shell .focus-left .p-eyebrow{ font-size:7.6px; }
+  .embedded-report-shell .focus-heading{ font-size:15px; margin-top:2px; }
+  .embedded-report-shell .focus-meta{ font-size:7.8px; margin-top:2px; }
+  .embedded-report-shell .focus-text p{ margin:0; font-size:10px; line-height:1.34; }
+  .embedded-report-shell .focus-text p + p{ margin-top:4px; }
+  .embedded-report-shell .content-grid{ min-height:0; gap:8px; padding:8px 20px 0; }
+  .embedded-report-shell .left-stack,
+  .embedded-report-shell .right-stack{ min-height:0; display:grid; gap:8px; }
+  .embedded-report-shell .left-stack{ grid-template-rows:174px minmax(0,1fr); }
+  .embedded-report-shell .right-stack{ grid-template-rows:202px minmax(0,1fr); }
+  .embedded-report-shell .panel{ min-height:0; overflow:hidden; }
+  .embedded-report-shell .panel .p-head{ padding:4px 10px 3px; }
+  .embedded-report-shell .panel .p-eyebrow{ font-size:6.8px; letter-spacing:.7px; }
+  .embedded-report-shell .panel .p-title{ font-size:10px; }
+  .embedded-report-shell .panel .p-title .hint{ font-size:7.7px; }
+  .embedded-report-shell .ax-body{ padding:4px 9px 5px; }
+  .embedded-report-shell .ax-group{ margin-bottom:3px; }
+  .embedded-report-shell .ax-grouphead{ font-size:8px; margin:2px 0; }
+  .embedded-report-shell .ax-row{ padding:2px 6px; font-size:8.8px; margin-bottom:2px; }
+  .embedded-report-shell .ax-tag{ font-size:6.6px; padding:1px 4px; }
+  .embedded-report-shell .ax-meta{ font-size:7.8px; }
+  .embedded-report-shell .ax-footnote{ font-size:7.8px; padding-top:3px; margin-top:3px; line-height:1.2; }
+  .embedded-report-shell .rc-list-note{ font-size:7.2px; margin-top:1px; }
+  .embedded-report-shell .worsen-list{ padding:5px 10px; }
+  .embedded-report-shell .worsen-row{ padding:4px 0; gap:7px; }
+  .embedded-report-shell .w-cat{ font-size:9.3px; }
+  .embedded-report-shell .w-delta{ font-size:7.4px; }
+  .embedded-report-shell .w-now .prev{ font-size:6.8px; }
+  .embedded-report-shell .w-now .cur{ font-size:9.3px; }
+  .embedded-report-shell .panel.controls .cs-body,
+  .embedded-report-shell .panel.actions .act-body{ padding:7px; }
+  .embedded-report-shell .cs-card{ border-radius:6px; padding:6px 9px; }
+  .embedded-report-shell .cs-card.cs-controls-card{ gap:6px; padding:10px 18px; }
+  .embedded-report-shell .cs-card-title{ font-size:11.5px; margin-bottom:1px; }
+  .embedded-report-shell .cs-card-title .hint{ font-size:8px; }
+  .embedded-report-shell .cs-block .cs-top{ margin-bottom:3px; }
+  .embedded-report-shell .cs-label{ font-size:8.6px; }
+  .embedded-report-shell .cs-figs{ font-size:8.7px; }
+  .embedded-report-shell .stack{ height:14px; }
+  .embedded-report-shell .cs-overdue{ margin-top:2px; padding-top:7px; }
+  .embedded-report-shell .cs-overdue-head .stat{ font-size:8.4px; }
+  .embedded-report-shell .overdue-legend{ margin:2px 0 5px; gap:12px; }
+  .embedded-report-shell .overdue-legend .litem{ font-size:7.5px; }
+  .embedded-report-shell .area-rows{ gap:11px; }
+  .embedded-report-shell .area-name{ font-size:8.2px; width:104px; }
+  .embedded-report-shell .area-bar{ height:9px; }
+  .embedded-report-shell .area-val{ font-size:8px; width:50px; gap:4px; }
+  .embedded-report-shell .panel.actions .act-body{ gap:6px; }
+  .embedded-report-shell .act-row{ padding:3px 0; }
+  .embedded-report-shell .act-tag{ font-size:6.4px; }
+  .embedded-report-shell .act-desc{ font-size:8.1px; line-height:1.16; }
+  .embedded-report-shell .act-foot{ font-size:7.2px; }
+  .embedded-report-shell .act-status{ font-size:6.8px; }
+  .embedded-report-shell .inc-row{ padding:2px 0; grid-template-columns:1fr 36px 47px 54px; }
+  .embedded-report-shell .inc-name{ font-size:8.1px; }
+  .embedded-report-shell .inc-sev,
+  .embedded-report-shell .inc-reg{ font-size:6.8px; }
+  .embedded-report-shell .inc-loss{ font-size:8.1px; }
+  .embedded-report-shell footer{ height:20px; margin:4px 20px 0; padding:4px 14px; font-size:7.8px; border-radius:5px; }
+
+  @media (max-width:980px){
+    .kpi-strip{ grid-template-columns:repeat(3,1fr); }
+    .focus-inner{ grid-template-columns:1fr; }
+    .content-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="proto-ribbon">PROTOTYPE<span class="sub">INDICATIVE MOCK DATA FOR DESIGN REVIEW</span></div>
+  <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
+
+  <header class="hero">
+    <div class="hero-left">
+      <h1>Executive Summary</h1>
+      <div class="sub">Board Risk Committee · Appetite exceptions &amp; RCSA risk detail, one page</div>
+    </div>
+    <div class="hero-right">
+      <label>Period</label>
+      <select><option>Q1 2026</option><option>Q4 2025</option></select>
+    </div>
+  </header>
+
+  <div class="kpi-strip" id="kpiStrip"></div>
+
+  <section class="panel focus">
+    <div class="focus-inner">
+      <div class="focus-left">
+        <div class="p-eyebrow">Board focus</div>
+        <div class="focus-heading">Committee-level readout</div>
+        <div class="focus-meta">Risk Gatekeeper / Executive summary · 31 Mar 2026</div>
+      </div>
+      <div class="focus-text" id="focusText"></div>
+    </div>
+  </section>
+
+  <div class="content-grid">
+    <div class="left-stack">
+      <section class="panel appetite-x">
+        <div class="p-head">
+          <div class="p-eyebrow">Risk Appetite</div>
+          <div class="p-title">Exceptions only <span class="hint">breach &amp; trigger, grouped as on the appetite tabs</span></div>
+        </div>
+        <div class="ax-body" id="axBody"></div>
+      </section>
+
+      <section class="panel controls">
+        <div class="p-head">
+          <div class="p-eyebrow">Control Snapshot</div>
+        </div>
+        <div class="cs-body" id="csBody"></div>
+      </section>
+    </div>
+
+    <div class="right-stack">
+      <section class="panel rcsalist">
+        <div class="p-head">
+          <div class="rc-list-head">
+            <div class="p-eyebrow">RCSA — top 5 worsening</div>
+            <a class="viewall" href="#">View all 8 categories &rsaquo;</a>
+          </div>
+          <div class="rc-list-note">Ranked by period-over-period deterioration vs 28 Feb 2026 · red increases first</div>
+        </div>
+        <div class="worsen-list" id="worsenList"></div>
+      </section>
+
+      <section class="panel actions">
+        <div class="p-head">
+          <div class="p-eyebrow">Governance</div>
+        </div>
+        <div class="act-body" id="actBody"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer><span>Standard Life · Board Risk Committee</span><span class="r" id="footAsof"></span></footer>
+
+</div>
+
+<script>
+/* ============================================================
+   DATA MODEL — single source for the whole page.
+   ============================================================ */
+const DATA = {
+  asOf: "31 Mar 2026",
+
+  kpis: [
+    { lbl: "\u26A0 Appetite breach", val: "1",  tone:"red" },
+    { lbl: "Red L2",                 val: "5",  tone:"red" },
+    { lbl: "Amber L2",               val: "22", tone:"amber" },
+    { lbl: "Loss YTD vs \u00A325m",  val: "\u00A316.8m <small>\u00B7 67%</small>", tone:"amber" },
+    { lbl: "Control tests overdue",  val: "78/126 <small>\u00B7 62%</small>",      tone:"amber" },
+    { lbl: "Controls ineffective",   val: "5/125 <small>\u00B7 4%</small>",        tone:"amber" }
+  ],
+
+  readout: {
+    p1: "RCSA red risk is concentrated in <b>Operational</b> and <b>Customer</b>. Operational remains red for a second quarter across Info Security "
+      + "&amp; Op Resilience, while Customer has moved to red on Data Protection; Strategic, Liquidity &amp; Funding and Credit &amp; Counterparty remain "
+      + "amber watch items.",
+    p2: "The formal appetite breach is <b>Material Customer Detriment Incidents</b> in Customer, with further Customer and Operational triggers. "
+      + "Controls pressure is visible in <b>78/126</b> overdue tests and <b>5/125</b> ineffective controls, led by <b>9%</b> ineffective material controls. "
+      + "The Sev 1 incident is the <b>Data breach \u2013 12,400 records via API flaw</b>, with <b>\u00A32.15m</b> loss and regulator notified."
+  },
+
+  /* Appetite exceptions — unchanged: grouped exactly as your two appetite tabs group them. */
+  appetiteGroups: [
+    { group:"Financial", stat:{breach:0, trigger:1}, items:[
+        { sev:"trigger", name:"RAL SCRC", l1:"Capital", note:"cascades to Market · Credit · Insurance" }
+    ]},
+    { group:"Non-Financial", stat:{breach:1, trigger:4}, items:[
+        { sev:"breach",  name:"Material Customer Detriment Incidents",   l1:"Customer" },
+        { sev:"trigger", name:"Consumer Duty Assessment Impact Rating",  l1:"Customer" },
+        { sev:"trigger", name:"Essential Services Downtime",             l1:"Customer" },
+        { sev:"trigger", name:"Major / Critical Operational Risk Incidents", l1:"Operational" },
+        { sev:"trigger", name:"Total Operational Loss Amount",           l1:"Operational" }
+    ]}
+  ],
+  appetiteFootnote: "+6 more triggers across Market, Insurance, Credit &amp; Strategic (Additional tier, not yet on a dedicated appetite tab).",
+
+  /* RCSA — top 5 worsening, ranked by period-over-period deterioration.
+     Reds first (per Jemma: "they won't really care much for amber"),
+     and genuinely persistent reds are called out explicitly as the sharper signal. */
+  worsening: [
+    { cat:"Operational", arrow:"red",
+      delta:"Info Security &amp; Op Resilience \u2014 red for a 2nd straight quarter",
+      prevR:1, prevA:6, curR:2, curA:7 },
+    { cat:"Customer", arrow:"red",
+      delta:"Data Protection moved amber \u2192 red this quarter",
+      prevR:0, prevA:4, curR:1, curA:4 },
+    { cat:"Strategic", arrow:"amber",
+      delta:"Reputation gained one amber",
+      prevR:1, prevA:0, curR:1, curA:1 },
+    { cat:"Liquidity &amp; Funding", arrow:"amber",
+      delta:"Funding amber, covenant headroom tightening",
+      prevR:1, prevA:0, curR:1, curA:1 },
+    { cat:"Credit &amp; Counterparty", arrow:"amber",
+      delta:"One name migrated to amber watch",
+      prevR:0, prevA:1, curR:0, curA:2 }
+  ],
+
+  topActions: [
+    { tag:"Funding",         desc:"Approve contingency funding ladder and covenant waiver ask", owner:"Hannah Patel", due:"30 Apr", status:"ontrack", statusLabel:"On track" },
+    { tag:"Op Resilience",   desc:"Evidence critical-service fix and retest recovery route",     owner:"James Walker", due:"15 May", status:"atrisk",  statusLabel:"At risk"  },
+    { tag:"Data Protection", desc:"Close retention-control gaps and breach-response runbook",     owner:"Priya Shah",   due:"31 May", status:"atrisk",  statusLabel:"At risk"  }
+  ],
+
+  controls: {
+    material: { eff:71, partial:20, ineff:9, ineffCount:"4 / 45 controls", scheduled:45, complete:21 },
+    key:      { eff:80, partial:19, ineff:1, ineffCount:"1 / 80 controls", scheduled:81, complete:27 }
+  },
+
+  /* Tests overdue by area: split by ageing and on-time tests. */
+  overdueByArea: [
+    { name:"Operational",           red:8, amber:7,  onTime:18 },
+    { name:"Customer",              red:5, amber:7,  onTime:16 },
+    { name:"Liquidity & Funding",   red:2, amber:11, onTime:17 },
+    { name:"Strategic",             red:1, amber:5,  onTime:10 },
+    { name:"All other areas",       red:0, amber:7,  onTime:12 }
+  ],
+
+  /* Worst incidents this quarter, top 3 by actual loss. */
+  topIncidents: [
+    { name:"AML screening outage \u2013 48hr monitoring gap",      sev:"sev2", sevLabel:"Sev 2", loss:"\u00A34.62m", reg:"pending",  regLabel:"Pending"  },
+    { name:"Data breach \u2013 12,400 records via API flaw",        sev:"sev1", sevLabel:"Sev 1", loss:"\u00A32.15m", reg:"notified", regLabel:"Notified" },
+    { name:"Incorrect capital calc. in quarterly return",           sev:"sev2", sevLabel:"Sev 2", loss:"\u00A31.18m", reg:"notified", regLabel:"Notified" }
+  ]
+};
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+document.getElementById("footAsof").textContent = "Refresh: " + DATA.asOf;
+
+/* KPIs */
+(function(){
+  document.getElementById("kpiStrip").innerHTML = DATA.kpis.map(k=>`
+    <div class="kpi ${k.tone?('is-'+k.tone):''}">
+      <div class="k-lbl">${k.lbl}</div>
+      <div class="k-val">${k.val}</div>
+    </div>`).join("");
+})();
+
+/* Board focus */
+(function(){
+  document.getElementById("focusText").innerHTML = `<p>${DATA.readout.p1}</p><p>${DATA.readout.p2}</p>`;
+})();
+
+/* Appetite exceptions, grouped */
+(function(){
+  const html = DATA.appetiteGroups.map(g=>{
+    const rows = g.items.map(i=>{
+      const note = i.note ? ` <span style="opacity:.8">(${i.note})</span>` : "";
+      return `<div class="ax-row ${i.sev}">
+          <span class="ax-tag">${i.sev}</span>
+          <span class="ax-name">${i.name}</span>
+          <span class="ax-meta">${i.l1}${note}</span>
+        </div>`;
+    }).join("");
+    return `<div class="ax-group">
+        <div class="ax-grouphead">${g.group}
+          <span class="stat"><span class="bad">${g.stat.breach}</span> limit · <span class="caution">${g.stat.trigger}</span> triggered</span>
+        </div>
+        ${rows}
+      </div>`;
+  }).join("");
+  document.getElementById("axBody").innerHTML = html + `<div class="ax-footnote">${DATA.appetiteFootnote}</div>`;
+})();
+
+/* RCSA — top 5 worsening */
+(function(){
+  document.getElementById("worsenList").innerHTML = DATA.worsening.map(w=>`
+    <div class="worsen-row">
+      <span class="w-arrow ${w.arrow}">\u25B2</span>
+      <div class="w-body">
+        <div class="w-cat">${w.cat}</div>
+        <div class="w-delta">${w.delta}</div>
+      </div>
+      <div class="w-now">
+        <span class="prev">was ${w.prevR}R ${w.prevA}A</span>
+        <span class="cur ${w.arrow}">${w.curR}R ${w.curA}A</span>
+      </div>
+    </div>`).join("");
+})();
+
+/* Shared: worst-incidents card (now rendered under Actions) */
+function buildIncidentsCard(){
+  const incRows = DATA.topIncidents.map(i=>`
+      <div class="inc-row">
+        <span class="inc-name">${i.name}</span>
+        <span class="inc-sev ${i.sev}">${i.sevLabel}</span>
+        <span class="inc-loss">${i.loss}</span>
+        <span class="inc-reg ${i.reg}">${i.regLabel}</span>
+      </div>`).join("");
+  return `<div class="cs-card cs-incidents-card">
+      <div class="cs-card-title cs-inc-head">Worst incidents <span class="hint">Q1 · by actual loss</span></div>
+      ${incRows}
+    </div>`;
+}
+
+/* Top actions + worst incidents (same tinted-body pattern as Controls) */
+(function(){
+  const actionRows = DATA.topActions.map(a=>`
+    <div class="act-row">
+      <div>
+        <span class="act-tag">${a.tag}</span>
+        <div class="act-desc">${a.desc}</div>
+        <div class="act-foot">${a.owner} · due ${a.due}</div>
+      </div>
+      <span class="act-status ${a.status}">${a.statusLabel}</span>
+    </div>`).join("");
+  const actionsCard = `<div class="cs-card">
+      <div class="cs-card-title">Top actions <span class="hint">tied to the leading red risks</span></div>
+      <div class="act-rows">${actionRows}</div>
+    </div>`;
+  document.getElementById("actBody").innerHTML = actionsCard + buildIncidentsCard();
+})();
+
+/* Control snapshot (+ tests overdue by area) — now the only card in this panel, given more room */
+(function(){
+  function block(label,c){
+    const testsComplete = Math.round(c.complete/c.scheduled*100);
+    return `<div class="cs-block">
+        <div class="cs-top">
+          <span class="cs-label">${label}</span>
+          <span class="cs-figs">Ineffective <b class="bad">${c.ineff}%</b> (${c.ineffCount}) · Tests <b>${testsComplete}%</b> (${c.complete}/${c.scheduled})</span>
+        </div>
+        <div class="stack">
+          <span class="eff" style="width:${c.eff}%"></span>
+          <span class="part" style="width:${c.partial}%"></span>
+          <span class="ineff" style="width:${c.ineff}%"></span>
+        </div>
+      </div>`;
+  }
+  function areaRow(a){
+    const total = Math.max(1, a.red + a.amber + a.onTime);
+    const width = (value) => `${Math.max(0, (value / total) * 100)}%`;
+    return `<div class="area-row">
+        <span class="area-name">${a.name}</span>
+        <div class="area-bar" aria-label="${a.name}: ${a.red} tests 30+ days overdue, ${a.amber} tests 1-29 days overdue, ${a.onTime} on time">
+          <span class="area-seg ontrack" style="width:${width(a.onTime)}"></span>
+          <span class="area-seg amber" style="width:${width(a.amber)}"></span>
+          <span class="area-seg red" style="width:${width(a.red)}"></span>
+        </div>
+        <span class="area-val"><span class="red-count">${a.red}R</span><span class="amber-count">${a.amber}A</span></span>
+      </div>`;
+  }
+  const totalOverdue = DATA.overdueByArea.reduce((s,a)=>s+a.red+a.amber,0);
+  const overdueBlock = `<div class="cs-overdue">
+      <div class="cs-overdue-head">
+        <div class="cs-card-title">Tests overdue by area</div>
+        <span class="stat"><b>${totalOverdue}</b> tests overdue</span>
+      </div>
+      <div class="overdue-legend">
+        <span class="litem"><span class="dot red"></span>30+ days overdue</span>
+        <span class="litem"><span class="dot amber"></span>1-29 days overdue</span>
+        <span class="litem"><span class="dot green"></span>On time</span>
+      </div>
+      <div class="area-rows">${DATA.overdueByArea.map(areaRow).join("")}</div>
+    </div>`;
+  const controlsCard = `<div class="cs-card cs-controls-card">
+      <div class="cs-card-title">Control test results</div>
+      ${block("Material controls", DATA.controls.material)}
+      ${block("Key controls", DATA.controls.key)}
+      ${overdueBlock}
+    </div>`;
+  document.getElementById("csBody").innerHTML = controlsCard;
+})();
+</script>
+</body>
+</html>

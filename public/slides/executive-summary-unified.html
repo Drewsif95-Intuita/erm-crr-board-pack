@@ -96,7 +96,6 @@
   .ax-row.breach .ax-name{ color:#fff; }
   .ax-meta{ font-size:9px; color:var(--muted); white-space:nowrap; }
   .ax-row.breach .ax-meta{ color:#ffd9df; }
-  .ax-footnote{ font-size:9px; color:var(--muted); border-top:1px dashed var(--line); padding-top:5px; margin-top:4px; line-height:1.35; }
 
   /* RCSA — top 5 worsening list */
   .panel.rcsalist{ display:flex; flex-direction:column; }
@@ -235,7 +234,6 @@
   .embedded-report-shell .ax-row{ padding:2px 6px; font-size:8.8px; margin-bottom:2px; }
   .embedded-report-shell .ax-tag{ font-size:6.6px; padding:1px 4px; }
   .embedded-report-shell .ax-meta{ font-size:7.8px; }
-  .embedded-report-shell .ax-footnote{ font-size:7.8px; padding-top:3px; margin-top:3px; line-height:1.2; }
   .embedded-report-shell .rc-list-note{ font-size:7.2px; margin-top:1px; }
   .embedded-report-shell .worsen-list{ padding:5px 10px; }
   .embedded-report-shell .worsen-row{ padding:4px 0; gap:7px; }
@@ -316,7 +314,7 @@
       <section class="panel appetite-x">
         <div class="p-head">
           <div class="p-eyebrow">Risk Appetite</div>
-          <div class="p-title">Exceptions only <span class="hint">breach &amp; trigger, grouped as on the appetite tabs</span></div>
+          <div class="p-title">Exceptions only</div>
         </div>
         <div class="ax-body" id="axBody"></div>
       </section>
@@ -392,8 +390,6 @@ const DATA = {
         { sev:"trigger", name:"Total Operational Loss Amount",           l1:"Operational" }
     ]}
   ],
-  appetiteFootnote: "+6 more triggers across Market, Insurance, Credit &amp; Strategic (Additional tier, not yet on a dedicated appetite tab).",
-
   /* RCSA — top 5 worsening, ranked by period-over-period deterioration.
      Reds first (per Jemma: "they won't really care much for amber"),
      and genuinely persistent reds are called out explicitly as the sharper signal. */
@@ -480,7 +476,7 @@ document.getElementById("footAsof").textContent = "Refresh: " + DATA.asOf;
         ${rows}
       </div>`;
   }).join("");
-  document.getElementById("axBody").innerHTML = html + `<div class="ax-footnote">${DATA.appetiteFootnote}</div>`;
+  document.getElementById("axBody").innerHTML = html;
 })();
 
 /* RCSA — top 5 worsening */

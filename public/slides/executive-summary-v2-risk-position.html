@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Executive Summary V2 - Risk Position</title>
+<script>
+  if (new URLSearchParams(window.location.search).get("embed") === "1") {
+    document.documentElement.classList.add("embedded-report-shell");
+  }
+</script>
+<style>
+  :root{
+    --navy:#1b2a63; --navy-deep:#14204d; --gold:#f5b81d;
+    --red:#c0334a; --red-soft:#fbe9ec; --amber:#d99e2b; --amber-soft:#fbf2dc;
+    --green:#1a7a5e; --green-soft:#e3f1ec; --bg:#eceef3; --card:#fff;
+    --ink:#1b2a63; --body:#3a3f4d; --muted:#737b8e; --line:#e2e5ee; --soft:#f5f6fa;
+    --shadow:0 1px 2px rgba(20,32,77,.06),0 3px 10px rgba(20,32,77,.05);
+    --font:Aptos,"Segoe UI",Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
+  body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 29px 76px 116px 403px 26px; background:var(--bg); }
+  .brandbar{ background:#fff; height:20px; padding:3px 30px; display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line); }
+  .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
+  .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
+  header{ height:50px; background:var(--navy); color:#fff; padding:7px 30px 6px; display:flex; align-items:center; border-bottom:2px solid var(--gold); }
+  h1{ margin:0; font-size:18px; font-weight:700; line-height:1.05; }
+  .sub{ color:#c8d0ec; margin-top:4px; font-size:11px; }
+  .period{ margin-left:auto; display:flex; align-items:center; gap:9px; color:#9ca7d1; font-size:8px; text-transform:uppercase; font-weight:700; letter-spacing:.6px; }
+  .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
+  .tabs{ height:29px; background:var(--navy-deep); padding:0 30px; display:flex; align-items:center; gap:30px; border-bottom:2px solid var(--gold); color:#8f9ac6; font-size:11px; font-weight:700; }
+  .tab.active{ color:#fff; }
+  .kpis{ height:76px; display:grid; grid-template-columns:repeat(6,1fr); gap:7px; padding:6px 30px 0; }
+  .kpi{ background:var(--card); border-radius:6px; border-top:3px solid var(--amber); box-shadow:var(--shadow); padding:6px 9px; min-width:0; }
+  .kpi.red{ border-top-color:var(--red); }
+  .kpi.blue{ border-top-color:var(--navy); }
+  .kpi .value{ color:var(--ink); font-size:16.5px; font-weight:700; line-height:1.08; }
+  .kpi .label{ color:var(--muted); font-size:10px; margin-top:3px; line-height:1.18; }
+  .kpi .delta{ margin-top:3px; color:var(--red); font-weight:700; font-size:8.4px; }
+  .kpi .delta.green{ color:var(--green); }
+  .focus{ margin:4px 30px 0; height:110px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:190px 1fr; gap:18px; padding:12px 18px; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.8px; color:#bd840d; font-size:8px; font-weight:800; }
+  .focus-title{ color:var(--ink); font-weight:700; font-size:17px; line-height:1.16; margin-top:4px; }
+  .focus-meta{ color:#8a7845; font-size:9px; margin-top:8px; }
+  .focus-copy{ font-size:12px; line-height:1.42; color:#5b4a1f; }
+  .focus-copy p{ margin:0; }
+  .focus-copy p + p{ margin-top:7px; }
+  .focus-copy b{ color:var(--ink); }
+  .main{ height:403px; padding:8px 30px 7px; display:grid; grid-template-columns:1.35fr 1fr; grid-template-rows:197px 183px; gap:8px; }
+  .panel{ background:#fff; border-radius:8px; box-shadow:var(--shadow); overflow:hidden; border:1px solid #edf0f6; min-width:0; min-height:0; }
+  .panel-head{ height:32px; padding:7px 10px 5px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); }
+  .panel-head .title{ color:var(--ink); font-size:12.6px; font-weight:700; line-height:1.08; }
+  .panel-head .hint{ color:var(--muted); font-size:9px; font-weight:500; }
+  .panel-head .link{ color:var(--ink); font-size:8.6px; font-weight:700; white-space:nowrap; }
+  .appetite{ border-color:var(--amber); }
+  .appetite-body{ padding:7px 10px 8px; }
+  .metric-head{ display:flex; justify-content:space-between; color:var(--muted); text-transform:uppercase; font-size:8.8px; font-weight:700; }
+  .metric-head b{ color:var(--ink); }
+  .metric-bar{ margin:5px 0 7px; height:10px; background:var(--green); border-radius:6px; overflow:hidden; display:flex; }
+  .metric-bar .amber{ width:30%; background:var(--amber); }
+  .watch-title{ text-transform:uppercase; color:var(--muted); font-weight:700; font-size:8.8px; margin:0 0 3px; }
+  .watch-row{ display:grid; grid-template-columns:1fr 46px 44px 52px; align-items:center; gap:6px; border-top:1px solid #eef1f6; min-height:20px; }
+  .watch-name{ color:var(--ink); font-size:10.5px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .watch-name span{ color:var(--muted); font-size:9px; font-weight:500; }
+  .pct{ text-align:right; color:#b57714; font-weight:700; }
+  .tag{ justify-self:end; padding:2px 6px; border-radius:4px; font-size:8.5px; font-weight:700; }
+  .tag.yes{ background:var(--green-soft); color:var(--green); }
+  .tag.no{ background:var(--red-soft); color:var(--red); }
+  .foot{ color:var(--muted); font-size:9px; margin-top:6px; }
+  .rcsa-body{ padding:7px 10px 6px; }
+  .risk-mix{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:9.4px; font-weight:700; }
+  .mixbar{ margin:5px 0 6px; height:10px; border-radius:6px; overflow:hidden; display:flex; background:var(--green); }
+  .mixbar .red{ width:12%; background:var(--red); }
+  .mixbar .amber{ width:52%; background:var(--amber); }
+  .risk-row{ display:grid; grid-template-columns:1fr 70px 60px 18px; gap:6px; align-items:center; border-top:1px solid #eef1f6; min-height:24px; }
+  .risk-row .name{ color:var(--ink); font-weight:700; font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .risk-row .desc{ color:var(--muted); font-size:8.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .risk-row .l1{ text-align:right; color:var(--muted); font-size:9px; }
+  .pill{ justify-self:end; border-radius:4px; padding:2px 6px; font-size:8.5px; font-weight:700; }
+  .pill.red{ background:var(--red-soft); color:var(--red); }
+  .pill.amber{ background:var(--amber-soft); color:#a8761a; }
+  .rank{ color:var(--ink); font-weight:700; text-align:right; }
+  .controls{ grid-column:1; grid-row:2; }
+  .ineff{ grid-column:2; grid-row:2; }
+  .control-body{ display:grid; grid-template-columns:1fr; gap:6px; padding:8px 15px; }
+  .barline{ display:grid; grid-template-columns:120px 1fr 175px; gap:8px; align-items:center; }
+  .barline .label{ color:var(--muted); font-size:9.6px; font-weight:700; text-transform:uppercase; }
+  .stack{ height:14px; border-radius:7px; overflow:hidden; display:flex; background:var(--green); }
+  .stack .part{ width:19%; background:#c25a2b; }
+  .stack .ineffective{ width:9%; background:#7a1d52; }
+  .barline .stat{ color:var(--muted); font-size:10px; text-align:right; }
+  .tests{ margin-top:5px; display:grid; grid-template-columns:120px 1fr 100px; gap:8px; align-items:center; }
+  .legend{ display:flex; gap:12px; color:var(--muted); font-size:9px; margin-bottom:4px; }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; }
+  .dot.red{ background:var(--red); }.dot.amber{ background:var(--amber); }.dot.green{ background:var(--green); }
+  .testbar{ height:13px; border-radius:7px; overflow:hidden; display:flex; background:var(--green); }
+  .testbar .red{ width:14%; background:var(--red); }.testbar .amber{ width:29%; background:var(--amber); }
+  .ineff-body{ padding:6px 12px; }
+  .control-row{ display:grid; grid-template-columns:68px 1fr 112px; gap:7px; align-items:start; border-top:1px solid #eef1f6; padding:4px 0; min-height:25px; }
+  .control-row:first-child{ border-top:0; }
+  .type{ color:var(--muted); font-size:7.8px; text-transform:uppercase; font-weight:700; }
+  .control-title{ color:var(--ink); font-size:10.2px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .control-sub{ color:var(--muted); font-size:8px; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .owner{ text-align:right; color:var(--ink); font-size:8.6px; font-weight:700; }
+  .owner.bad{ color:var(--red); }
+  footer{ height:26px; margin:0 30px; background:var(--navy-deep); color:#b9c7e6; border-radius:5px 5px 0 0; display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:9px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
+  <header>
+    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee · V2 example: risk position, appetite, RCSA &amp; controls</div></div>
+    <div class="period"><span>Period</span><b>Q1 2026</b></div>
+  </header>
+  <nav class="tabs"><span class="tab active">1 Risk Position</span><span class="tab">2 Actions &amp; Remediation</span></nav>
+  <section class="kpis">
+    <div class="kpi"><div class="value">4 risks</div><div class="label">pressing on the top end of amber tolerance</div><div class="delta">▲ was 2 at Q4</div></div>
+    <div class="kpi red"><div class="value">5 red risks</div><div class="label">concentrated in Operational &amp; Customer</div><div class="delta">▲ was 3 at Q4</div></div>
+    <div class="kpi"><div class="value">22 amber risks</div><div class="label">could tip red without early action</div><div class="delta">▲ was 19 at Q4</div></div>
+    <div class="kpi"><div class="value">£16.8m loss</div><div class="label">already 67% of the £25m annual budget</div><div class="delta">▲ on pace to exceed budget by Q3</div></div>
+    <div class="kpi"><div class="value">53 tests overdue</div><div class="label">42% of this year's testing plan</div><div class="delta green">▼ was 61 at Q4</div></div>
+    <div class="kpi"><div class="value">5 ineffective controls</div><div class="label">4 material, 1 key - one still unowned</div><div class="delta green">▼ was 6 at Q4</div></div>
+  </section>
+  <section class="focus">
+    <div><div class="eyebrow">Board Focus</div><div class="focus-title">Committee-level<br/>readout</div><div class="focus-meta">Risk Gatekeeper / Executive summary · 31 Mar 2026</div></div>
+    <div class="focus-copy">
+      <p>Overall posture has moved to <b>Amber</b>, driven by amber appetite pressure with <b>1 formal appetite breach</b> (Material Customer Detriment Incidents, Customer), <b>5 red</b> and <b>22 amber</b> L2 RCSA risks, <b>4 overdue assessments</b>, losses at <b>£16.8m YTD</b> and <b>9% material controls ineffective</b>.</p>
+      <p>The reds are concentrated in two places: <b>Operational</b>, red on RCSA for a second consecutive quarter, and <b>Customer</b>, newly red this quarter and holding the one formal appetite breach. Early amber slippage is also emerging in <b>Strategic</b>. Actions, owners and progress notes are on page 2.</p>
+    </div>
+  </section>
+  <main class="main">
+    <section class="panel appetite">
+      <div class="panel-head"><div><div class="eyebrow">Risk Appetite</div><div class="title">Overview, ambers in focus <span class="hint">breaches are rare &amp; fast-tracked</span></div></div><span class="link">Full appetite tabs ›</span></div>
+      <div class="appetite-body">
+        <div class="metric-head"><span>Appetite metrics</span><span><b>11</b> triggered · <b>25</b> in range</span></div>
+        <div class="metric-bar"><span class="amber"></span></div>
+        <div class="watch-title">Ambers to watch</div>
+        <div class="watch-row"><div class="watch-name">Consumer Duty Assessment Impact Rating <span>— Customer</span></div><div class="pct">85%</div><div class="pct">3wk</div><span class="tag yes">Plan: yes</span></div>
+        <div class="watch-row"><div class="watch-name">Essential Services Downtime <span>— Customer</span></div><div class="pct">80%</div><div class="pct">9wk</div><span class="tag no">No plan</span></div>
+        <div class="watch-row"><div class="watch-name">RAL SCRC <span>— Capital</span></div><div class="pct">72%</div><div class="pct">6wk</div><span class="tag yes">Plan: yes</span></div>
+        <div class="watch-row"><div class="watch-name">Major / Critical Operational Risk Incidents <span>— Operational</span></div><div class="pct">70%</div><div class="pct">5wk</div><span class="tag yes">Plan: yes</span></div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><div class="eyebrow">RCSA</div><div class="title">L2 overview, reds in detail <span class="hint">42 L2 risks</span></div></div><span class="link">Full RCSA view ›</span></div>
+      <div class="rcsa-body">
+        <div class="risk-mix"><span>All 42 L2 risks</span><span>5 red · 22 amber · 15 green</span></div>
+        <div class="mixbar"><span class="red"></span><span class="amber"></span></div>
+        <div class="risk-row"><div><div class="name">Information Security &amp; Cyber</div><div class="desc">Same control gap driving the Cyber appetite pressure</div></div><div class="l1">Operational</div><span class="pill red">2nd Q red</span><span class="rank">0</span></div>
+        <div class="risk-row"><div><div class="name">Operational Resilience</div><div class="desc">Recovery-route retest slipped; feeds loss trend</div></div><div class="l1">Operational</div><span class="pill amber">New → red</span><span class="rank">1</span></div>
+        <div class="risk-row"><div><div class="name">Data Protection</div><div class="desc">Same theme as the Sev 1 data breach</div></div><div class="l1">Customer</div><span class="pill amber">New → red</span><span class="rank">1</span></div>
+        <div class="risk-row"><div><div class="name">Funding</div><div class="desc">Contingency funding ladder pending sign-off</div></div><div class="l1">Liquidity</div><span class="pill red">2nd Q red</span><span class="rank">1</span></div>
+      </div>
+    </section>
+    <section class="panel controls">
+      <div class="panel-head"><div><div class="eyebrow">Control Snapshot</div><div class="title">Control test results</div></div><span class="link">Full controls tab ›</span></div>
+      <div class="control-body">
+        <div class="barline"><div class="label">Material controls</div><div class="stack"><span style="width:71%"></span><span class="part"></span><span class="ineffective"></span></div><div class="stat">Ineffective <b style="color:var(--red)">9%</b> (4 / 45 controls) · Tests <b>47%</b></div></div>
+        <div class="barline"><div class="label">Key controls</div><div class="stack"><span style="width:80%"></span><span class="part" style="width:19%"></span><span class="ineffective" style="width:1%"></span></div><div class="stat">Ineffective <b style="color:var(--red)">1%</b> (1 / 80 controls) · Tests <b>33%</b></div></div>
+        <div class="tests"><div class="label" style="text-transform:uppercase;color:var(--muted);font-weight:700">Tests overdue</div><div><div class="legend"><span><i class="dot red"></i>30+ days</span><span><i class="dot amber"></i>1-29 days</span><span><i class="dot green"></i>On time</span></div><div class="testbar"><span class="red"></span><span class="amber"></span></div></div><div class="stat" style="text-align:right"><b style="color:var(--ink)">53</b> tests overdue</div></div>
+      </div>
+    </section>
+    <section class="panel ineff">
+      <div class="panel-head"><div><div class="title">Ineffective controls <span class="hint">Material &amp; Key · worst first</span></div></div></div>
+      <div class="ineff-body">
+        <div class="control-row"><div class="type">Material</div><div><div class="control-title">Complaints Root Cause Tagging</div><div class="control-sub">Root cause field inconsistently completed.</div></div><div class="owner bad">No owner assigned</div></div>
+        <div class="control-row"><div class="type">Material</div><div><div class="control-title">Third-Party Access Recertification</div><div class="control-sub">Quarterly access reviews not evidenced.</div></div><div class="owner">David Osei · 30 Jun</div></div>
+        <div class="control-row"><div class="type">Material</div><div><div class="control-title">Customer Data Retention Control</div><div class="control-sub">Automated purge job failing silently.</div></div><div class="owner">Priya Shah · 15 May</div></div>
+        <div class="control-row"><div class="type">Material</div><div><div class="control-title">Cyber Privileged Access Monitoring</div><div class="control-sub">SIEM alert rules not updated post-migration.</div></div><div class="owner">Daniel Cross · 20 May</div></div>
+      </div>
+    </section>
+  </main>
+  <footer><span>Standard Life · Board Risk Committee</span><span>Refresh: 31 Mar 2026</span></footer>
+</div>
+</body>
+</html>

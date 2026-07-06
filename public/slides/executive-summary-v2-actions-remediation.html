@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Executive Summary V2 - Actions & Remediation</title>
+<script>
+  if (new URLSearchParams(window.location.search).get("embed") === "1") {
+    document.documentElement.classList.add("embedded-report-shell");
+  }
+</script>
+<style>
+  :root{
+    --navy:#1b2a63; --navy-deep:#14204d; --gold:#f5b81d;
+    --red:#c0334a; --red-soft:#fbe9ec; --amber:#d99e2b; --amber-soft:#fbf2dc;
+    --green:#1a7a5e; --green-soft:#e3f1ec; --bg:#eceef3; --card:#fff;
+    --ink:#1b2a63; --body:#3a3f4d; --muted:#737b8e; --line:#e2e5ee; --soft:#e9ecf3;
+    --shadow:0 1px 2px rgba(20,32,77,.06),0 3px 10px rgba(20,32,77,.05);
+    --font:Aptos,"Segoe UI",Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
+  body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 29px 76px 116px 403px 26px; background:var(--bg); }
+  .brandbar{ background:#fff; height:20px; padding:3px 30px; display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line); }
+  .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
+  .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
+  header{ height:50px; background:var(--navy); color:#fff; padding:7px 30px 6px; display:flex; align-items:center; border-bottom:2px solid var(--gold); }
+  h1{ margin:0; font-size:18px; font-weight:700; line-height:1.05; }
+  .sub{ color:#c8d0ec; margin-top:4px; font-size:11px; }
+  .period{ margin-left:auto; display:flex; align-items:center; gap:9px; color:#9ca7d1; font-size:8px; text-transform:uppercase; font-weight:700; letter-spacing:.6px; }
+  .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
+  .tabs{ height:29px; background:var(--navy-deep); padding:0 30px; display:flex; align-items:center; gap:30px; border-bottom:2px solid var(--gold); color:#8f9ac6; font-size:11px; font-weight:700; }
+  .tab.active{ color:#fff; }
+  .kpis{ height:76px; display:grid; grid-template-columns:repeat(5,1fr); gap:7px; padding:6px 30px 0; }
+  .kpi{ background:var(--card); border-radius:6px; border-top:3px solid var(--amber); box-shadow:var(--shadow); padding:6px 9px; min-width:0; }
+  .kpi.red{ border-top-color:var(--red); }
+  .kpi.blue{ border-top-color:var(--navy); }
+  .kpi .value{ color:var(--ink); font-size:16.5px; font-weight:700; line-height:1.08; }
+  .kpi .label{ color:var(--muted); font-size:10px; margin-top:3px; line-height:1.18; }
+  .kpi .delta{ margin-top:3px; color:var(--red); font-weight:700; font-size:8.4px; }
+  .kpi .delta.green{ color:var(--green); }
+  .focus{ margin:4px 30px 0; height:110px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:190px 1fr; gap:18px; padding:12px 18px; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.8px; color:#bd840d; font-size:8px; font-weight:800; }
+  .focus-title{ color:var(--ink); font-weight:700; font-size:17px; line-height:1.16; margin-top:4px; }
+  .focus-meta{ color:#8a7845; font-size:9px; margin-top:8px; }
+  .focus-copy{ font-size:12px; line-height:1.42; color:#5b4a1f; }
+  .focus-copy p{ margin:0; }
+  .focus-copy p + p{ margin-top:7px; }
+  .focus-copy b{ color:var(--ink); }
+  .main{ height:403px; padding:8px 30px 7px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .panel{ background:#fff; border-radius:8px; box-shadow:var(--shadow); overflow:hidden; border:1px solid #edf0f6; min-width:0; min-height:0; display:flex; flex-direction:column; }
+  .panel-head{ height:40px; padding:8px 10px 6px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); }
+  .panel-head .title{ color:var(--ink); font-size:13.2px; font-weight:700; line-height:1.08; }
+  .panel-head .hint{ color:var(--muted); font-size:9px; font-weight:500; }
+  .panel-head .link{ color:var(--ink); font-size:8.6px; font-weight:700; white-space:nowrap; }
+  .body{ flex:1; min-height:0; padding:9px 14px; }
+  .action-card{ position:relative; border-bottom:1px solid #edf0f5; padding:4px 0 6px; min-height:90px; }
+  .action-card:last-child{ border-bottom:0; }
+  .tag{ display:inline-flex; padding:2px 7px; border-radius:4px; background:var(--red-soft); color:var(--red); font-size:8.5px; font-weight:700; margin-bottom:5px; }
+  .action-title{ color:var(--ink); font-size:13px; font-weight:700; line-height:1.17; padding-right:70px; }
+  .meta{ color:var(--muted); font-size:10px; margin-top:3px; }
+  .status{ position:absolute; right:0; top:8px; min-width:58px; text-align:center; padding:4px 8px; border-radius:4px; font-size:8.5px; font-weight:700; }
+  .status.green{ background:var(--green-soft); color:var(--green); }
+  .status.red{ background:var(--red-soft); color:var(--red); }
+  .progress{ margin-top:6px; background:var(--soft); border-radius:5px; padding:6px 10px; font-size:10.5px; color:#2f3b51; }
+  .progress b{ display:block; text-transform:uppercase; color:var(--muted); font-size:9px; margin-bottom:3px; }
+  .incident{ border-bottom:1px solid #edf0f5; padding:5px 0 6px; }
+  .incident:last-child{ border-bottom:0; }
+  .inc-head{ display:flex; align-items:baseline; gap:8px; min-width:0; }
+  .sev{ padding:3px 8px; border-radius:4px; font-size:9px; font-weight:700; background:var(--red-soft); color:var(--red); white-space:nowrap; }
+  .sev.near{ background:#eef1f6; color:var(--muted); }
+  .inc-title{ color:var(--ink); font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .inc-meta{ color:var(--muted); margin-top:4px; font-size:10px; }
+  .lesson{ margin-top:6px; background:var(--soft); border-radius:5px; padding:6px 10px; color:#26364f; font-size:10.5px; line-height:1.3; }
+  .lesson b{ display:block; color:var(--muted); text-transform:uppercase; font-size:9px; margin-bottom:3px; }
+  footer{ height:26px; margin:0 30px; background:var(--navy-deep); color:#b9c7e6; border-radius:5px 5px 0 0; display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:9px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
+  <header>
+    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee · V2 example: actions, remediation &amp; incident learning</div></div>
+    <div class="period"><span>Period</span><b>Q1 2026</b></div>
+  </header>
+  <nav class="tabs"><span class="tab">1 Risk Position</span><span class="tab active">2 Actions &amp; Remediation</span></nav>
+  <section class="kpis">
+    <div class="kpi blue"><div class="value">3 actions</div><div class="label">tracking the top red risks - 2 gaps remain</div><div class="delta" style="color:var(--ink)">unchanged since Q4</div></div>
+    <div class="kpi"><div class="value">2 at risk</div><div class="label">of 3 actions in flight - due dates slipping</div><div class="delta">▲ was 1 at Q4</div></div>
+    <div class="kpi red"><div class="value">2 unactioned</div><div class="label">Info Security &amp; Cyber, Reputation - both red 2+ quarters</div><div class="delta">▲ was 1 at Q4</div></div>
+    <div class="kpi blue"><div class="value">3 this quarter</div><div class="label">1 Sev 1, 2 near misses - all with lessons captured</div><div class="delta green">▼ was 5 at Q4</div></div>
+    <div class="kpi red"><div class="value">1 Sev 1 event</div><div class="label">API data breach - notified, action in flight</div><div class="delta">▲ was 0 at Q4</div></div>
+  </section>
+  <section class="focus">
+    <div><div class="eyebrow">Board Focus</div><div class="focus-title">Accountability<br/>readout</div><div class="focus-meta">Risk Gatekeeper / Executive summary · 31 Mar 2026</div></div>
+    <div class="focus-copy">
+      <p>Of the <b>5 leading red risks</b>, only <b>3</b> currently have a linked remediation action - <b>Information Security &amp; Cyber</b> and <b>Reputation</b> have none, despite both being red for a second consecutive quarter. Of the actions in flight, <b>2 of 3</b> are marked at risk of missing their due date.</p>
+      <p>This quarter's incident position is anchored by one <b>Sev 1 event</b> - the API data breach, already notified and actioned - plus two near misses that surfaced real control gaps worth learning from.</p>
+    </div>
+  </section>
+  <main class="main">
+    <section class="panel">
+      <div class="panel-head"><div><div class="eyebrow">Governance</div><div class="title">Top actions <span class="hint">progress notes where available</span></div></div><span class="link">Full actions tracker ›</span></div>
+      <div class="body">
+        <div class="action-card">
+          <span class="tag">Funding</span><span class="status green">On track</span>
+          <div class="action-title">Approve contingency funding ladder and covenant waiver ask</div>
+          <div class="meta">Hannah Patel · due 30 Apr</div>
+          <div class="progress"><b>Progress</b>Draft submitted to Treasury Committee - sign-off expected next week.</div>
+        </div>
+        <div class="action-card">
+          <span class="tag">Op Resilience</span><span class="status red">At risk</span>
+          <div class="action-title">Evidence critical-service fix and retest recovery route</div>
+          <div class="meta">James Walker · due 15 May</div>
+          <div class="progress"><b>Progress</b>Fix is code-complete; recovery retest slipped to w/c 12 May due to environment contention.</div>
+        </div>
+        <div class="action-card">
+          <span class="tag">Data Protection</span><span class="status red">At risk</span>
+          <div class="action-title">Close retention-control gaps and breach-response runbook</div>
+          <div class="meta">Priya Shah · due 31 May</div>
+          <div class="progress"><b>Progress</b>Retention gaps mapped; breach-response runbook still with Legal for review.</div>
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><div class="eyebrow">Assurance</div><div class="title">Incidents &amp; Near Misses <span class="hint">Sev 1 only, plus near misses for learning</span></div></div><span class="link">Full incidents log ›</span></div>
+      <div class="body">
+        <div class="incident">
+          <div class="inc-head"><span class="sev">Sev 1</span><div class="inc-title">Data breach - 12,400 records via API flaw</div></div>
+          <div class="inc-meta">Loss <b style="color:var(--ink)">£2.15m</b> · Reg status <b style="color:var(--ink)">Notified</b> · 1 action linked</div>
+          <div class="lesson"><b>Lesson</b>API rate-limiting alert threshold was set too high to catch the anomalous export volume; threshold now under review.</div>
+        </div>
+        <div class="incident">
+          <div class="inc-head"><span class="sev near">Near miss</span><div class="inc-title">Payment batch caught pre-release by reconciliation check</div></div>
+          <div class="inc-meta">1 action linked</div>
+          <div class="lesson"><b>Lesson</b>The control worked as designed, but batch-approval sign-off shouldn't be the last line of defence - process under review.</div>
+        </div>
+        <div class="incident">
+          <div class="inc-head"><span class="sev near">Near miss</span><div class="inc-title">Customer data export blocked by DLP before completion</div></div>
+          <div class="inc-meta">1 action linked</div>
+          <div class="lesson"><b>Lesson</b>DLP caught the export; investigating why the initiating access request wasn't flagged earlier in the approval chain.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><span>Standard Life · Board Risk Committee</span><span>Refresh: 31 Mar 2026</span></footer>
+</div>
+</body>
+</html>

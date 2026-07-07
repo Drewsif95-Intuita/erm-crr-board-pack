@@ -21,7 +21,7 @@
   *{ box-sizing:border-box; }
   html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
   body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
-  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 29px 76px 116px 403px 26px; background:var(--bg); }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 76px 116px 432px 26px; background:var(--bg); }
   .brandbar{ background:#fff; height:20px; padding:3px 30px; display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line); }
   .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
   .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
@@ -30,8 +30,6 @@
   .sub{ color:#c8d0ec; margin-top:4px; font-size:11px; }
   .period{ margin-left:auto; display:flex; align-items:center; gap:9px; color:#9ca7d1; font-size:8px; text-transform:uppercase; font-weight:700; letter-spacing:.6px; }
   .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
-  .tabs{ height:29px; background:var(--navy-deep); padding:0 30px; display:flex; align-items:center; gap:30px; border-bottom:2px solid var(--gold); color:#8f9ac6; font-size:11px; font-weight:700; }
-  .tab.active{ color:#fff; }
   .kpis{ height:76px; display:grid; grid-template-columns:repeat(5,1fr); gap:7px; padding:6px 30px 0; }
   .kpi{ background:var(--card); border-radius:6px; border-top:3px solid var(--amber); box-shadow:var(--shadow); padding:6px 9px; min-width:0; }
   .kpi.red{ border-top-color:var(--red); }
@@ -48,7 +46,7 @@
   .focus-copy p{ margin:0; }
   .focus-copy p + p{ margin-top:7px; }
   .focus-copy b{ color:var(--ink); }
-  .main{ height:403px; padding:8px 30px 7px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .main{ height:432px; padding:8px 30px 7px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .panel{ background:#fff; border-radius:8px; box-shadow:var(--shadow); overflow:hidden; border:1px solid #edf0f6; min-width:0; min-height:0; display:flex; flex-direction:column; }
   .panel-head{ height:40px; padding:8px 10px 6px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); }
   .panel-head .title{ color:var(--ink); font-size:13.2px; font-weight:700; line-height:1.08; }
@@ -81,10 +79,9 @@
 <div class="page">
   <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
   <header>
-    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee · V2 example: actions, remediation &amp; incident learning</div></div>
+    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee · V2 actions, remediation &amp; incident learning</div></div>
     <div class="period"><span>Period</span><b>Q1 2026</b></div>
   </header>
-  <nav class="tabs"><span class="tab">1 Risk Position</span><span class="tab active">2 Actions &amp; Remediation</span></nav>
   <section class="kpis">
     <div class="kpi blue"><div class="value">3 actions</div><div class="label">tracking the top red risks - 2 gaps remain</div><div class="delta" style="color:var(--ink)">unchanged since Q4</div></div>
     <div class="kpi"><div class="value">2 at risk</div><div class="label">of 3 actions in flight - due dates slipping</div><div class="delta">▲ was 1 at Q4</div></div>

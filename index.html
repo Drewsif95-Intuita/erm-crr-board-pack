@@ -118,6 +118,24 @@
   .slide-period-overlay.is-hidden {
     display: none;
   }
+  .slide-hotspots {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    pointer-events: none;
+  }
+  .slide-hotspot {
+    position: absolute;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .slide-hotspot:focus-visible {
+    outline: 2px solid var(--sl-heritage-yellow);
+    outline-offset: 1px;
+  }
   .slide-period-control {
     height: 32px;
     display: inline-flex;
@@ -278,9 +296,11 @@
   <button class="nav-arrow prev" id="nav-prev" title="Previous (←)">&lsaquo;</button>
 
   <div class="slide-frame-wrap" id="slide-wrap">
-        <iframe id="frame-p1" class="inactive slide-frame" data-key="p1" src="/slides/executive-summary-unified.html?embed=1"></iframe>
+    <iframe id="frame-p1" class="inactive slide-frame" data-key="p1" src="/slides/executive-summary-unified.html?embed=1"></iframe>
     <iframe id="frame-p1v2risk" class="inactive slide-frame" data-key="p1v2risk" src="/slides/executive-summary-v2-risk-position.html?embed=1"></iframe>
     <iframe id="frame-p1v2actions" class="inactive slide-frame" data-key="p1v2actions" src="/slides/executive-summary-v2-actions-remediation.html?embed=1"></iframe>
+    <iframe id="frame-p1v3risk" class="inactive slide-frame" data-key="p1v3risk" src="/slides/executive-summary-v3-risk-position.html?embed=1"></iframe>
+    <iframe id="frame-p1v3actions" class="inactive slide-frame" data-key="p1v3actions" src="/slides/executive-summary-v3-actions-remediation.html?embed=1"></iframe>
     <iframe id="frame-p2" class="inactive slide-frame" data-key="p2" src="/slides/risk-appetite.html?view=financial"></iframe>
     <iframe id="frame-p2nf" class="inactive slide-frame" data-key="p2nf" src="/slides/risk-appetite.html?view=nonfinancial"></iframe>
     <iframe id="frame-p2appendix" class="inactive slide-frame" data-key="p2appendix" src="/slides/risk-appetite-appendix.html?view=financial"></iframe>
@@ -4767,13 +4787,13 @@
     <div class="t-num">P1</div>
     <div class="t-name">Exec Summary V1</div>
   </div>
-  <div class="thumb" data-key="p1v2risk" data-index="2">
+  <div class="thumb" data-key="p1v3risk" data-index="2">
     <div class="t-num">P2</div>
-    <div class="t-name">V2 Risk Pos</div>
+    <div class="t-name">V3 Risk Pos</div>
   </div>
-  <div class="thumb" data-key="p1v2actions" data-index="3">
+  <div class="thumb" data-key="p1v3actions" data-index="3">
     <div class="t-num">P3</div>
-    <div class="t-name">V2 Actions</div>
+    <div class="t-name">V3 Actions</div>
   </div>
   <div class="thumb" data-key="p2" data-index="4">
     <div class="t-num">P4</div>
@@ -4835,28 +4855,36 @@
     <div class="t-num">P18</div>
     <div class="t-name">Appendix</div>
   </div>
-  <div class="thumb" data-key="p2appendix" data-index="19">
+  <div class="thumb" data-key="p1v2risk" data-index="19">
     <div class="t-num">P19</div>
+    <div class="t-name">V2 Risk Pos</div>
+  </div>
+  <div class="thumb" data-key="p1v2actions" data-index="20">
+    <div class="t-num">P20</div>
+    <div class="t-name">V2 Actions</div>
+  </div>
+  <div class="thumb" data-key="p2appendix" data-index="21">
+    <div class="t-num">P21</div>
     <div class="t-name">RA Fin Detail</div>
   </div>
-  <div class="thumb" data-key="p2nfappendix" data-index="20">
-    <div class="t-num">P20</div>
+  <div class="thumb" data-key="p2nfappendix" data-index="22">
+    <div class="t-num">P22</div>
     <div class="t-name">RA NF Detail</div>
   </div>
-  <div class="thumb" data-key="p2proximity" data-index="21">
-    <div class="t-num">P21</div>
+  <div class="thumb" data-key="p2proximity" data-index="23">
+    <div class="t-num">P23</div>
     <div class="t-name">RA Proximity</div>
   </div>
-  <div class="thumb" data-key="p10" data-index="22">
-    <div class="t-num">P22</div>
+  <div class="thumb" data-key="p10" data-index="24">
+    <div class="t-num">P24</div>
     <div class="t-name">RCSA Appx</div>
   </div>
-  <div class="thumb" data-key="p11" data-index="23">
-    <div class="t-num">P23</div>
+  <div class="thumb" data-key="p11" data-index="25">
+    <div class="t-num">P25</div>
     <div class="t-name">Fin Spillover</div>
   </div>
-  <div class="thumb" data-key="p12" data-index="24">
-    <div class="t-num">P24</div>
+  <div class="thumb" data-key="p12" data-index="26">
+    <div class="t-num">P26</div>
     <div class="t-name">NF Spillover</div>
   </div>
   <div class="spacer"></div>
@@ -4869,8 +4897,8 @@
 <script>
 const SLIDES = [
   { key: "p1", num: 1, title: "Executive Summary V1", purpose: "Current one-page executive summary with appetite exceptions, RCSA movement, controls, actions and incidents in one view." },
-  { key: "p1v2risk", num: 2, title: "Executive Summary V2: Risk Position", purpose: "Two-page executive summary concept, page 1: risk position, appetite, RCSA and control state." },
-  { key: "p1v2actions", num: 3, title: "Executive Summary V2: Actions & Remediation", purpose: "Two-page executive summary concept, page 2: accountability, remediation progress and incident learning." },
+  { key: "p1v3risk", num: 2, title: "Executive Summary V3: Risk Position", purpose: "Commentary-led executive summary concept, page 1: risk position with appetite, RCSA and controls commentary." },
+  { key: "p1v3actions", num: 3, title: "Executive Summary V3: Actions & Remediation", purpose: "Commentary-led executive summary concept, page 2: accountability, remediation progress and incident learning." },
   { key: "p2", num: 4, title: "Risk Appetite: Financial", purpose: "Financial appetite view showing Capital, Liquidity and Dividend status with embedded committee commentary." },
   { key: "p2nf", num: 5, title: "Risk Appetite: Non-Financial", purpose: "Non-financial appetite view showing Operational and Customer status with embedded committee commentary." },
   { key: "p3", num: 6, title: "RCSA: Financial Risk Summary", purpose: "Financial L2 risk summary across 16 risks. Red and amber shown by default, green risks toggleable, with heatmap density controls and movement detail." },
@@ -4886,12 +4914,14 @@ const SLIDES = [
   { key: "p8", num: 16, title: "Regulatory Risks", purpose: "Placeholder regulatory-risk watchlist with simple risk list and assigned commentary slots." },
   { key: "p13", num: 17, title: "Commentary Power App", purpose: "Hosted Power App commentary workflow backed by the SharePoint list and surfaced inside Power BI." },
   { key: "pappendix", num: 18, title: "Appendix", purpose: "Divider page separating Board-facing report pages from detailed supporting appendix material." },
-  { key: "p2appendix", num: 19, title: "Risk Appetite Financial Detail Appendix", purpose: "Detailed financial appetite scorecard preserving metric statements, thresholds, current values and additional L2 coverage." },
-  { key: "p2nfappendix", num: 20, title: "Risk Appetite Non-Financial Detail Appendix", purpose: "Detailed non-financial appetite scorecard preserving metric statements, thresholds, current values and additional L2 coverage." },
-  { key: "p2proximity", num: 21, title: "Risk Appetite Proximity Appendix", purpose: "Visual proximity view showing appetite trigger and limit zones, current position and status mix by appetite area." },
-  { key: "p10", num: 22, title: "RCSA L3 Detail Appendix", purpose: "Reference appendix holding L3 rows and business-function split moved out of the RCSA detail tabs." },
-  { key: "p11", num: 23, title: "RCSA: Financial Commentary Spillover", purpose: "Appendix mock-up for financial L2 commentary items that overflow the three visible detail slots." },
-  { key: "p12", num: 24, title: "RCSA: Non-Financial Commentary Spillover", purpose: "Appendix mock-up for non-financial L2 commentary items that overflow the three visible detail slots." }
+  { key: "p1v2risk", num: 19, title: "Appendix: Executive Summary V2 Risk Position", purpose: "Data-driven executive summary concept, page 1: risk position, appetite, RCSA and control state." },
+  { key: "p1v2actions", num: 20, title: "Appendix: Executive Summary V2 Actions & Remediation", purpose: "Data-driven executive summary concept, page 2: accountability, remediation progress and incident learning." },
+  { key: "p2appendix", num: 21, title: "Risk Appetite Financial Detail Appendix", purpose: "Detailed financial appetite scorecard preserving metric statements, thresholds, current values and additional L2 coverage." },
+  { key: "p2nfappendix", num: 22, title: "Risk Appetite Non-Financial Detail Appendix", purpose: "Detailed non-financial appetite scorecard preserving metric statements, thresholds, current values and additional L2 coverage." },
+  { key: "p2proximity", num: 23, title: "Risk Appetite Proximity Appendix", purpose: "Visual proximity view showing appetite trigger and limit zones, current position and status mix by appetite area." },
+  { key: "p10", num: 24, title: "RCSA L3 Detail Appendix", purpose: "Reference appendix holding L3 rows and business-function split moved out of the RCSA detail tabs." },
+  { key: "p11", num: 25, title: "RCSA: Financial Commentary Spillover", purpose: "Appendix mock-up for financial L2 commentary items that overflow the three visible detail slots." },
+  { key: "p12", num: 26, title: "RCSA: Non-Financial Commentary Spillover", purpose: "Appendix mock-up for non-financial L2 commentary items that overflow the three visible detail slots." }
 ];
 
 let currentIdx = 0;
@@ -4947,6 +4977,43 @@ slidePeriodOverlay.innerHTML = `
 slideFrameScale.appendChild(slidePeriodOverlay);
 const slideQuarterSelect = slidePeriodOverlay.querySelector('select');
 
+const slideHotspots = document.createElement('div');
+slideHotspots.className = 'slide-hotspots';
+slideFrameScale.appendChild(slideHotspots);
+
+const SLIDE_HOTSPOTS = {
+  p1v3risk: [
+    { key: 'p1v3actions', label: 'Actions and Remediation', x: 112, y: 70, w: 178, h: 29 },
+    { key: 'p2', label: 'Full appetite tabs', x: 575, y: 230, w: 150, h: 34 },
+    { key: 'p3', label: 'Full RCSA view', x: 1140, y: 230, w: 128, h: 34 },
+    { key: 'p4', label: 'Full controls tab', x: 1130, y: 480, w: 138, h: 36 }
+  ],
+  p1v3actions: [
+    { key: 'p1v3risk', label: 'Risk Position', x: 26, y: 70, w: 118, h: 29 },
+    { key: 'p1v2actions', label: 'Full actions tracker', x: 510, y: 260, w: 130, h: 44 },
+    { key: 'p6', label: 'Full incidents log', x: 1135, y: 260, w: 132, h: 44 }
+  ]
+};
+
+function renderSlideHotspots(slideKey) {
+  if (!slideHotspots) return;
+  slideHotspots.innerHTML = '';
+  const hotspots = SLIDE_HOTSPOTS[slideKey] || [];
+  hotspots.forEach((hotspot) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'slide-hotspot';
+    button.dataset.slideTarget = hotspot.key;
+    button.setAttribute('aria-label', hotspot.label);
+    button.style.left = `${hotspot.x}px`;
+    button.style.top = `${hotspot.y}px`;
+    button.style.width = `${hotspot.w}px`;
+    button.style.height = `${hotspot.h}px`;
+    button.addEventListener('click', () => showSlideByKey(hotspot.key));
+    slideHotspots.appendChild(button);
+  });
+}
+
 function fitSlideFrame() {
   if (!stage || !slideFrameWrap || !slideFrameScale) return;
   const slideKey = SLIDES[currentIdx]?.key;
@@ -4958,7 +5025,7 @@ function fitSlideFrame() {
   const availableHeight = Math.max(180, stage.clientHeight - verticalPadding);
   const fitScale = Math.min(availableWidth / slideSize.width, availableHeight / slideSize.height, 1);
   const zoomCompensation = Math.max(1, Math.min((window.devicePixelRatio || slideBaseDpr) / slideBaseDpr, 1.55));
-  const readabilityBoost = 1.06;
+  const readabilityBoost = ['p1v3risk', 'p1v3actions'].includes(slideKey) ? 1 : 1.06;
   const scale = Math.min(fitScale * zoomCompensation * readabilityBoost, 1);
 
   slideFrameScale.style.width = `${slideSize.width}px`;
@@ -5114,9 +5181,39 @@ function showSlide(idx) {
 
   prevBtn.disabled = (idx === 0);
   nextBtn.disabled = (idx === SLIDES.length - 1);
-  slidePeriodOverlay.classList.toggle('is-hidden', ['p1', 'p1v2risk', 'p1v2actions'].includes(slide.key));
+  slidePeriodOverlay.classList.toggle('is-hidden', ['p1', 'p1v2risk', 'p1v2actions', 'p1v3risk', 'p1v3actions'].includes(slide.key));
+  renderSlideHotspots(slide.key);
   fitSlideFrame();
 }
+
+function showSlideByKey(key) {
+  const idx = SLIDES.findIndex(slide => slide.key === key);
+  if (idx !== -1) {
+    showSlide(idx);
+    if (window.location.hash !== `#${encodeURIComponent(key)}`) {
+      window.history.replaceState(null, '', `#${encodeURIComponent(key)}`);
+    }
+  }
+}
+
+function showSlideFromLocationHash() {
+  const key = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
+  if (!key) return false;
+  const idx = SLIDES.findIndex(slide => slide.key === key);
+  if (idx === -1) return false;
+  showSlide(idx);
+  return true;
+}
+
+window.showBoardPackSlide = showSlideByKey;
+
+window.addEventListener('message', (event) => {
+  if (event.origin !== window.location.origin) return;
+  const key = event.data && event.data.type === 'board-pack:navigate' ? event.data.slideKey : null;
+  if (key) showSlideByKey(key);
+});
+
+window.addEventListener('hashchange', showSlideFromLocationHash);
 
 prevBtn.addEventListener('click', () => showSlide(currentIdx - 1));
 nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
@@ -5150,7 +5247,7 @@ document.addEventListener('keydown', (e) => {
 
 fitSlideFrame();
 applyQuarter(currentQuarterKey);
-showSlide(0);
+if (!showSlideFromLocationHash()) showSlide(0);
 </script>
 
 </body>

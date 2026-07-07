@@ -58,8 +58,13 @@
   .metric-head b{ color:var(--ink); }
   .metric-bar{ margin:5px 0 7px; height:10px; background:var(--green); border-radius:6px; overflow:hidden; display:flex; }
   .metric-bar .amber{ width:30%; background:var(--amber); }
-  .watch-title{ text-transform:uppercase; color:var(--muted); font-weight:700; font-size:8.8px; margin:0 0 3px; }
-  .watch-row{ display:grid; grid-template-columns:1fr 46px 44px 52px; align-items:center; gap:6px; border-top:1px solid #eef1f6; min-height:20px; }
+  .watch-title,.risk-title{ display:flex; justify-content:space-between; text-transform:uppercase; color:var(--muted); font-weight:700; font-size:8.8px; margin:0 0 3px; }
+  .watch-title span:last-child,.risk-title span:last-child{ text-transform:none; font-size:8.2px; font-weight:500; }
+  .watch-cols,.watch-row{ display:grid; grid-template-columns:1fr 46px 38px 62px; align-items:center; gap:6px; }
+  .watch-cols,.risk-cols{ color:var(--muted); font-size:7.2px; font-weight:800; text-transform:uppercase; }
+  .watch-cols{ margin-bottom:1px; }
+  .watch-cols span:not(:first-child),.risk-cols span:not(:first-child){ text-align:center; white-space:nowrap; }
+  .watch-row{ border-top:1px solid #eef1f6; min-height:20px; }
   .watch-name{ color:var(--ink); font-size:10.5px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .watch-name span{ color:var(--muted); font-size:9px; font-weight:500; }
   .pct{ text-align:right; color:#b57714; font-weight:700; }
@@ -72,10 +77,13 @@
   .mixbar{ margin:5px 0 6px; height:10px; border-radius:6px; overflow:hidden; display:flex; background:var(--green); }
   .mixbar .red{ width:12%; background:var(--red); }
   .mixbar .amber{ width:52%; background:var(--amber); }
-  .risk-row{ display:grid; grid-template-columns:1fr 70px 60px 18px; gap:6px; align-items:center; border-top:1px solid #eef1f6; min-height:24px; }
+  .risk-title{ margin:1px 0 3px; }
+  .risk-cols,.risk-row{ display:grid; grid-template-columns:1fr 70px 60px 18px; gap:6px; align-items:center; }
+  .risk-cols{ margin-bottom:1px; }
+  .risk-row{ border-top:1px solid #eef1f6; min-height:24px; }
   .risk-row .name{ color:var(--ink); font-weight:700; font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .risk-row .desc{ color:var(--muted); font-size:8.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .risk-row .l1{ text-align:right; color:var(--muted); font-size:9px; }
+  .risk-row .l1{ text-align:center; color:var(--muted); font-size:9px; }
   .pill{ justify-self:end; border-radius:4px; padding:2px 6px; font-size:8.5px; font-weight:700; }
   .pill.red{ background:var(--red-soft); color:var(--red); }
   .pill.amber{ background:var(--amber-soft); color:#a8761a; }
@@ -133,7 +141,8 @@
       <div class="appetite-body">
         <div class="metric-head"><span>Appetite metrics</span><span><b>11</b> triggered · <b>25</b> in range</span></div>
         <div class="metric-bar"><span class="amber"></span></div>
-        <div class="watch-title">Ambers to watch</div>
+        <div class="watch-title"><span>Ambers to watch</span><span>closest to limit first</span></div>
+        <div class="watch-cols"><span></span><span>% of limit</span><span>wks</span><span>action plan</span></div>
         <div class="watch-row"><div class="watch-name">Consumer Duty Assessment Impact Rating <span>— Customer</span></div><div class="pct">85%</div><div class="pct">3wk</div><span class="tag yes">Plan: yes</span></div>
         <div class="watch-row"><div class="watch-name">Essential Services Downtime <span>— Customer</span></div><div class="pct">80%</div><div class="pct">9wk</div><span class="tag no">No plan</span></div>
         <div class="watch-row"><div class="watch-name">RAL SCRC <span>— Capital</span></div><div class="pct">72%</div><div class="pct">6wk</div><span class="tag yes">Plan: yes</span></div>
@@ -145,6 +154,8 @@
       <div class="rcsa-body">
         <div class="risk-mix"><span>All 42 L2 risks</span><span>5 red · 22 amber · 15 green</span></div>
         <div class="mixbar"><span class="red"></span><span class="amber"></span></div>
+        <div class="risk-title"><span>Red risks</span><span>worst first</span></div>
+        <div class="risk-cols"><span></span><span>Area</span><span>Movement</span><span>Act.</span></div>
         <div class="risk-row"><div><div class="name">Information Security &amp; Cyber</div><div class="desc">Same control gap driving the Cyber appetite pressure</div></div><div class="l1">Operational</div><span class="pill red">2nd Q red</span><span class="rank">0</span></div>
         <div class="risk-row"><div><div class="name">Operational Resilience</div><div class="desc">Recovery-route retest slipped; feeds loss trend</div></div><div class="l1">Operational</div><span class="pill amber">New → red</span><span class="rank">1</span></div>
         <div class="risk-row"><div><div class="name">Data Protection</div><div class="desc">Same theme as the Sev 1 data breach</div></div><div class="l1">Customer</div><span class="pill amber">New → red</span><span class="rank">1</span></div>

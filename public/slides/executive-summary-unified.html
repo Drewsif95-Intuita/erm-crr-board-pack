@@ -377,13 +377,12 @@ const DATA = {
       + "The Sev 1 incident is the <b>Data breach \u2013 12,400 records via API flaw</b>, with <b>\u00A32.15m</b> loss and regulator notified."
   },
 
-  /* Appetite exceptions — unchanged: grouped exactly as your two appetite tabs group them. */
+  /* Appetite exceptions — grouped exactly as your two appetite tabs group them. */
   appetiteGroups: [
     { group:"Financial", stat:{breach:0, trigger:1}, items:[
         { sev:"trigger", name:"RAL SCRC", l1:"Capital", note:"cascades to Market · Credit · Insurance" }
     ]},
-    { group:"Non-Financial", stat:{breach:1, trigger:4}, items:[
-        { sev:"breach",  name:"Material Customer Detriment Incidents",   l1:"Customer" },
+    { group:"Non-Financial", stat:{breach:0, trigger:4}, items:[
         { sev:"trigger", name:"Consumer Duty Assessment Impact Rating",  l1:"Customer" },
         { sev:"trigger", name:"Essential Services Downtime",             l1:"Customer" },
         { sev:"trigger", name:"Major / Critical Operational Risk Incidents", l1:"Operational" },

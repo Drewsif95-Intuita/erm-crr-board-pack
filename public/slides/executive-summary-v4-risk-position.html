@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Executive Summary V4 - Risk Position</title>
+<script>
+  if (new URLSearchParams(window.location.search).get("embed") === "1") {
+    document.documentElement.classList.add("embedded-report-shell");
+  }
+</script>
+<style>
+  :root{
+    --navy:#1b2a63; --navy-deep:#14204d; --gold:#f5b81d;
+    --red:#c0334a; --amber:#d99e2b; --green:#1a7a5e;
+    --red-soft:#fbe9ec; --green-soft:#e3f1ec; --bg:#eceef3; --card:#fff;
+    --ink:#1b2a63; --body:#3a3f4d; --muted:#737b8e; --line:#e2e5ee; --soft:#e9ecf3;
+    --shadow:0 1px 2px rgba(20,32,77,.06),0 3px 10px rgba(20,32,77,.05);
+    --font:Aptos,"Segoe UI",Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
+  body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 29px 70px 54px 471px 26px; background:var(--bg); }
+  .brandbar{ background:#fff; height:20px; padding:3px 30px; display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line); }
+  .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
+  .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
+  header{ height:50px; background:var(--navy); color:#fff; padding:7px 30px 6px; display:flex; align-items:center; }
+  h1{ margin:0; font-size:18px; font-weight:700; line-height:1.05; }
+  .sub{ color:#c8d0ec; margin-top:4px; font-size:11px; }
+  .period{ margin-left:auto; display:flex; align-items:center; gap:9px; color:#9ca7d1; font-size:8px; text-transform:uppercase; font-weight:700; letter-spacing:.6px; }
+  .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
+  .tabs{ height:29px; background:var(--navy-deep); padding:0 30px; display:flex; align-items:center; gap:30px; border-bottom:2px solid var(--gold); color:#8f9ac6; font-size:11px; font-weight:700; }
+  .tab{ border:0; background:transparent; color:inherit; font:inherit; padding:0; cursor:pointer; text-decoration:none; }
+  .tab.active{ color:#fff; }
+  .focus{ margin:6px 30px 0; height:64px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:140px 1fr; gap:14px; padding:9px 14px; align-items:start; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.8px; color:#bd840d; font-size:8px; font-weight:800; }
+  .focus-copy{ font-size:11.4px; line-height:1.34; color:#5b4a1f; }
+  .focus-copy p{ margin:0; }
+  .focus-copy b{ color:var(--ink); }
+  .kpis{ height:54px; display:grid; grid-template-columns:repeat(6,1fr); gap:7px; padding:5px 30px 0; }
+  .kpi{ background:var(--card); border-radius:6px; border-top:3px solid var(--amber); box-shadow:var(--shadow); padding:6px 9px 4px; min-width:0; }
+  .kpi.red{ border-top-color:var(--red); }
+  .kpi.blue{ border-top-color:var(--navy); }
+  .kpi .value{ color:var(--ink); font-size:16px; font-weight:700; line-height:1.08; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .kpi .delta{ margin-top:4px; color:var(--red); font-weight:700; font-size:8.4px; }
+  .kpi .delta.green{ color:var(--green); }
+  .main{ height:471px; padding:7px 30px 6px; display:grid; grid-template-columns:1.18fr .88fr; grid-template-rows:244px 212px; gap:8px; }
+  .panel{ background:#fff; border-radius:8px; box-shadow:var(--shadow); overflow:hidden; border:1px solid #edf0f6; min-width:0; min-height:0; }
+  .panel.accent{ border-color:var(--amber); }
+  .panel.wide{ grid-column:1 / span 2; }
+  .panel-head{ height:38px; padding:7px 11px 5px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); }
+  .panel-head .title{ color:var(--ink); font-size:12.8px; font-weight:700; line-height:1.08; }
+  .panel-head .hint{ color:var(--muted); font-size:9px; font-weight:500; }
+  .panel-head .link{ border:0; background:transparent; color:var(--ink); font:inherit; font-size:8.8px; font-weight:700; white-space:nowrap; padding:0; cursor:pointer; text-decoration:none; }
+  .panel-head .link:hover{ text-decoration:underline; }
+  .metric-body{ padding:8px 12px 10px; }
+  .metric-head{ display:flex; justify-content:space-between; color:var(--muted); text-transform:uppercase; font-size:8.8px; font-weight:700; }
+  .metric-head b{ color:var(--ink); }
+  .metric-bar{ margin:5px 0 8px; height:11px; background:var(--green); border-radius:7px; overflow:hidden; display:flex; }
+  .metric-bar .red{ width:11%; background:var(--red); }
+  .metric-bar .amber{ width:29%; background:var(--amber); }
+  .comment{ background:var(--soft); border-left:3px solid var(--gold); border-radius:5px; padding:8px 10px 9px; color:#24324c; font-size:10.35px; line-height:1.34; }
+  .comment.blank{ min-height:118px; }
+  .comment.blank .comment-head{ margin-bottom:0; }
+  .comment-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:5px; }
+  .comment-title{ color:#9b6c10; text-transform:uppercase; font-size:8.5px; font-weight:800; letter-spacing:.2px; }
+  .owner{ color:var(--muted); font-size:8.4px; }
+  .comment p{ margin:0; }
+  .comment b{ color:var(--ink); }
+  .control-body{ height:calc(100% - 38px); padding:10px 15px 9px; display:grid; grid-template-columns:1fr .96fr; gap:16px; }
+  .control-left{ padding-right:2px; }
+  .section-title{ color:var(--ink); font-size:13.2px; font-weight:700; margin-bottom:7px; }
+  .barline{ display:grid; grid-template-columns:116px 1fr 168px; gap:8px; align-items:center; margin-top:7px; }
+  .barline .label{ color:var(--muted); font-size:9.6px; font-weight:700; text-transform:uppercase; }
+  .stack{ height:13px; border-radius:7px; overflow:hidden; display:flex; background:var(--green); }
+  .stack .part{ background:#c25a2b; }
+  .stack .ineffective{ background:#7a1d52; }
+  .barline .stat{ color:var(--muted); font-size:9.4px; text-align:right; }
+  .legend{ display:flex; gap:12px; color:var(--muted); font-size:8.6px; margin:12px 0 6px; }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; }
+  .dot.red{ background:var(--red); }.dot.amber{ background:var(--amber); }.dot.green{ background:var(--green); }
+  .testbar{ height:13px; border-radius:7px; overflow:hidden; display:flex; background:var(--green); }
+  .testbar .red{ width:14%; background:var(--red); }.testbar .amber{ width:29%; background:var(--amber); }
+  .control-body .comment{ height:100%; }
+  .control-body .comment.blank{ min-height:0; }
+  footer{ height:26px; margin:0 30px; background:var(--navy-deep); color:#b9c7e6; border-radius:5px 5px 0 0; display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:9px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
+  <header>
+    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee &middot; Risk position: appetite, RCSA &amp; controls</div></div>
+    <div class="period"><span>Period</span><b>Q1 2026</b></div>
+  </header>
+  <nav class="tabs"><span class="tab active">1 Risk Position</span><a class="tab" href="/core/executive-overview#p1v4actions" target="_parent">2 Actions &amp; Remediation</a></nav>
+
+  <section class="focus">
+    <div><div class="eyebrow">Board Focus</div></div>
+    <div class="focus-copy"></div>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><div class="value">4 risks near limit</div><div class="delta">&#9650; was 2 at Q4</div></div>
+    <div class="kpi red"><div class="value">5 red risks</div><div class="delta">&#9650; was 3 at Q4</div></div>
+    <div class="kpi"><div class="value">22 amber risks</div><div class="delta">&#9650; was 19 at Q4</div></div>
+    <div class="kpi"><div class="value">&pound;16.8m loss</div><div class="delta">&#9650; was &pound;9.4m at Q4</div></div>
+    <div class="kpi blue"><div class="value">53 tests overdue</div><div class="delta green">&#9660; was 61 at Q4</div></div>
+    <div class="kpi red"><div class="value">5 ineffective controls</div><div class="delta green">&#9660; was 6 at Q4</div></div>
+  </section>
+
+  <main class="main">
+    <section class="panel accent">
+      <div class="panel-head"><div><div class="eyebrow">Risk Appetite</div><div class="title">Overview, commentary below <span class="hint">breaches are rare &amp; fast-tracked</span></div></div><a class="link" href="/core/executive-overview#p2" target="_parent">Full appetite tabs &rsaquo;</a></div>
+      <div class="metric-body">
+        <div class="metric-head"><span>Appetite metrics</span><span><b>11</b> triggered &middot; <b>25</b> in range</span></div>
+        <div class="metric-bar"><span class="amber"></span></div>
+        <div class="comment blank">
+          <div class="comment-head"><span class="comment-title">Appetite Commentary</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><div class="eyebrow">RCSA</div><div class="title">L2 overview, commentary below <span class="hint">42 L2 risks</span></div></div><a class="link" href="/core/executive-overview#p3" target="_parent">Full RCSA view &rsaquo;</a></div>
+      <div class="metric-body">
+        <div class="metric-head"><span>All 42 L2 risks</span><span><b>5</b> red &middot; <b>22</b> amber &middot; <b>15</b> green</span></div>
+        <div class="metric-bar"><span class="red"></span><span class="amber"></span></div>
+        <div class="comment blank">
+          <div class="comment-head"><span class="comment-title">RCSA Commentary</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel wide">
+      <div class="panel-head"><div><div class="eyebrow">Control Snapshot</div><div class="title">Control test results</div></div><a class="link" href="/core/executive-overview#p4" target="_parent">Full controls tab &rsaquo;</a></div>
+      <div class="control-body">
+        <div class="control-left">
+          <div class="section-title">Control test results</div>
+          <div class="barline"><div class="label">Material controls</div><div class="stack"><span style="width:68%"></span><span class="part" style="width:23%"></span><span class="ineffective" style="width:9%"></span></div><div class="stat">Ineffective <b style="color:var(--red)">9%</b> (4 / 45 controls) &middot; Tests <b>47%</b> (21/45)</div></div>
+          <div class="barline"><div class="label">Key controls</div><div class="stack"><span style="width:80%"></span><span class="part" style="width:19%"></span><span class="ineffective" style="width:1%"></span></div><div class="stat">Ineffective <b style="color:var(--red)">1%</b> (1 / 80 controls) &middot; Tests <b>33%</b> (27/81)</div></div>
+          <div class="legend"><span><i class="dot red"></i>30+ days</span><span><i class="dot amber"></i>1-29 days</span><span><i class="dot green"></i>On time</span></div>
+          <div class="testbar"><span class="red"></span><span class="amber"></span></div>
+        </div>
+        <div class="comment blank">
+          <div class="comment-head"><span class="comment-title">Controls Commentary</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Standard Life &middot; Board Risk Committee</span><span>Refresh: 31 Mar 2026</span></footer>
+</div>
+<script>
+  function goToDeckSlide(key) {
+    if (!key) return;
+    if (window.parent && window.parent !== window) {
+      if (typeof window.parent.showBoardPackSlide === "function") {
+        window.parent.showBoardPackSlide(key);
+        return;
+      }
+      window.parent.postMessage({ type: "board-pack:navigate", slideKey: key }, window.location.origin);
+      window.parent.location.hash = encodeURIComponent(key);
+      return;
+    }
+    window.location.href = `/core/executive-overview#${encodeURIComponent(key)}`;
+  }
+
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-slide-target]");
+    if (!target) return;
+    event.preventDefault();
+    goToDeckSlide(target.dataset.slideTarget);
+  });
+</script>
+</body>
+</html>

@@ -19,20 +19,20 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
-  body{font-size:10px;line-height:1.22;-webkit-font-smoothing:antialiased}
+  body{font-size:10.8px;line-height:1.24;-webkit-font-smoothing:antialiased}
   button{font:inherit}
   .page{width:1280px;height:720px;overflow:hidden;background:var(--bg)}
   .brandbar{height:20px;padding:0 32px;display:flex;align-items:center;gap:17px;background:#fff;border-bottom:1px solid #dfe5ee}
   .brandbar strong{font-size:10px;color:var(--ink)}
   .mark{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--gold)}
   header{height:56px;padding:9px 32px 7px;background:var(--navy);color:#fff;display:flex;align-items:flex-start}
-  h1{margin:0;font-size:18.5px;line-height:1;font-weight:700}
-  .subtitle{margin-top:4px;color:#d5dcef;font-size:10.5px}
+  h1{margin:0;font-size:20px;line-height:1;font-weight:700}
+  .subtitle{margin-top:4px;color:#d5dcef;font-size:11.3px}
   .header-tools{margin-left:auto;display:grid;grid-template-columns:auto auto;gap:6px 10px;align-items:center;text-align:right}
   .period-label{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#b8c3df}
-  .period{grid-row:1 / span 2;grid-column:2;color:#fff;border:1px solid #435a98;border-radius:6px;background:#263f7e;padding:6px 17px;font-size:10px;font-weight:700}
+  .period{grid-row:1 / span 2;grid-column:2;color:#fff;border:1px solid #435a98;border-radius:6px;background:#263f7e;padding:6px 17px;font-size:10.8px;font-weight:700}
   .concept{font-size:7.8px;letter-spacing:.7px;text-transform:uppercase;color:#aebbd9}
-  main{height:612px;padding:8px 32px 5px;display:grid;grid-template-rows:143px 1fr;gap:9px}
+  main{height:612px;padding:8px 32px 5px;display:block}
   .overview{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
   .summary-card{position:relative;min-width:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-left:7px solid #3274ad;border-radius:9px;padding:10px 12px 8px;box-shadow:var(--shadow)}
   .summary-card.cro{border:2px solid #2d6498;border-left-width:7px}
@@ -43,27 +43,33 @@
   .attention b{color:var(--blue);text-transform:uppercase;font-size:7.6px}
   .page-summary p{margin:8px 0 0;font-size:11.5px;line-height:1.23;color:#18346b}
   .caption{position:absolute;right:16px;bottom:2px;color:#758198;font-size:8px;font-style:italic}
-  .details{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
+  .details{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
   .long-card{min-width:0;min-height:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px 7px;box-shadow:var(--shadow);display:grid;grid-template-rows:24px 1fr 31px;gap:5px}
   .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #d7e0ed}
-  .panel-title{border:0;background:transparent;padding:0;color:var(--ink);font-size:14px;font-weight:700;line-height:1.1;cursor:pointer;text-decoration:none}
+  .panel-title{border:0;background:transparent;padding:0;color:var(--ink);font-size:15.5px;font-weight:700;line-height:1.1;cursor:pointer;text-decoration:none}
   .panel-title:hover{text-decoration:underline}
-  .pill{display:inline-flex;align-items:center;justify-content:center;min-width:145px;height:20px;padding:0 10px;border-radius:8px;background:#eaf1f9;color:var(--ink);font-size:8px;font-weight:800;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap}
-  .sections{min-height:0;display:grid;grid-template-rows:12px minmax(0,1fr) 12px minmax(0,1fr);gap:5px}
-  .section-label{display:flex;align-items:center;color:var(--blue);font-size:8.2px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
-  .narrative{min-height:0;overflow:hidden;padding:9px;background:var(--soft);border:1px solid #dce4ef;border-left:3px solid var(--blue);border-radius:0 5px 5px 0;color:#19366c;font-size:11.4px;line-height:1.28}
+  .pill{display:inline-flex;align-items:center;justify-content:center;min-width:145px;height:20px;padding:0 10px;border-radius:8px;background:#eaf1f9;color:var(--ink);font-size:8.8px;font-weight:800;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap}
+  .sections{min-height:0;display:grid;grid-template-rows:14px minmax(0,1fr);gap:5px}
+  .section-label{display:flex;align-items:center;color:var(--blue);font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+  .narrative{min-height:0;overflow:hidden;padding:10px;background:var(--soft);border:1px solid #dce4ef;border-left:3px solid var(--blue);border-radius:0 5px 5px 0;color:#19366c;font-size:12.5px;line-height:1.27}
+  [data-fit-commentary].copy-short{font-size:14.4px;line-height:1.28}
+  [data-fit-commentary].copy-medium{font-size:13.6px;line-height:1.27}
+  [data-fit-commentary].copy-long{font-size:12.8px;line-height:1.25}
+  .sections [data-fit-commentary].copy-short{font-size:15.5px;line-height:1.3}
+  .sections [data-fit-commentary].copy-medium{font-size:14.7px;line-height:1.29}
+  .sections [data-fit-commentary].copy-long{font-size:13.8px;line-height:1.28}
   .narrative.amber{border-left-color:var(--gold)}
   .narrative.red{border-left-color:var(--red)}
-  .learning{display:flex;align-items:center;gap:5px;height:31px;padding:3px 9px;background:#e8f0f8;border:1px solid #c4d5e7;border-radius:5px;color:#203d70;font-size:7.6px;font-weight:700}
+  .learning{display:flex;align-items:center;gap:5px;height:31px;padding:3px 9px;background:#e8f0f8;border:1px solid #c4d5e7;border-radius:5px;color:#203d70;font-size:8.5px;font-weight:700}
   .step{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--blue);color:#fff;font-size:6.5px;flex:0 0 auto}
   .step.red{background:var(--red)}
   .step.green{background:var(--green)}
   .chev{width:9px;height:9px;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:6px solid #9cb2ce;flex:0 0 auto}
-  .timeline{height:31px;padding:3px 9px;background:#e8f0f8;border:1px solid #a9c0d9;border-radius:5px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;color:#1e3d72;font-size:7px}
+  .timeline{height:31px;padding:3px 9px;background:#e8f0f8;border:1px solid #a9c0d9;border-radius:5px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;color:#1e3d72;font-size:7.7px}
   .time-group{padding:0 8px;border-right:1px solid #c8d6e5;line-height:1.15}
   .time-group:first-child{padding-left:0}
   .time-group:last-child{border-right:0}
-  .time-group b{display:block;color:var(--blue);font-size:7.7px;margin-bottom:1px}
+  .time-group b{display:block;color:var(--blue);font-size:8.4px;margin-bottom:1px}
   .dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:2px;background:var(--green)}
   .dot.red{background:var(--red)}
   .dot.amber{background:var(--gold)}
@@ -81,28 +87,12 @@
   </header>
 
   <main>
-    <section class="overview">
-      <article class="summary-card cro">
-        <div class="label">CRO View</div>
-        <h2>The response was effective, but the pattern of events and emerging-risk movement calls for earlier intervention.</h2>
-        <p>The Sev 1 event and both near misses were detected and contained, yet all three point to upstream process weaknesses rather than isolated technical failures. With two fast-rising risks now at Board Watch within 0&ndash;12 months, management should connect incident learning to scenario testing, control design and clear risk ownership.</p>
-        <div class="attention"><b>Board attention</b><span>Confirm sustained effectiveness of the data-control fix and agree accountable response plans for AI / GenAI and Systemic Cyber.</span></div>
-      </article>
-      <article class="summary-card page-summary">
-        <div class="label">Page Summary</div>
-        <p>One Sev 1 data breach and two near misses were contained, but they exposed a common set of upstream process and control weaknesses that now need to be traceable into the Q2 test and remediation plan. At the same time, the emerging-risk profile has moved closer: AI / GenAI Model Risk and Systemic Cyber Event are now Board Watch within 0&ndash;12 months, while Critical Third-Party Concentration and Quantum Cryptography Threat have moved to Watch. The combined message is that detective controls are working, but earlier intervention, clearer ownership and forward-looking scenario response are required.</p>
-        <div class="caption">Combined narrative from the detailed commentary on this page</div>
-      </article>
-    </section>
-
     <section class="details">
       <article class="long-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p6" target="_parent">Incidents &amp; learning</a><span class="pill">1 Sev 1 &middot; 2 near misses</span></div>
         <div class="sections">
-          <div class="section-label">Sev 1 event &amp; response</div>
-          <div class="narrative red">A Sev 1 data breach exposed 12,400 customer records through an API flaw. The regulator has been notified and remediation is being managed through the Data Protection action, including rebuilding and retesting the failed Customer Data Retention Control by 15 May. Closure should be based on evidence of sustained effectiveness and ongoing monitoring, not completion of the technical fix alone.</div>
-          <div class="section-label">Near misses &amp; learning</div>
-          <div class="narrative">A payment batch was caught before release by the reconciliation control, and a customer data export was blocked by DLP before completion. Both detective controls operated as intended, but the events revealed weaknesses earlier in the process. The resulting actions should be visible in the Q2 test plan, with named owners, dates and evidence that preventive controls have been strengthened.</div>
+          <div class="section-label">Commentary</div>
+          <div class="narrative red" data-fit-commentary>A Sev 1 data breach exposed 12,400 customer records through an API flaw. The regulator has been notified and remediation is being managed through the Data Protection action, including rebuilding and retesting the failed Customer Data Retention Control by 15 May. Closure should be based on sustained effectiveness and ongoing monitoring, not completion of the technical fix alone. Two near misses&mdash;a payment batch caught by reconciliation and a customer data export blocked by DLP&mdash;showed detective controls operating as intended but exposed earlier process weaknesses. The resulting actions should be visible in the Q2 test plan, with named owners, dates and evidence that preventive controls have been strengthened.</div>
         </div>
         <div class="learning"><span class="step red">01</span><span>Rebuild and retest the data control</span><i class="chev"></i><span class="step">02</span><span>Add upstream process tests to Q2</span><i class="chev"></i><span class="step green">03</span><span>Require evidence-based closure</span></div>
       </article>
@@ -110,10 +100,8 @@
       <article class="long-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p7" target="_parent">Emerging risks</a><span class="pill">8 tracked &middot; 2 Board Watch &middot; 2 Watch</span></div>
         <div class="sections">
-          <div class="section-label">Current position</div>
-          <div class="narrative red">Eight emerging risks are tracked. AI / GenAI Model Risk and Systemic Cyber Event have both moved from Monitor to Board Watch and sit within a 0&ndash;12 month impact horizon; both are rising fast. Their proximity means governance, approval controls, systemic dependency mapping and credible response scenarios should receive direct Board challenge.</div>
-          <div class="section-label">Movement &amp; management response</div>
-          <div class="narrative amber">Movement is not limited to the two nearest risks. Critical Third-Party Concentration and Quantum Cryptography Threat have moved from Monitor to Watch, while Geopolitical Fragmentation, RegTech / SupTech Acceleration, Climate Transition Disorder and Consumer Harm &mdash; Embedded Finance remain at Monitor. Management response should be prioritised by time to impact, with clear early-warning indicators and owners before risks crystallise.</div>
+          <div class="section-label">Commentary</div>
+          <div class="narrative red" data-fit-commentary>Eight emerging risks are tracked. AI / GenAI Model Risk and Systemic Cyber Event have moved from Monitor to Board Watch and sit within a 0&ndash;12 month impact horizon; both are rising fast. Their proximity means governance, approval controls, systemic dependency mapping and credible response scenarios should receive direct Board challenge. Critical Third-Party Concentration and Quantum Cryptography Threat have moved from Monitor to Watch, while Geopolitical Fragmentation, RegTech / SupTech Acceleration, Climate Transition Disorder and Consumer Harm &mdash; Embedded Finance remain at Monitor. Management response should be prioritised by time to impact, with clear early-warning indicators and owners before risks crystallise.</div>
         </div>
         <div class="timeline">
           <div class="time-group"><b>0&ndash;12m</b><span><i class="dot red"></i>AI / GenAI</span><br><span><i class="dot red"></i>Systemic Cyber</span></div>
@@ -128,6 +116,20 @@
   <footer><span>Standard Life &middot; Board Risk Committee</span><span class="page-no">Page 2</span><span class="refresh">Refresh: 31 Mar 2026</span></footer>
 </div>
 <script>
+  function applyCommentarySizing() {
+    document.querySelectorAll('[data-fit-commentary]').forEach((element) => {
+      const characterCount = element.textContent.replace(/\s+/g, ' ').trim().length;
+      const sizeClass = characterCount <= 280
+        ? 'copy-short'
+        : characterCount <= 500
+          ? 'copy-medium'
+          : 'copy-long';
+      element.classList.add(sizeClass);
+    });
+  }
+
+  applyCommentarySizing();
+
   function goToDeckSlide(key) {
     if (!key) return;
     if (window.parent && window.parent !== window) {

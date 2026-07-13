@@ -19,60 +19,76 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
-  body{font-size:10px;line-height:1.22;-webkit-font-smoothing:antialiased}
+  body{font-size:10.8px;line-height:1.24;-webkit-font-smoothing:antialiased}
   button{font:inherit}
   .page{width:1280px;height:720px;overflow:hidden;background:var(--bg)}
   .brandbar{height:20px;padding:0 32px;display:flex;align-items:center;gap:17px;background:#fff;border-bottom:1px solid #dfe5ee}
   .brandbar strong{font-size:10px;color:var(--ink)}
   .mark{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--gold)}
   header{height:56px;padding:9px 32px 7px;background:var(--navy);color:#fff;display:flex;align-items:flex-start}
-  h1{margin:0;font-size:18.5px;line-height:1;font-weight:700}
-  .subtitle{margin-top:4px;color:#d5dcef;font-size:10.5px}
+  h1{margin:0;font-size:20px;line-height:1;font-weight:700}
+  .subtitle{margin-top:4px;color:#d5dcef;font-size:11.3px}
   .header-tools{margin-left:auto;display:grid;grid-template-columns:auto auto;gap:6px 10px;align-items:center;text-align:right}
   .period-label{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#b8c3df}
-  .period{grid-row:1 / span 2;grid-column:2;color:#fff;border:1px solid #435a98;border-radius:6px;background:#263f7e;padding:6px 17px;font-size:10px;font-weight:700}
+  .period{grid-row:1 / span 2;grid-column:2;color:#fff;border:1px solid #435a98;border-radius:6px;background:#263f7e;padding:6px 17px;font-size:10.8px;font-weight:700}
   .concept{font-size:7.8px;letter-spacing:.7px;text-transform:uppercase;color:#aebbd9}
-  main{height:612px;padding:8px 32px 5px;display:grid;grid-template-rows:143px 1fr;gap:9px}
-  .overview{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
-  .summary-card{position:relative;min-width:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-left:7px solid #3274ad;border-radius:9px;padding:10px 12px 8px;box-shadow:var(--shadow)}
-  .summary-card.cro{border:2px solid #2d6498;border-left-width:7px}
-  .label{color:var(--blue);font-size:9.2px;font-weight:800;letter-spacing:.7px;text-transform:uppercase}
-  .cro h2{margin:6px 0 4px;font-size:13.8px;line-height:1.12;color:var(--ink)}
-  .cro p{margin:0;font-size:9.6px;line-height:1.18;color:#1c3769}
-  .attention{position:absolute;left:8px;right:12px;bottom:6px;min-height:19px;display:flex;align-items:center;gap:5px;padding:3px 7px;background:#e8f0f8;border:1px solid #c4d5e7;border-radius:5px;color:#203d70;font-size:7.6px;line-height:1.1}
-  .attention b{color:var(--blue);text-transform:uppercase;font-size:7.6px}
-  .page-summary p{margin:8px 0 0;font-size:11.5px;line-height:1.23;color:#18346b}
-  .caption{position:absolute;right:16px;bottom:2px;color:#758198;font-size:8px;font-style:italic}
-  .details{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px 12px;min-height:0}
+  main{height:612px;padding:8px 32px 5px;display:grid;grid-template-rows:210px 1fr;gap:9px}
+  .overview{display:grid;grid-template-columns:1fr;grid-template-rows:110px 92px;gap:8px;min-height:0}
+  .summary-card{position:relative;min-width:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-left:7px solid #3274ad;border-radius:9px;padding:8px 12px;box-shadow:var(--shadow)}
+  .summary-card.cro{border:2px solid #2d6498;border-left-width:7px;padding-bottom:8px}
+  .label{color:var(--blue);font-size:10.3px;font-weight:800;letter-spacing:.7px;text-transform:uppercase}
+  .cro h2{margin:6px 0 6px;font-size:16.8px;line-height:1.12;color:var(--ink)}
+  .cro p{margin:0;color:#1c3769}
+  .cro [data-fit-commentary].copy-short{font-size:14px;line-height:1.28}
+  .exec-summary{background:#f7fafd;border-left-color:#6b8fb0}
+  .exec-summary .label{color:#557a9e}
+  .exec-summary p{margin:5px 0 0;color:#26476f}
+  [data-fit-commentary].copy-short{font-size:13.2px;line-height:1.27}
+  [data-fit-commentary].copy-medium{font-size:12.5px;line-height:1.27}
+  [data-fit-commentary].copy-long{font-size:11.8px;line-height:1.24}
+  .details{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px 10px;min-height:0}
   .detail-card{min-width:0;min-height:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px 7px;box-shadow:var(--shadow);display:grid;grid-template-rows:24px 1fr 31px;gap:5px}
   .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #d7e0ed}
-  .panel-title{border:0;background:transparent;padding:0;color:var(--ink);font-size:14px;font-weight:700;line-height:1.1;cursor:pointer;text-decoration:none}
+  .panel-title{border:0;background:transparent;padding:0;color:var(--ink);font-size:15.5px;font-weight:700;line-height:1.1;cursor:pointer;text-decoration:none}
   .panel-title:hover{text-decoration:underline}
-  .pill{display:inline-flex;align-items:center;justify-content:center;min-width:145px;height:20px;padding:0 10px;border-radius:8px;background:#eaf1f9;color:var(--ink);font-size:8px;font-weight:800;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap}
+  .pill{display:inline-flex;align-items:center;justify-content:center;min-width:145px;height:20px;padding:0 10px;border-radius:8px;background:#eaf1f9;color:var(--ink);font-size:8.8px;font-weight:800;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap}
   .pill.amber{background:#fff5d8}
-  .narrative{min-height:0;overflow:hidden;padding:9px;background:var(--soft);border:1px solid #dce4ef;border-left:3px solid var(--blue);border-radius:0 5px 5px 0;color:#19366c;font-size:11.25px;line-height:1.27}
+  .narrative{min-height:0;overflow:hidden;padding:8px 9px;background:var(--soft);border:1px solid #dce4ef;border-left:3px solid var(--blue);border-radius:0 5px 5px 0;color:#19366c;font-size:12.5px;line-height:1.27}
   .narrative.amber{border-left-color:var(--gold)}
   .narrative.red{border-left-color:var(--red)}
-  .metric{display:grid;grid-template-columns:100px 1fr 60px;gap:7px;align-items:center;color:var(--muted);font-size:7.6px}
-  .metric strong{font-size:7.8px;text-transform:uppercase;letter-spacing:.3px;color:#61718d}
-  .metric-note{text-align:right}
-  .bar{height:9px;border-radius:5px;overflow:hidden;background:#e9edf4;display:flex}
+  .metric{display:grid;grid-template-columns:100px minmax(0,1fr) 60px;column-gap:8px;row-gap:3px;align-items:center;color:var(--muted);font-size:8.9px;line-height:1}
+  .metric strong{font-size:9.1px;line-height:1.05;text-transform:uppercase;letter-spacing:.3px;color:#61718d}
+  .metric-note{text-align:right;font-size:8.7px;line-height:1;white-space:nowrap}
+  .bar{height:10px;border-radius:5px;overflow:hidden;background:#e9edf4;display:flex}
   .bar span{height:100%}
   .bar .green{background:var(--green)}
   .bar .amber{background:var(--gold)}
   .bar .red{background:var(--red)}
   .bar .blue{background:#3d7fb7}
   .bar .purple{background:var(--purple)}
-  .scale-labels{grid-column:2;display:flex;justify-content:space-between;margin-top:-4px;font-size:7.1px;font-weight:700}
+  .scale-labels{grid-column:2;display:grid;margin-top:0;font-size:8.5px;font-weight:700;line-height:1}
+  .scale-labels span{text-align:center;white-space:nowrap}
+  .scale-labels.appetite-scale{grid-template-columns:31fr 69fr}
+  .scale-labels.rcsa-scale{grid-template-columns:12fr 52fr 36fr}
+  .scale-labels.actions-scale{grid-template-columns:60fr 40fr}
   .scale-labels .red-text{color:var(--red)}
   .scale-labels .amber-text{color:#bb7d06}
   .scale-labels .green-text{color:var(--green)}
-  .controls-metric{grid-template-columns:50px 1fr 48px 1fr 80px;gap:7px}
-  .controls-metric .bar{height:9px}
-  .mini-stat{font-size:7.1px;color:var(--muted);line-height:1.15}
-  .backlog{text-align:right;border-left:1px solid #d9e1ec;padding-left:7px;font-size:7px;line-height:1.1}
-  .backlog b{display:block;color:var(--red);font-size:8px;margin-top:1px}
-  .backlog em{display:block;color:var(--green);font-style:normal;font-weight:700;margin-top:1px}
+  .rcsa-card{grid-template-rows:24px 1fr 46px}
+  .rcsa-footer{min-width:0;display:grid;grid-template-rows:13px 31px;gap:2px}
+  .red-risk-line{min-width:0;overflow:hidden;display:flex;align-items:center;gap:7px;white-space:nowrap;color:#19366c;font-size:9px;line-height:1}
+  .red-risk-line > strong{flex:0 0 auto;color:#61718d;font-size:8.8px;letter-spacing:.3px;text-transform:uppercase}
+  .red-risk-line span{position:relative;padding-left:7px;font-weight:700}
+  .red-risk-line span::before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--red);transform:translateY(-50%)}
+  .controls-metric{grid-template-columns:50px minmax(0,1fr) 42px minmax(0,1fr) 84px;column-gap:7px;row-gap:0}
+  .controls-metric{align-items:start}
+  .controls-metric > strong{align-self:start;padding-top:1px;line-height:10px}
+  .controls-metric .bar{height:10px}
+  .mini-stat{margin-top:3px;font-size:8.4px;color:var(--muted);line-height:1;white-space:nowrap}
+  .backlog{text-align:right;border-left:1px solid #d9e1ec;padding-left:7px;font-size:8.3px;line-height:1.05}
+  .backlog b{display:block;color:var(--red);font-size:9.1px;margin-top:2px}
+  .backlog em{display:block;color:var(--green);font-size:8.3px;font-style:normal;font-weight:700;margin-top:2px}
+  .actions-metric{grid-template-columns:116px minmax(0,1fr) 66px}
   footer{height:24px;margin:8px 32px 0;padding:0 14px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--navy-deep);color:#c6d1e7;font-size:8px}
   footer .page-no{justify-self:center;color:#93a2c2}
   footer .refresh{justify-self:end}
@@ -91,39 +107,40 @@
       <article class="summary-card cro">
         <div class="label">CRO View</div>
         <h2>The risk position has moved to Amber, with pressure concentrated in Operational and Customer.</h2>
-        <p>The formal customer-detriment breach, repeated Cyber red, two unactioned leading risks and long-standing control gaps all point to the same weakness: escalation is visible, but ownership and delivery are not consistently keeping pace.</p>
-        <div class="attention"><b>Board attention</b><span>Confirm owners and linked actions for Cyber and Reputation; agree escalation for the oldest control gaps.</span></div>
+        <p data-fit-commentary>The formal customer-detriment breach, repeated Cyber red, two unactioned leading risks and long-standing control gaps all point to the same weakness: escalation is visible, but ownership and delivery are not consistently keeping pace.</p>
       </article>
-      <article class="summary-card page-summary">
-        <div class="label">Page Summary</div>
-        <p>Across the page, the deterioration is concentrated rather than broad-based: one formal appetite breach remains in train; five of 42 L2 risks are red, with Cyber and Reputation lacking linked remediation; four material and one key control are ineffective; and 53 tests remain overdue. Three remediation actions are in flight, but two are at risk of delay. Taken together, the commentary indicates that risk identification is working, but ownership, action coverage and evidence of sustained control effectiveness are not yet keeping pace with the areas under greatest pressure.</p>
-        <div class="caption">Combined narrative from the detailed commentary on this page</div>
+      <article class="summary-card exec-summary">
+        <div class="label">Exec Summary</div>
+        <p data-fit-commentary>Across both pages, pressure is concentrated in Operational and Customer. One appetite breach remains; five L2 risks are red, 22 amber, five controls ineffective and 53 tests overdue. Three actions are in flight, two at risk, and two leading red risks lack remediation. The Sev 1 breach and two near misses exposed upstream weaknesses. AI / GenAI and Systemic Cyber are at Board Watch within 0&ndash;12 months. Risk identification is working, but ownership, action coverage and earlier intervention lag.</p>
       </article>
     </section>
 
     <section class="details">
       <article class="detail-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p2" target="_parent">Risk appetite</a><span class="pill amber">1 breach &middot; 3 near limit</span></div>
-        <div class="narrative amber">Material Customer Detriment Incidents remains formally breached, with remediation fast-tracked. Consumer Duty Assessment Impact Rating is closest to limit at 85% and still rising. Essential Services Downtime and Total Operational Loss Amount have run for 9 and 12 weeks without formal action plans and should be escalated if not addressed next quarter. Two further amber triggers have agreed plans in train.</div>
-        <div class="metric"><strong>Appetite position</strong><div class="bar"><span class="amber" style="width:31%"></span><span class="green" style="width:69%"></span></div><span class="metric-note">36 metrics</span><div class="scale-labels"><span class="amber-text">11 triggered</span><span class="green-text">25 in range</span></div></div>
+        <div class="narrative amber" data-fit-commentary>Material Customer Detriment Incidents remains formally breached, with remediation fast-tracked. Consumer Duty Assessment Impact Rating is closest to limit at 85% and still rising. Essential Services Downtime and Total Operational Loss Amount have run for 9 and 12 weeks without formal action plans and should be escalated if not addressed next quarter. Two further amber triggers have agreed plans in train.</div>
+        <div class="metric"><strong>Appetite position</strong><div class="bar"><span class="amber" style="width:31%"></span><span class="green" style="width:69%"></span></div><span class="metric-note">36 metrics</span><div class="scale-labels appetite-scale"><span class="amber-text">11 triggered</span><span class="green-text">25 in range</span></div></div>
       </article>
 
-      <article class="detail-card">
+      <article class="detail-card rcsa-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p3" target="_parent">RCSA</a><span class="pill">5 red &middot; 22 amber &middot; 15 green</span></div>
-        <div class="narrative red">Five of 42 L2 risks are red, concentrated in Operational and Customer. Information Security &amp; Cyber is red for a second consecutive quarter with no action assigned. Operational Resilience and Data Protection moved to red this quarter; the latter is linked to the Sev 1 data breach. Funding and Reputation remain red for a second quarter, with Reputation also lacking a linked action.</div>
-        <div class="metric"><strong>All L2 risks</strong><div class="bar"><span class="red" style="width:12%"></span><span class="amber" style="width:52%"></span><span class="green" style="width:36%"></span></div><span class="metric-note">42 risks</span><div class="scale-labels"><span class="red-text">5 red</span><span class="amber-text">22 amber</span><span class="green-text">15 green</span></div></div>
+        <div class="narrative red" data-fit-commentary>Five of 42 L2 risks are red, concentrated in Operational and Customer. Cyber and Reputation are red for a second consecutive quarter and have no linked action. Operational Resilience and Data Protection moved to red this quarter, with Data Protection linked to the Sev 1 breach. Funding remains red while contingency action progresses.</div>
+        <div class="rcsa-footer">
+          <div class="red-risk-line" aria-label="Red risks"><strong>Red risks</strong><span>Information Security &amp; Cyber</span><span>Operational Resilience</span><span>Data Protection</span><span>Funding</span><span>Reputation</span></div>
+          <div class="metric"><strong>All L2 risks</strong><div class="bar"><span class="red" style="width:12%"></span><span class="amber" style="width:52%"></span><span class="green" style="width:36%"></span></div><span class="metric-note">42 risks</span><div class="scale-labels rcsa-scale"><span class="red-text">5 red</span><span class="amber-text">22 amber</span><span class="green-text">15 green</span></div></div>
+        </div>
       </article>
 
       <article class="detail-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p4" target="_parent">Controls</a><span class="pill">5 ineffective &middot; 53 tests overdue</span></div>
-        <div class="narrative">Five of 125 controls are ineffective&mdash;four material and one key. Complaints Root Cause Tagging has been ineffective since Q4 2025 with no owner. The Customer Data Retention Control failure is linked to the Sev 1 event and is being rebuilt and retested by 15 May. Remaining gaps have target dates through June; overdue testing has improved from 61 to 53.</div>
+        <div class="narrative" data-fit-commentary>Five of 125 controls are ineffective&mdash;four material and one key. Complaints Root Cause Tagging has been ineffective since Q4 2025 with no owner. The Customer Data Retention Control failure is linked to the Sev 1 event and is being rebuilt and retested by 15 May. Remaining gaps have target dates through June; overdue testing has improved from 61 to 53.</div>
         <div class="metric controls-metric"><strong>Material</strong><div><div class="bar"><span class="green" style="width:90%"></span><span class="purple" style="width:10%"></span></div><div class="mini-stat">4/45 ineffective &middot; 47% tested</div></div><strong>Key</strong><div><div class="bar"><span class="green" style="width:99%"></span><span class="red" style="width:1%"></span></div><div class="mini-stat">1/80 ineffective &middot; 33% tested</div></div><div class="backlog">Testing backlog<b>53 overdue</b><em>&darr; from 61 at Q4</em></div></div>
       </article>
 
       <article class="detail-card">
         <div class="panel-head"><a class="panel-title" href="/core/executive-overview#p1v2actions" target="_parent">Issues &amp; actions</a><span class="pill">3 in flight &middot; 2 at risk</span></div>
-        <div class="narrative red">Three remediation actions are in flight across Funding, Operational Resilience and Data Protection. Funding remains on track, while two are at risk of missing their due dates. Two of the five leading red risks&mdash;Information Security &amp; Cyber and Reputation&mdash;have no linked action and are candidates for new plans this quarter. The concern is whether action coverage and ownership match the current red-risk profile.</div>
-        <div class="metric"><strong>Red-risk action coverage</strong><div class="bar"><span class="blue" style="width:60%"></span><span class="red" style="width:40%"></span></div><span class="metric-note">5 leading reds</span><div class="scale-labels"><span style="color:#2d659b">3 linked</span><span class="red-text">2 no linked action</span></div></div>
+        <div class="narrative red" data-fit-commentary>Three remediation actions are in flight across Funding, Operational Resilience and Data Protection. Funding remains on track, while two are at risk of missing their due dates. Two of the five leading red risks&mdash;Information Security &amp; Cyber and Reputation&mdash;have no linked action and are candidates for new plans this quarter. The concern is whether action coverage and ownership match the current red-risk profile.</div>
+        <div class="metric actions-metric"><strong>Red-risk action coverage</strong><div class="bar"><span class="blue" style="width:60%"></span><span class="red" style="width:40%"></span></div><span class="metric-note">5 leading reds</span><div class="scale-labels actions-scale"><span style="color:#2d659b">3 linked</span><span class="red-text">2 no linked action</span></div></div>
       </article>
     </section>
   </main>
@@ -131,6 +148,20 @@
   <footer><span>Standard Life &middot; Board Risk Committee</span><span class="page-no">Page 1</span><span class="refresh">Refresh: 31 Mar 2026</span></footer>
 </div>
 <script>
+  function applyCommentarySizing() {
+    document.querySelectorAll('[data-fit-commentary]').forEach((element) => {
+      const characterCount = element.textContent.replace(/\s+/g, ' ').trim().length;
+      const sizeClass = characterCount <= 280
+        ? 'copy-short'
+        : characterCount <= 500
+          ? 'copy-medium'
+          : 'copy-long';
+      element.classList.add(sizeClass);
+    });
+  }
+
+  applyCommentarySizing();
+
   function goToDeckSlide(key) {
     if (!key) return;
     if (window.parent && window.parent !== window) {

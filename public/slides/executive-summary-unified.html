@@ -52,16 +52,17 @@
   .kpi.is-red .k-val{ color:var(--red); }
   .kpi.is-amber .k-val{ color:#a8761a; }
 
-  /* Board Focus — proper panel, more real estate, fixed label column + flowing text */
-  .panel.focus{ margin:8px 20px 0; border-radius:8px; background:#fff7e8; border:1.5px solid var(--amber); }
-  .focus-inner{ display:grid; grid-template-columns:190px 1fr; gap:18px; padding:13px 18px; align-items:start; }
-  .focus-left .p-eyebrow{ font-size:9px; letter-spacing:.8px; text-transform:uppercase; color:#a8761a; font-weight:800; }
-  .focus-heading{ font-size:16px; font-weight:800; color:var(--ink); margin-top:3px; line-height:1.25; }
-  .focus-meta{ font-size:9px; color:#8a7845; margin-top:3px; }
-  .focus-text p{ font-size:11.5px; color:#5b4a1f; line-height:1.55; }
-  .focus-text p + p{ margin-top:7px; }
-  .focus-text b{ color:var(--ink); }
-  .focus-text .pill-amber{ color:#a8761a; font-weight:800; }
+  /* Narrative context for the MI view, aligned with the V5 executive-summary treatment. */
+  .mi-overview{ margin:8px 20px 0; display:grid; grid-template-columns:1fr 1fr; gap:10px; min-height:0; }
+  .mi-summary-card{ position:relative; min-width:0; overflow:hidden; background:#fff; border:1px solid #cfd9e8; border-left:6px solid #3274ad; border-radius:8px; padding:9px 11px 27px; box-shadow:var(--shadow); }
+  .mi-summary-card.mi-cro{ border:2px solid #2d6498; border-left-width:6px; }
+  .mi-label{ color:#2d659b; font-size:8.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; }
+  .mi-cro h2{ margin:5px 0 3px; font-size:12.8px; line-height:1.12; color:var(--ink); }
+  .mi-cro p{ margin:0; font-size:8.6px; line-height:1.2; color:#1c3769; }
+  .mi-attention{ position:absolute; left:7px; right:9px; bottom:6px; min-height:19px; display:flex; align-items:center; gap:5px; padding:3px 7px; background:#e8f0f8; border:1px solid #c4d5e7; border-radius:4px; color:#203d70; font-size:7.2px; line-height:1.1; }
+  .mi-attention b{ color:#2d659b; text-transform:uppercase; font-size:7.2px; white-space:nowrap; }
+  .mi-page-summary p{ margin:7px 0 0; font-size:9.6px; line-height:1.23; color:#18346b; }
+  .mi-caption{ position:absolute; right:12px; bottom:3px; color:#758198; font-size:7px; font-style:italic; }
 
   /* Main content: independent left/right stacks so RCSA can use more height. */
   .content-grid{ display:grid; grid-template-columns:1.35fr 1fr; gap:10px; padding:9px 20px 0; align-items:stretch; }
@@ -72,7 +73,7 @@
 
   .panel{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); }
   .panel .p-head{ padding:6px 11px 5px; border-bottom:1px solid var(--line-soft); }
-  .panel .p-eyebrow{ font-size:8px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); font-weight:800; }
+  .panel .p-eyebrow{ font-size:8px; letter-spacing:.8px; text-transform:uppercase; color:#2d659b; font-weight:800; }
   .panel .p-title{ font-size:11.5px; font-weight:700; color:var(--ink); }
   .panel .p-title .hint{ font-size:9px; color:var(--muted); font-weight:400; }
 
@@ -198,7 +199,7 @@
     padding:0;
     overflow:hidden;
     display:grid;
-    grid-template-rows:20px 48px 43px 103px 482px 24px;
+    grid-template-rows:20px 48px 43px 128px 457px 24px;
   }
   .embedded-report-shell .brandbar{ height:20px; padding:3px 20px; }
   .embedded-report-shell .brandbar .logo{ font-size:11px; }
@@ -211,18 +212,12 @@
   .embedded-report-shell .kpi .k-lbl{ font-size:6.8px; }
   .embedded-report-shell .kpi .k-val{ font-size:14.5px; margin-top:1px; }
   .embedded-report-shell .kpi .k-val small{ font-size:7.5px; }
-  .embedded-report-shell .panel.focus{ margin:6px 20px 0; min-height:0; }
-  .embedded-report-shell .focus-inner{ grid-template-columns:190px 1fr; gap:12px; padding:9px 16px; }
-  .embedded-report-shell .focus-left .p-eyebrow{ font-size:7.6px; }
-  .embedded-report-shell .focus-heading{ font-size:15px; margin-top:2px; }
-  .embedded-report-shell .focus-meta{ font-size:7.8px; margin-top:2px; }
-  .embedded-report-shell .focus-text p{ margin:0; font-size:10px; line-height:1.34; }
-  .embedded-report-shell .focus-text p + p{ margin-top:4px; }
+  .embedded-report-shell .mi-overview{ height:122px; margin:6px 20px 0; }
   .embedded-report-shell .content-grid{ min-height:0; gap:8px; padding:8px 20px 0; }
   .embedded-report-shell .left-stack,
   .embedded-report-shell .right-stack{ min-height:0; display:grid; gap:8px; }
   .embedded-report-shell .left-stack{ grid-template-rows:174px minmax(0,1fr); }
-  .embedded-report-shell .right-stack{ grid-template-rows:202px minmax(0,1fr); }
+  .embedded-report-shell .right-stack{ grid-template-rows:186px minmax(0,1fr); }
   .embedded-report-shell .panel{ min-height:0; overflow:hidden; }
   .embedded-report-shell .panel .p-head{ padding:4px 10px 3px; }
   .embedded-report-shell .panel .p-eyebrow{ font-size:6.8px; letter-spacing:.7px; }
@@ -274,7 +269,7 @@
 
   @media (max-width:980px){
     .kpi-strip{ grid-template-columns:repeat(3,1fr); }
-    .focus-inner{ grid-template-columns:1fr; }
+    .mi-overview{ grid-template-columns:1fr; }
     .content-grid{ grid-template-columns:1fr; }
   }
 </style>
@@ -288,7 +283,7 @@
   <header class="hero">
     <div class="hero-left">
       <h1>Executive Summary</h1>
-      <div class="sub">Board Risk Committee · V1 one-page summary: appetite exceptions &amp; RCSA risk detail</div>
+      <div class="sub">Board Risk Committee · Additional MI-driven summary: exceptions, movement and control performance</div>
     </div>
     <div class="hero-right">
       <label>Period</label>
@@ -298,15 +293,18 @@
 
   <div class="kpi-strip" id="kpiStrip"></div>
 
-  <section class="panel focus">
-    <div class="focus-inner">
-      <div class="focus-left">
-        <div class="p-eyebrow">Board focus</div>
-        <div class="focus-heading">Committee-level readout</div>
-        <div class="focus-meta">Risk Gatekeeper / Executive summary · 31 Mar 2026</div>
-      </div>
-      <div class="focus-text" id="focusText"></div>
-    </div>
+  <section class="mi-overview">
+    <article class="mi-summary-card mi-cro">
+      <div class="mi-label">CRO View</div>
+      <h2>Risk pressure is concentrated in Operational and Customer, with delivery and control evidence lagging.</h2>
+      <p>The formal customer-detriment breach, repeated Operational red, two at-risk actions and the Sev 1 data breach point to a common issue: escalation is visible, but ownership, testing and remediation are not consistently keeping pace.</p>
+      <div class="mi-attention"><b>Board attention</b><span>Confirm accountable owners and dates for the red risks, at-risk actions and oldest control gaps.</span></div>
+    </article>
+    <article class="mi-summary-card mi-page-summary">
+      <div class="mi-label">Page Summary</div>
+      <p>Across the page, deterioration is concentrated rather than broad-based: one appetite breach remains in train; five L2 risks are red and 22 amber; 78 of 126 tests are overdue and 5 of 125 controls ineffective. Three actions are in flight, two are at risk, and the quarter includes one Sev 1 data breach. The MI points to Operational and Customer as the areas requiring strongest challenge, with clearer evidence needed that actions and control testing will improve the position next quarter.</p>
+      <div class="mi-caption">Combined narrative from the MI on this page</div>
+    </article>
   </section>
 
   <div class="content-grid">
@@ -367,15 +365,6 @@ const DATA = {
     { lbl: "Control tests overdue",  val: "78/126 <small>\u00B7 62%</small>",      tone:"amber" },
     { lbl: "Controls ineffective",   val: "5/125 <small>\u00B7 4%</small>",        tone:"amber" }
   ],
-
-  readout: {
-    p1: "RCSA red risk is concentrated in <b>Operational</b> and <b>Customer</b>. Operational remains red for a second quarter across Info Security "
-      + "&amp; Op Resilience, while Customer has moved to red on Data Protection; Strategic, Liquidity &amp; Funding and Credit &amp; Counterparty remain "
-      + "amber watch items.",
-    p2: "The formal appetite breach is <b>Material Customer Detriment Incidents</b> in Customer, with further Customer and Operational triggers. "
-      + "Controls pressure is visible in <b>78/126</b> overdue tests and <b>5/125</b> ineffective controls, led by <b>9%</b> ineffective material controls. "
-      + "The Sev 1 incident is the <b>Data breach \u2013 12,400 records via API flaw</b>, with <b>\u00A32.15m</b> loss and regulator notified."
-  },
 
   /* Appetite exceptions — grouped exactly as your two appetite tabs group them. */
   appetiteGroups: [
@@ -450,11 +439,6 @@ document.getElementById("footAsof").textContent = "Refresh: " + DATA.asOf;
       <div class="k-lbl">${k.lbl}</div>
       <div class="k-val">${k.val}</div>
     </div>`).join("");
-})();
-
-/* Board focus */
-(function(){
-  document.getElementById("focusText").innerHTML = `<p>${DATA.readout.p1}</p><p>${DATA.readout.p2}</p>`;
 })();
 
 /* Appetite exceptions, grouped */

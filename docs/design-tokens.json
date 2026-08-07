@@ -76,11 +76,6 @@
       "header": 56,
       "footer": 32
     },
-    "riskAppetiteRows": {
-      "brandStrip": 36,
-      "header": 68,
-      "footer": 32
-    },
     "bodyPadding": {
       "x": [30, 40],
       "y": [12, 18]

@@ -144,8 +144,20 @@ const rel = (p) => p.slice(REPO.length + 1).replace(/\\/g, '/');
 
 /* ------------------------------------------------------------------ font --- */
 
-const FONT_STACK = tokens.font.body;
-const MONO_STACK = tokens.font.mono;
+/**
+ * Font stacks MUST be single-quoted. Most of this deck's slides are embedded
+ * as `srcdoc="<html>…"` attributes inside index.html, so a double quote in the
+ * CSS terminates the attribute and destroys the slide. The original Aptos
+ * stacks were single-quoted for exactly this reason.
+ */
+const singleQuoted = (stack) => stack.replace(/"/g, "'");
+const FONT_STACK = singleQuoted(tokens.font.body);
+const MONO_STACK = singleQuoted(tokens.font.mono);
+
+if (/"/.test(tokens.font.body) || /"/.test(tokens.font.mono)) {
+  console.warn('note: font stacks in design-tokens.json contain double quotes; '
+    + 'they are emitted single-quoted so srcdoc slides survive.');
+}
 /** Any Aptos-led body stack, however it is spaced or quoted. */
 const APTOS_STACK = /Aptos\s*,\s*["']?Segoe UI["']?\s*,\s*Arial\s*,\s*sans-serif/gi;
 /** The matching monospace stack, which is a separate token. */

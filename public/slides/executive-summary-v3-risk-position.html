@@ -21,14 +21,27 @@
   *{ box-sizing:border-box; }
   html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
   body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
-  .page{ width:1280px; height:720px; display:grid; grid-template-rows:20px 50px 70px 54px 500px 26px; background:var(--bg); }
-  .brandbar{ background:#fff; height:20px; padding:3px 30px; display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line); }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:70px 70px 54px 500px 26px; background:var(--bg); }
   .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
-  .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
-  header{ height:50px; background:var(--navy); color:#fff; padding:7px 30px 6px; display:flex; align-items:center; }
-  h1{ margin:0; font-size:18px; font-weight:700; line-height:1.05; }
-  .sub{ color:#c8d0ec; margin-top:4px; font-size:11px; }
-  .period{ margin-left:auto; display:flex; align-items:center; gap:9px; color:#9ca7d1; font-size:8px; text-transform:uppercase; font-weight:700; letter-spacing:.6px; }
+  /* Masthead — CRR report signature (white band, gold rule, wordmark,
+     small-caps eyebrow, heritage-blue title). Replaces the brandbar + navy
+     header; total height is preserved at 70px so the body grid and footer
+     still add up to the 720px page. */
+  .masthead{height:70px;padding:0 32px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center}
+  .mh-brand{display:flex;align-items:center;gap:12px;flex:0 0 168px}
+  .mh-rule{width:4px;height:24px;border-radius:2px;background:var(--gold)}
+  .mh-word{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+  .mh-titles{display:flex;flex-direction:column;justify-content:center;min-width:0;flex:1 1 auto}
+  .mh-eyebrow{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);line-height:1.2}
+  h1{margin:0;font-size:21px;line-height:1.12;font-weight:700;color:var(--ink);letter-spacing:-.005em}
+  .subtitle{margin-top:1px;color:var(--muted);font-size:10.6px;line-height:1.2}
+  .header-tools{margin-left:auto;display:flex;align-items:center;gap:10px;text-align:right}
+  .period-label,.concept{font-size:7.8px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--muted-2)}
+  /* Works for both shapes: a bare .period span, and a .period div wrapping
+     <span>Period</span><b>Q1 2026</b>. */
+  .period{display:inline-flex;align-items:center;gap:6px;color:var(--ink);border:1px solid var(--line);border-bottom:2px solid var(--gold);border-radius:6px;background:#fff;padding:5px 12px;font-size:10.8px;font-weight:800;white-space:nowrap}
+  .period span{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted-2)}
+  .period b{font-weight:800;color:var(--ink)}
   .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
   .focus{ margin:6px 30px 0; height:64px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:140px 1fr; gap:14px; padding:9px 14px; align-items:start; }
   .eyebrow{ text-transform:uppercase; letter-spacing:.8px; color:#2d659b; font-size:8px; font-weight:800; }
@@ -83,11 +96,15 @@
 </head>
 <body>
 <div class="page">
-  <div class="brandbar"><span class="logo">Standard Life</span><span class="mark"></span></div>
-  <header>
-    <div><h1>Executive Summary</h1><div class="sub">Board Risk Committee &middot; Risk position: appetite, RCSA &amp; controls</div></div>
+  <div class="masthead">
+    <div class="mh-brand"><span class="mh-rule"></span><span class="mh-word">Standard Life</span></div>
+    <div class="mh-titles">
+      <span class="mh-eyebrow">Enterprise Risk Management &middot; Board Pack</span>
+      <h1>Executive Summary</h1>
+      <div class="subtitle">Board Risk Committee &middot; Risk position: appetite, RCSA &amp; controls</div>
+    </div>
     <div class="period"><span>Period</span><b>Q1 2026</b></div>
-  </header>
+  </div>
   <section class="focus">
     <div><div class="eyebrow">Board Focus</div></div>
     <div class="focus-copy"><p>Overall posture has moved to <b>Amber</b>. <b>5 red</b> and <b>22 amber</b> L2 RCSA risks, <b>1 formal appetite breach</b>, and <b>9% material controls ineffective</b> are driving the pressure, concentrated in <b>Operational</b> and <b>Customer</b>. Section commentary below covers each area in detail; actions and incident learning are on page 2.</p></div>

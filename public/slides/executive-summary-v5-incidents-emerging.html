@@ -22,16 +22,25 @@
   body{font-size:10.8px;line-height:1.24;-webkit-font-smoothing:antialiased}
   button{font:inherit}
   .page{width:1280px;height:720px;overflow:hidden;background:var(--bg)}
-  .brandbar{height:20px;padding:0 32px;display:flex;align-items:center;gap:17px;background:#fff;border-bottom:1px solid #e2e8f2}
-  .brandbar strong{font-size:10px;color:var(--ink)}
-  .mark{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--gold)}
-  header{height:56px;padding:9px 32px 7px;background:var(--navy);color:#fff;display:flex;align-items:flex-start}
-  h1{margin:0;font-size:20px;line-height:1;font-weight:700}
-  .subtitle{margin-top:4px;color:#d5dcef;font-size:11.3px}
-  .header-tools{margin-left:auto;display:grid;grid-template-columns:auto auto;gap:6px 10px;align-items:center;text-align:right}
-  .period-label{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#b8c3df}
-  .period{grid-row:1 / span 2;grid-column:2;color:#fff;border:1px solid #435a98;border-radius:6px;background:#263f7e;padding:6px 17px;font-size:10.8px;font-weight:700}
-  .concept{font-size:7.8px;letter-spacing:.7px;text-transform:uppercase;color:#aebbd9}
+  /* Masthead — CRR report signature (white band, gold rule, wordmark,
+     small-caps eyebrow, heritage-blue title). Replaces the brandbar + navy
+     header; total height is preserved at 76px so the body grid and footer
+     still add up to the 720px page. */
+  .masthead{height:76px;padding:0 32px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center}
+  .mh-brand{display:flex;align-items:center;gap:12px;flex:0 0 168px}
+  .mh-rule{width:4px;height:24px;border-radius:2px;background:var(--gold)}
+  .mh-word{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+  .mh-titles{display:flex;flex-direction:column;justify-content:center;min-width:0;flex:1 1 auto}
+  .mh-eyebrow{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);line-height:1.2}
+  h1{margin:0;font-size:21px;line-height:1.12;font-weight:700;color:var(--ink);letter-spacing:-.005em}
+  .subtitle{margin-top:1px;color:var(--muted);font-size:10.6px;line-height:1.2}
+  .header-tools{margin-left:auto;display:flex;align-items:center;gap:10px;text-align:right}
+  .period-label,.concept{font-size:7.8px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--muted-2)}
+  /* Works for both shapes: a bare .period span, and a .period div wrapping
+     <span>Period</span><b>Q1 2026</b>. */
+  .period{display:inline-flex;align-items:center;gap:6px;color:var(--ink);border:1px solid var(--line);border-bottom:2px solid var(--gold);border-radius:6px;background:#fff;padding:5px 12px;font-size:10.8px;font-weight:800;white-space:nowrap}
+  .period span{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted-2)}
+  .period b{font-weight:800;color:var(--ink)}
   main{height:612px;padding:8px 32px 5px;display:block}
   .overview{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
   .summary-card{position:relative;min-width:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-left:7px solid #3274ad;border-radius:9px;padding:10px 12px 8px;box-shadow:var(--shadow)}
@@ -81,11 +90,15 @@
 </head>
 <body>
 <div class="page">
-  <div class="brandbar"><strong>Standard Life</strong><span class="mark"></span></div>
-  <header>
-    <div><h1>Executive Summary</h1><div class="subtitle">Board Risk Committee &middot; Incidents, near misses and emerging risk</div></div>
+  <div class="masthead">
+    <div class="mh-brand"><span class="mh-rule"></span><span class="mh-word">Standard Life</span></div>
+    <div class="mh-titles">
+      <span class="mh-eyebrow">Enterprise Risk Management &middot; Board Pack</span>
+      <h1>Executive Summary</h1>
+      <div class="subtitle">Board Risk Committee &middot; Incidents, near misses and emerging risk</div>
+    </div>
     <div class="header-tools"><span class="period-label">Period</span><span class="period">Q1 2026</span><span class="concept">Design concept &nbsp;&middot;&nbsp; 2/2</span></div>
-  </header>
+  </div>
 
   <main>
     <section class="details">

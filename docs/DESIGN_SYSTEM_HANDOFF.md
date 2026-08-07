@@ -81,19 +81,22 @@ For Power BI, set page size to 16:9 and design against 1280 x 720 screenshots. A
 Preferred font stack:
 
 ```text
-Aptos, Segoe UI, Arial, sans-serif
+"Segoe UI", "Segoe UI Semibold", system-ui, Arial, sans-serif
 ```
 
 Fallback monospace for IDs/dates:
 
 ```text
-Aptos Mono, Cascadia Mono, Consolas, monospace
+"Cascadia Mono", Consolas, monospace
 ```
 
 Power BI mapping:
 
-- Use Aptos where available.
-- If Aptos is not available, use Segoe UI.
+- Use Segoe UI. This deck previously led with Aptos; it was moved to Segoe UI so the
+  board pack matches the CRR reports and the CRR_DeepDive prototype, which are bound by
+  `_brief/report-spec.md` to Segoe UI / Segoe UI Semibold only. The registered Power BI
+  theme (`StandardLifeBoard-*.json`) declares Segoe UI throughout, so this removes the
+  last typographic difference between the deck and the reports.
 - Keep headings bold, labels uppercase, body compact.
 - Avoid negative letter spacing in Power BI. The prototype uses slight negative tracking in HTML headers, but Power BI should use normal tracking for stability.
 

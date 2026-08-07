@@ -50,30 +50,28 @@ There is no `src/` folder because the supplied prototype is already a complete s
 
 ## Report Pages
 
-The current pack contains 22 pages:
+The active navigation mirrors the 18 visible pages in `CRR_Board_Pack.pbip`:
 
-1. Executive Summary
-2. Risk Appetite: Financial
-3. Risk Appetite: Non-Financial
-4. RCSA: Financial Risk Summary
-5. RCSA: Financial Risk Detail
-6. RCSA: Non-Financial Risk Summary
-7. RCSA: Non-Financial Risk Detail
-8. Material Controls Environment
-9. Key Controls Environment
-10. Material Control Register
-11. Losses and Near Misses
-12. Incidents and Breaches
-13. Emerging Risks
-14. Regulatory Risks
-15. Commentary Power App
-16. Appendix divider
-17. Risk Appetite Financial Detail Appendix
-18. Risk Appetite Non-Financial Detail Appendix
-19. Risk Appetite Proximity Appendix
-20. RCSA L3 Detail Appendix
-21. RCSA Financial Commentary Spillover
-22. RCSA Non-Financial Commentary Spillover
+1. Executive Summary: Risk Position
+2. Executive Summary: Incidents & Emerging Risk
+3. Executive Summary: MI-Driven View
+4. Risk Appetite: Financial
+5. Risk Appetite: Non-Financial
+6. RCSA: Financial Risk Summary
+7. RCSA: Financial Risk Detail
+8. RCSA: Non-Financial Risk Summary
+9. RCSA: Non-Financial Risk Detail
+10. Material Controls Environment
+11. Key Controls Environment
+12. Material Control Register
+13. Losses and Near Misses
+14. Incidents and Breaches
+15. Emerging Risks
+16. Regulatory Risks
+17. Financial Commentary Spillover
+18. Non-Financial Commentary Spillover
+
+Historical design alternatives and supporting appendix frames remain in the source for reference, but are intentionally excluded from the shareable navigation.
 
 ## Data Model Handoff
 

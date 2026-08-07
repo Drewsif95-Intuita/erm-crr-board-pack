@@ -5,8 +5,8 @@
     "aspectRatio": "16:9"
   },
   "font": {
-    "body": "Aptos, Segoe UI, Arial, sans-serif",
-    "mono": "Aptos Mono, Cascadia Mono, Consolas, monospace"
+    "body": "\"Segoe UI\", \"Segoe UI Semibold\", system-ui, Arial, sans-serif",
+    "mono": "\"Cascadia Mono\", Consolas, monospace"
   },
   "colors": {
     "heritageBlue": "#0A2F73",
@@ -27,9 +27,18 @@
     "ink2": "#1F3458",
     "muted": "#5B6B83",
     "muted2": "#8294AE",
+    "grey": "#69778C",
+    "amberText": "#8F6200",
     "line": "#D8E0EC",
     "panelSoft": "#F7F9FC",
-    "noteSoft": "#F8FBFF"
+    "noteSoft": "#F8FBFF",
+    "canvas": "#EDF1F7",
+    "slicerBorder": "#E6ECF5",
+    "kpiBorder": "#E2E8F2",
+    "compareBorder": "#DCE4F0",
+    "drillFill": "#EEF2FB",
+    "drillOutline": "#C9D6EE",
+    "footerText": "#9FB2D8"
   },
   "rag": {
     "red": {
@@ -42,7 +51,7 @@
       "foreground": "#DE4721",
       "background": "#FFF4D1",
       "alternateBackground": "#FFF2C2",
-      "border": "#F0C96D"
+      "border": "#EFD273"
     },
     "watch": {
       "foreground": "#8F6200",
@@ -53,7 +62,7 @@
       "foreground": "#006B5C",
       "background": "#E6F5F1",
       "alternateBackground": "#E3F3EF",
-      "border": "#95D5C8"
+      "border": "#8FD4BF"
     },
     "pending": {
       "foreground": "#69778C",

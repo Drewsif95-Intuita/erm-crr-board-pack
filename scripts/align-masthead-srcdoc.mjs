@@ -65,9 +65,45 @@ const RULES = [
   ],
 ];
 
+/**
+ * The `.slide-header` family (p3, p3nf, p5, p6, p7, p9) is a fourth
+ * architecture again: a heritage-blue band using --sl-* variable names, with
+ * white-on-navy children. Flipping the band alone would leave white text on
+ * white, so its descendants are rewritten too — scoped to the rule, so the
+ * translucent whites used elsewhere in these slides are untouched.
+ */
+const SCOPED = [
+  [/\.slide-header\s*\{[^}]*\}/g, [
+    [/background\s*:\s*var\(--sl-heritage-blue\)/, 'background: #fff'],
+    [/color\s*:\s*(var\(--sl-white\)|#fff(?:fff)?)/, 'color: var(--sl-heritage-blue)'],
+  ]],
+  [/\.header-sub\s*\{[^}]*\}/g, [[/color\s*:\s*rgba\(255,\s*255,\s*255,\s*[\d.]+\)/, 'color: #5b6b83']]],
+  [/\.header-right\s*\{[^}]*\}/g, [[/color\s*:\s*rgba\(255,\s*255,\s*255,\s*[\d.]+\)/, 'color: #5b6b83']]],
+  [/\.crumb\s*\{[^}]*\}/g, [[/background\s*:\s*rgba\(255,\s*255,\s*255,\s*[\d.]+\)/, 'background: #d8e0ec']]],
+  [/\.crumb\.active\s*\{[^}]*\}/g, [
+    [/background\s*:\s*(var\(--sl-white\)|#fff(?:fff)?|rgba\(255,\s*255,\s*255,\s*[\d.]+\))/, 'background: #ffbb00'],
+  ]],
+];
+
 const text = readFileSync(INDEX, 'utf8');
 let out = text;
 let applied = 0;
+
+for (const [ruleRe, decls] of SCOPED) {
+  let hits = 0;
+  out = out.replace(ruleRe, (rule) => {
+    let r = rule;
+    for (const [from, to] of decls) {
+      if (to.includes('"')) throw new Error('replacement contains a double quote');
+      if (from.test(r)) { r = r.replace(from, to); hits += 1; }
+    }
+    return r;
+  });
+  const label = String(ruleRe).slice(1, 40);
+  console.log(`  ${hits === 0 ? 'none ' : FIX ? 'fix  ' : 'would'}  ${String(hits).padStart(2)}x  scoped: ${label}`);
+  applied += FIX ? hits : 0;
+}
+if (!FIX) out = text; // scoped pass is preview-only unless --fix
 
 for (const [label, pattern, replacement] of RULES) {
   if (replacement.includes('"')) {

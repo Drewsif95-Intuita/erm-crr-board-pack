@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Executive Summary — Board Risk Committee</title>
+<title>Executive Summary â€” Board Risk Committee</title>
 <script>
   if (new URLSearchParams(window.location.search).get("embed") === "1") {
     document.documentElement.classList.add("embedded-report-shell");
@@ -34,14 +34,14 @@
   .brandbar .logo{ font-weight:700; color:var(--navy); font-size:12px; }
   .brandbar .mark{ width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid var(--gold); }
 
-  header.hero{ background:var(--navy); color:#fff; padding:8px 20px; border-bottom:3px solid var(--gold); display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  header.hero{ background:#fff; color:var(--ink); padding:8px 20px; border-bottom:3px solid var(--gold); display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
   .hero-left h1{ margin:0; font-size:17px; font-weight:700; line-height:1.15; }
   .hero-left .sub{ color:#c3cbe6; font-size:10px; font-weight:400; margin-top:1px; }
   .hero-right{ margin-left:auto; display:flex; align-items:center; gap:6px; }
   .hero-right label{ font-size:8px; letter-spacing:.6px; text-transform:uppercase; color:#8b96c2; font-weight:800; }
-  .hero-right select{ font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:5px; border:1px solid #3b4a8c; background:#22306b; color:#fff; }
+  .hero-right select{ font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:5px; border:1px solid #3b4a8c; background:#22306b; color:var(--ink); }
 
-  /* KPI strip — 6 tiles, narrower each simply by virtue of one more column */
+  /* KPI strip â€” 6 tiles, narrower each simply by virtue of one more column */
   .kpi-strip{ display:grid; grid-template-columns:repeat(6,1fr); gap:7px; padding:8px 20px 0; }
   .kpi{ background:var(--card); border-radius:6px; padding:6px 9px; box-shadow:var(--shadow); border-top:3px solid var(--navy); min-height:44px; }
   .kpi.is-red{ border-top-color:var(--red); }
@@ -98,7 +98,7 @@
   .ax-meta{ font-size:9px; color:var(--muted); white-space:nowrap; }
   .ax-row.breach .ax-meta{ color:#ffd9df; }
 
-  /* RCSA — top 5 worsening list */
+  /* RCSA â€” top 5 worsening list */
   .panel.rcsalist{ display:flex; flex-direction:column; }
   .rc-list-head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
   .rc-list-head .viewall{ font-size:9px; color:var(--navy); font-weight:700; text-decoration:none; white-space:nowrap; }
@@ -131,7 +131,7 @@
   .stack span{ display:block; height:100%; }
   .stack .eff{ background:var(--green); } .stack .part{ background:#c25a2b; } .stack .ineff{ background:#7a1d52; }
 
-  /* Tests overdue by area — separated from the bars above by a title + divider, not a colour block */
+  /* Tests overdue by area â€” separated from the bars above by a title + divider, not a colour block */
   .cs-overdue{ margin-top:4px; padding-top:12px; border-top:1px solid var(--line-soft); flex:1; display:flex; flex-direction:column; }
   .cs-overdue-head{ display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
   .cs-overdue-head .stat{ font-size:10px; color:var(--muted); }
@@ -154,7 +154,7 @@
   .area-val .red-count{ color:var(--red); }
   .area-val .amber-count{ color:#a8761a; }
 
-  /* Worst incidents — its own white card */
+  /* Worst incidents â€” its own white card */
   .cs-inc-head{ margin-bottom:5px; }
   .inc-row{ display:grid; grid-template-columns:1fr 38px 50px 58px; gap:7px; align-items:center; padding:3px 0; border-top:1px solid var(--line-soft); }
   .inc-row:first-of-type{ border-top:none; }
@@ -169,7 +169,7 @@
   .inc-reg.pending{ background:var(--amber-soft); color:#a8761a; }
   .inc-reg.nonotify{ background:var(--grey-soft); color:var(--muted); }
 
-  /* Actions — same tinted-body + white-card pattern as Controls, now holds actions AND incidents */
+  /* Actions â€” same tinted-body + white-card pattern as Controls, now holds actions AND incidents */
   .panel.actions{ display:flex; flex-direction:column; }
   .panel.actions .act-body{ padding:8px; display:flex; flex-direction:column; gap:8px; justify-content:flex-start; flex:1; background:var(--bg); border-radius:0 0 var(--radius) var(--radius); }
   .act-rows{ padding-top:2px; }
@@ -283,7 +283,7 @@
   <header class="hero">
     <div class="hero-left">
       <h1>Executive Summary</h1>
-      <div class="sub">Board Risk Committee · Additional MI-driven summary: exceptions, movement and control performance</div>
+      <div class="sub">Board Risk Committee Â· Additional MI-driven summary: exceptions, movement and control performance</div>
     </div>
     <div class="hero-right">
       <label>Period</label>
@@ -329,10 +329,10 @@
       <section class="panel rcsalist">
         <div class="p-head">
           <div class="rc-list-head">
-            <div class="p-eyebrow">RCSA — top 5 worsening</div>
+            <div class="p-eyebrow">RCSA â€” top 5 worsening</div>
             <a class="viewall" href="#">View all 8 categories &rsaquo;</a>
           </div>
-          <div class="rc-list-note">Ranked by period-over-period deterioration vs 28 Feb 2026 · red increases first</div>
+          <div class="rc-list-note">Ranked by period-over-period deterioration vs 28 Feb 2026 Â· red increases first</div>
         </div>
         <div class="worsen-list" id="worsenList"></div>
       </section>
@@ -346,13 +346,13 @@
     </div>
   </div>
 
-  <footer><span>Standard Life · Board Risk Committee</span><span class="r" id="footAsof"></span></footer>
+  <footer><span>Standard Life Â· Board Risk Committee</span><span class="r" id="footAsof"></span></footer>
 
 </div>
 
 <script>
 /* ============================================================
-   DATA MODEL — single source for the whole page.
+   DATA MODEL â€” single source for the whole page.
    ============================================================ */
 const DATA = {
   asOf: "31 Mar 2026",
@@ -366,10 +366,10 @@ const DATA = {
     { lbl: "Controls ineffective",   val: "5/125 <small>\u00B7 4%</small>",        tone:"amber" }
   ],
 
-  /* Appetite exceptions — grouped exactly as your two appetite tabs group them. */
+  /* Appetite exceptions â€” grouped exactly as your two appetite tabs group them. */
   appetiteGroups: [
     { group:"Financial", stat:{breach:0, trigger:1}, items:[
-        { sev:"trigger", name:"RAL SCRC", l1:"Capital", note:"cascades to Market · Credit · Insurance" }
+        { sev:"trigger", name:"RAL SCRC", l1:"Capital", note:"cascades to Market Â· Credit Â· Insurance" }
     ]},
     { group:"Non-Financial", stat:{breach:0, trigger:4}, items:[
         { sev:"trigger", name:"Consumer Duty Assessment Impact Rating",  l1:"Customer" },
@@ -378,7 +378,7 @@ const DATA = {
         { sev:"trigger", name:"Total Operational Loss Amount",           l1:"Operational" }
     ]}
   ],
-  /* RCSA — top 5 worsening, ranked by period-over-period deterioration.
+  /* RCSA â€” top 5 worsening, ranked by period-over-period deterioration.
      Reds first (per Jemma: "they won't really care much for amber"),
      and genuinely persistent reds are called out explicitly as the sharper signal. */
   worsening: [
@@ -454,7 +454,7 @@ document.getElementById("footAsof").textContent = "Refresh: " + DATA.asOf;
     }).join("");
     return `<div class="ax-group">
         <div class="ax-grouphead">${g.group}
-          <span class="stat"><span class="bad">${g.stat.breach}</span> limit · <span class="caution">${g.stat.trigger}</span> triggered</span>
+          <span class="stat"><span class="bad">${g.stat.breach}</span> limit Â· <span class="caution">${g.stat.trigger}</span> triggered</span>
         </div>
         ${rows}
       </div>`;
@@ -462,7 +462,7 @@ document.getElementById("footAsof").textContent = "Refresh: " + DATA.asOf;
   document.getElementById("axBody").innerHTML = html;
 })();
 
-/* RCSA — top 5 worsening */
+/* RCSA â€” top 5 worsening */
 (function(){
   document.getElementById("worsenList").innerHTML = DATA.worsening.map(w=>`
     <div class="worsen-row">
@@ -488,7 +488,7 @@ function buildIncidentsCard(){
         <span class="inc-reg ${i.reg}">${i.regLabel}</span>
       </div>`).join("");
   return `<div class="cs-card cs-incidents-card">
-      <div class="cs-card-title cs-inc-head">Worst incidents <span class="hint">Q1 · by actual loss</span></div>
+      <div class="cs-card-title cs-inc-head">Worst incidents <span class="hint">Q1 Â· by actual loss</span></div>
       ${incRows}
     </div>`;
 }
@@ -500,7 +500,7 @@ function buildIncidentsCard(){
       <div>
         <span class="act-tag">${a.tag}</span>
         <div class="act-desc">${a.desc}</div>
-        <div class="act-foot">${a.owner} · due ${a.due}</div>
+        <div class="act-foot">${a.owner} Â· due ${a.due}</div>
       </div>
       <span class="act-status ${a.status}">${a.statusLabel}</span>
     </div>`).join("");
@@ -511,14 +511,14 @@ function buildIncidentsCard(){
   document.getElementById("actBody").innerHTML = actionsCard + buildIncidentsCard();
 })();
 
-/* Control snapshot (+ tests overdue by area) — now the only card in this panel, given more room */
+/* Control snapshot (+ tests overdue by area) â€” now the only card in this panel, given more room */
 (function(){
   function block(label,c){
     const testsComplete = Math.round(c.complete/c.scheduled*100);
     return `<div class="cs-block">
         <div class="cs-top">
           <span class="cs-label">${label}</span>
-          <span class="cs-figs">Ineffective <b class="bad">${c.ineff}%</b> (${c.ineffCount}) · Tests <b>${testsComplete}%</b> (${c.complete}/${c.scheduled})</span>
+          <span class="cs-figs">Ineffective <b class="bad">${c.ineff}%</b> (${c.ineffCount}) Â· Tests <b>${testsComplete}%</b> (${c.complete}/${c.scheduled})</span>
         </div>
         <div class="stack">
           <span class="eff" style="width:${c.eff}%"></span>

@@ -21,13 +21,13 @@
   *{ box-sizing:border-box; }
   html,body{ margin:0; width:1280px; height:720px; overflow:hidden; background:var(--bg); font-family:var(--font); color:var(--body); }
   body{ font-size:10px; line-height:1.22; -webkit-font-smoothing:antialiased; }
-  .page{ width:1280px; height:720px; display:grid; grid-template-rows:70px 70px 54px 500px 26px; background:var(--bg); }
+  .page{ width:1280px; height:720px; display:grid; grid-template-rows:92px 70px 54px 1fr 26px; background:var(--bg); }
   .brandbar .logo{ font-size:11px; font-weight:700; color:var(--navy); }
   /* Masthead â€” CRR report signature (white band, gold rule, wordmark,
      small-caps eyebrow, heritage-blue title). Replaces the brandbar + navy
-     header; total height is preserved at 70px so the body grid and footer
+     header; total height is preserved at 92px so the body grid and footer
      still add up to the 720px page. */
-  .masthead{height:70px;padding:0 32px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center}
+  .masthead{height:92px;padding:0 32px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center}
   .mh-brand{display:flex;align-items:center;gap:12px;flex:0 0 168px}
   .mh-rule{width:4px;height:24px;border-radius:2px;background:var(--gold)}
   .mh-word{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
@@ -41,9 +41,8 @@
      <span>Period</span><b>Q1 2026</b>. */
   .period{display:inline-flex;align-items:center;gap:6px;color:var(--ink);border:1px solid var(--line);border-bottom:2px solid var(--gold);border-radius:6px;background:#fff;padding:5px 12px;font-size:10.8px;font-weight:800;white-space:nowrap}
   .period span{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted-2)}
-  .period b{font-weight:800;color:var(--ink)}
-  .period b{ color:#fff; border:1px solid #3b4a8c; border-radius:5px; padding:4px 12px; background:#22306b; font-size:11px; letter-spacing:0; }
-  .focus{ margin:6px 30px 0; height:64px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:140px 1fr; gap:14px; padding:9px 14px; align-items:start; }
+  .period b{font-weight:800;color:var(--ink)}
+  .focus{ margin:0 30px 6px; height:64px; background:#fff7e8; border:1.5px solid var(--amber); border-radius:8px; display:grid; grid-template-columns:140px 1fr; gap:14px; padding:9px 14px; align-items:start; }
   .eyebrow{ text-transform:uppercase; letter-spacing:.8px; color:#2d659b; font-size:8px; font-weight:800; }
   .focus-copy{ font-size:11.4px; line-height:1.34; color:#5b4a1f; }
   .focus-copy p{ margin:0; }
@@ -55,7 +54,7 @@
   .kpi .value{ color:var(--ink); font-size:16px; font-weight:700; line-height:1.08; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .kpi .delta{ margin-top:4px; color:var(--red); font-weight:700; font-size:8.4px; }
   .kpi .delta.green{ color:var(--green); }
-  .main{ height:500px; padding:7px 30px 6px; display:grid; grid-template-columns:1.18fr .88fr; grid-template-rows:244px 235px; gap:8px; }
+  .main{ min-height:0; padding:7px 30px 6px; display:grid; grid-template-columns:1.18fr .88fr; grid-template-rows:1fr 1fr; gap:8px; }
   .panel{ background:#fff; border-radius:8px; box-shadow:var(--shadow); overflow:hidden; border:1px solid #edf1f7; min-width:0; min-height:0; }
   .panel.accent{ border-color:var(--amber); }
   .panel.wide{ grid-column:1 / span 2; }
@@ -106,7 +105,7 @@
       <h1>Executive Summary</h1>
       <div class="subtitle">Board Risk Committee &middot; Risk position: appetite, RCSA &amp; controls</div>
     </div>
-    <div class="period"><span>Period</span><b>Q1 2026</b></div>
+    <div class="header-tools"><span class="period-label">Period</span><span class="period">Q1 2026</span></div>
   </div>
   <section class="focus">
     <div><div class="eyebrow">Board Focus</div></div>
